@@ -23,6 +23,9 @@ class SpaceTranslations
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'content')]
+    private ?Spaces $space = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class SpaceTranslations
     public function setDescription(?string $Description): static
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getSpace(): ?Spaces
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Spaces $space): static
+    {
+        $this->space = $space;
 
         return $this;
     }

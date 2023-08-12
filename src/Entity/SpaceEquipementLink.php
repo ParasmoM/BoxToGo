@@ -19,6 +19,12 @@ class SpaceEquipementLink
     #[ORM\Column]
     private ?bool $equipped = null;
 
+    #[ORM\ManyToOne(inversedBy: 'equipment')]
+    private ?Spaces $space = null;
+
+    #[ORM\ManyToOne(inversedBy: 'equipment')]
+    private ?SpaceEquipements $equipmentName = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +50,30 @@ class SpaceEquipementLink
     public function setEquipped(bool $equipped): static
     {
         $this->equipped = $equipped;
+
+        return $this;
+    }
+
+    public function getSpace(): ?Spaces
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Spaces $space): static
+    {
+        $this->space = $space;
+
+        return $this;
+    }
+
+    public function getEquipmentName(): ?SpaceEquipements
+    {
+        return $this->equipmentName;
+    }
+
+    public function setEquipmentName(?SpaceEquipements $equipmentName): static
+    {
+        $this->equipmentName = $equipmentName;
 
         return $this;
     }

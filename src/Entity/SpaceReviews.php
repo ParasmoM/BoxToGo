@@ -23,6 +23,9 @@ class SpaceReviews
     #[ORM\Column(type: Types::TEXT)]
     private ?string $comment = null;
 
+    #[ORM\ManyToOne(inversedBy: 'review')]
+    private ?Users $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class SpaceReviews
     public function setComment(string $comment): static
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

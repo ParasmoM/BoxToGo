@@ -23,6 +23,12 @@ class ArticleLog
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $reasonForDeletion = null;
 
+    #[ORM\ManyToOne(inversedBy: 'log')]
+    private ?Admin $admin = null;
+
+    #[ORM\ManyToOne(inversedBy: 'log')]
+    private ?Articles $article = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +66,30 @@ class ArticleLog
     public function setReasonForDeletion(?string $reasonForDeletion): static
     {
         $this->reasonForDeletion = $reasonForDeletion;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?Admin
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(?Admin $admin): static
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Articles
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Articles $article): static
+    {
+        $this->article = $article;
 
         return $this;
     }

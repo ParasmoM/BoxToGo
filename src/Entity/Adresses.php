@@ -28,6 +28,9 @@ class Adresses
     #[ORM\Column(length: 20)]
     private ?string $PostalCode = null;
 
+    #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
+    private ?Users $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,28 @@ class Adresses
     public function setPostalCode(string $PostalCode): static
     {
         $this->PostalCode = $PostalCode;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getAdresse() !== $this) {
+            $user->setAdresse($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

@@ -29,6 +29,15 @@ class Reservations
     #[ORM\Column(length: 20)]
     private ?string $status = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservation')]
+    private ?Users $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservation')]
+    private ?Spaces $space = null;
+
+    #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
+    private ?Payments $payment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +99,42 @@ class Reservations
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSpace(): ?Spaces
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Spaces $space): static
+    {
+        $this->space = $space;
+
+        return $this;
+    }
+
+    public function getPayment(): ?Payments
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(?Payments $payment): static
+    {
+        $this->payment = $payment;
 
         return $this;
     }

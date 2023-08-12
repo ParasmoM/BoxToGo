@@ -22,6 +22,9 @@ class ArticleContent
     #[ORM\Column(length: 20)]
     private ?string $language = null;
 
+    #[ORM\ManyToOne(inversedBy: 'content')]
+    private ?Articles $article = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class ArticleContent
     public function setLanguage(string $language): static
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Articles
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Articles $article): static
+    {
+        $this->article = $article;
 
         return $this;
     }

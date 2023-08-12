@@ -23,6 +23,9 @@ class UserConsent
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $consentDate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'consent')]
+    private ?Users $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class UserConsent
     public function setConsentDate(\DateTimeInterface $consentDate): static
     {
         $this->consentDate = $consentDate;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -29,6 +29,9 @@ class Notifications
     #[ORM\Column]
     private ?bool $wasRead = null;
 
+    #[ORM\ManyToOne(inversedBy: 'alert')]
+    private ?Users $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Notifications
     public function setWasRead(bool $wasRead): static
     {
         $this->wasRead = $wasRead;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

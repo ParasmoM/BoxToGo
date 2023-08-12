@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SpacesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,6 +48,51 @@ class Spaces
 
     #[ORM\Column]
     private ?bool $isPublished = null;
+
+    #[ORM\ManyToOne(inversedBy: 'renter')]
+    private ?Users $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'owner')]
+    private ?Users $host = null;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Adresse::class)]
+    private Collection $adresse;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Favoris::class)]
+    private Collection $favorite;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reservations::class)]
+    private Collection $reservation;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reports::class)]
+    private Collection $report;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceImages::class)]
+    private Collection $image;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceEquipementLink::class)]
+    private Collection $equipment;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceTranslations::class)]
+    private Collection $content;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Conversations::class)]
+    private Collection $conversation;
+
+    #[ORM\ManyToOne(inversedBy: 'space')]
+    private ?SpaceCategories $spaceCateg = null;
+
+    public function __construct()
+    {
+        $this->adresse = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
+        $this->reservation = new ArrayCollection();
+        $this->report = new ArrayCollection();
+        $this->image = new ArrayCollection();
+        $this->equipment = new ArrayCollection();
+        $this->content = new ArrayCollection();
+        $this->conversation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +227,282 @@ class Spaces
     public function setIsPublished(bool $isPublished): static
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getHost(): ?Users
+    {
+        return $this->host;
+    }
+
+    public function setHost(?Users $host): static
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Adresse>
+     */
+    public function getAdresse(): Collection
+    {
+        return $this->adresse;
+    }
+
+    public function addAdresse(Adresse $adresse): static
+    {
+        if (!$this->adresse->contains($adresse)) {
+            $this->adresse->add($adresse);
+            $adresse->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresse(Adresse $adresse): static
+    {
+        if ($this->adresse->removeElement($adresse)) {
+            // set the owning side to null (unless already changed)
+            if ($adresse->getSpace() === $this) {
+                $adresse->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Favoris $favorite): static
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite->add($favorite);
+            $favorite->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favoris $favorite): static
+    {
+        if ($this->favorite->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getSpace() === $this) {
+                $favorite->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservations>
+     */
+    public function getReservation(): Collection
+    {
+        return $this->reservation;
+    }
+
+    public function addReservation(Reservations $reservation): static
+    {
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation->add($reservation);
+            $reservation->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservations $reservation): static
+    {
+        if ($this->reservation->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getSpace() === $this) {
+                $reservation->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reports>
+     */
+    public function getReport(): Collection
+    {
+        return $this->report;
+    }
+
+    public function addReport(Reports $report): static
+    {
+        if (!$this->report->contains($report)) {
+            $this->report->add($report);
+            $report->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Reports $report): static
+    {
+        if ($this->report->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getSpace() === $this) {
+                $report->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SpaceImages>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(SpaceImages $image): static
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(SpaceImages $image): static
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getSpace() === $this) {
+                $image->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SpaceEquipementLink>
+     */
+    public function getEquipment(): Collection
+    {
+        return $this->equipment;
+    }
+
+    public function addEquipment(SpaceEquipementLink $equipment): static
+    {
+        if (!$this->equipment->contains($equipment)) {
+            $this->equipment->add($equipment);
+            $equipment->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipment(SpaceEquipementLink $equipment): static
+    {
+        if ($this->equipment->removeElement($equipment)) {
+            // set the owning side to null (unless already changed)
+            if ($equipment->getSpace() === $this) {
+                $equipment->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SpaceTranslations>
+     */
+    public function getContent(): Collection
+    {
+        return $this->content;
+    }
+
+    public function addContent(SpaceTranslations $content): static
+    {
+        if (!$this->content->contains($content)) {
+            $this->content->add($content);
+            $content->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContent(SpaceTranslations $content): static
+    {
+        if ($this->content->removeElement($content)) {
+            // set the owning side to null (unless already changed)
+            if ($content->getSpace() === $this) {
+                $content->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversations>
+     */
+    public function getConversation(): Collection
+    {
+        return $this->conversation;
+    }
+
+    public function addConversation(Conversations $conversation): static
+    {
+        if (!$this->conversation->contains($conversation)) {
+            $this->conversation->add($conversation);
+            $conversation->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversations $conversation): static
+    {
+        if ($this->conversation->removeElement($conversation)) {
+            // set the owning side to null (unless already changed)
+            if ($conversation->getSpace() === $this) {
+                $conversation->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSpaceCateg(): ?SpaceCategories
+    {
+        return $this->spaceCateg;
+    }
+
+    public function setSpaceCateg(?SpaceCategories $spaceCateg): static
+    {
+        $this->spaceCateg = $spaceCateg;
 
         return $this;
     }

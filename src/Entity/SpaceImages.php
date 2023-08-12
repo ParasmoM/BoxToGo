@@ -26,6 +26,9 @@ class SpaceImages
     #[ORM\Column]
     private ?int $sortOrder = null;
 
+    #[ORM\ManyToOne(inversedBy: 'image')]
+    private ?Spaces $space = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class SpaceImages
     public function setSortOrder(int $sortOrder): static
     {
         $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    public function getSpace(): ?Spaces
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Spaces $space): static
+    {
+        $this->space = $space;
 
         return $this;
     }

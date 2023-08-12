@@ -20,6 +20,9 @@ class Messages
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'message')]
+    private ?Users $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Messages
     public function setContent(string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
