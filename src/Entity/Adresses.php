@@ -31,6 +31,9 @@ class Adresses
     #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
     private ?Users $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'adresse')]
+    private ?Spaces $space = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,6 +117,18 @@ class Adresses
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSpace(): ?Spaces
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Spaces $space): static
+    {
+        $this->space = $space;
 
         return $this;
     }

@@ -112,6 +112,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->registrationDate = new \DateTime();
+        $this->language = 'EN';
         $this->reservation = new ArrayCollection();
         $this->message = new ArrayCollection();
         $this->favorite = new ArrayCollection();
@@ -125,6 +127,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->owner = new ArrayCollection();
         $this->conversationUser = new ArrayCollection();
         $this->conversationHost = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->givenName . ' ' . $this->familyNameName;
     }
 
     public function getId(): ?int

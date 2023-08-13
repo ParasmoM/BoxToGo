@@ -55,9 +55,6 @@ class Spaces
     #[ORM\ManyToOne(inversedBy: 'owner')]
     private ?Users $host = null;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Adresse::class)]
-    private Collection $adresse;
-
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Favoris::class)]
     private Collection $favorite;
 
@@ -82,9 +79,11 @@ class Spaces
     #[ORM\ManyToOne(inversedBy: 'space')]
     private ?SpaceCategories $spaceCateg = null;
 
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Adresses::class)]
+    private Collection $adresse;
+
     public function __construct()
     {
-        $this->adresse = new ArrayCollection();
         $this->favorite = new ArrayCollection();
         $this->reservation = new ArrayCollection();
         $this->report = new ArrayCollection();
@@ -92,6 +91,7 @@ class Spaces
         $this->equipment = new ArrayCollection();
         $this->content = new ArrayCollection();
         $this->conversation = new ArrayCollection();
+        $this->adresse = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -251,36 +251,6 @@ class Spaces
     public function setHost(?Users $host): static
     {
         $this->host = $host;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Adresse>
-     */
-    public function getAdresse(): Collection
-    {
-        return $this->adresse;
-    }
-
-    public function addAdresse(Adresse $adresse): static
-    {
-        if (!$this->adresse->contains($adresse)) {
-            $this->adresse->add($adresse);
-            $adresse->setSpace($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdresse(Adresse $adresse): static
-    {
-        if ($this->adresse->removeElement($adresse)) {
-            // set the owning side to null (unless already changed)
-            if ($adresse->getSpace() === $this) {
-                $adresse->setSpace(null);
-            }
-        }
 
         return $this;
     }
@@ -503,6 +473,36 @@ class Spaces
     public function setSpaceCateg(?SpaceCategories $spaceCateg): static
     {
         $this->spaceCateg = $spaceCateg;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Adresses>
+     */
+    public function getAdresse(): Collection
+    {
+        return $this->adresse;
+    }
+
+    public function addAdresse(Adresses $adresse): static
+    {
+        if (!$this->adresse->contains($adresse)) {
+            $this->adresse->add($adresse);
+            $adresse->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresse(Adresses $adresse): static
+    {
+        if ($this->adresse->removeElement($adresse)) {
+            // set the owning side to null (unless already changed)
+            if ($adresse->getSpace() === $this) {
+                $adresse->setSpace(null);
+            }
+        }
 
         return $this;
     }

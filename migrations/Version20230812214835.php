@@ -20,8 +20,8 @@ final class Version20230812214835 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE adresse (id INT AUTO_INCREMENT NOT NULL, space_id INT DEFAULT NULL, INDEX IDX_C35F081623575340 (space_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE adresse ADD CONSTRAINT FK_C35F081623575340 FOREIGN KEY (space_id) REFERENCES spaces (id)');
+        // $this->addSql('CREATE TABLE adresse (id INT AUTO_INCREMENT NOT NULL, space_id INT DEFAULT NULL, INDEX IDX_C35F081623575340 (space_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        // $this->addSql('ALTER TABLE adresse ADD CONSTRAINT FK_C35F081623575340 FOREIGN KEY (space_id) REFERENCES spaces (id)');
         $this->addSql('ALTER TABLE article_content ADD article_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE article_content ADD CONSTRAINT FK_1317741E7294869C FOREIGN KEY (article_id) REFERENCES articles (id)');
         $this->addSql('CREATE INDEX IDX_1317741E7294869C ON article_content (article_id)');
@@ -104,8 +104,8 @@ final class Version20230812214835 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE adresse DROP FOREIGN KEY FK_C35F081623575340');
-        $this->addSql('DROP TABLE adresse');
+        // $this->addSql('ALTER TABLE adresse DROP FOREIGN KEY FK_C35F081623575340');
+        // $this->addSql('DROP TABLE adresse');
         $this->addSql('ALTER TABLE article_content DROP FOREIGN KEY FK_1317741E7294869C');
         $this->addSql('DROP INDEX IDX_1317741E7294869C ON article_content');
         $this->addSql('ALTER TABLE article_content DROP article_id');
