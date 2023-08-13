@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<main class="loginpage">
+    <div class="loginpage__container">
+        <a href="{# {{ path('app_homepage') }} #}" class="loginpage__logo-link">
+            <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
+        </a>
+
+        <form method="post" class="loginpage__form">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+        
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in asici {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+        
+            <h3 class="loginpage__heading">{{ 'Log in'|trans }}</h3>
+            <p class="loginpage__prompt">{{ "Don't have a BOX ToGo username ?"|trans }}</p>
+            <a href="{{ path('app_register') }}" class="loginpage__link">{{ 'Sign up here'|trans }}</a>
+            <div class="loginpage__form-input">
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
+            </div>
+            <div class="loginpage__form-input">
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Mot de passe" required>
+            </div>
+
+        
+            <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+            >
+        
+            <button class="loginpage__form-submit" type="submit">
+                {{ 'Continue'|trans }}
+            </button>
+
+            <a href="" class="loginpage__link">{{ 'Forgot your password ?'|trans }}</a>
+
+            <div class="loginpage__divider-text">
+                {{ 'Or'|trans }}
+            </div>
+
+            <a href="#" class="loginpage__social-login-item">
+                <img src="{{ asset('images/icones/google.svg') }}" alt="">
+                {{ 'Log in with Google'|trans }}
+            </a>
+        </form>
+    </div>
+</main>
+{% endblock %}

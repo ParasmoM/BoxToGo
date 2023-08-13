@@ -1,0 +1,65 @@
+@use "colors" as *;
+
+// Font Families
+$font-family-primary: "Montserrat", sans-serif;
+$font-family-secondary: "Open Sans", sans-serif;
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+
+// Font Sizes
+$font-size-tiny: 0.8rem;
+$font-size-extra-small: 1rem;
+$font-size-small: 1.2rem;
+$font-size-medium: 1.4rem;
+$font-size-default: 1.6rem;
+$font-size-large: 1.8rem;
+$font-size-extra-large: 2.2rem;
+$font-size-huge: 2.6rem;
+$font-size-title: 3rem;
+
+// Spacing
+$spacing-small: 1.5rem;
+$spacing-medium: 3rem;
+$spacing-large: 6rem;
+
+// --------------------------------------------------- \\
+
+// Colors
+// Accès direct aux couleurs
+$white: map-get($colors, white);
+$black: map-get($colors, black);
+$primary: map-get($colors, primary);
+$success: map-get($colors, success);
+$error: map-get($colors, error);
+$dark-blue: map-get($others, dark-blue);
+$border-color: map-get($grays, 700); 
+
+// Font Family Aliases
+$ff-primary: $font-family-primary;
+$ff-secondary: $font-family-secondary;
+
+// Font Size Aliases
+$fs: $font-size-medium;
+
+// Font Weights Aliases
+$fw: $font-weight-regular;
+
+// Font Colors
+$clr-text: $black;
+
+// Borders
+$border-radius: 1rem;
+
+// Box Shadows
+$box-shadow: rgba(map-get($grays, 300), 0.55) 0px 3px 10px;
+$box-shadow-secondary: rgba(map-get($grays, 400), 0.55) 0px 3px 6px;
+
+// Container Widths
+$container-max-width: 156rem;
+$container-max-width-secondary: 130rem;
+
