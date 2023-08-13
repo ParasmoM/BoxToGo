@@ -131,7 +131,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString()
     {
-        return $this->givenName . ' ' . $this->familyNameName;
+        return $this->givenName . ' ' . $this->familyName;
     }
 
     public function getId(): ?int
