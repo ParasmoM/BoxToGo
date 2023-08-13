@@ -33,34 +33,34 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $GivenName = null;
+    private ?string $givenName = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $FamilyName = null;
+    private ?string $familyName = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $BirthDate = null;
+    private ?\DateTimeInterface $birthDate = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $ProfilePicture = null;
+    private ?string $profilePicture = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $RegistrationDate = null;
+    private ?\DateTimeInterface $registrationDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Status = null;
+    private ?string $status = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Gender = null;
+    private ?string $gender = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $PhoneNumber = null;
+    private ?string $phoneNumber = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $Language = null;
+    private ?string $language = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $GoogleId = null;
+    private ?string $googleId = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservations::class)]
     private Collection $reservation;
@@ -199,120 +199,120 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getGivenName(): ?string
     {
-        return $this->GivenName;
+        return $this->givenName;
     }
 
-    public function setGivenName(string $GivenName): static
+    public function setGivenName(string $givenName): static
     {
-        $this->GivenName = $GivenName;
+        $this->givenName = $givenName;
 
         return $this;
     }
 
     public function getFamilyName(): ?string
     {
-        return $this->FamilyName;
+        return $this->familyName;
     }
 
-    public function setFamilyName(string $FamilyName): static
+    public function setFamilyName(string $familyName): static
     {
-        $this->FamilyName = $FamilyName;
+        $this->familyName = $familyName;
 
         return $this;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
     {
-        return $this->BirthDate;
+        return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeInterface $BirthDate): static
+    public function setBirthDate(\DateTimeInterface $birthDate): static
     {
-        $this->BirthDate = $BirthDate;
+        $this->birthDate = $birthDate;
 
         return $this;
     }
 
     public function getProfilePicture(): ?string
     {
-        return $this->ProfilePicture;
+        return $this->profilePicture;
     }
 
-    public function setProfilePicture(?string $ProfilePicture): static
+    public function setProfilePicture(?string $profilePicture): static
     {
-        $this->ProfilePicture = $ProfilePicture;
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }
 
     public function getRegistrationDate(): ?\DateTimeInterface
     {
-        return $this->RegistrationDate;
+        return $this->registrationDate;
     }
 
-    public function setRegistrationDate(\DateTimeInterface $RegistrationDate): static
+    public function setRegistrationDate(\DateTimeInterface $registrationDate): static
     {
-        $this->RegistrationDate = $RegistrationDate;
+        $this->registrationDate = $registrationDate;
 
         return $this;
     }
 
     public function getStatus(): ?string
     {
-        return $this->Status;
+        return $this->status;
     }
 
-    public function setStatus(?string $Status): static
+    public function setStatus(?string $status): static
     {
-        $this->Status = $Status;
+        $this->status = $status;
 
         return $this;
     }
 
     public function getGender(): ?string
     {
-        return $this->Gender;
+        return $this->gender;
     }
 
-    public function setGender(?string $Gender): static
+    public function setGender(?string $gender): static
     {
-        $this->Gender = $Gender;
+        $this->gender = $gender;
 
         return $this;
     }
 
     public function getPhoneNumber(): ?string
     {
-        return $this->PhoneNumber;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $PhoneNumber): static
+    public function setPhoneNumber(?string $phoneNumber): static
     {
-        $this->PhoneNumber = $PhoneNumber;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
 
     public function getLanguage(): ?string
     {
-        return $this->Language;
+        return $this->language;
     }
 
-    public function setLanguage(string $Language): static
+    public function setLanguage(string $language): static
     {
-        $this->Language = $Language;
+        $this->language = $language;
 
         return $this;
     }
 
     public function getGoogleId(): ?string
     {
-        return $this->GoogleId;
+        return $this->googleId;
     }
 
-    public function setGoogleId(?string $GoogleId): static
+    public function setGoogleId(?string $googleId): static
     {
-        $this->GoogleId = $GoogleId;
+        $this->googleId = $googleId;
 
         return $this;
     }

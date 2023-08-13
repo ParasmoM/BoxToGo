@@ -14,19 +14,19 @@ class Adresses
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $Country = null;
+    private ?string $country = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $City = null;
+    private ?string $city = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $StreetNumber = null;
+    private ?string $streetNumber = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Street = null;
+    private ?string $street = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $PostalCode = null;
+    private ?string $postalCode = null;
 
     #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
     private ?Users $user = null;
@@ -38,60 +38,60 @@ class Adresses
 
     public function getCountry(): ?string
     {
-        return $this->Country;
+        return $this->country;
     }
 
-    public function setCountry(string $Country): static
+    public function setCountry(string $country): static
     {
-        $this->Country = $Country;
+        $this->country = $country;
 
         return $this;
     }
 
     public function getCity(): ?string
     {
-        return $this->City;
+        return $this->city;
     }
 
-    public function setCity(string $City): static
+    public function setCity(string $city): static
     {
-        $this->City = $City;
+        $this->city = $city;
 
         return $this;
     }
 
     public function getStreetNumber(): ?string
     {
-        return $this->StreetNumber;
+        return $this->streetNumber;
     }
 
-    public function setStreetNumber(string $StreetNumber): static
+    public function setStreetNumber(string $streetNumber): static
     {
-        $this->StreetNumber = $StreetNumber;
+        $this->streetNumber = $streetNumber;
 
         return $this;
     }
 
     public function getStreet(): ?string
     {
-        return $this->Street;
+        return $this->street;
     }
 
-    public function setStreet(string $Street): static
+    public function setStreet(string $street): static
     {
-        $this->Street = $Street;
+        $this->street = $street;
 
         return $this;
     }
 
     public function getPostalCode(): ?string
     {
-        return $this->PostalCode;
+        return $this->postalCode;
     }
 
-    public function setPostalCode(string $PostalCode): static
+    public function setPostalCode(string $postalCode): static
     {
-        $this->PostalCode = $PostalCode;
+        $this->postalCode = $postalCode;
 
         return $this;
     }

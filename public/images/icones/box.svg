@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40.482" height="27.706" viewBox="0 0 40.482 27.706">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_744" data-name="Rectangle 744" width="40.482" height="27.706" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Groupe_1088" data-name="Groupe 1088" transform="translate(0 0)">
+    <g id="Groupe_1087" data-name="Groupe 1087">
+      <g id="Groupe_1086" data-name="Groupe 1086" clip-path="url(#clip-path)">
+        <path id="Tracé_278" data-name="Tracé 278" d="M33.6,9.514V26.706H29.459V9.458H12.937V26.706H8.482V5.223h31V1H1V4.883H4.269" fill="none" stroke="#161615" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+    <rect id="Rectangle_745" data-name="Rectangle 745" width="9.013" height="1.178" transform="translate(16.527 12.949)" fill="#161615"/>
+    <rect id="Rectangle_746" data-name="Rectangle 746" width="9.013" height="1.178" transform="translate(16.527 16.573)" fill="#161615"/>
+    <rect id="Rectangle_747" data-name="Rectangle 747" width="9.013" height="1.178" transform="translate(16.527 20.198)" fill="#161615"/>
+    <rect id="Rectangle_748" data-name="Rectangle 748" width="9.013" height="1.178" transform="translate(16.527 23.822)" fill="#161615"/>
+  </g>
+</svg>

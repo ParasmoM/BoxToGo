@@ -45,10 +45,13 @@
                 {{ 'Or'|trans }}
             </div>
 
-            <a href="#" class="loginpage__social-login-item">
-                <img src="{{ asset('images/icones/google.svg') }}" alt="">
-                {{ 'Log in with Google'|trans }}
-            </a>
+            <div class="loginpage__social-login">
+                <p>{{ 'Log in with'|trans }}</p>
+                <a href="#">
+                    <img src="{{ asset('images/icones/google.png') }}" alt="">
+                    <span>Google</span>
+                </a>
+            </div>
         </form>
     </div>
 </main>

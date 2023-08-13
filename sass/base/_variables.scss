@@ -38,6 +38,7 @@ $success: map-get($colors, success);
 $error: map-get($colors, error);
 $dark-blue: map-get($others, dark-blue);
 $border-color: map-get($grays, 700); 
+$hovered: map-get($grays, 300); 
 
 // Font Family Aliases
 $ff-primary: $font-family-primary;
@@ -60,6 +61,5 @@ $box-shadow: rgba(map-get($grays, 300), 0.55) 0px 3px 10px;
 $box-shadow-secondary: rgba(map-get($grays, 400), 0.55) 0px 3px 6px;
 
 // Container Widths
-$container-max-width: 156rem;
-$container-max-width-secondary: 130rem;
+$container: 80rem;
 
