@@ -1,0 +1,148 @@
+@use "../base/variables" as *;
+// @use "../utils" as *;
+
+.header {
+    position: relative;
+    box-shadow: $box-shadow-secondary; // ! à modifier
+
+    &__container {
+        --padding: 4rem * 2;
+        --max-width: #{$container-1};
+
+        display: flex;
+        justify-content: space-between;
+        padding-block: $spacing-medium;
+    
+        width: min(100% - var(--padding), var(--max-width));
+        margin-inline: auto;
+    }
+
+    .nav {
+        &__action {
+            font-size: $font-size-medium;
+            font-weight: $font-weight-medium;
+        }
+        &__action:hover {
+            background-color: $hovered;
+            border-radius: calc($border-radius * 3);
+            padding: $spacing-small 10rem;
+        }
+    }
+
+    &__button {
+        position: relative;
+        cursor: pointer;
+
+        &s {
+            display: flex;
+            justify-content: flex-end;
+            gap: $spacing-medium;
+            height: fit-content;
+            align-items: center;
+        }
+
+        &__list {
+            position: absolute;
+            border: solid 1px $border-color;
+            top: 4rem;right: -5.5rem;
+            font-size: $font-size-large; // ! à modifier
+            font-weight: $font-weight-regular; // ! à modifier
+            color: #444F5A; //todo  a modifier
+            text-transform: capitalize;
+            padding-inline: $spacing-medium;
+            padding-block: 2.5rem;
+            border-radius: .5rem;
+            background-color: $white;
+            margin-block-start: $spacing-small;
+            display: none; 
+        }
+        &__list-item:last-of-type {
+            margin-block-start: 1rem;
+        }
+        &__list-item:hover {
+            color: $primary;
+        }
+
+        &__user {
+            &:has( > img) {
+                --ratio: 5rem;
+                --padding: .5rem;
+
+                display: flex;
+                align-items: center;
+                place-content: center;
+
+                border: solid 1px $border-color;
+                box-shadow: $box-shadow;
+                border-radius: calc($border-radius * 3);
+
+                height: var(--ratio);
+                width: var(--ratio);
+                padding: var(--padding);
+            }
+            &:has( > a) {
+                padding: 1.1rem 3rem;
+                border-radius: 1.1rem 2rem;
+                font-weight: $font-weight-medium;
+                
+                &:hover {
+                    background-color: $primary;
+                    color: $white;
+                }
+            }
+        }
+        .user {
+            position: absolute;
+            top: 6rem;right: 0rem;
+            background-color: $white;
+            border: solid 1px $border-color;
+            box-shadow: $box-shadow;
+            border-radius: $border-radius;
+            min-width: 36rem;
+            font-size: $font-size-large;
+            display: none; // ! En attente du JAVASCRIPT
+    
+            & a {
+                display: block;
+                text-align: left;
+            }
+            &__account {
+                padding: $spacing-medium;
+                display: flex;
+                gap: $spacing-small;
+                align-items: center;
+            }
+            &__image {
+                --ratio: 7rem;
+                
+                width: var(--ratio);
+                height: var(--ratio);
+                background-color: $primary;
+                border-radius: 50%;
+            }
+            &__details {
+                font-size: $font-size-medium;
+                font-weight: $font-weight-regular;
+            }
+            &-name {
+                font-size: $font-size-large;
+                font-weight: $font-weight-semi-bold;
+                text-transform: capitalize;
+            }
+            &-email {
+                padding-block-end: 1rem;
+            }
+            &__links {
+                padding: $spacing-medium;
+                border-top: solid 1px $border-color;
+                border-bottom: solid 1px $border-color;
+            }
+            &-link:nth-child(2) {
+                margin-block: 1rem;
+            }
+            &-logout {
+                padding: $spacing-medium;
+            }
+        }
+    }
+}

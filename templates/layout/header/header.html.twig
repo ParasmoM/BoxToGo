@@ -1,0 +1,31 @@
+<header class="header">
+
+    <div class="header__container">
+
+        <a href="{{ path('app_home') }}" class="header__logo-link">
+            <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo" class="header__logo">
+        </a>
+
+        <nav class="header__nav nav">
+            {% include "layout/header/_nav.html.twig" %}
+        </nav>        
+
+        <div class="header__buttons">
+            <div class="header__button header__button__lang">
+                {% include "layout/header/_button_lang.html.twig" %}
+            </div>
+
+            <div class="header__button header__button__alert">
+                <img src="{{ asset('images/icones/alert.svg') }}" alt="icone de notification">
+                <span ion:ios-notifications-outline></span>
+                <i ion:ios-notifications-outline></i>
+            </div>
+
+            <div class="header__button header__button__user">
+                {% include "layout/header/_button_user.html.twig" %}
+            </div>
+        </div>
+        
+    </div>
+
+</header>

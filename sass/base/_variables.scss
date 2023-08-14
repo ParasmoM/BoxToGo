@@ -39,6 +39,7 @@ $error: map-get($colors, error);
 $dark-blue: map-get($others, dark-blue);
 $border-color: map-get($grays, 700); 
 $hovered: map-get($grays, 300); 
+$bg-admin: map-get($grays, 200);
 
 // Font Family Aliases
 $ff-primary: $font-family-primary;
@@ -62,4 +63,5 @@ $box-shadow-secondary: rgba(map-get($grays, 400), 0.55) 0px 3px 6px;
 
 // Container Widths
 $container: 80rem;
+$container-1: 1440rem;
 

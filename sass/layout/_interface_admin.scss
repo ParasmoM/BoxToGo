@@ -1,0 +1,79 @@
+@use "../base/variables" as *;
+
+.admin {
+    &-inteface {
+        background-color: $bg-admin;
+        height: 100vh;
+    }
+
+    &-header {
+        padding-block: $spacing-medium;
+
+        &__container {
+            --padding: 2 * #{$spacing-medium};
+            --max-width: #{$container-1};
+
+            width: min(100% - var(--padding), var(--max-width));
+            margin-inline: auto;
+            display: flex;
+        }
+
+        &__logo-link {
+            margin-right: $spacing-medium;
+            img {
+                height: 6rem;
+            }
+        }
+
+        &__links {
+            border-radius: $border-radius;
+            border: solid 1px $primary;
+            height: fit-content;
+            padding: 2px;
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                height: 4rem;
+                padding-inline: 2.4rem;
+                border: none;
+                border-radius: $border-radius;
+            }
+            a.active {
+                background-color: $white;
+                color: $primary;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            }
+        }
+
+        &__profile {
+            display: flex;
+            gap: $spacing-small;
+            margin-left: auto;
+
+            &-pic {
+                height: 4rem;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $primary;
+                color: $white;
+                font-size: $font-size-large;
+            }
+
+            &-info {
+                font-family: $ff-secondary;
+            }
+
+            &-name {
+                font-weight: $font-weight-semi-bold;
+            }
+
+            &-email {
+                font-size: $font-size-small;
+            }
+        }
+    }
+}

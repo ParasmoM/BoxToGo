@@ -9,9 +9,15 @@
         {% endblock %}
 
         {% block javascripts %}
+            <script src="{{ asset('js/menu-connect.js') }}" defer></script>
         {% endblock %}
     </head>
     <body>
+        {% set route = app.request.attributes.get('_route') %}
+        {% if route != 'app_login' and route != 'app_register'
+        and route != 'app_admin' %}
+            {% include "layout/header/header.html.twig" %}
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

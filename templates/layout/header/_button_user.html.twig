@@ -1,0 +1,27 @@
+{% if app.user %}
+    <img class="header__button__icon" src="{{ asset('images/icones/icone-menu.svg') }}" alt="User menu" id="btn-connect">
+    <div class="header__button__user-info user" id="menu-connect">
+        <div class="user__account">
+            <a href"#" class="user__image">
+                
+            </a>
+            <div class="user__details">
+                <a href="#" class="user-name">{{ app.user.givenName }} {{ app.user.familyName }}</a>
+                <a href="#" class="user-email">{{ app.user.email }}</a>
+                <a href="{# {{ path('app_account_settings') }} #}">{{ 'Account settings'|trans}}</a>
+            </div>
+        </div>
+
+        <div class="user__links">
+            <a href="{# {{ path('app_dashboard') }} #}" class="user-link">{{ 'Dashboard'|trans}}</a>
+            <a href="#" class="user-link">{{ 'My favorites'|trans}}</a>
+            <a href="#" class="user-link">{{ 'Dark theme'|trans}}</a>
+        </div>
+
+        <div class="user-logout">
+            <a href="{{ path('app_logout') }}">{{ 'Log out'|trans }}</a>
+        </div>
+    </div>
+{% else %}
+    <a href="{{ path("app_login") }}" class="header__button__user-login">{{ 'Log in'|trans }}</a>
+{% endif %}

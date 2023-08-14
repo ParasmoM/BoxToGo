@@ -1,0 +1,22 @@
+<header class="admin-header">
+    <div class="admin-header__container">
+        <a href="" class="admin-header__logo-link">
+            <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo" class="admin-header__logo-image">
+        </a>
+
+        <div class="admin-header__links">
+            <a href="" class="admin-header__link">{{ 'Public Site'|trans }}</a>
+            <a href="" class="admin-header__link active">{{ 'Admin Interface'|trans }}</a>
+        </div>
+
+        <div class="admin-header__profile">
+            <div class="admin-header__profile-pic">
+                <span class="admin-header__profile-initial">{{ (app.user.familyName|slice(0, 1)|upper) }}</span>
+            </div>
+            <div class="admin-header__profile-info">
+                <p class="admin-header__profile-name">{{ app.user.givenName }} {{ app.user.familyName }}</p>
+                <p class="admin-header__profile-email">{{ app.user.email }}</p>
+            </div>
+        </div>
+    </div>
+</header>
