@@ -1,5 +1,5 @@
 {{ form_start(form, {'attr': {'class': 'dashboard-add-form'}}) }}
-{{ form_widget(form.name, {'attr': {'class': 'form__input', 'placeholder': 'New storages'}}) }}  
+{{ form_widget(form.name, {'attr': {'class': 'form__input', 'placeholder': 'New ' ~ type}}) }}  
 {{ form_widget(form) }}
 <button class="form__submit"><img src="{{ asset('images/icones/sharpPlus.svg') }}" alt="Icone du symbole plus"></button>
 {{ form_end(form) }}
