@@ -8,7 +8,7 @@
         <ul class="dashboard-add__list">
             {% for item in list %}
                 <li class="dashboard-add__item">
-                    <a href="{{path('app_admin_equipments_edit', {'id': item.id}) }}">{{ item }}</a>
+                    <a href="{{path('admin_equipments_edit', {'id': item.id}) }}">{{ item }}</a>
                     {% include "admin/admin/_delete_form.html.twig" with {'item': item} only %}
                 </li>
             {% endfor %}

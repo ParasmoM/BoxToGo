@@ -1,0 +1,251 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListingController!{% endblock %}
+
+{% block body %}
+<main class="listing-main">
+    {% include "listing/_header.html.twig" %}
+
+    <section class="listing-form">
+        <div class="listing-form__container">
+            <section class="listing-form__description-list">
+                <div class="listing-form__description-item">
+                    <div class="listing-form__status active" id="decoStatus">
+                        <p class="listing-form__step-number">1</p>
+                        <span class="listing-form__status-label">ACTIVE</span>
+                    </div>
+                    <div class="listing-form__details">
+                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
+                        <p class="listing-form__details-text">
+                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
+                        </p>
+                    </div>
+                    <div class="listing-form__deco-left" id="decoItems">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="listing-form__description-item">
+                    <div class="listing-form__status" id="decoStatus">
+                        <p class="listing-form__step-number">2</p>
+                        <span class="listing-form__status-label">ACTIVE</span>
+                    </div>
+                    <div class="listing-form__details">
+                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
+                        <p class="listing-form__details-text">
+                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
+                        </p>
+                    </div>
+                    <div class="listing-form__deco-right" id="decoItems">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="listing-form__description-item">
+                    <div class="listing-form__status" id="decoStatus">
+                        <p class="listing-form__step-number">3</p>
+                        <span class="listing-form__status-label">ACTIVE</span>
+                    </div>
+                    <div class="listing-form__details">
+                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
+                        <p class="listing-form__details-text">
+                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
+                        </p>
+                    </div>
+                    <div class="listing-form__deco-left" id="decoItems">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="listing-form__description-item">
+                    <div class="listing-form__status" id="decoStatus">
+                        <p class="listing-form__step-number">4</p>
+                        <span class="listing-form__status-label">ACTIVE</span>
+                    </div>
+                    <div class="listing-form__details">
+                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
+                        <p class="listing-form__details-text">
+                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
+                        </p>
+                    </div>
+                    <div class="listing-form__deco-right" id="decoItems">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="listing-form__description-item">
+                    <div class="listing-form__status" id="decoStatus">
+                        <p class="listing-form__step-number">5</p>
+                        <span class="listing-form__status-label">ACTIVE</span>
+                    </div>
+                    <div class="listing-form__details">
+                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
+                        <p class="listing-form__details-text">
+                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <form action="" class="listing-form__form-list">
+                <section class="listing-form__step">
+                    <h2 class="listing-form__title">Étape 1 - Détails du bien</h2>
+                    <div class="listing-form__item">
+                        <label class="listing-form__label" for="">Le type de bien</label>
+                        <input class="listing-form__input" type="text">
+                    </div>
+                    <div class="listing-form__item">
+                        <label class="listing-form__label" for="">État du bien</label>
+                        <select class="listing-form__select" name="" id=""></select>
+                    </div>
+                    <div class="listing-form__item">
+                        <label class="listing-form__label" for="">Le prix</label>
+                        <input class="listing-form__input" type="text">
+                    </div>
+                    <div class="listing-form__item">
+                        <label class="listing-form__label" for="">Surface de stockage</label>
+                        <input class="listing-form__input" type="text">
+                    </div>
+                    <h2 class="listing-form__title">Dimension de l’entrée</h2>
+                    <div class="listing-form__group">
+                        <div class="listing-form__item">
+                            <label class="listing-form__label" for="">Largeur</label>
+                            <input class="listing-form__input" type="text">
+                        </div>
+                        <div class="listing-form__item">
+                            <label class="listing-form__label" for="">Hauteur</label>
+                            <input class="listing-form__input" type="text">
+                        </div>
+                    </div>
+                    <div class="listing-form__group">
+                        <div class="listing-form__item">
+                            <input class="listing-form__input" type="radio" id="" name="" value="choix1" />
+                            <label class="listing-form__label" for="choix1">choix 1</label>
+                        </div>
+                        <div class="listing-form__item">
+                            <input class="listing-form__input" type="radio" id="" name="" value="choix2" />
+                            <label class="listing-form__label" for="choix2">choix 2</label>
+                        </div>
+                        <div class="listing-form__item">
+                            <input class="listing-form__input" type="radio" id="" name="" value="choix3" />
+                            <label class="listing-form__label" for="choix3">choix 3</label>
+                        </div>
+                    </div>
+                    <div class="listing-form__item">
+                        <label class="listing-form__label" for="">Disponible a partir de quand ?</label>
+                        <input class="listing-form__input" type="text">
+                    </div>
+                </section>
+                <section class="listing-form__step">
+                    <h2 class="listing-form__title">Étape 2 - Adresse du bien</h2>
+                    <button class="listing-form__btn--prev">Précédant</button>
+                    <div>
+                        <label for="">Pays</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Ville</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Rue</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Numéro</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Code postal</label>
+                        <input type="text">
+                    </div>
+                </section>
+                <section class="listing-form__step">
+                    <h2 class="listing-form__title">Étape 3 - Description et équipements du bien</h2>
+                    <button class="listing-form__btn--prev">Précédant</button>
+                    <div>
+                        <button>Indiquez quels sont les équipements que vous disposez</button>
+                        <div>
+                            <input type="checkbox" id="" name="choix1" checked />
+                            <label for="choix1">choix 1</label>
+                        </div>
+                        
+                        <div>
+                            <input type="checkbox" id="" name="choix2" />
+                            <label for="choix2">choix 2</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="" name="choix3" />
+                            <label for="choix3">choix 3</label>
+                        </div>
+                    </div>
+                    <div>
+                        // ici on affichera la liste des equipments
+                    </div>
+                    <div>
+                        <label for="">Donner un titre à votre annonce </label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Donner un description à votre annonce </label>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </section>
+                <section class="listing-form__step">
+                    <h2 class="listing-form__title">Étape 4 - Ajoutez quelques photos</h2>
+                    <button class="listing-form__btn--prev">Précédant</button>
+                    <p class="listing-form__info">
+                        Pour commencer, vous aurez besoin de 5 photos. Vous pourrez en ajouter d’autres ou faire des modifications plus tard.
+                    </p>
+                    <div class="listing-form__photo-upload">
+                        // zone input pour glisser des photos a enregistrer 
+                    </div>
+                </section>
+                <section class="listing-form__step">
+                    <h2 class="listing-form__title">Étape 5 - Informations sur le propriétaire</h2>
+                    <button class="listing-form__btn--prev">Précédant</button>
+                    <div>
+                        <button>Quelle langue préférez-vous utiliser ?</button>
+                        <div>
+                            <input type="checkbox" id="" name="choix1" checked />
+                            <label for="choix1">choix 1</label>
+                        </div>
+                        
+                        <div>
+                            <input type="checkbox" id="" name="choix2" />
+                            <label for="choix2">choix 2</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="" name="choix3" />
+                            <label for="choix3">choix 3</label>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Veuillez sélectionner votre statut ?</p>
+                        <div>
+                            <input type="radio" id="" name="" value="choix1" />
+                            <label for="choix1">Professionnel</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="" name="" value="choix2" />
+                            <label for="choix2">Particulier</label>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Comment peut-on vous contacter ?</p>
+                        <div>
+                            <input type="radio" id="" name="" value="choix1" />
+                            <label for="choix1">Téléphone</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="" name="" value="choix2" />
+                            <label for="choix2">Email</label>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </section>    
+
+    {% include "listing/_footer.html.twig" %}
+</main>
+{% endblock %}

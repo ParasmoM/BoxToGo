@@ -1,0 +1,378 @@
+@use "../base/variables" as *;
+
+.listing-header {
+    position: fixed;
+    top: 0;
+    left: 0;right: 0;
+    box-shadow: $box-shadow-secondary; // ! à modifier
+    z-index: 100;
+
+    &__container {
+        --padding: 4rem * 2;
+        --max-width: #{$container-1};
+
+        display: flex;
+        justify-content: space-between;
+        background-color: $white;
+        width: min(100% - var(--padding), var(--max-width));
+        padding-block: $spacing-medium;
+        margin-inline: auto;
+    }
+
+    &__logo-image {
+        height: 6rem;
+    }
+
+    &__back-link {
+        display: inline-flex;
+        align-items: center;
+        border: solid 1px $border-color;
+        border-radius: $border-radius;
+        height: 4rem;
+        padding-inline: 2.4rem;
+        font-weight: $font-weight-medium;
+
+        &:hover {
+            background-color: $hovered;
+        }
+    }
+}
+
+.listing-form {
+    margin-top: 18rem;
+    &__container {
+        --padding: 4rem * 2;
+        --max-width: #{$container-1};
+
+        display: flex;
+        width: min(100% - var(--padding), var(--max-width));
+        margin-inline: auto;
+        overflow: hidden;
+    }
+
+    &__description-list {
+        flex: 1;
+        font-family: $ff-secondary;
+        transition: all 3s ease;
+    }
+    &__description-item {
+        display: flex;
+        gap: $spacing-medium;
+        border-radius: $border-radius;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        padding: $spacing-medium;
+        margin-bottom: $spacing-medium;
+        width: 80%;
+        height: 15.3rem;
+        margin-inline: auto;
+        position: relative;
+        z-index: 10;
+    }
+    &__status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: all 3s ease;
+
+        &.active {
+            color: $primary;
+        }
+        &.active p {
+            border-color: $primary;
+        }
+        &.actived-old {
+            color: $white;
+        }
+        &.actived-old p {
+            border-color: $primary;
+            background-color: $primary;
+        }
+    }
+    &__step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-large;
+        border: solid 1px $black;
+        border-radius: 50%;
+        height: 4rem;
+        aspect-ratio: 1/1;
+    }
+    &__status-label {
+        position: absolute;
+        bottom: 0;
+    }
+    &__details-title {
+        font-size: $font-size-default;
+        font-weight: $font-weight-semi-bold;
+        margin-bottom: $spacing-small;
+    }
+    &__details-text {
+        font-size: $font-size-small;
+    }
+
+    &__deco-left {
+        position: relative;
+        border: none 2px $border-color;
+        height: 18.7rem;
+        width: 5rem;
+        position: absolute;
+        z-index: 10;
+        top: 7.5rem;
+        left: -5rem;
+        display: flex;
+        flex-direction: column;
+        
+        span {
+            flex: 1;
+        }
+    
+        span:after, span:before {
+            content: "";
+            position: absolute;
+            background-color: $primary;
+            transition: all 0.5s;
+        }
+    
+        span:first-of-type:after {
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+        }
+    
+        span:first-of-type:before {
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+        }
+
+        span:last-of-type:after {
+            bottom: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+        }
+    
+        &.animate {
+            span:first-of-type:after {
+                animation: loadTopBorder 1s forwards 0s;
+            }
+            span:first-of-type:before {
+                animation: loadRightBorder 1s forwards 1s; // delay of 0.5s to start after top border animation finishes
+            }
+            span:last-of-type:after {
+                animation: loadBottomBorder 1s forwards 2s;
+            }
+        }
+    }
+
+    &__deco-right {
+        position: relative;
+        border: none 2px $border-color;
+        height: 18.7rem;
+        width: 5rem;
+        position: absolute;
+        z-index: 10;
+        top: 7.515rem;
+        right: -5rem;
+        display: flex;
+        flex-direction: column;
+
+        span {
+            flex: 1;
+        }
+    
+        span:after, span:before {
+            content: "";
+            position: absolute;
+            background-color: $primary;
+            transition: all 0.5s;
+        }
+    
+        span:first-of-type:after {
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+        }
+    
+        span:first-of-type:before {
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 0;
+        }
+
+        span:last-of-type:after {
+            bottom: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+        }
+
+        &.animate {
+            span:first-of-type:after {
+                animation: loadTopBorder2 1s forwards 0s;
+            }
+            span:first-of-type:before {
+                animation: loadRightBorder 1s forwards 1s; // delay of 0.5s to start after top border animation finishes
+            }
+            span:last-of-type:after {
+                animation: loadBottomBorder2 1s forwards 2s;
+            }
+        }
+    }
+    
+    @keyframes loadTopBorder {
+        0%, 100% {
+            width: 0;
+            right: 0;
+        }
+        100% {
+            width: 100%;
+            right: 0;
+        }
+    }
+    
+    @keyframes loadRightBorder {
+        0%, 100% {
+            height: 0;
+            top: 0;
+            right: 0;
+        }
+        100% {
+            height: 100%;
+            top: 0;
+            right: 0;
+        }
+    }
+    
+    @keyframes loadBottomBorder {
+        0%, 100% {
+            width: 0;
+            left: 0;
+        }
+        100% {
+            width: 100%;
+            left: 0;
+        }
+    }
+    
+    @keyframes loadTopBorder2 {
+        0%, 100% {
+            width: 0;
+            left: 0;
+        }
+        100% {
+            width: 100%;
+            left: 0;
+        }
+    }
+    
+    @keyframes loadBottomBorder2 {
+        0%, 100% {
+            width: 0;
+            right: 0;
+        }
+        100% {
+            width: 100%;
+            right: 0;
+        }
+    }
+
+    // &__deco-right {
+    //     border-left: none;
+    //     top: 7.515rem;
+    //     right: -5rem;
+    //     border-top-right-radius: $border-radius;
+    //     border-bottom-right-radius: $border-radius;
+    // }
+}
+
+.listing-form {
+    &__form-list {
+        flex: 1;
+
+
+        section:nth-child(2) {
+            display: none;
+        }
+        section:nth-child(3) {
+            display: none;
+        }
+        section:nth-child(4) {
+            display: none;
+        }
+        section:nth-child(5) {
+            display: none;
+        }
+    }
+    &__title {
+        font-size: $font-size-default;
+        font-weight: $font-weight-semi-bold;
+        margin-bottom: $spacing-small;
+
+        &:not(:first-of-type) {
+            margin-top: $spacing-medium;
+        }
+    }
+    &__item {
+        display: flex;
+        flex-direction: column;
+    }
+    &__label {
+        font-size: $font-size-medium;
+        margin-left: $spacing-small;
+        margin-bottom: .8rem;
+    }
+    &__input,
+    &__select {
+        height: 4rem;
+        border: solid 1px $border-color;
+        border-radius: $border-radius;
+        padding-left: $spacing-medium;
+        margin-bottom: $spacing-small;
+    }
+    &__select {
+
+    }
+}
+
+.listing-footer {
+    position: fixed;
+    left: 0;right: 0;bottom: 0;
+    background-color: $white;
+    z-index: 100;
+
+    &__container {
+        --padding: 4rem * 2;
+        --max-width: #{$container-1};
+
+        width: min(100% - var(--padding), var(--max-width));
+        padding: $spacing-medium;
+        margin-bottom: $spacing-medium;
+        margin-inline: auto;
+        background-color: $hovered;
+        border-radius: $border-radius;
+    }
+
+    &__next-link {
+        display: flex;
+        align-items: center;
+        gap: $spacing-small;
+        height: 4rem;
+        padding-inline: 2.4rem;
+        margin-left: auto;
+        border-radius: $border-radius;
+        background-color: $black;
+        color: $white;
+        font-weight: $font-weight-medium;
+
+        img {
+            height: 2.5rem;
+        }
+    }
+}

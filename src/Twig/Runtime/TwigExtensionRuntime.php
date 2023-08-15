@@ -26,8 +26,9 @@ class TwigExtensionRuntime implements RuntimeExtensionInterface
         $currentRoute = $this->requestStack->getCurrentRequest()->attributes->get('_route');
 
         $navbar = new NavbarManager();
-        $navbar->push(new NavbarItem('Storages', $this->router->generate('app_admin_storages'), $currentRoute === 'app_admin_storages'));
-        $navbar->push(new NavbarItem('Equipments', $this->router->generate('app_admin_equipments'), $currentRoute === 'app_admin_equipments'));
+        $navbar->push(new NavbarItem('Admin', $this->router->generate('admin_admin'), $currentRoute === 'admin_admin'));
+        $navbar->push(new NavbarItem('Storages', $this->router->generate('admin_storages'), $currentRoute === 'admin_storages'));
+        $navbar->push(new NavbarItem('Equipments', $this->router->generate('admin_equipments'), $currentRoute === 'admin_equipments'));
 
         return $navbar->getItems();
     }
