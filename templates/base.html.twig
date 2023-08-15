@@ -15,7 +15,7 @@
     <body>
         {% set route = app.request.attributes.get('_route') %}
         {% if route != 'app_login' and route != 'app_register'
-        and route != 'app_admin' %}
+        and not route starts with 'app_admin' %}
             {% include "layout/header/header.html.twig" %}
         {% endif %}
         {% block body %}{% endblock %}

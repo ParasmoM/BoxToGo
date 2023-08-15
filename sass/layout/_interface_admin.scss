@@ -4,10 +4,6 @@
     &-inteface {
         background-color: $bg-admin;
         height: 100vh;
-    }
-
-    &-header {
-        padding-block: $spacing-medium;
 
         &__container {
             --padding: 2 * #{$spacing-medium};
@@ -15,6 +11,15 @@
 
             width: min(100% - var(--padding), var(--max-width));
             margin-inline: auto;
+        }
+    }
+
+    &-header {
+        background-color: $bg-admin;
+        padding-block: $spacing-medium;
+        margin-bottom: 10rem;
+
+        &__container {
             display: flex;
         }
 
@@ -75,5 +80,178 @@
                 font-size: $font-size-small;
             }
         }
+    }
+
+    &-aside {
+        flex: 1 0 28rem;
+
+        &__title {
+            font-size: $font-size-huge;
+            font-weight: $font-weight-semi-bold;
+            margin-bottom: $spacing-medium;
+        }
+        &__list {
+            border-radius: calc(2 * $border-radius);
+            background-color: $white;
+            padding: $spacing-medium;
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+        &__item a {
+            border-radius: $border-radius;
+            padding: .8rem $spacing-small;
+            display: block;
+        }
+        &__item a:not(.active):hover {
+            border: solid 1px $border-color;
+        }
+        &__item a.active {
+            background-color: $hovered;
+            font-weight: $font-weight-semi-bold;
+        }
+    }
+
+    &-dashboard {
+        display: flex;
+        gap: $spacing-medium;
+    }
+}
+
+.dashboard {
+    &-add {
+        margin-top: 6.9rem;
+        flex: auto;
+
+        &__container {
+            border-radius: calc(3 * $border-radius);
+            background-color: $white;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding: $spacing-medium;
+            font-family: $ff-secondary;
+
+            display: flex;
+            gap: $spacing-medium;
+            flex-wrap: wrap;
+            margin-bottom: $spacing-medium;
+        }
+
+        &__list {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: $spacing-medium;
+        }
+
+        &__item {
+            display: inline-flex;
+            align-items: center;
+            gap: .8rem;
+            border-radius: $border-radius;
+            background-color: $hovered;
+            white-space: nowrap;
+            height: 3.2rem;
+            padding-left: 2.4rem;
+
+            form{
+                display: inline-flex;
+                align-items: center;
+            }
+
+            input {
+                background-color: inherit;
+                border: none;
+                outline: none;
+                padding-left: 2.4rem;
+                width: 14.5rem;
+            }
+
+            img {
+                height: 2rem;
+                margin-right: 2.4rem;
+            }
+        }
+        
+        &-form {
+            border: dashed 1px $primary;
+            border-radius: $border-radius;
+            overflow: hidden;
+            display: inline-flex;
+            background-color: rgba($primary, 0.2);
+            height: 3.2rem;
+    
+            input {
+                background-color: inherit;
+                border: none;
+                outline: none;
+                padding: 0 .8rem 0 2.4rem;
+                width: 12rem;
+            }
+    
+            img {
+                height: 2rem;
+                margin-right: 2.4rem;
+            }
+        }
+    }
+
+    &-edit-form {
+        position: relative;
+
+        h2 {
+            font-size: $font-size-huge;
+            font-weight: $font-weight-semi-bold;
+            margin-bottom: $spacing-small;
+        }
+
+        a {
+            display: block;
+            width: fit-content;
+            border-radius: 50%;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        a:hover {
+            background-color: $hovered;
+        }
+        input {
+            height: 4rem;
+            border-radius: $border-radius;
+            border: solid 1px $border-color;
+            width: 74rem;
+            padding-left: $spacing-small;
+        }
+
+        button {
+            display: block;
+            margin-left: auto;
+            margin-top: $spacing-medium;
+            color: $white;
+            background-color: $black;
+            border-radius: $border-radius;
+            font-size: $font-size-large;
+            height: 4rem;
+            padding-inline: 2.4rem;
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* fond semi-transparent */
+    z-index: 1000; /* s'assurer qu'il est au-dessus des autres éléments */
+    display: flex;
+    align-items: center; /* centrage vertical */
+    justify-content: center; /* centrage horizontal */
+    
+    .content {
+        background-color: $white;
+        padding: $spacing-medium;
+        border-radius: calc(3 * $border-radius);
     }
 }
