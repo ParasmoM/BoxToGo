@@ -18,7 +18,7 @@ class SpaceEquipements
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'equipmentName', targetEntity: SpaceEquipementLink::class)]
+    #[ORM\ManyToMany(mappedBy: 'spaceEquipments', targetEntity: SpaceEquipementLink::class)]
     private Collection $equipment;
 
     public function __construct()
@@ -59,8 +59,8 @@ class SpaceEquipements
     public function addEquipment(SpaceEquipementLink $equipment): static
     {
         if (!$this->equipment->contains($equipment)) {
-            $this->equipment->add($equipment);
-            $equipment->setEquipmentName($this);
+            $this->equipment[] = $equipment;
+            $equipment->addSpaceEquipment($this); 
         }
 
         return $this;
@@ -69,10 +69,7 @@ class SpaceEquipements
     public function removeEquipment(SpaceEquipementLink $equipment): static
     {
         if ($this->equipment->removeElement($equipment)) {
-            // set the owning side to null (unless already changed)
-            if ($equipment->getEquipmentName() === $this) {
-                $equipment->setEquipmentName(null);
-            }
+            $equipment->removeSpaceEquipment($this); 
         }
 
         return $this;

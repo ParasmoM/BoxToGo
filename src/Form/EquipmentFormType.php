@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\SpaceEquipementLink;
 use App\Entity\SpaceEquipements;
+use App\Entity\SpaceEquipementLink;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -16,13 +16,13 @@ class EquipmentFormType extends AbstractType
         $builder
             // ->add('quantity')
             // ->add('equipped')
-            ->add('equipmentName', EntityType::class, [
-                'class' => SpaceEquipements::class, // Assurez-vous de mettre le bon chemin vers votre entité 'Equipment' ici
-                'choice_label' => 'name', // le champ que vous voulez afficher de votre entité (probablement le nom de l'équipement)
-                'expanded' => true, // Cela transformera la liste en un ensemble de cases à cocher
-                'multiple' => true, // Cela vous permettra de sélectionner plusieurs équipements
-            ])
             // ->add('space')
+            ->add('spaceEquipments', EntityType::class, [
+                'class' => SpaceEquipements::class,
+                'choice_label' => 'name', // Supposant que vous avez une propriété "name" dans SpaceEquipements
+                'multiple' => true,
+                'expanded' => true, // pour le rendre sous forme de checkboxes
+            ])
         ;
     }
 

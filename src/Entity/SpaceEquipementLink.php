@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\SpaceEquipementLinkRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Repository\SpaceEquipementLinkRepository;
 
 #[ORM\Entity(repositoryClass: SpaceEquipementLinkRepository::class)]
 class SpaceEquipementLink
@@ -22,8 +24,13 @@ class SpaceEquipementLink
     #[ORM\ManyToOne(inversedBy: 'equipment')]
     private ?Spaces $space = null;
 
-    #[ORM\ManyToOne(inversedBy: 'equipment')]
-    private ?SpaceEquipements $equipmentName = null;
+    #[ORM\ManyToMany(inversedBy: 'equipment', targetEntity: SpaceEquipements::class)]
+    private Collection $spaceEquipments;
+
+    public function __construct()
+    {
+        $this->spaceEquipments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -66,14 +73,29 @@ class SpaceEquipementLink
         return $this;
     }
 
-    public function getEquipmentName(): ?SpaceEquipements
+    /**
+     * @return Collection<int, SpaceEquipements>
+     */
+    public function getSpaceEquipments(): Collection
     {
-        return $this->equipmentName;
+        return $this->spaceEquipments;
     }
 
-    public function setEquipmentName(?SpaceEquipements $equipmentName): static
+    public function addSpaceEquipment(SpaceEquipements $equipment): static
     {
-        $this->equipmentName = $equipmentName;
+        if (!$this->spaceEquipments->contains($equipment)) {
+            $this->spaceEquipments[] = $equipment;
+            $equipment->addEquipment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpaceEquipment(SpaceEquipements $equipment): static
+    {
+        if ($this->spaceEquipments->removeElement($equipment)) {
+            $equipment->removeEquipment($this);
+        }
 
         return $this;
     }
