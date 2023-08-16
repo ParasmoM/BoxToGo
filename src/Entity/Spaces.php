@@ -32,7 +32,7 @@ class Spaces
     private ?string $floorPosition = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $condition = null;
+    private ?string $itemCondition = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $registrationDate = null;
@@ -40,7 +40,7 @@ class Spaces
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $availabilityStart = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $availabilityEnd = null;
 
     #[ORM\Column(length: 50)]
@@ -84,6 +84,9 @@ class Spaces
 
     public function __construct()
     {
+        $this->registrationDate = new \DateTime();
+        $this->status = 'free';
+        $this->isPublished = true;
         $this->favorite = new ArrayCollection();
         $this->reservation = new ArrayCollection();
         $this->report = new ArrayCollection();
@@ -92,6 +95,12 @@ class Spaces
         $this->content = new ArrayCollection();
         $this->conversation = new ArrayCollection();
         $this->adresse = new ArrayCollection();
+    }
+
+
+    public function __toString()
+    {
+        return $this->spaceCateg;
     }
 
     public function getId(): ?int
@@ -159,14 +168,14 @@ class Spaces
         return $this;
     }
 
-    public function getCondition(): ?string
+    public function getItemCondition(): ?string
     {
-        return $this->condition;
+        return $this->itemCondition;
     }
 
-    public function setCondition(?string $condition): static
+    public function setItemCondition(?string $itemCondition): static
     {
-        $this->condition = $condition;
+        $this->itemCondition = $itemCondition;
 
         return $this;
     }

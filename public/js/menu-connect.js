@@ -2,25 +2,22 @@
 const decoItems = document.querySelectorAll('#decoItems');
 const decoStatus = document.querySelectorAll('#decoStatus');
 const listingList = document.querySelector('.listing-form__description-list');
-
-let currentIndex = 0;  // Pour suivre l'élément actuellement animé. Notez que j'ai changé const en let
-
+const form = document.querySelector('.listing-form__form-list');
+const section = document.querySelector('.listing-form__form-container');
 const button = document.getElementById('myButton');
+let currentIndex = 0;  // Pour suivre l'élément actuellement animé.
+
 button.addEventListener('click', function() {
-    // Si l'index courant est encore dans la plage des éléments
+    // Gestion des decoItems et decoStatus
     if (currentIndex < decoItems.length) {
-        // Ajouter la classe animate à l'élément courant
         decoItems[currentIndex].classList.add('animate');
     }
 
     if (currentIndex < decoStatus.length) {
-        // Si decoStatus[currentIndex] a la classe 'active'
         if (decoStatus[currentIndex].classList.contains('active')) {
-            // Remplacez 'active' par 'actived-old'
             decoStatus[currentIndex].classList.replace('active', 'actived-old');
         }
-        
-        // Si l'index suivant est dans la plage, ajoutez la classe 'active' à cet élément
+
         if (currentIndex + 1 < decoStatus.length) {
             decoStatus[currentIndex + 1].classList.add('active');
         }
@@ -29,5 +26,9 @@ button.addEventListener('click', function() {
     currentIndex++;
     if(currentIndex == 3) {
         listingList.style.marginTop = "-290px";
+        form.submit(); // Décommentez si vous souhaitez soumettre le formulaire
     }
+
+    section.style.marginTop += "-73rem";
+
 });
