@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EquipmentFormType extends AbstractType
 {
@@ -22,6 +23,15 @@ class EquipmentFormType extends AbstractType
                 'choice_label' => 'name', // Supposant que vous avez une propriété "name" dans SpaceEquipements
                 'multiple' => true,
                 'expanded' => true, // pour le rendre sous forme de checkboxes
+            ])
+            ->add('status', ChoiceType::class, [
+                'choices'  => [
+                    'Professionnel' => 'professionnel',
+                    'Particulier' => 'particulier',
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'mapped' => false,
             ])
         ;
     }

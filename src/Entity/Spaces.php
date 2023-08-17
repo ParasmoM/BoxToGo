@@ -37,7 +37,7 @@ class Spaces
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $registrationDate = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $availabilityStart = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -64,13 +64,13 @@ class Spaces
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reports::class)]
     private Collection $report;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceImages::class)]
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceImages::class, cascade: ["persist"])]
     private Collection $image;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceEquipementLink::class)]
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceEquipementLink::class, cascade: ["persist"])]
     private Collection $equipment;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceTranslations::class)]
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceTranslations::class, cascade: ["persist"])]
     private Collection $content;
 
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Conversations::class)]
@@ -79,7 +79,7 @@ class Spaces
     #[ORM\ManyToOne(inversedBy: 'space')]
     private ?SpaceCategories $spaceCateg = null;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Adresses::class)]
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Adresses::class, cascade: ["persist"])]
     private Collection $adresse;
 
     public function __construct()

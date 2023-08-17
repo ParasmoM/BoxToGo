@@ -86,11 +86,11 @@
                     </div>
                 </div>
             </section>
-            <form action="{{ path('app_listing') }}" method="POST" class="listing-form__form-list">
+            <form action="{{ path('app_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list">
                 <div class="listing-form__form-container">
                     {# {{ dump(formSteps) }} #}
-                    {# {% set formStep1 = formSteps.children.formStep1 %}
-                    <section class="listing-form__step">
+                    {% set formStep1 = formSteps.children.formStep1 %}
+                    <section class="listing-form__step show">
                         <h2 class="listing-form__title">Étape 1 - Détails du bien</h2>
                         <div class="listing-form__item">
                             {{ form_label(formStep1.spaceCateg, 'Le type de bien', {'label_attr': {'class': 'listing-form__label'}}) }}
@@ -129,9 +129,9 @@
                             {{ form_label(formStep1.availabilityStart, 'Disponible a partir de quand ?', {'label_attr': {'class': 'listing-form__label'}}) }}
                             {{ form_widget(formStep1.availabilityStart, {'attr': {'class': 'listing-form__input'}}) }}
                         </div>
-                    </section> #}
+                    </section>
 
-                    {# {% set formStep2 = formSteps.children.formStep2 %}
+                    {% set formStep2 = formSteps.children.formStep2 %}
                     <section class="listing-form__step">
                         <h2 class="listing-form__title">Étape 2 - Adresse du bien</h2>
                         <button class="listing-form__btn--prev">Précédant</button>
@@ -156,99 +156,56 @@
                             {{ form_widget(formStep2.postalCode, {'attr': {'class': 'listing-form__input'}}) }}
                         </div>
                         
-                    </section>  #}
+                    </section> 
 
                     {% set formStep3 = formSteps.children.formStep3 %}
                     <section class="listing-form__step">
                         <h2 class="listing-form__title">Étape 3 - Description et équipements du bien</h2>
                         <button class="listing-form__btn--prev">Précédant</button>
-                        {{ form_start(formStep3) }}
-    {{ form_widget(formStep3) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_row(formSteps._token) }}
-{{ form_end(formStep3) }}
-                        {# <div>
-                            <button>Indiquez quels sont les équipements que vous disposez</button>
-                            <div>
-                                <input type="checkbox" id="" name="choix1" checked />
-                                <label for="choix1">choix 1</label>
-                            </div>
-                            
-                            <div>
-                                <input type="checkbox" id="" name="choix2" />
-                                <label for="choix2">choix 2</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="" name="choix3" />
-                                <label for="choix3">choix 3</label>
-                            </div>
+                        <div class="listing-form__item">
+                            {{ form_label(formStep3.spaceEquipments, 'Indiquez quels sont les équipements que vous disposez'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
+                            {{ form_widget(formStep3.spaceEquipments, {'attr': {'class': 'listing-form__checkbox'}}) }}
                         </div>
-                        <div>
-                            // ici on affichera la liste des equipments
+                        <div class="listing-form__item">
+                            {{ form_label(formStep3.status, 'Veuillez sélectionner votre statut ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
+                            {{ form_widget(formStep3.status, {'attr': {'class': 'listing-form__radio'}}) }}
                         </div>
-                        <div>
-                            <label for="">Donner un titre à votre annonce </label>
-                            <input type="text">
-                        </div>
-                        <div>
-                            <label for="">Donner un description à votre annonce </label>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                        </div> #}
                     </section>
-
-                    {# <section class="listing-form__step">
+                    
+                    {% set formStep4 = formSteps.children.formStep4 %}
+                    <section class="listing-form__step">
                         <h2 class="listing-form__title">Étape 4 - Ajoutez quelques photos</h2>
                         <button class="listing-form__btn--prev">Précédant</button>
                         <p class="listing-form__info">
                             Pour commencer, vous aurez besoin de 5 photos. Vous pourrez en ajouter d’autres ou faire des modifications plus tard.
                         </p>
                         <div class="listing-form__photo-upload">
-                            // zone input pour glisser des photos a enregistrer 
+                            <div class="listing-form__item">
+                                {{ form_label(formStep4.imagePath, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+                                {{ form_widget(formStep4.imagePath, {'attr': {'class': 'listing-form__'}}) }}
+                            </div>
                         </div>
-                    </section> #}
+                    </section>
 
-                    {# <section class="listing-form__step">
+                    {% set formStep5 = formSteps.children.formStep5 %}
+                    <section class="listing-form__step">
                         <h2 class="listing-form__title">Étape 5 - Informations sur le propriétaire</h2>
                         <button class="listing-form__btn--prev">Précédant</button>
-                        <div>
-                            <button>Quelle langue préférez-vous utiliser ?</button>
-                            <div>
-                                <input type="checkbox" id="" name="choix1" checked />
-                                <label for="choix1">choix 1</label>
-                            </div>
-                            
-                            <div>
-                                <input type="checkbox" id="" name="choix2" />
-                                <label for="choix2">choix 2</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="" name="choix3" />
-                                <label for="choix3">choix 3</label>
-                            </div>
+                        <div class="listing-form__item">
+                            {{ form_label(formStep5.language, 'Quelle langue préférez-vous utiliser ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
+                            {{ form_widget(formStep5.language, {'attr': {'class': 'listing-form__input'}}) }}
                         </div>
-                        <div>
-                            <p>Veuillez sélectionner votre statut ?</p>
-                            <div>
-                                <input type="radio" id="" name="" value="choix1" />
-                                <label for="choix1">Professionnel</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="" name="" value="choix2" />
-                                <label for="choix2">Particulier</label>
-                            </div>
+                        <div class="listing-form__item">
+                            {{ form_label(formStep5.title, 'Donner un titre à votre annonce ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
+                            {{ form_widget(formStep5.title, {'attr': {'class': 'listing-form__input'}}) }}
                         </div>
-                        <div>
-                            <p>Comment peut-on vous contacter ?</p>
-                            <div>
-                                <input type="radio" id="" name="" value="choix1" />
-                                <label for="choix1">Téléphone</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="" name="" value="choix2" />
-                                <label for="choix2">Email</label>
-                            </div>
+                        <div class="listing-form__item">
+                            {{ form_label(formStep5.Description, 'Donner un description à votre annonce ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
+                            {{ form_widget(formStep5.Description, {'attr': {'class': 'listing-form__input'}}) }}
                         </div>
-                    </section> #}
+                    </section>
+
+                    {{ form_row(formSteps._token) }}
                 </div>
                 
             </form>

@@ -29,6 +29,16 @@ class SpaceImages
     #[ORM\ManyToOne(inversedBy: 'image')]
     private ?Spaces $space = null;
 
+    public function __construct()
+    {
+        $this->uploadDate = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->imagePath;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

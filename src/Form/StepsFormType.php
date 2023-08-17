@@ -11,9 +11,11 @@ class StepsFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('formStep1', SpaceFormType::class)
-            // ->add('formStep2', AdresseFormType::class)
-            ->add('formStep3', EquipmentFormType::class);
+            ->add('formStep1', SpaceFormType::class)
+            ->add('formStep2', AdresseFormType::class)
+            ->add('formStep3', EquipmentFormType::class)
+            ->add('formStep4', ImageFormType::class)
+            ->add('formStep5', SpaceTranslationsFormType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
