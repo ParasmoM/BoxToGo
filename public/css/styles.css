@@ -1063,3 +1063,93 @@ body {
 .home .card > article .equipped {
   color: #1F2021;
 }
+
+.space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3) {
+  margin-top: 10rem;
+}
+
+.space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 6rem;
+  position: relative;
+}
+.space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before {
+  content: "";
+  display: inline-block;
+  height: 0.2rem;
+  width: 4rem;
+  background-color: #1F2021;
+  position: absolute;
+  bottom: 0;
+}
+
+.space-detail > .container {
+  --padding: 4rem * 2;
+  --max-width: 192rem;
+  background-color: #FFFFFF;
+  width: min(100% - var(--padding), var(--max-width));
+  margin-inline: auto;
+}
+.space-detail section:first-of-type h1 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin-bottom: 6rem;
+}
+.space-detail section:first-of-type .gallery {
+  width: 100%;
+  height: 50rem;
+  margin-bottom: 6rem;
+}
+.space-detail section:first-of-type .gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.space-detail section:first-of-type .zone {
+  display: flex;
+  gap: 6rem;
+}
+.space-detail section:first-of-type .box1 {
+  flex: 1;
+}
+.space-detail section:first-of-type .box1 .buttons {
+  border-bottom: solid 1px #CDD3D8;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding-bottom: 6rem;
+  margin-bottom: 6rem;
+}
+.space-detail section:first-of-type .box1 .buttons button {
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  height: 5rem;
+  padding-inline: 1.5rem;
+  background-color: #EFF0F2;
+}
+.space-detail section:first-of-type .box1 .buttons button img {
+  height: 2rem;
+}
+.space-detail section:first-of-type .box1 .buttons button:first-of-type {
+  margin-right: 3rem;
+}
+.space-detail section:first-of-type .box1 .map p {
+  margin-bottom: 1.5rem;
+}
+.space-detail section:first-of-type .box1 .map div {
+  height: 30rem;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: #EFF0F2;
+  border: solid 1px;
+}
+.space-detail section:first-of-type .box2 {
+  width: 50rem;
+  height: 30rem;
+  border: solid 1px;
+  background-color: #EFF0F2;
+}

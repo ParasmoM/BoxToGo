@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PropertyDetailsController!{% endblock %}
+
+{% block body %}
+<main class="space-detail">
+    {{ dump(space.content) }}
+    <div class="container">
+
+        <section>
+            <h1>{{ space.spaceCateg|capitalize }} à louer sur {{ space.adresse.first.city|capitalize }} - {{ space.surface }} m<sup>2</sup></h1>
+            <div class="gallery">
+                {% for gallery in space.image %}
+                <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ gallery.imagePath) }}" alt="">
+                {% endfor %}
+            </div>
+
+            <div class="zone">
+                <div class="box1">
+                    <div class="buttons">
+                        <button>Contacter le propriétaire</button>
+                        <button><img src="{{ asset('images/icones/envelope.svg') }}" alt=""></button>
+                        <button><img src="{{ asset('images/icones/share.svg') }}" alt=""></button>
+                        <button><img src="{{ asset('images/icones/favorite.svg') }}" alt=""></button>
+                    </div>
+
+                    <div class="map">
+                        <p>{{ space.spaceCateg|capitalize }} - {{ space.user.status|capitalize }} - {{ space.adresse.first|capitalize }}</p>
+                        <div></div>
+                    </div>
+                </div>
+
+                <div class="box2">
+    
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installations du bien </h2>
+            <div>
+            {% for equipment in space.equipment.first.spaceEquipments %}
+                <p>{{ equipment }}</p>
+            {% endfor %}
+            </div>
+        </section>
+
+        <section>
+            <h2>Description du bien</h2>
+            <div>
+            {% for content in space.content %}
+                <p>{{ content.description }}</p>
+            {% endfor %}
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

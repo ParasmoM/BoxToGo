@@ -34,6 +34,11 @@ class Adresses
     #[ORM\ManyToOne(inversedBy: 'adresse')]
     private ?Spaces $space = null;
 
+    public function __toString()
+    {
+        return $this->street . ' n°' . $this->streetNumber . ' - ' . $this->postalCode . ' ' . $this->city;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

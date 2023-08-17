@@ -1,0 +1,38 @@
+@use "../base/variables" as *;
+
+%main-container {
+
+}
+
+%section {margin-top: 10rem;}
+
+%overlay-container {
+
+}
+
+%title-header {
+
+}
+
+%title-subheader {
+    font-size: $font-size-huge;
+    font-weight: $font-weight-semi-bold;
+    font-family: $ff-secondary;
+    margin-bottom: $spacing-large;
+    position: relative;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        height: .2rem;
+        width: 4rem;
+        background-color: $black;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+%title-caption {
+
+}
+

@@ -26,6 +26,11 @@ class SpaceEquipementLink
         $this->spaceEquipments = new ArrayCollection();
     }
 
+    // public function __toString()
+    // {
+    //     return $this->space;
+    // }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -14,11 +14,12 @@
     </head>
     <body>
         {% set route = app.request.attributes.get('_route') %}
+        {% set routes = ['app_home', 'app_property_details'] %}
         {# {% if route == 'app_login' and route == 'app_register'
         and route starts with 'app_admin' %}
         {% else %}
         {% endif %} #}
-        {% if route == 'app_home' %}
+        {% if route in routes  %}
             {% include "layout/header/header.html.twig" %}
         {% endif %}
         {% block body %}{% endblock %}
