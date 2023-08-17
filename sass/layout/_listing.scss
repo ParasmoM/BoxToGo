@@ -114,7 +114,8 @@
         font-size: $font-size-small;
     }
 
-    &__deco-left {
+
+    &__description-item:nth-child(2n+1) &__deco {
         position: relative;
         border: none 2px $border-color;
         height: 18.7rem;
@@ -171,7 +172,7 @@
         }
     }
 
-    &__deco-right {
+    &__description-item:nth-child(2n) &__deco {
         position: relative;
         border: none 2px $border-color;
         height: 18.7rem;

@@ -31,7 +31,7 @@ class ListingController extends AbstractController
 
         if ($formSteps->isSubmitted() && $formSteps->isValid()) {
             $space = $this->handleSpaceSteps($formSteps, $request, $entityManager);
-            dd($space);
+
             $this->handleImages($formSteps, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface);
 
             $entityManager->persist($space);
@@ -54,7 +54,7 @@ class ListingController extends AbstractController
 
         // SpaceEquipmentLink
         $formStep3 = $formSteps->getViewData()["formStep3"];
-        $formStep1->setStatus($request->request->all()['steps_form']['formStep3']['status']);
+        $this->getUser()->setStatus($request->request->all()['steps_form']['formStep3']['status']);
         $formStep3->setSpace($formStep1);
 
         // SpaceTranslation

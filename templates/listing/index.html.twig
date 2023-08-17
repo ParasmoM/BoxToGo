@@ -2,214 +2,64 @@
 
 {% block title %}Hello ListingController!{% endblock %}
 
+{% set titles = [
+    'Faisons connaissance avec votre bien',
+    'Où se cache votre bien ?',
+    'Mettez votre bien en vedette !',
+    'Capturez le moment',
+    'Un dernier mot sur vous'
+] %}
+{% set paragraphs = [
+    'Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !',
+    'Ici, nous avons besoin de savoir où se trouve votre bien. Renseignez simplement les détails de l’adresse et vous êtes prêt pour la prochaine étape.',
+    'C’est l’heure des projecteurs ! Fournissez un titre captivant, une description et cochez les équipements disponibles. Faites briller votre bien !',
+    'Sortez votre appareil photo et commencez à cliquer ! Donnent vie à votre espace. N’oubliez pas, les images parlent plus fort que les mots !',
+    'Enfin, dites-nous simplement la langue que vous parlez. Cela facilitera la communication avec les futurs locataires. Et voilà, vous êtes prêt à publier !'
+] %}
+
 {% block body %}
 <main class="listing-main">
+
     {% include "listing/_header.html.twig" %}
 
     <section class="listing-form">
+
         <div class="listing-form__container">
+
             <section class="listing-form__description-list">
-                <div class="listing-form__description-item">
-                    <div class="listing-form__status active" id="decoStatus">
-                        <p class="listing-form__step-number">1</p>
-                        <span class="listing-form__status-label">ACTIVE</span>
-                    </div>
-                    <div class="listing-form__details">
-                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
-                        <p class="listing-form__details-text">
-                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
-                        </p>
-                    </div>
-                    <div class="listing-form__deco-left" id="decoItems">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="listing-form__description-item">
-                    <div class="listing-form__status" id="decoStatus">
-                        <p class="listing-form__step-number">2</p>
-                        <span class="listing-form__status-label">ACTIVE</span>
-                    </div>
-                    <div class="listing-form__details">
-                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
-                        <p class="listing-form__details-text">
-                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
-                        </p>
-                    </div>
-                    <div class="listing-form__deco-right" id="decoItems">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="listing-form__description-item">
-                    <div class="listing-form__status" id="decoStatus">
-                        <p class="listing-form__step-number">3</p>
-                        <span class="listing-form__status-label">ACTIVE</span>
-                    </div>
-                    <div class="listing-form__details">
-                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
-                        <p class="listing-form__details-text">
-                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
-                        </p>
-                    </div>
-                    <div class="listing-form__deco-left" id="decoItems">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="listing-form__description-item">
-                    <div class="listing-form__status" id="decoStatus">
-                        <p class="listing-form__step-number">4</p>
-                        <span class="listing-form__status-label">ACTIVE</span>
-                    </div>
-                    <div class="listing-form__details">
-                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
-                        <p class="listing-form__details-text">
-                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
-                        </p>
-                    </div>
-                    <div class="listing-form__deco-right" id="decoItems">
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="listing-form__description-item">
-                    <div class="listing-form__status" id="decoStatus">
-                        <p class="listing-form__step-number">5</p>
-                        <span class="listing-form__status-label">ACTIVE</span>
-                    </div>
-                    <div class="listing-form__details">
-                        <h3 class="listing-form__details-title">Faisons connaissance avec votre bien</h3>
-                        <p class="listing-form__details-text">
-                            Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !
-                        </p>
-                    </div>
-                </div>
+                
+                {% for index in 0..4 %}
+                    {% include "listing/_description_card.html.twig" with {'index': index, 'title': titles[index], 'paragraph': paragraphs[index]} only%}
+                {% endfor %}
+
             </section>
+
             <form action="{{ path('app_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list">
                 <div class="listing-form__form-container">
-                    {# {{ dump(formSteps) }} #}
+
                     {% set formStep1 = formSteps.children.formStep1 %}
-                    <section class="listing-form__step show">
-                        <h2 class="listing-form__title">Étape 1 - Détails du bien</h2>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep1.spaceCateg, 'Le type de bien', {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep1.spaceCateg, {'attr': {'class': 'listing-form__select'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep1.itemCondition, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep1.itemCondition, {'attr': {'class': 'listing-form__select'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep1.price, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep1.price, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep1.surface, 'Surface de stockage', {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep1.surface, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <h2 class="listing-form__title">Dimension de l’entrée</h2>
-                        <div class="listing-form__group">
-                            <div class="listing-form__item">
-                                {{ form_label(formStep1.entryWidth, 'Largeur', {'label_attr': {'class': 'listing-form__label'}}) }}
-                                {{ form_widget(formStep1.entryWidth, {'attr': {'class': 'listing-form__input'}}) }}
-                            </div>
-                            <div class="listing-form__item">
-                                {{ form_label(formStep1.entryLength, 'Longeur', {'label_attr': {'class': 'listing-form__label'}}) }}
-                                {{ form_widget(formStep1.entryLength, {'attr': {'class': 'listing-form__input'}}) }}
-                            </div>
-                        </div>
-                        <div class="listing-form__group">
-                            <div class="listing-form__item">
-                                {{ form_label(formStep1.floorPosition, 'Le bien est situé où ?', {'label_attr': {'class': 'listing-form__label'}}) }}
-                                {{ form_widget(formStep1.floorPosition, {'attr': {'class': 'listing-form__input'}}) }}
-                            </div>
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep1.availabilityStart, 'Disponible a partir de quand ?', {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep1.availabilityStart, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                    </section>
+                    {% include "listing/_form_step1.html.twig" with {'form': formStep1} only %}
 
                     {% set formStep2 = formSteps.children.formStep2 %}
-                    <section class="listing-form__step">
-                        <h2 class="listing-form__title">Étape 2 - Adresse du bien</h2>
-                        <button class="listing-form__btn--prev">Précédant</button>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep2.country, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep2.country, {'attr': {'class': 'listing-form__select'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep2.city, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep2.city, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep2.street, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep2.street, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep2.streetNumber, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep2.streetNumber, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep2.postalCode, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep2.postalCode, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        
-                    </section> 
+                    {% include "listing/_form_step2.html.twig" with {'form': formStep2} only %}
 
                     {% set formStep3 = formSteps.children.formStep3 %}
-                    <section class="listing-form__step">
-                        <h2 class="listing-form__title">Étape 3 - Description et équipements du bien</h2>
-                        <button class="listing-form__btn--prev">Précédant</button>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep3.spaceEquipments, 'Indiquez quels sont les équipements que vous disposez'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep3.spaceEquipments, {'attr': {'class': 'listing-form__checkbox'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep3.status, 'Veuillez sélectionner votre statut ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep3.status, {'attr': {'class': 'listing-form__radio'}}) }}
-                        </div>
-                    </section>
+                    {% include "listing/_form_step3.html.twig" with {'form': formStep3} only %}
                     
                     {% set formStep4 = formSteps.children.formStep4 %}
-                    <section class="listing-form__step">
-                        <h2 class="listing-form__title">Étape 4 - Ajoutez quelques photos</h2>
-                        <button class="listing-form__btn--prev">Précédant</button>
-                        <p class="listing-form__info">
-                            Pour commencer, vous aurez besoin de 5 photos. Vous pourrez en ajouter d’autres ou faire des modifications plus tard.
-                        </p>
-                        <div class="listing-form__photo-upload">
-                            <div class="listing-form__item">
-                                {{ form_label(formStep4.imagePath, null, {'label_attr': {'class': 'listing-form__label'}}) }}
-                                {{ form_widget(formStep4.imagePath, {'attr': {'class': 'listing-form__'}}) }}
-                            </div>
-                        </div>
-                    </section>
+                    {% include "listing/_form_step4.html.twig" with {'form': formStep4} only %}
 
                     {% set formStep5 = formSteps.children.formStep5 %}
-                    <section class="listing-form__step">
-                        <h2 class="listing-form__title">Étape 5 - Informations sur le propriétaire</h2>
-                        <button class="listing-form__btn--prev">Précédant</button>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep5.language, 'Quelle langue préférez-vous utiliser ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep5.language, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep5.title, 'Donner un titre à votre annonce ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep5.title, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                        <div class="listing-form__item">
-                            {{ form_label(formStep5.Description, 'Donner un description à votre annonce ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
-                            {{ form_widget(formStep5.Description, {'attr': {'class': 'listing-form__input'}}) }}
-                        </div>
-                    </section>
+                    {% include "listing/_form_step5.html.twig" with {'form': formStep5} only %}
 
                     {{ form_row(formSteps._token) }}
+
                 </div>
                 
             </form>
+
         </div>
+
     </section>    
 
     {% include "listing/_footer.html.twig" %}

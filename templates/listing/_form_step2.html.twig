@@ -1,0 +1,32 @@
+<section class="listing-form__step">
+
+    <h2 class="listing-form__title">Étape 2 - Adresse du bien</h2>
+
+    <button class="listing-form__btn--prev">Précédant</button>
+
+    <div class="listing-form__item">
+        {{ form_label(form.country, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.country, {'attr': {'class': 'listing-form__select'}}) }}
+    </div>
+
+    <div class="listing-form__item">
+        {{ form_label(form.city, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.city, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+
+    <div class="listing-form__item">
+        {{ form_label(form.street, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.street, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+
+    <div class="listing-form__item">
+        {{ form_label(form.streetNumber, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.streetNumber, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+
+    <div class="listing-form__item">
+        {{ form_label(form.postalCode, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.postalCode, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+    
+</section> 

@@ -1,0 +1,40 @@
+<section class="listing-form__step show">
+    <h2 class="listing-form__title">Étape 1 - Détails du bien</h2>
+    <div class="listing-form__item">
+        {{ form_label(form.spaceCateg, 'Le type de bien', {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.spaceCateg, {'attr': {'class': 'listing-form__select'}}) }}
+    </div>
+    <div class="listing-form__item">
+        {{ form_label(form.itemCondition, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.itemCondition, {'attr': {'class': 'listing-form__select'}}) }}
+    </div>
+    <div class="listing-form__item">
+        {{ form_label(form.price, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.price, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+    <div class="listing-form__item">
+        {{ form_label(form.surface, 'Surface de stockage', {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.surface, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+    <h2 class="listing-form__title">Dimension de l’entrée</h2>
+    <div class="listing-form__group">
+        <div class="listing-form__item">
+            {{ form_label(form.entryWidth, 'Largeur', {'label_attr': {'class': 'listing-form__label'}}) }}
+            {{ form_widget(form.entryWidth, {'attr': {'class': 'listing-form__input'}}) }}
+        </div>
+        <div class="listing-form__item">
+            {{ form_label(form.entryLength, 'Longeur', {'label_attr': {'class': 'listing-form__label'}}) }}
+            {{ form_widget(form.entryLength, {'attr': {'class': 'listing-form__input'}}) }}
+        </div>
+    </div>
+    <div class="listing-form__group">
+        <div class="listing-form__item">
+            {{ form_label(form.floorPosition, 'Le bien est situé où ?', {'label_attr': {'class': 'listing-form__label'}}) }}
+            {{ form_widget(form.floorPosition, {'attr': {'class': 'listing-form__input'}}) }}
+        </div>
+    </div>
+    <div class="listing-form__item">
+        {{ form_label(form.availabilityStart, 'Disponible a partir de quand ?', {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.availabilityStart, {'attr': {'class': 'listing-form__input'}}) }}
+    </div>
+</section>

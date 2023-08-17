@@ -97,6 +97,12 @@ class Spaces
         $this->adresse = new ArrayCollection();
     }
 
+    public function file()
+    {
+        $givenNameInitials = substr($this->user->getGivenName(), 0, 2);
+        $folder = $this->user->getFamilyName() . $givenNameInitials . '-' . $this->user->getId() . '-' . $this->getId();
+        return $folder;
+    }
 
     public function __toString()
     {

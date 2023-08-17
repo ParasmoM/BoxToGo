@@ -54,7 +54,7 @@ body {
 }
 .header__container {
   --padding: 4rem * 2;
-  --max-width: 1440rem;
+  --max-width: 192rem;
   display: flex;
   justify-content: space-between;
   padding-block: 3rem;
@@ -184,7 +184,7 @@ body {
 }
 .admin-inteface__container {
   --padding: 2 * 3rem;
-  --max-width: 1440rem;
+  --max-width: 192rem;
   width: min(100% - var(--padding), var(--max-width));
   margin-inline: auto;
 }
@@ -410,7 +410,7 @@ body {
 }
 .listing-header__container {
   --padding: 4rem * 2;
-  --max-width: 1440rem;
+  --max-width: 192rem;
   display: flex;
   justify-content: space-between;
   background-color: #FFFFFF;
@@ -439,7 +439,7 @@ body {
 }
 .listing-form__container {
   --padding: 4rem * 2;
-  --max-width: 1440rem;
+  --max-width: 192rem;
   display: flex;
   width: min(100% - var(--padding), var(--max-width));
   margin-inline: auto;
@@ -507,7 +507,7 @@ body {
 .listing-form__details-text {
   font-size: 1.2rem;
 }
-.listing-form__deco-left {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco {
   position: relative;
   border: none 2px #CDD3D8;
   height: 18.7rem;
@@ -519,43 +519,43 @@ body {
   display: flex;
   flex-direction: column;
 }
-.listing-form__deco-left span {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco span {
   flex: 1;
 }
-.listing-form__deco-left span:after, .listing-form__deco-left span:before {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco span:after, .listing-form__description-item:nth-child(2n+1) .listing-form__deco span:before {
   content: "";
   position: absolute;
   background-color: #1DB9BF;
   transition: all 0.5s;
 }
-.listing-form__deco-left span:first-of-type:after {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco span:first-of-type:after {
   top: 0;
   right: 0;
   height: 2px;
   width: 0;
 }
-.listing-form__deco-left span:first-of-type:before {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco span:first-of-type:before {
   top: 0;
   left: 0;
   width: 2px;
   height: 0;
 }
-.listing-form__deco-left span:last-of-type:after {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco span:last-of-type:after {
   bottom: 0;
   right: 0;
   height: 2px;
   width: 0;
 }
-.listing-form__deco-left.animate span:first-of-type:after {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco.animate span:first-of-type:after {
   animation: loadTopBorder 1s forwards 0s;
 }
-.listing-form__deco-left.animate span:first-of-type:before {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco.animate span:first-of-type:before {
   animation: loadRightBorder 1s forwards 1s;
 }
-.listing-form__deco-left.animate span:last-of-type:after {
+.listing-form__description-item:nth-child(2n+1) .listing-form__deco.animate span:last-of-type:after {
   animation: loadBottomBorder 1s forwards 2s;
 }
-.listing-form__deco-right {
+.listing-form__description-item:nth-child(2n) .listing-form__deco {
   position: relative;
   border: none 2px #CDD3D8;
   height: 18.7rem;
@@ -567,40 +567,40 @@ body {
   display: flex;
   flex-direction: column;
 }
-.listing-form__deco-right span {
+.listing-form__description-item:nth-child(2n) .listing-form__deco span {
   flex: 1;
 }
-.listing-form__deco-right span:after, .listing-form__deco-right span:before {
+.listing-form__description-item:nth-child(2n) .listing-form__deco span:after, .listing-form__description-item:nth-child(2n) .listing-form__deco span:before {
   content: "";
   position: absolute;
   background-color: #1DB9BF;
   transition: all 0.5s;
 }
-.listing-form__deco-right span:first-of-type:after {
+.listing-form__description-item:nth-child(2n) .listing-form__deco span:first-of-type:after {
   top: 0;
   right: 0;
   height: 2px;
   width: 0;
 }
-.listing-form__deco-right span:first-of-type:before {
+.listing-form__description-item:nth-child(2n) .listing-form__deco span:first-of-type:before {
   top: 0;
   right: 0;
   width: 2px;
   height: 0;
 }
-.listing-form__deco-right span:last-of-type:after {
+.listing-form__description-item:nth-child(2n) .listing-form__deco span:last-of-type:after {
   bottom: 0;
   right: 0;
   height: 2px;
   width: 0;
 }
-.listing-form__deco-right.animate span:first-of-type:after {
+.listing-form__description-item:nth-child(2n) .listing-form__deco.animate span:first-of-type:after {
   animation: loadTopBorder2 1s forwards 0s;
 }
-.listing-form__deco-right.animate span:first-of-type:before {
+.listing-form__description-item:nth-child(2n) .listing-form__deco.animate span:first-of-type:before {
   animation: loadRightBorder 1s forwards 1s;
 }
-.listing-form__deco-right.animate span:last-of-type:after {
+.listing-form__description-item:nth-child(2n) .listing-form__deco.animate span:last-of-type:after {
   animation: loadBottomBorder2 1s forwards 2s;
 }
 @keyframes loadTopBorder {
@@ -743,7 +743,7 @@ body {
 }
 .listing-footer__container {
   --padding: 4rem * 2;
-  --max-width: 1440rem;
+  --max-width: 192rem;
   width: min(100% - var(--padding), var(--max-width));
   padding: 3rem;
   margin-bottom: 3rem;
@@ -989,4 +989,77 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
+}
+
+.home > .container {
+  --padding: 4rem * 2;
+  --max-width: 192rem;
+  background-color: #FFFFFF;
+  width: min(100% - var(--padding), var(--max-width));
+  margin-inline: auto;
+  margin-top: 10rem;
+}
+.home header > .container {
+  display: flex;
+  justify-content: space-between;
+}
+.home header > .container > ul {
+  display: flex;
+  gap: 1.5rem;
+}
+.home header > .container li,
+.home header > .container button {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  border: solid 1px #CDD3D8;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  white-space: nowrap;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.home header > .container img {
+  height: 2.5rem;
+}
+.home .container > section {
+  margin-top: 6rem;
+}
+.home .container > section > .container {
+  display: flex;
+  gap: 3rem;
+  flex-flow: wrap;
+}
+.home .card {
+  flex: 0 0 36rem;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.home .card .image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #1F2021;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.home .card .image img {
+  width: 100%;
+  height: 100%; /* Ajout de la hauteur */
+  object-fit: cover;
+}
+.home .card > article {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.home .card > article > section:last-of-type {
+  text-align: right;
+}
+.home .card > article .icones {
+  display: inline-flex;
+  color: #EFF0F2;
+}
+.home .card > article .equipped {
+  color: #1F2021;
 }

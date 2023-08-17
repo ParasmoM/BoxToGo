@@ -1,0 +1,90 @@
+@use "../base/variables" as *;
+
+.home {
+    > .container {
+        --padding: 4rem * 2;
+        --max-width: #{$container-1};
+
+        // display: flex;
+        // justify-content: space-between;
+        background-color: $white;
+        width: min(100% - var(--padding), var(--max-width));
+        // padding-block: $spacing-medium;
+        margin-inline: auto;
+        margin-top: 10rem;
+    }
+
+    header > .container {
+        display: flex;
+        justify-content: space-between;
+
+        > ul {
+            display: flex;
+            gap: $spacing-small;
+        }
+
+        li,
+        button {
+            display: flex;
+            align-items: center;
+            gap: $spacing-medium;
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            padding: $spacing-small;
+            white-space: nowrap;
+            font-family: $ff-secondary;
+            font-size: $font-size-default;
+            font-weight: $font-weight-semi-bold;
+        }
+        img {
+            height: 2.5rem;
+        }
+    }
+
+
+    .container > section {
+        margin-top: $spacing-large;
+
+        > .container {
+            display: flex;
+            gap: $spacing-medium;
+            flex-flow: wrap;
+        }
+    }
+    .card {
+        flex: 0 0 36rem;
+        overflow: hidden;
+        border-radius: $border-radius;
+
+        .image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: $black;
+            border-radius: $border-radius;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;  /* Ajout de la hauteur */
+                object-fit: cover;
+            }
+        }
+
+        > article {
+            display: flex;
+            justify-content: space-between;
+            margin-top: $spacing-small;
+
+            > section:last-of-type {
+                text-align: right;
+            }
+            .icones {
+                display: inline-flex;
+                color: $hovered;
+            }
+            .equipped {
+                color: $black;
+            }
+        }
+    }
+}
