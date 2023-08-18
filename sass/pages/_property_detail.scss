@@ -99,4 +99,56 @@
             @extend %title-subheader;
         }
     }
+
+    section:nth-child(4) {
+        @extend %section;
+        h2 {
+            @extend %title-subheader;
+        }
+        h3 {
+            @extend %title-caption;
+        }
+
+        .content {
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            height: 30rem;
+            position: relative;
+            margin-left: 5rem;
+            padding-block: $spacing-medium;
+
+            display: flex;
+        }
+        .avatar {
+            height: 10rem;
+            aspect-ratio: 1/1;
+            background-color: $hovered;
+            border-radius: 50%;
+            position: absolute;
+            top: 3rem;
+            left: -5rem;
+        }
+        .content article:first-of-type {
+            padding-inline: 8rem $spacing-medium;
+            flex: auto;
+        }
+        article:last-of-type {
+            border-left: solid 1px $border-color;
+            padding-inline: $spacing-medium;
+
+            display: flex;
+            gap: $spacing-medium;
+
+
+            > div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                p {
+                    flex: 1;
+                }
+            }
+        }
+    }
 }

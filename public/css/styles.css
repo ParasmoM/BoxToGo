@@ -1064,18 +1064,24 @@ body {
   color: #1F2021;
 }
 
-.space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3) {
+.owner-detail > .container {
+  max-width: 1920px;
+  padding-inline: 6rem;
+  margin-inline: auto;
+}
+
+.owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4) {
   margin-top: 10rem;
 }
 
-.space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2 {
+.owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-size: 2.6rem;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
   margin-bottom: 6rem;
   position: relative;
 }
-.space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before {
+.owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -1083,6 +1089,32 @@ body {
   background-color: #1F2021;
   position: absolute;
   bottom: 0;
+}
+
+.owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3 {
+  font-size: 2.2rem;
+  font-weight: 500;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 3rem;
+}
+
+.container-test {
+  max-width: 1200px;
+}
+@media (max-width: 1200px) {
+  .container-test {
+    max-width: 992px;
+  }
+}
+@media (max-width: 992px) {
+  .container-test {
+    max-width: 768px;
+  }
+}
+@media (max-width: 768px) {
+  .container-test {
+    max-width: 100%;
+  }
 }
 
 .space-detail > .container {
@@ -1152,4 +1184,104 @@ body {
   height: 30rem;
   border: solid 1px;
   background-color: #EFF0F2;
+}
+.space-detail section:nth-child(4) .content {
+  border: solid 1px #CDD3D8;
+  border-radius: 1rem;
+  height: 30rem;
+  position: relative;
+  margin-left: 5rem;
+  padding-block: 3rem;
+  display: flex;
+}
+.space-detail section:nth-child(4) .avatar {
+  height: 10rem;
+  aspect-ratio: 1/1;
+  background-color: #EFF0F2;
+  border-radius: 50%;
+  position: absolute;
+  top: 3rem;
+  left: -5rem;
+}
+.space-detail section:nth-child(4) .content article:first-of-type {
+  padding-inline: 8rem 3rem;
+  flex: auto;
+}
+.space-detail section:nth-child(4) article:last-of-type {
+  border-left: solid 1px #CDD3D8;
+  padding-inline: 3rem;
+  display: flex;
+  gap: 3rem;
+}
+.space-detail section:nth-child(4) article:last-of-type > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.space-detail section:nth-child(4) article:last-of-type > div p {
+  flex: 1;
+}
+
+.owner-detail section:first-of-type .content {
+  border: solid 1px #CDD3D8;
+  border-radius: 1rem;
+  height: 30rem;
+  position: relative;
+  margin-left: 5rem;
+  padding-block: 3rem;
+  display: flex;
+}
+.owner-detail section:first-of-type .avatar {
+  height: 10rem;
+  aspect-ratio: 1/1;
+  background-color: #EFF0F2;
+  border-radius: 50%;
+  position: absolute;
+  top: 3rem;
+  left: -5rem;
+}
+.owner-detail section:first-of-type .content article:first-of-type {
+  padding-inline: 8rem 3rem;
+  flex: auto;
+}
+.owner-detail section:first-of-type article:last-of-type {
+  border-left: solid 1px #CDD3D8;
+  padding-inline: 3rem;
+  display: flex;
+  gap: 3rem;
+}
+.owner-detail section:first-of-type article:last-of-type > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.owner-detail section:first-of-type article:last-of-type > div p {
+  flex: 1;
+}
+.owner-detail section:nth-child(2) .content {
+  display: flex;
+  gap: 6rem;
+}
+.owner-detail section:nth-child(2) .box1 {
+  flex: 1;
+  display: flex;
+  gap: 3rem;
+  height: fit-content;
+}
+.owner-detail section:nth-child(2) .box1 .item > div {
+  aspect-ratio: 1/1;
+  border-radius: 1rem;
+  background-color: #EFF0F2;
+  margin-bottom: 1.5rem;
+}
+.owner-detail section:nth-child(2) .box2 {
+  border-radius: 1rem;
+  flex: 0 0 45rem;
+  padding: 3rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.owner-detail section:nth-child(2) .box2 textarea {
+  width: 100%;
+  border: solid 1px #CDD3D8;
+  border-radius: 1rem;
 }

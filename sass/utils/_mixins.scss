@@ -1,0 +1,11 @@
+@use "../base/variables" as *;
+
+@mixin breakpoint($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @warn "Le breakpoint '#{$breakpoint}' n'existe pas. Veuillez utiliser l'un de ceux-ci : #{map-keys($breakpoints)}.";
+    }
+}

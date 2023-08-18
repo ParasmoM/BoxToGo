@@ -4,7 +4,6 @@
 
 {% block body %}
 <main class="space-detail">
-    {{ dump(space.content) }}
     <div class="container">
 
         <section>
@@ -38,11 +37,11 @@
 
         <section>
             <h2>Installations du bien </h2>
-            <div>
+            <ul>
             {% for equipment in space.equipment.first.spaceEquipments %}
-                <p>{{ equipment }}</p>
+                <li>{{ equipment }}</li>
             {% endfor %}
-            </div>
+            </ul>
         </section>
 
         <section>
@@ -53,6 +52,46 @@
             {% endfor %}
             </div>
         </section>
+
+        <section>
+            <h2>Faites connaissance avec votre hôte</h2>
+            <div class="content">
+                <a href="{{ path('app_owner_profile', {'id': space.user.id}) }}" class="avatar">
+                    
+                </a>
+                <article>
+                    <h3><a href="{{ path('app_owner_profile', {'id': space.user.id}) }}">{{ space.user }}</a></h3>
+                    <div>
+                        
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <p>Notes globale :</p>
+                        <p>Nombres d’évaluations :</p>
+                        <p>Années d’expérience :</p>
+                        <p>Statut :</p>
+                        <p>Email :</p>
+                        <p>Téléphone :</p>
+                        <p>Langues :</p>
+                        <p>Taux de réponse :</p>
+                        <p>Délai de réponse :</p>
+                    </div>
+                    <div>
+                        <p>****</p>
+                        <p>****</p>
+                        <p>****</p>
+                        <p>{{ space.user.status }}</p>
+                        <p>{{ space.user.email }}</p>
+                        <p>{{ space.user.phoneNumber }}</p>
+                        <p>{{ space.user.language }}</p>
+                        <p>****</p>
+                        <p>****</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
     </div>
 </main>
 {% endblock %}

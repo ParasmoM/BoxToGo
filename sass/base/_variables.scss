@@ -41,6 +41,16 @@ $border-color: map-get($grays, 700);
 $hovered: map-get($grays, 300); 
 $bg-admin: map-get($grays, 200);
 
+// Breakpoints
+$breakpoints : (
+    'xs': 480px,       
+    'sm': 768px,       
+    'md': 1024px,      
+    'lg': 1280px,      
+    'xl': 1440px,      
+    'xxl': 1920px,     
+);
+
 // Font Family Aliases
 $ff-primary: $font-family-primary;
 $ff-secondary: $font-family-secondary;
@@ -64,4 +74,5 @@ $box-shadow-secondary: rgba(map-get($grays, 400), 0.55) 0px 3px 6px;
 // Container Widths
 $container: 80rem;
 $container-1: 192rem;
+
 

@@ -1,0 +1,60 @@
+// Variables
+$btn-padding: 0.5em 1em;
+$btn-border-radius: 4px;
+$btn-font-size: 1rem;
+$btn-transition: all 0.3s ease-in-out;
+
+$btn-colors: (
+    primary: (bg: #007BFF, text: #FFF, border: #007BFF, hover-bg: darken(#007BFF, 5%)),
+    secondary: (bg: #6C757D, text: #FFF, border: #6C757D, hover-bg: darken(#6C757D, 5%)),
+    //... ajouter d'autres couleurs selon les besoins
+);
+
+// Mixin pour la création rapide de variantes
+@mixin button-variant($bg-color, $text-color, $border-color, $hover-bg) {
+    background-color: $bg-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+
+    &:hover,
+    &:focus {
+        background-color: $hover-bg;
+        border-color: darken($border-color, 10%);
+    }
+}
+
+// Styles de base pour le bouton
+.button {
+    display: inline-block;
+    padding: $btn-padding;
+    font-size: $btn-font-size;
+    border-radius: $btn-border-radius;
+    cursor: pointer;
+    transition: $btn-transition;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    
+    // ... autres styles de base
+    
+    // Styles pour les différentes variantes
+    @each $variant, $colors in $btn-colors {
+        &--#{$variant} {
+            @include button-variant(map-get($colors, bg), map-get($colors, text), map-get($colors, border), map-get($colors, hover-bg));
+        }
+    }
+
+    // Modificateurs optionnels (si nécessaire)
+    &--large {
+        padding: calc($btn-padding * 1.5);
+        font-size: calc($btn-font-size * 1.25);
+    }
+
+    &--small {
+        padding: calc($btn-padding * 0.75);
+        font-size: calc($btn-font-size * 0.875);
+    }
+
+    //... autres modificateurs
+}
+

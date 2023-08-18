@@ -1,7 +1,9 @@
 @use "../base/variables" as *;
 
 %main-container {
-
+    max-width: map-get($breakpoints, 'xxl');
+    padding-inline: $spacing-large;
+    margin-inline: auto;
 }
 
 %section {margin-top: 10rem;}
@@ -33,6 +35,50 @@
 }
 
 %title-caption {
-
+    font-size: $font-size-extra-large;
+    font-weight: $font-weight-medium;
+    font-family: $ff-secondary;
+    margin-bottom: $spacing-medium;
 }
 
+// _container.scss
+
+
+
+.container-test {
+    max-width: 1200px; // largeur maximale pour les grands écrans
+
+
+    @media (max-width: 1200px) {
+        max-width: 992px; // pour les écrans de taille moyenne
+    }
+
+    @media (max-width: 992px) {
+        max-width: 768px; // pour les petites tablettes
+    }
+
+    @media (max-width: 768px) {
+        max-width: 100%; // pour les mobiles
+    }
+}
+
+// Assurez-vous que les maps sont définies quelque part dans votre code.
+$breakpoints-up: (
+  // ... vos valeurs de breakpoints
+);
+
+$breakpoints-down: (
+  // ... vos valeurs de breakpoints
+);
+
+@mixin breakpoint($size) {
+    @media (min-width: map-get($breakpoints-up, $size)) {
+        @content;
+    }
+}
+
+@mixin breakpoint-down($size) {
+    @media (max-width: map-get($breakpoints-down, $size)) {
+        @content;
+    }
+}
