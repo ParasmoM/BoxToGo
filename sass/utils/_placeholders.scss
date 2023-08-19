@@ -1,84 +1,90 @@
 @use "../base/variables" as *;
 
-%main-container {
-    max-width: map-get($breakpoints, 'xxl');
+// Containers
+%container {
     padding-inline: $spacing-large;
     margin-inline: auto;
+    
+    &-primary {
+        @extend %container;
+        max-width: map-get($breakpoints, 'xxl');
+    }
+
+    &-secondary {
+        @extend %container;
+        max-width: calc(map-get($breakpoints, 'md') - 224px);
+    }
 }
 
+// Sections
 %section {margin-top: 10rem;}
 
-%overlay-container {
-
-}
-
-%title-header {
-
-}
-
-%title-subheader {
-    font-size: $font-size-huge;
+// Titles
+%title {
+    font-family: $ff-secondary;
     font-weight: $font-weight-semi-bold;
-    font-family: $ff-secondary;
-    margin-bottom: $spacing-large;
-    position: relative;
 
-    &::before {
-        content: "";
-        display: inline-block;
-        height: .2rem;
-        width: 4rem;
-        background-color: $black;
-        position: absolute;
-        bottom: 0;
+    &-primary {
+        @extend %title;
+        font-size: $font-size-huge;
+        margin-bottom: $spacing-large;
+        position: relative;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            height: .2rem;
+            width: 4rem;
+            background-color: $black;
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+    &-secondary {
+        @extend %title;
+        font-size: $font-size-extra-large;
+        margin-bottom: $spacing-medium;
     }
 }
 
-%title-caption {
-    font-size: $font-size-extra-large;
-    font-weight: $font-weight-medium;
-    font-family: $ff-secondary;
-    margin-bottom: $spacing-medium;
-}
+// Buttons
+%btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-small;
+    font-size: $font-size-default;
+    font-weight: $font-weight-semi-bold;
+    border-radius: $border-radius;
+    padding-inline: 2.4rem;
+    cursor: pointer;
+    height: 4rem;
 
-// _container.scss
+    &-primary{
+        @extend %btn;
 
-
-
-.container-test {
-    max-width: 1200px; // largeur maximale pour les grands écrans
-
-
-    @media (max-width: 1200px) {
-        max-width: 992px; // pour les écrans de taille moyenne
+        // @each $variant, $colors in $btn-colors {
+        //     &--#{$variant} {
+        //         @include button-variant(map-get($colors, bg), map-get($colors, text), map-get($colors, border), map-get($colors, hover-bg));
+        //     }
+        // }
     }
 
-    @media (max-width: 992px) {
-        max-width: 768px; // pour les petites tablettes
-    }
+    &-radio {
+        font-weight: $font-weight-medium;
+        border-radius: $border-radius;
+        background-color: $bg-admin;
+        padding: 2.5px;
 
-    @media (max-width: 768px) {
-        max-width: 100%; // pour les mobiles
-    }
-}
+        & > * {
+            border-radius: $border-radius;
+            padding: .8rem $spacing-small;
+            display: inline-block;
 
-// Assurez-vous que les maps sont définies quelque part dans votre code.
-$breakpoints-up: (
-  // ... vos valeurs de breakpoints
-);
-
-$breakpoints-down: (
-  // ... vos valeurs de breakpoints
-);
-
-@mixin breakpoint($size) {
-    @media (min-width: map-get($breakpoints-up, $size)) {
-        @content;
-    }
-}
-
-@mixin breakpoint-down($size) {
-    @media (max-width: map-get($breakpoints-down, $size)) {
-        @content;
+            &.active {
+                background-color: $white;
+                color: $primary;
+            }
+        }
     }
 }

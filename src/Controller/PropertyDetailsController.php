@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PropertyDetailsController extends AbstractController
 {
-    #[Route('/property/details/{id}', name: 'app_property_details')]
+    #[Route('/property/details/{id}', name: 'public_property_details')]
     public function index(
         Spaces $space
     ): Response {

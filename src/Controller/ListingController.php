@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\Length;
 
 class ListingController extends AbstractController
 {
-    #[Route('/listing', name: 'app_listing')]
+    #[Route('/listing', name: 'public_listing')]
     public function index(
         Request $request,
         EntityManagerInterface $entityManager,

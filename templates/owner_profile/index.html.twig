@@ -9,11 +9,11 @@
         <section>
             <h2>Information sur {{ user.familyName }}</h2>
             <div class="content">
-                <a href="{{ path('app_owner_profile', {'id': user.id}) }}" class="avatar">
+                <a href="{{ path('public_owner_profile', {'id': user.id}) }}" class="avatar">
                     
                 </a>
                 <article>
-                    <h3><a href="{{ path('app_owner_profile', {'id': user.id}) }}">{{ user }}</a></h3>
+                    <h3><a href="{{ path('public_owner_profile', {'id': user.id}) }}">{{ user }}</a></h3>
                     <div>
                         
                     </div>

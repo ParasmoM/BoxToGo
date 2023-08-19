@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'public_home')]
     public function index(
         SpaceCategoriesRepository $spaceCategoriesRepository,
         SpacesRepository $spacesRepository,

@@ -1,5 +1,4 @@
-@use "../base/variables" as *;
-
+// Media queries
 @mixin breakpoint($breakpoint) {
     @if map-has-key($breakpoints, $breakpoint) {
         @media (min-width: map-get($breakpoints, $breakpoint)) {
@@ -9,3 +8,5 @@
         @warn "Le breakpoint '#{$breakpoint}' n'existe pas. Veuillez utiliser l'un de ceux-ci : #{map-keys($breakpoints)}.";
     }
 }
+
+// Buttons

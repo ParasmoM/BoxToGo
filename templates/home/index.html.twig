@@ -27,7 +27,7 @@
                 {% for index in 0..20 %}
                 <div class="card">
                     <div class="image">
-                        <a href="{{ path('app_property_details', {'id': allSpaces[0].id}) }}">
+                        <a href="{{ path('public_property_details', {'id': allSpaces[0].id}) }}">
                             <img src="{{ asset('assets/uploads/' ~ allSpaces[0].file ~ '/' ~ allSpaces[0].image.first.imagePath) }}" alt="Image {{ allSpaces[0].spaceCateg.name }}">
                         </a>
                     </div>

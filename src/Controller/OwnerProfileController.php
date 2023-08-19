@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OwnerProfileController extends AbstractController
 {
-    #[Route('/owner/profile/{id}', name: 'app_owner_profile')]
+    #[Route('/owner/profile/{id}', name: 'public_owner_profile')]
     public function index(
         Users $user
     ): Response {

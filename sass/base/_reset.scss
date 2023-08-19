@@ -18,8 +18,9 @@ html {
 img,
 picture,
 svg {
+    height: 100%;
+    width: auto;
     display: block;
-    max-width: 100%;
 }
 
 ol, ul {

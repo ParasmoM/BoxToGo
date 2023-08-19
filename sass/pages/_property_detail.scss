@@ -3,20 +3,13 @@
 
 .space-detail {
     > .container {
-        --padding: 4rem * 2;
-        --max-width: #{$container-1};
-
-        background-color: $white;
-        width: min(100% - var(--padding), var(--max-width));
-        margin-inline: auto;
+        @extend %container-primary;
     }
 
     section:first-of-type {
         @extend %section;
         h1 {
-            font-size: $font-size-huge;
-            font-weight: $font-weight-semi-bold;
-            margin-bottom: $spacing-large;
+            @extend %title-primary;
         }
         .gallery {
             width: 100%;
@@ -88,7 +81,7 @@
     section:nth-child(2) {
         @extend %section;
         h2 {
-            @extend %title-subheader;
+            @extend %title-primary;
         }
 
     }
@@ -96,17 +89,17 @@
     section:nth-child(3) {
         @extend %section;
         h2 {
-            @extend %title-subheader;
+            @extend %title-primary;
         }
     }
 
     section:nth-child(4) {
         @extend %section;
         h2 {
-            @extend %title-subheader;
+            @extend %title-primary;
         }
         h3 {
-            @extend %title-caption;
+            @extend %title-secondary;
         }
 
         .content {

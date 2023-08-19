@@ -3,17 +3,17 @@
 
 .owner-detail {
     > .container {
-        @extend %main-container;
+        @extend %container-primary;
     }
 
     section:first-of-type {
         @extend %section;
 
         h2 {
-            @extend %title-subheader;
+            @extend %title-primary;
         }
         h3 {
-            @extend %title-caption;
+            @extend %title-secondary;
         }
 
         .content {
@@ -62,7 +62,7 @@
     section:nth-child(2) {
         @extend %section;
         h2 {
-            @extend %title-subheader;
+            @extend %title-primary;
         }
 
         .content {
@@ -85,7 +85,7 @@
         }
         .box2 {
             h3 {
-                @extend %title-caption;
+                @extend %title-secondary;
             }
             
             border-radius: $border-radius;
