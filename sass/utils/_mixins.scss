@@ -1,3 +1,21 @@
+@use "../base/variables" as *;
+
+
+// Mixin pour facilement appliquer la taille de police 
+// @mixin font-size($size-name) {
+//     font-size: map-get($font-sizes, $size-name);
+// }
+
+// Mixin pour facilement appliquer le poids de police
+// @mixin font-weight($weight-name) {
+//     font-weight: map-get($font-weights, $weight-name);
+// }
+
+// Mixin pour facilement appliquer l'espacement
+// @mixin spacing($spacing-type, $direction, $spacing-name) {
+//     #{$spacing-type}-#{$direction}: map-get($spacings, $spacing-name);
+// }
+
 // Media queries
 @mixin breakpoint($breakpoint) {
     @if map-has-key($breakpoints, $breakpoint) {
@@ -9,4 +27,28 @@
     }
 }
 
-// Buttons
+// Mixin pour la création rapide de variantes es Titres
+@mixin titles($font-size-variable, $spacing-variable, $style: false) {
+    @extend %fw-semibold;
+    font-family:  $font-family-secondary;
+    font-size: $font-size-variable;
+    margin-bottom: $spacing-variable;
+
+    @if $style {
+        position: relative; 
+        
+        &::before {
+            content: "";
+            display: inline-block;
+            height: .2rem;
+            width: 4rem;
+            background-color: var(--clr-black);
+            position: absolute;
+            bottom: 0;
+        }
+    }
+}
+
+
+
+

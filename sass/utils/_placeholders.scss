@@ -1,9 +1,45 @@
 @use "../base/variables" as *;
+@use "mixins" as *;
+
+
+// Font sizes 
+@each $name, $size in $font-sizes {
+    %fs-#{$name} {
+        font-size: $size;
+    }
+}
+
+// Font weights 
+@each $name, $weight in $font-weights {
+    %fw-#{$name} {
+        font-weight: $weight;
+    }
+}
+
+// Padding and Margin
+@each $type in $spacing-types {
+    @each $name, $value in $spacings {
+        $typeSuffix: '';
+
+        @if $type != 'default' {
+            $typeSuffix: '-#{$type}';
+        }
+
+        %padding#{$typeSuffix}-#{$name} {
+            padding#{$typeSuffix}: $value;
+        }
+
+        %margin#{$typeSuffix}-#{$name} {
+            margin#{$typeSuffix}: $value;
+        }
+    }
+}
+
 
 // Containers
 %container {
-    padding-inline: $spacing-large;
-    margin-inline: auto;
+    @extend %padding-inline-xl;
+    @extend %margin-inline-auto;
     
     &-primary {
         @extend %container;
@@ -12,39 +48,61 @@
 
     &-secondary {
         @extend %container;
-        max-width: calc(map-get($breakpoints, 'md') - 224px);
+        width: calc(map-get($breakpoints, 'md') - 224px);
     }
 }
 
 // Sections
 %section {margin-top: 10rem;}
 
+
 // Titles
 %title {
-    font-family: $ff-secondary;
-    font-weight: $font-weight-semi-bold;
-
-    &-primary {
-        @extend %title;
-        font-size: $font-size-huge;
-        margin-bottom: $spacing-large;
-        position: relative;
-
-        &::before {
-            content: "";
-            display: inline-block;
-            height: .2rem;
-            width: 4rem;
-            background-color: $black;
-            position: absolute;
-            bottom: 0;
+    @each $variant, $value in $titles {
+        &-#{$variant} {
+            @include titles(map-get($value, fs), map-get($value, spacing), map-get($value, style));
         }
     }
+}
 
-    &-secondary {
-        @extend %title;
-        font-size: $font-size-extra-large;
-        margin-bottom: $spacing-medium;
+// Buttons
+%btn {
+
+    &-color {
+
+    }
+    &-black {
+        
+    }
+    &-white {
+        
+    }
+    
+    &-icone-color {
+
+    }
+    &-icone-black {
+        
+    }
+    &-icone-white {
+        
+    }
+
+    &-checkbox-toggle {
+
+    }
+    &-checkbox-press {
+        
+    }
+
+    &-radio-slide {
+
+    }
+    &-radio-select {
+        
+    }
+    &-radio-group {
+        
     }
 }
 
@@ -52,9 +110,7 @@
 %btn {
     display: inline-flex;
     align-items: center;
-    gap: $spacing-small;
-    font-size: $font-size-default;
-    font-weight: $font-weight-semi-bold;
+    gap: var(--spacing-sm);
     border-radius: $border-radius;
     padding-inline: 2.4rem;
     cursor: pointer;
@@ -71,19 +127,19 @@
     }
 
     &-radio {
-        font-weight: $font-weight-medium;
         border-radius: $border-radius;
-        background-color: $bg-admin;
+        background-color:  var(--clr-gray-200);
         padding: 2.5px;
 
         & > * {
+            @extend %padding-block-xs;
+            @extend %padding-inline-sm;
             border-radius: $border-radius;
-            padding: .8rem $spacing-small;
             display: inline-block;
 
             &.active {
-                background-color: $white;
-                color: $primary;
+                background-color:  var(--clr-white);
+                color:  var(--clr-primary);
             }
         }
     }

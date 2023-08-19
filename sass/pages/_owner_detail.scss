@@ -22,29 +22,30 @@
             height: 30rem;
             position: relative;
             margin-left: 5rem;
-            padding-block: $spacing-medium;
+            @extend %padding-block-lg;
 
             display: flex;
         }
         .avatar {
             height: 10rem;
             aspect-ratio: 1/1;
-            background-color: $hovered;
+            background-color: var(--clr-gray-200);
             border-radius: 50%;
             position: absolute;
             top: 3rem;
             left: -5rem;
         }
         .content article:first-of-type {
-            padding-inline: 8rem $spacing-medium;
+            @extend %padding-left-xs;
+            @extend %padding-right-lg;
             flex: auto;
         }
         article:last-of-type {
             border-left: solid 1px $border-color;
-            padding-inline: $spacing-medium;
+            @extend %padding-inline-lg;
 
             display: flex;
-            gap: $spacing-medium;
+            gap: var(--spacing-lg);
 
 
             > div {
@@ -67,20 +68,20 @@
 
         .content {
             display: flex;
-            gap: $spacing-large;
+            gap: var(--spacing-xl);
         }
 
         .box1 {
             flex: 1;
             display: flex;
-            gap: $spacing-medium;
+            gap: var(--spacing-lg);
             height: fit-content;
 
             .item > div {
                 aspect-ratio: 1/1;
                 border-radius: $border-radius;
-                background-color: $hovered;
-                margin-bottom: $spacing-small;
+                background-color: var(--clr-gray-200);
+                @extend %margin-bottom-sm;
             }
         }
         .box2 {
@@ -90,8 +91,8 @@
             
             border-radius: $border-radius;
             flex: 0 0 45rem;
-            padding: $spacing-medium;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            @extend %padding-lg;
+            box-shadow: $box-shadow;
 
             textarea {
                 width: 100%;

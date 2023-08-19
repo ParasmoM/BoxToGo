@@ -8,13 +8,14 @@
 
     section:first-of-type {
         @extend %section;
+
         h1 {
             @extend %title-primary;
         }
         .gallery {
             width: 100%;
             height: 50rem;
-            margin-bottom: $spacing-large;
+            @extend %margin-bottom-xl;
 
             img {
                 width: 100%;
@@ -26,45 +27,43 @@
 
         .zone {
             display: flex;
-            gap: $spacing-large;
+            gap: var(--spacing-xl);
         } 
 
         .box1 {
             flex: 1;
 
             .buttons {
+                @extend %padding-bottom-xl;
+                @extend %margin-bottom-xl;
                 border-bottom: solid 1px $border-color;
                 display: flex;
                 align-items: center;
-                gap: $spacing-medium;
-                padding-bottom: $spacing-large;
-                margin-bottom: $spacing-large;
+                gap: var(--spacing-lg);
 
                 button {
+                    @extend %padding-inline-sm;
                     border-radius: $border-radius;
-                    font-size: $font-size-default;
-                    font-weight: $font-weight-semi-bold;
                     height: 5rem;
-                    padding-inline: $spacing-small;
-                    background-color: $hovered;
+                    background-color: var(--clr-gray-200);
                     
                     img {
                         height: 2rem;
                     }
                     
                     &:first-of-type {
-                        margin-right: $spacing-medium;
+                        @extend %margin-right-lg;
                     }
                 }
             }
             .map p {
-                margin-bottom: $spacing-small;
+                @extend %margin-bottom-sm;
             }
             .map div {
                 height: 30rem;
                 width: 100%;
                 border-radius: $border-radius;
-                background-color: $hovered;
+                background-color: var(--clr-gray-200);
                 border: solid 1px;
             }
         }
@@ -74,7 +73,7 @@
             width: 50rem;
             height: 30rem;
             border: solid 1px;
-            background-color: $hovered;
+            background-color: var(--clr-gray-200);
         }
     }
 
@@ -108,29 +107,29 @@
             height: 30rem;
             position: relative;
             margin-left: 5rem;
-            padding-block: $spacing-medium;
+            @extend %padding-block-lg;
 
             display: flex;
         }
         .avatar {
             height: 10rem;
             aspect-ratio: 1/1;
-            background-color: $hovered;
+            background-color:  var(--clr-gray-200);
             border-radius: 50%;
             position: absolute;
-            top: 3rem;
-            left: -5rem;
+            top: 3rem; left: -5rem;
         }
         .content article:first-of-type {
-            padding-inline: 8rem $spacing-medium;
+            @extend %padding-left-xs;
+            @extend %padding-right-lg;
             flex: auto;
         }
         article:last-of-type {
             border-left: solid 1px $border-color;
-            padding-inline: $spacing-medium;
+            @extend %padding-inline-lg;
 
             display: flex;
-            gap: $spacing-medium;
+            gap: var(--spacing-lg);
 
 
             > div {

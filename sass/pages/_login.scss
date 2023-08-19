@@ -1,4 +1,5 @@
 @use "../base/variables" as *;
+@use "../utils" as *;
 
 .loginpage {
     height: 100vh;
@@ -7,8 +8,8 @@
     place-content: center;
     
     &__container {
+        @extend %container-secondary;
         display: flex;
-        width: clamp(495px, 60%, $container);
         justify-content: space-between;
         align-items: center;
     }
@@ -17,28 +18,28 @@
 .loginpage {
     &__form {
         border: none;
-        border-radius: calc($border-radius * 3);
-        box-shadow: rgba(#DDDDDD, 1.0) 0px 3px 20px; // ! à modifier
-        padding: $spacing-medium;
+        border-radius: calc(3 * $border-radius);
+        box-shadow: $box-shadow; 
+        padding: var(--spacing-lg);
         display: flex;
         flex-flow: column;
     }
 
     &__heading {
-        font-size: 1.8rem;
-        font-weight: $font-weight-semi-bold;
+        @extend %title-secondary;
+        margin-bottom: 0;
     }
     
     &__prompt {
-        margin-block: .5rem;
+        @extend %margin-block-xs;
     }
 
     &__link {
-        color: $primary;
-        margin-bottom: $spacing-small;
+        @extend %margin-bottom-sm;
+        color: var(--clr-primary);
 
         &:last-of-type {
-            margin-top: $spacing-small;
+            @extend %margin-top-sm;
         }
     }
 
@@ -49,36 +50,34 @@
             border: solid 1px $border-color;
             border-radius: $border-radius;
             padding-inline: 2rem;
-            margin-bottom: $spacing-small;
+            @extend %margin-bottom-sm;
         }
         input:focus {
-            outline-color: $primary;
-            caret-color: $primary;
+            outline-color: var(--clr-primary);
+            caret-color: var(--clr-primary);
         }
     }
 
-    &__form-submit {
-        font-size: 1.6rem;
-        font-weight: $font-weight-semi-bold;
-        background-color: $primary;
-        color: white;
+    &__form-submit {                                      // * BUTTONS <=======================================
+        background-color: var(--clr-primary);
+        color: var(--clr-white);
         text-align: center;
-        border-radius: 1rem;
+        border-radius: $border-radius;
         height: 4rem;
     }
 
     &__divider-text {
+        @extend %margin-bottom-md;
         display: flex;
         align-items: center;
-        margin-bottom: 2rem;
-
+        
         &::before {
             content: "";
             display: block;
             width: 100%;
             height: 1px;
             background-color: $border-color;
-            margin-right: 1rem;
+            @extend %margin-right-sm; 
         }
         &::after {
             content: "";
@@ -86,26 +85,27 @@
             width: 100%;
             height: 1px;
             background-color: $border-color;
-            margin-left: 1rem;
+            @extend %margin-left-sm;
         }
     }
 
-    &__social-login {
+    &__social-login {     
+        
         p {
-            margin-bottom: $spacing-small;
+            @extend %margin-bottom-sm;
         }
-        a {
+        a {                                      // * BUTTONS <=======================================
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            gap: var(--spacing-sm);
             border: solid 1px $border-color;
             border-radius: $border-radius;
-            padding-inline: 1rem;
-            padding-block: 1rem;
+            padding-inline: 1rem; // ! à décider plus tard
+            padding-block: 1rem; // ! à décider plus tard
             width: 45%;
         }
         a:hover {
-            background-color: $hovered;
+            background-color: var(--clr-gray-200);
         }
         img {
             --ratio: 2.5rem;

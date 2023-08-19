@@ -1,17 +1,11 @@
 @use "../base/variables" as *;
+@use "../utils" as *;
 
 .home {
     > .container {
-        --padding: 4rem * 2;
-        --max-width: #{$container-1};
-
-        // display: flex;
-        // justify-content: space-between;
-        background-color: $white;
-        width: min(100% - var(--padding), var(--max-width));
-        // padding-block: $spacing-medium;
-        margin-inline: auto;
-        margin-top: 10rem;
+        @extend %container-primary;
+        @extend %section;
+        background-color: var(--clr-white);
     }
 
     header > .container {
@@ -20,22 +14,21 @@
 
         > ul {
             display: flex;
-            gap: $spacing-small;
+            gap: var(--spacing-sm);
         }
 
         li,
         button {
+            @extend %padding-sm;
             display: flex;
             align-items: center;
-            gap: $spacing-medium;
+            gap: var(--spacing-lg);
             border: solid 1px $border-color;
             border-radius: $border-radius;
-            padding: $spacing-small;
             white-space: nowrap;
-            font-family: $ff-secondary;
-            font-size: $font-size-default;
-            font-weight: $font-weight-semi-bold;
+            font-family: $font-family-secondary;
         }
+
         img {
             height: 2.5rem;
         }
@@ -43,11 +36,11 @@
 
 
     .container > section {
-        margin-top: $spacing-large;
+        @extend %margin-top-xl;
 
         > .container {
             display: flex;
-            gap: $spacing-medium;
+            gap: var(--spacing-lg);
             flex-flow: wrap;
         }
     }
@@ -59,7 +52,7 @@
         .image {
             width: 100%;
             aspect-ratio: 1/1;
-            background-color: $black;
+            background-color: var(--clr-black);
             border-radius: $border-radius;
             overflow: hidden;
 
@@ -73,17 +66,17 @@
         > article {
             display: flex;
             justify-content: space-between;
-            margin-top: $spacing-small;
+            @extend %margin-top-sm;
 
             > section:last-of-type {
                 text-align: right;
             }
             .icones {
                 display: inline-flex;
-                color: $hovered;
+                color: var(--clr-gray-200);
             }
             .equipped {
-                color: $black;
+                color: var(--clr-black);
             }
         }
     }

@@ -1,78 +1,107 @@
+// -----------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------
 @use "colors" as *;
 
+// -----------------------------------------------------------------------------
+// Fonts
+// -----------------------------------------------------------------------------
 // Font Families
 $font-family-primary: "Montserrat", sans-serif;
 $font-family-secondary: "Open Sans", sans-serif;
 
-// Font Weights
-$font-weight-light: 300;
-$font-weight-regular: 400;
-$font-weight-medium: 500;
-$font-weight-semi-bold: 600;
-$font-weight-bold: 700;
-
 // Font Sizes
-$font-size-tiny: 0.8rem;
-$font-size-extra-small: 1rem;
-$font-size-small: 1.2rem;
-$font-size-medium: 1.4rem;
-$font-size-default: 1.6rem;
-$font-size-large: 1.8rem;
-$font-size-extra-large: 2.2rem;
-$font-size-huge: 2.6rem;
-$font-size-title: 3rem;
-
-// Spacing
-$spacing-small: 1.5rem;
-$spacing-medium: 3rem;
-$spacing-large: 6rem;
-
-// --------------------------------------------------- \\
-
-// Colors
-// Accès direct aux couleurs
-$white: map-get($colors, white);
-$black: map-get($colors, black);
-$primary: map-get($colors, primary);
-$success: map-get($colors, success);
-$error: map-get($colors, error);
-$dark-blue: map-get($others, dark-blue);
-$border-color: map-get($grays, 700); 
-$hovered: map-get($grays, 300); 
-$bg-admin: map-get($grays, 200);
-
-// Breakpoints
-$breakpoints : (
-    'xs': 480px,       
-    'sm': 768px,       
-    'md': 1024px,      
-    'lg': 1280px,      
-    'xl': 1440px,      
-    'xxl': 1920px,     
+$font-sizes : (
+    tiny:       1.2rem,
+    small:      1.4rem,
+    normal:     1.6rem,
+    medium:     1.8rem,
+    large:      2.2rem,
+    xlarge:     2.6rem,
+    huge:       3rem,
 );
 
-// Font Family Aliases
-$ff-primary: $font-family-primary;
-$ff-secondary: $font-family-secondary;
+// Font Weights
+$font-weights : (
+    light:      300,
+    regular:    400,
+    medium:     500,
+    semibold:   600,
+    bold:       700,
+);
 
-// Font Size Aliases
-$fs: $font-size-medium;
+// -----------------------------------------------------------------------------
+// Spacings
+// -----------------------------------------------------------------------------
+$spacings: (
+    xs:     .8rem,   
+    sm:     1.5rem,
+    md:     2.4rem, 
+    lg:     3rem,  
+    xl:     6rem,    
+    xxl:    10rem,   
+    auto:   auto,
+);
 
-// Font Weights Aliases
-$fw: $font-weight-regular;
+$spacing-types: (
+    default, top, right, bottom, left, inline, block
+);
+// -----------------------------------------------------------------------------
+// CSS Custom Properties
+// -----------------------------------------------------------------------------
+:root {
+    @each $prop, $value in $spacings {
+        --spacing-#{$prop}: #{$value};
+    }
+    @each $prop, $value in $colors {
+        --clr-#{$prop}: #{$value};
+    }
+    @each $prop, $value in $grays {
+        --clr-gray-#{$prop}: #{$value};
+    }
+    @each $prop, $value in $others {
+        --clr-other-#{$prop}: #{$value};
+    }
+}
 
-// Font Colors
-$clr-text: $black;
+// -----------------------------------------------------------------------------
+// Breakpoints
+// -----------------------------------------------------------------------------
+$breakpoints : (
+    xs:     480px,       
+    sm:     768px,       
+    md:     1024px,      
+    lg:     1280px,      
+    xl:     1440px,      
+    xxl:    1920px,     
+);
 
-// Borders
+// -----------------------------------------------------------------------------
+// Titles
+// -----------------------------------------------------------------------------
+$titles: (
+    primary: (
+        fs: map-get($font-sizes, xlarge), 
+        spacing: map-get($spacings, xl), 
+        style: true
+    ),
+    secondary: (
+        fs: map-get($font-sizes, large), 
+        spacing: map-get($spacings, sm),
+    ),
+    tertiary: (
+        fs: map-get($font-sizes, large), 
+        spacing: map-get($spacings, xl), 
+    ),
+    big: (
+        fs: map-get($font-sizes, huge), 
+        spacing: map-get($spacings, xl), 
+    ),
+);
+
+// -----------------------------------------------------------------------------
+// Misc
+// -----------------------------------------------------------------------------
 $border-radius: 1rem;
-
-// Box Shadows
-$box-shadow: rgba(map-get($grays, 300), 0.55) 0px 3px 10px;
-$box-shadow-secondary: rgba(map-get($grays, 400), 0.55) 0px 3px 6px;
-
-// Container Widths
-$container: 80rem;
-$container-1: 192rem;
-
-
+$box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+$border-color: var(--clr-gray-700);

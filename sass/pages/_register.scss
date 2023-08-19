@@ -1,4 +1,5 @@
 @use "../base/variables" as *;
+@use "../utils" as *;
 
 .register {
     height: 100vh;
@@ -7,53 +8,49 @@
     place-content: center;
     
     &__container {
+        @extend %container-secondary;
         display: flex;
-        width: clamp(495px, 60%, $container);
         justify-content: space-between;
         align-items: center;
     }
 }
 
 .register__form {
+    @extend %padding-inline-lg;
+    @extend %padding-top-lg;
+    @extend %padding-bottom-xl;
     border: none;
     border-radius: calc($border-radius * 3);
-    box-shadow: rgba(#DDDDDD, 1.0) 0px 3px 20px; // ! à modifier
-    padding-inline: $spacing-medium;
-    padding-block-start: $spacing-medium;
-    padding-block-end: $spacing-large;
+    box-shadow: $box-shadow;
 
     .register__heading {
-        font-size: $font-size-large;
-        font-weight: $font-weight-semi-bold;
-
-        &--accent {
-            padding-left: .5rem;
-        }
+        @extend %title-secondary;
+        margin-bottom: 0;
     }
 
     .register__link {
-        color: $primary;
+        color: var(--clr-primary);
     }
+
     .register__social-login {
-        margin-top: $spacing-small;
-        margin-bottom: $spacing-small;
+        @extend %margin-block-sm;
         
         p {
-            margin-bottom: $spacing-small;
+            @extend %margin-bottom-sm;
         }
-        a {
+        a {                                         // * BUTTONS <=======================================
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            gap: var(--spacing-sm);
             border: solid 1px $border-color;
             border-radius: $border-radius;
             width: 45%;
-            padding-inline: 1rem;
-            padding-block: 1rem;
+            @extend %padding-inline-sm;
+            @extend %padding-block-sm; 
         }
         a:hover {
-            background-color: $hovered;
-        }
+            background-color: var(--clr-gray-200);
+        } 
         img {
             --ratio: 2.5rem;
             width: var(--ratio);
@@ -62,9 +59,10 @@
     }
     
     .register__divider-text {
+        @extend %margin-bottom-md;
         display: flex;
         align-items: center;
-        margin-bottom: 2rem;
+
 
         &::before {
             content: "";
@@ -72,7 +70,7 @@
             width: 100%;
             height: 1px;
             background-color: $border-color;
-            margin-right: 1rem;
+            @extend %margin-right-sm; 
         }
         &::after {
             content: "";
@@ -80,7 +78,7 @@
             width: 100%;
             height: 1px;
             background-color: $border-color;
-            margin-left: 1rem;
+            @extend %margin-left-sm;
         }
     }
 
@@ -90,50 +88,48 @@
     }
 
     input:focus {
-        outline-color: $primary;
-        caret-color: $primary;
+        outline-color: var(--clr-primary);
+        caret-color: var(--clr-primary);
     }
     
     input[type=text],
     input[type=password],
     input[type=date]  {
+        @extend %margin-bottom-sm;
+        @extend %padding-inline-xs;
         width: 35rem;
         border: solid 1px $border-color;
-        border-radius: 1rem;
+        border-radius: $border-radius;
         height: 4rem;
-        padding: .9rem 2rem;
-        margin-bottom: $spacing-small;
-        color: #647688; //todo A révoir
+        color: var(--clr-gray-1000);
 
         &::placeholder {
-            color: #647688; //todo A révoir
+            color: var(--clr-gray-1000);
         }
     }
 
     input[type=checkbox] {
-        accent-color: $primary;
+        accent-color: var(--clr-primary);
     } 
 
     &-agreement {
-        margin-bottom: 3rem;
+        @extend %margin-bottom-lg;
         display: flex;
-        gap: $spacing-small;
+        gap: var(--spacing-sm);
     }
 
-    &-submit {
-        font-size: $font-size-large;
-        font-weight:$font-weight-semi-bold;
-        background-color: $primary;
-        color: $white;
+    &-submit {                                          // * BUTTONS <=======================================
+        background-color: var(--clr-primary);
+        color: var(--clr-white);
         display: flex;
         justify-content: center;
         border-radius: $border-radius;
         height: 4rem;
         
         button {
+            border-radius: $border-radius;
             width: 100%;
             height: 100%;
-            border-radius: $border-radius;
         }
     }
 }

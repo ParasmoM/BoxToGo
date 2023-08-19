@@ -1,13 +1,14 @@
 @use "../base/variables" as *;
+@use "../utils" as *;
 
 .admin {
     &-inteface {
-        background-color: $bg-admin;
+        background-color: var(--clr-gray-200);
         height: 100vh;
 
         &__container {
-            --padding: 2 * #{$spacing-medium};
-            --max-width: #{$container-1};
+            --padding: 2 * var(--spacing-lg);
+            --max-width: 192rem;
 
             width: min(100% - var(--padding), var(--max-width));
             margin-inline: auto;
@@ -15,16 +16,16 @@
     }
 
     &-header {
-        background-color: $bg-admin;
-        padding-block: $spacing-medium;
-        margin-bottom: 10rem;
+        @extend %padding-block-lg;
+        @extend %margin-bottom-xxl;
+        background-color: var(--clr-gray-200);
 
         &__container {
             display: flex;
         }
 
         &__logo-link {
-            margin-right: $spacing-medium;
+            margin-right: var(--spacing-lg);
             img {
                 height: 6rem;
             }
@@ -32,7 +33,7 @@
 
         &__links {
             border-radius: $border-radius;
-            border: solid 1px $primary;
+            border: solid 1px var(--clr-primary);
             height: fit-content;
             padding: 2px;
 
@@ -45,15 +46,15 @@
                 border-radius: $border-radius;
             }
             a.active {
-                background-color: $white;
-                color: $primary;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                background-color: var(--clr-white);
+                color: var(--clr-primary);
+                box-shadow: $box-shadow;
             }
         }
 
         &__profile {
             display: flex;
-            gap: $spacing-small;
+            gap: var(--spacing-sm);
             margin-left: auto;
 
             &-pic {
@@ -63,21 +64,21 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: $primary;
-                color: $white;
-                font-size: $font-size-large;
+                background-color: var(--clr-primary);
+                color: var(--clr-white);
+                // font-size: $font-size-large; // ! à Modifier
             }
 
             &-info {
-                font-family: $ff-secondary;
+                font-family: $font-family-secondary;
             }
 
             &-name {
-                font-weight: $font-weight-semi-bold;
+                // font-weight: $font-weight-semi-bold;
             }
 
             &-email {
-                font-size: $font-size-small;
+                // font-size: $font-size-small; // ! à Modifier
             }
         }
     }
@@ -86,72 +87,69 @@
         flex: 0 0 28rem;
 
         &__title {
-            font-size: $font-size-huge;
-            font-weight: $font-weight-semi-bold;
-            margin-bottom: $spacing-medium;
+            @extend %margin-bottom-lg;
         }
         &__list {
+            @extend %padding-lg;
             border-radius: calc(2 * $border-radius);
-            background-color: $white;
-            padding: $spacing-medium;
+            background-color: var(--clr-white);
             display: flex;
             flex-direction: column;
-            gap: .8rem;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            gap: var(--spacing-xs);
+            box-shadow: $box-shadow;
         }
         &__item a {
+            @extend %padding-block-xs;
+            @extend %padding-inline-sm;
             border-radius: $border-radius;
-            padding: .8rem $spacing-small;
             display: block;
         }
         &__item a:not(.active):hover {
             border: solid 1px $border-color;
         }
         &__item a.active {
-            background-color: $hovered;
-            font-weight: $font-weight-semi-bold;
+            background-color: var(--clr-gray-300);
         }
     }
 
     &-dashboard {
         display: flex;
-        gap: $spacing-medium;
+        gap: var(--spacing-lg);
     }
 }
 
 .dashboard {
     &-add {
-        margin-top: 6.9rem;
+        margin-top: 6.9rem; // ! Vérifier si je peux standardiser 
         flex: auto;
 
         &__container {
+            @extend %margin-bottom-lg;
+            @extend %padding-lg;
             border-radius: calc(3 * $border-radius);
-            background-color: $white;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-            padding: $spacing-medium;
-            font-family: $ff-secondary;
-
+            background-color: var(--clr-white);
+            box-shadow: $box-shadow;
+            font-family: $font-family-secondary;
             display: flex;
-            gap: $spacing-medium;
+            gap: var(--spacing-xs);
             flex-wrap: wrap;
-            margin-bottom: $spacing-medium;
         }
 
         &__list {
             display: inline-flex;
             flex-wrap: wrap;
-            gap: $spacing-medium;
+            gap: var(--spacing-lg);
         }
 
         &__item {
+            @extend %padding-left-md;
             display: flex;
             align-items: center;
-            gap: .8rem;
+            gap: var(--spacing-xs);
             border-radius: $border-radius;
-            background-color: $hovered;
+            background-color: var(--clr-gray-300);
             white-space: nowrap;
             height: 3.2rem;
-            padding-left: 2.4rem;
 
             form{
                 display: inline-flex;
@@ -159,38 +157,39 @@
             }
 
             input {
+                @extend %padding-left-md;
                 background-color: inherit;
                 border: none;
                 outline: none;
-                padding-left: 2.4rem;
                 width: 14.5rem;
             }
 
             img {
+                @extend %margin-right-md;
                 height: 2rem;
-                margin-right: 2.4rem;
             }
         }
         
         &-form {
-            border: dashed 1px $primary;
+            border: dashed 1px var(--clr-primary);
             border-radius: $border-radius;
             overflow: hidden;
             display: inline-flex;
-            background-color: rgba($primary, 0.2);
+            background-color: rgba(var(--clr-primary), 0.2); // ! à tester darken($primary, 2%)
             height: 3.2rem;
     
             input {
+                @extend %padding-right-xs;
+                @extend %padding-left-md;
                 background-color: inherit;
                 border: none;
                 outline: none;
-                padding: 0 .8rem 0 2.4rem;
                 width: 14.5rem;
             }
     
             img {
+                @extend %margin-right-md;
                 height: 2rem;
-                margin-right: 2.4rem;
             }
         }
     }
@@ -199,9 +198,7 @@
         position: relative;
 
         h2 {
-            font-size: $font-size-huge;
-            font-weight: $font-weight-semi-bold;
-            margin-bottom: $spacing-small;
+            @extend %margin-bottom-sm;
         }
 
         a {
@@ -209,38 +206,35 @@
             width: fit-content;
             border-radius: 50%;
             position: absolute;
-            right: 0;
-            top: 0;
+            top: 0;right: 0;
         }
         a:hover {
-            background-color: $hovered;
+            background-color: var(--clr-gray-300);
         }
         input {
-            height: 4rem;
+            @extend %padding-left-sm;
             border-radius: $border-radius;
             border: solid 1px $border-color;
+            height: 4rem;
             width: 74rem;
-            padding-left: $spacing-small;
         }
 
         button {
+            @extend %margin-top-lg;
+            @extend %padding-inline-md;
+            @extend %margin-left-auto;
             display: block;
-            margin-left: auto;
-            margin-top: $spacing-medium;
-            color: $white;
-            background-color: $black;
-            border-radius: $border-radius;
-            font-size: $font-size-large;
             height: 4rem;
-            padding-inline: 2.4rem;
+            border-radius: $border-radius;
+            color: var(--clr-white);
+            background-color: var(--clr-black);
         }
     }
 }
 
 .modal {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0;left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* fond semi-transparent */
@@ -250,8 +244,8 @@
     justify-content: center; /* centrage horizontal */
     
     .content {
-        background-color: $white;
-        padding: $spacing-medium;
+        @extend %padding-lg;
+        background-color: var(--clr-white);
         border-radius: calc(3 * $border-radius);
     }
 }

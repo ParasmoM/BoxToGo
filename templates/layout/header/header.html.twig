@@ -8,7 +8,7 @@
                     <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
                 </a>
         
-                {% if app.user.admin %}
+                {% if app.user.admin is defined %}
                     <div class="masthead-logo__sub-section">
                         <a href="" class="active">Public Site</a>
                         <a href="">Admin Interface</a>

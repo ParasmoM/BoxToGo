@@ -2,16 +2,18 @@
 @use "../utils" as *;
 
 .masthead {
+    @extend %fs-small;
+    @extend %fw-semibold;
     position: sticky;
     top: 0;
-    background-color: $white;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: var(--clr-white);
+    box-shadow: $box-shadow;
     height: 18.4rem;
     transition: height .3s ease-in-out;
 
     &__container {
         @extend %container-primary;
-        padding-block: $spacing-medium;
+        @extend %padding-lg;
         display: flex;
         height: 100%;
     }
@@ -32,7 +34,7 @@
 
 .masthead-logo {
     display: flex;
-    gap: $spacing-small;
+    gap: var(--spacing-sm);
     height: 100%;
 
     &__sub-section {
@@ -44,32 +46,29 @@
 
 .masthead-nav {
     position: relative;
-    font-size: $font-size-default;
-    font-weight: $font-weight-medium;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-medium;
+    gap: var(--spacing-lg);
     overflow: hidden;
 
     &__minimal-search-bar {
+        @extend %padding-inline-sm;
         display: flex;
         border: solid 1px $border-color;
-        border-radius: $spacing-medium;
+        border-radius: calc(3 * $border-radius);
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        padding-inline: $spacing-small;
-        // margin: 0 auto $spacing-medium;
 
         button {
-            padding-inline: $spacing-small;
+            @extend %padding-inline-sm;
             border-right: solid 1px $border-color;
             margin-block: 1rem;
         }
         form {
+            @extend %margin-inline-sm;
             display: flex;
             align-items: center;
-            gap: $spacing-small;
-            margin-inline: $spacing-small;
+            gap: var(--spacing-sm);
         }
         input {
             width: 18rem;
@@ -87,7 +86,7 @@
 
 .masthead-action {
     display: flex;
-    gap: $spacing-medium;
+    gap: var(--spacing-lg);
     justify-content: flex-end;
 
     ul {
@@ -110,8 +109,7 @@
             height: 2.5rem;
         }
         ul {
-            padding: $spacing-small;
-            font-weight: $font-weight-semi-bold;
+            @extend %padding-sm;
             text-align: center;
             top: 5rem;left: -4.25rem;
         }
@@ -143,6 +141,7 @@
             aspect-ratio: 1/1;
         }
         ul {
+            @extend %fw-medium;
             position: absolute;
             top: 5rem;left: -11.7rem;
         }
@@ -150,15 +149,16 @@
         .menu-dropdown--personal,
         .menu-dropdown--settings,
         .menu-dropdown--logout {
-            padding: $spacing-small;
+            @extend %padding-sm;
 
             a {
+                @extend %padding-block-xs;
+                @extend %padding-inline-sm;
                 display: block;
-                padding: .8rem $spacing-small;
                 border-radius: $border-radius;
             }
             & a:hover {
-                background-color: $hovered;
+                background-color: var(--clr-gray-300);
             }
         }
         

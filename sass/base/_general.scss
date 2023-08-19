@@ -1,10 +1,11 @@
 @use "variables" as *;
+@use "../utils" as *;
 
 body {
-    font-family: $ff-primary;
-    font-weight: $fw;
-    font-size: $fs;
-    color: $clr-text;
-    background-color: $white;
+    @extend %fs-normal;
+    @extend %fw-regular;
+    font-family: $font-family-primary;
+    color: var(--clr-black);
+    background-color: var(--clr-white);
     line-height: 1.5;
 }
