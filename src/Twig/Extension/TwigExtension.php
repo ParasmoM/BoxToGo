@@ -22,6 +22,7 @@ class TwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            // new TwigFunction('currentRoute', [TwigExtensionRuntime::class, 'currentRoute']),
             new TwigFunction('navbarAdmin', [TwigExtensionRuntime::class, 'navbarAdmin']),
         ];
     }

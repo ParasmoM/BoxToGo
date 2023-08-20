@@ -37,7 +37,7 @@ class ListingController extends AbstractController
             $entityManager->persist($space);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->render('listing/index.html.twig', compact('formSteps'));

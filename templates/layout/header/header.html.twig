@@ -75,7 +75,7 @@
 
                             <li class="menu-dropdown--settings">
                                 <a href="">Favoris</a>
-                                <a href="{{ path('public_settings') }}">Paramètres</a>
+                                <a href="{{ path('public_account', {'id': app.user.id}) }}">Paramètres</a>
                                 <a href="">Publier mon annonce</a>
 
                                 <form>

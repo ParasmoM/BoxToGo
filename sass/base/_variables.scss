@@ -12,13 +12,12 @@ $font-family-secondary: "Open Sans", sans-serif;
 
 // Font Sizes
 $font-sizes : (
-    tiny:       1.2rem,
-    small:      1.4rem,
-    normal:     1.6rem,
-    medium:     1.8rem,
-    large:      2.2rem,
-    xlarge:     2.6rem,
-    huge:       3rem,
+    xs:     1.2rem, // tiny
+    sm:     1.4rem, // small
+    md:     1.6rem, // normal
+    lg:     1.8rem, // medium
+    xl:     2.2rem, // large
+    xxl:    2.6rem, // xlarge
 );
 
 // Font Weights
@@ -81,21 +80,16 @@ $breakpoints : (
 // -----------------------------------------------------------------------------
 $titles: (
     primary: (
-        fs: map-get($font-sizes, xlarge), 
+        fs: map-get($font-sizes, xxl), 
         spacing: map-get($spacings, xl), 
         style: true
     ),
     secondary: (
-        fs: map-get($font-sizes, large), 
+        fs: map-get($font-sizes, xl), 
         spacing: map-get($spacings, sm),
     ),
     tertiary: (
-        fs: map-get($font-sizes, large), 
-        spacing: map-get($spacings, xl), 
-    ),
-    big: (
-        fs: map-get($font-sizes, huge), 
-        spacing: map-get($spacings, xl), 
+        fs: map-get($font-sizes, lg), 
     ),
 );
 

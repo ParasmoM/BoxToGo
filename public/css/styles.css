@@ -82,7 +82,7 @@ body {
   font-weight: 500;
 }
 
-.masthead, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings .navbar .button.active, .masthead, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-weight: 600;
 }
 
@@ -207,19 +207,19 @@ body {
   padding-inline: 2.4rem;
 }
 
-.owner-detail section:first-of-type article:last-of-type, .space-detail section:nth-child(4) article:last-of-type, .register__form {
+.settings .navbar .button, .owner-detail section:first-of-type article:last-of-type, .space-detail section:nth-child(4) article:last-of-type, .register__form {
   padding-inline: 3rem;
 }
 
-.register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
+.settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
   padding-inline: 6rem;
 }
 
-.listing-form__description-item, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
+.listing-form__description-item, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
   margin-inline: auto;
 }
 
-.admin-aside__item a, .masthead-action__button-menu .menu-dropdown--personal a,
+.settings .navbar .button, .admin-aside__item a, .masthead-action__button-menu .menu-dropdown--personal a,
 .masthead-action__button-menu .menu-dropdown--settings a,
 .masthead-action__button-menu .menu-dropdown--logout a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
   padding-block: 0.8rem;
@@ -244,21 +244,21 @@ body {
 .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
   max-width: 1920px;
 }
-.register__container, .loginpage__container {
-  width: 800px;
+.settings > .container, .register__container, .loginpage__container {
+  max-width: 1024px;
 }
 
-.owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home > .container {
+.settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home > .container {
   margin-top: 10rem;
 }
 
-.owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
+.settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -1307,4 +1307,20 @@ body {
   width: 100%;
   border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
+}
+
+.settings .navbar {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+  padding: 4px;
+}
+.settings .navbar .button {
+  display: inline-block;
+  border-radius: 1rem;
+  background-color: inherit;
+}
+.settings .navbar .button.active {
+  background-color: var(--clr-white);
 }

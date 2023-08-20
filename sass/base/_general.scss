@@ -2,7 +2,7 @@
 @use "../utils" as *;
 
 body {
-    @extend %fs-normal;
+    @extend %fs-md;
     @extend %fw-regular;
     font-family: $font-family-primary;
     color: var(--clr-black);

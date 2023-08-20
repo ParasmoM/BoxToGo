@@ -1,0 +1,32 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.settings {
+    > .container {
+        @extend %container-secondary;
+        @extend %section;
+    }
+    .titre {
+        @extend %title-primary;
+    }
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        border-radius: $border-radius;
+        background-color: var(--clr-gray-200);
+        padding: 4px;
+
+        .button {
+            @extend %padding-block-xs;
+            @extend %padding-inline-lg;
+            display: inline-block;
+            border-radius: $border-radius;
+            background-color: inherit;
+            
+            &.active {
+                @extend %fw-semibold;
+                background-color: var(--clr-white);
+            }
+        }
+    }
+}

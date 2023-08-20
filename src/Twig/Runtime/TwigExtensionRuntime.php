@@ -21,6 +21,11 @@ class TwigExtensionRuntime implements RuntimeExtensionInterface
         $this->requestStack = $requestStack;
     }
 
+    // public function currentRoute()
+    // {
+    //     return $this->requestStack->getCurrentRequest()->attributes->get('_route');
+    // }
+
     public function navbarAdmin()
     {
         $currentRoute = $this->requestStack->getCurrentRequest()->attributes->get('_route');
