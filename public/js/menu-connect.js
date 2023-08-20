@@ -8,7 +8,7 @@ let currentIndex = 0;  // Pour suivre l'élément actuellement animé.
 
 button.addEventListener('click', function() {
     if(currentIndex == 4) {
-        const form = document.querySelector('form');  
+        const form = document.querySelector('#newItem');  
         form.submit();
     }
     // Gestion des decoItems et decoStatus
@@ -59,28 +59,28 @@ button.addEventListener('click', function() {
 });
 
 
-const container = document.querySelector('#steps_form_formStep3_spaceEquipments');
-const inputs = Array.from(container.querySelectorAll('input[type="checkbox"]'));
+// const container = document.querySelector('#steps_form_formStep3_spaceEquipments');
+// const inputs = Array.from(container.querySelectorAll('input[type="checkbox"]'));
 
-const div1 = document.createElement('div');
-const div2 = document.createElement('div');
+// const div1 = document.createElement('div');
+// const div2 = document.createElement('div');
 
-let halfwayPoint = Math.ceil(inputs.length / 2);
+// let halfwayPoint = Math.ceil(inputs.length / 2);
 
-inputs.forEach((input, index) => {
-    const label = container.querySelector(`label[for="${input.id}"]`);
+// inputs.forEach((input, index) => {
+//     const label = container.querySelector(`label[for="${input.id}"]`);
     
-    const p = document.createElement('p');
-    p.appendChild(input);
-    p.appendChild(label);
+//     const p = document.createElement('p');
+//     p.appendChild(input);
+//     p.appendChild(label);
 
-    if (index < halfwayPoint) {
-        div1.appendChild(p);
-    } else {
-        div2.appendChild(p);
-    }
-});
+//     if (index < halfwayPoint) {
+//         div1.appendChild(p);
+//     } else {
+//         div2.appendChild(p);
+//     }
+// });
 
-container.appendChild(div1);
-container.appendChild(div2);
+// container.appendChild(div1);
+// container.appendChild(div2);
 

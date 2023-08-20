@@ -17,8 +17,6 @@ class AdresseFormType extends AbstractType
             ->add('streetNumber')
             ->add('street')
             ->add('postalCode')
-            // ->add('user')
-            // ->add('space')
         ;
     }
 

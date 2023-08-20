@@ -34,26 +34,19 @@
 
             </section>
 
-            <form action="{{ path('public_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list">
+            <form action="{{ path('public_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list" id="newItem">
+
+
                 <div class="listing-form__form-container">
 
-                    {% set formStep1 = formSteps.children.formStep1 %}
-                    {% include "listing/_form_step1.html.twig" with {'form': formStep1} only %}
-
-                    {% set formStep2 = formSteps.children.formStep2 %}
-                    {% include "listing/_form_step2.html.twig" with {'form': formStep2} only %}
-
-                    {% set formStep3 = formSteps.children.formStep3 %}
-                    {% include "listing/_form_step3.html.twig" with {'form': formStep3} only %}
+                    {% for form in forms.children %}
+                        {% if not loop.last  %}
+                            {% include "listing/_form_" ~ form.vars.name ~ ".html.twig" with {'form': form} only %}
+                        {% endif %}
+                    {% endfor %}
                     
-                    {% set formStep4 = formSteps.children.formStep4 %}
-                    {% include "listing/_form_step4.html.twig" with {'form': formStep4} only %}
-
-                    {% set formStep5 = formSteps.children.formStep5 %}
-                    {% include "listing/_form_step5.html.twig" with {'form': formStep5} only %}
-
-                    {{ form_row(formSteps._token) }}
-
+                    {{ form_row(forms._token) }}
+                    
                 </div>
                 
             </form>

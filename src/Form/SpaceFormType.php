@@ -35,18 +35,12 @@ class SpaceFormType extends AbstractType
                     'Premier étage' => 'Premier étage',
                     'Deuxième étage' => 'Deuxième étage',
                 ],
-                'expanded' => true, // Cela transforme les choix en boutons radio
+                'expanded' => true,
             ])
             ->add('availabilityStart', DateType::class, [
                 'label' => 'Date de disponibilité',
                 'widget' => 'single_text', // Ceci rendra le champ en tant qu'input de type "date"
             ])
-            // ->add('registrationDate')
-            // ->add('availabilityEnd')
-            // // ->add('status')
-            // ->add('isPublished')
-            // ->add('user')
-            // ->add('host')
         ;
     }
 

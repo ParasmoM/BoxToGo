@@ -4,17 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Spaces;
 use App\Entity\SpaceImages;
-use App\Form\Step1FormType;
-use App\Form\StepsFormType;
-use App\Repository\SpaceImagesRepository;
 use App\Service\PictureServices;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\SpaceImagesRepository;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\NewItemCompositeFormType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Validator\Constraints\Length;
 
 class ListingController extends AbstractController
 {
@@ -26,21 +25,22 @@ class ListingController extends AbstractController
         PictureServices $pictureService,
         SpaceImagesRepository $spaceImagesRepository
     ): Response {
-        $formSteps = $this->createForm(StepsFormType::class, null);
-        $formSteps->handleRequest($request);
+        $forms = $this->createForm(NewItemCompositeFormType::class, null);
+        $forms->handleRequest($request);
+        
+        if ($forms->isSubmitted() && $forms->isValid()) {
+            dd($forms);
+            // $space = $this->handleSpaceSteps($formSteps, $request, $entityManager);
 
-        if ($formSteps->isSubmitted() && $formSteps->isValid()) {
-            $space = $this->handleSpaceSteps($formSteps, $request, $entityManager);
+            // $this->handleImages($formSteps, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface);
 
-            $this->handleImages($formSteps, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface);
+            // $entityManager->persist($space);
+            // $entityManager->flush();
 
-            $entityManager->persist($space);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
+            // return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
         
-        return $this->render('listing/index.html.twig', compact('formSteps'));
+        return $this->render('listing/index.html.twig', compact('forms'));
     }
 
     private function handleSpaceSteps($formSteps, $request, $entityManager): Spaces {

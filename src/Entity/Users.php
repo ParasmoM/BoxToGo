@@ -110,6 +110,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Contents $content = null;
+
     public function __construct()
     {
         $this->registrationDate = new \DateTime();
@@ -746,6 +749,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getContent(): ?Contents
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Contents $content): static
+    {
+        $this->content = $content;
 
         return $this;
     }

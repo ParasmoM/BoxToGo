@@ -70,9 +70,6 @@ class Spaces
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceEquipementLink::class, cascade: ["persist"])]
     private Collection $equipment;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceTranslations::class, cascade: ["persist"])]
-    private Collection $content;
-
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Conversations::class)]
     private Collection $conversation;
 
@@ -81,6 +78,9 @@ class Spaces
 
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Adresses::class, cascade: ["persist"])]
     private Collection $adresse;
+
+    #[ORM\OneToOne(inversedBy: 'space', cascade: ['persist', 'remove'])]
+    private ?Contents $content = null;
 
     public function __construct()
     {
@@ -92,7 +92,6 @@ class Spaces
         $this->report = new ArrayCollection();
         $this->image = new ArrayCollection();
         $this->equipment = new ArrayCollection();
-        $this->content = new ArrayCollection();
         $this->conversation = new ArrayCollection();
         $this->adresse = new ArrayCollection();
     }
@@ -421,36 +420,6 @@ class Spaces
     }
 
     /**
-     * @return Collection<int, SpaceTranslations>
-     */
-    public function getContent(): Collection
-    {
-        return $this->content;
-    }
-
-    public function addContent(SpaceTranslations $content): static
-    {
-        if (!$this->content->contains($content)) {
-            $this->content->add($content);
-            $content->setSpace($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContent(SpaceTranslations $content): static
-    {
-        if ($this->content->removeElement($content)) {
-            // set the owning side to null (unless already changed)
-            if ($content->getSpace() === $this) {
-                $content->setSpace(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Conversations>
      */
     public function getConversation(): Collection
@@ -518,6 +487,18 @@ class Spaces
                 $adresse->setSpace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContent(): ?Contents
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Contents $content): static
+    {
+        $this->content = $content;
 
         return $this;
     }

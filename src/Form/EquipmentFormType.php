@@ -15,9 +15,6 @@ class EquipmentFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('quantity')
-            // ->add('equipped')
-            // ->add('space')
             ->add('spaceEquipments', EntityType::class, [
                 'class' => SpaceEquipements::class,
                 'choice_label' => 'name', // Supposant que vous avez une propriété "name" dans SpaceEquipements
