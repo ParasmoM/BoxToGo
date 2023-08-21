@@ -82,7 +82,7 @@ body {
   font-weight: 500;
 }
 
-.settings .navbar .button.active, .masthead, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings .navbar .button.active, .masthead, .ownerhead nav, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner-dashboard .titre, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-weight: 600;
 }
 
@@ -93,11 +93,11 @@ body {
   padding: 1.5rem;
 }
 
-.owner-detail section:nth-child(2) .box2, .listing-form__description-item, .listing-form__checkbox, .listing-footer__container, .admin-aside__list, .dashboard-add__container, .modal .content, .masthead__container {
+.owner-dashboard article > .container, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .listing-form__checkbox, .listing-footer__container, .admin-aside__list, .dashboard-add__container, .modal .content, .masthead__container {
   padding: 3rem;
 }
 
-.home .card > article, .listing-form__title:not(:first-of-type), .loginpage__link:last-of-type {
+.owner-dashboard article > .container > .box2, .home .card > article, .listing-form__title:not(:first-of-type), .loginpage__link:last-of-type {
   margin-top: 1.5rem;
 }
 
@@ -135,6 +135,10 @@ body {
 
 .listing-form__label {
   margin-bottom: 0.8rem;
+}
+
+.owner-dashboard article > .container > .box1 {
+  padding-bottom: 1.5rem;
 }
 
 .owner-detail section:nth-child(2) .box1 .item > div, .space-detail section:first-of-type .box1 .map p, .listing-form__title, .listing-form__input, .listing-form__select, .register__form .register__social-login p, .register__form input[type=text],
@@ -195,7 +199,7 @@ body {
 
 .space-detail section:first-of-type .box1 .buttons button, .register__form .register__social-login a, .admin-aside__item a, .masthead-nav__minimal-search-bar, .masthead-nav__minimal-search-bar button, .masthead-action__button-menu .menu-dropdown--personal a,
 .masthead-action__button-menu .menu-dropdown--settings a,
-.masthead-action__button-menu .menu-dropdown--logout a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
+.masthead-action__button-menu .menu-dropdown--logout a, .ownerhead nav a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
   padding-inline: 1.5rem;
 }
 
@@ -211,17 +215,17 @@ body {
   padding-inline: 3rem;
 }
 
-.settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
+.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
   padding-inline: 6rem;
 }
 
-.listing-form__description-item, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
+.listing-form__description-item, .owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
   margin-inline: auto;
 }
 
 .settings .navbar .button, .admin-aside__item a, .masthead-action__button-menu .menu-dropdown--personal a,
 .masthead-action__button-menu .menu-dropdown--settings a,
-.masthead-action__button-menu .menu-dropdown--logout a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
+.masthead-action__button-menu .menu-dropdown--logout a, .ownerhead nav a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
   padding-block: 0.8rem;
 }
 
@@ -237,28 +241,28 @@ body {
   margin-block: 1.5rem;
 }
 
-.owner-detail section:first-of-type .content, .space-detail section:nth-child(4) .content, .listing-header__container, .admin-header {
+.owner-detail section:first-of-type .content, .space-detail section:nth-child(4) .content, .listing-header__container, .admin-header, .ownerhead {
   padding-block: 3rem;
 }
 
-.owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container {
+.owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
   max-width: 1920px;
 }
-.settings > .container, .register__container, .loginpage__container {
+.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container {
   max-width: 1024px;
 }
 
-.settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home > .container {
+.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home > .container {
   margin-top: 10rem;
 }
 
-.settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.owner-dashboard .titre, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
+.owner-dashboard .titre::before, .user-dashboard .titre::before, .settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -428,6 +432,34 @@ body {
   border-top: solid 1px var(--clr-gray-700);
   white-space: nowrap;
 }
+.ownerhead > .container {
+  display: flex;
+}
+.ownerhead > .container > div {
+  flex: 1;
+}
+.ownerhead > .container > nav {
+  flex: auto;
+}
+.ownerhead .logo .container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.ownerhead .logo .container img {
+  height: 6rem;
+}
+.ownerhead nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ownerhead .masthead__section--action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .admin-inteface {
   background-color: var(--clr-gray-200);
   height: 100vh;
@@ -1323,4 +1355,24 @@ body {
 }
 .settings .navbar .button.active {
   background-color: var(--clr-white);
+}
+
+.owner-dashboard article > .container {
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+}
+.owner-dashboard article > .container > .box1 {
+  display: flex;
+  gap: var(--spacing-sm);
+  border-bottom: solid 1px var(--clr-gray-700);
+}
+.owner-dashboard article > .container > .box1 .text {
+  flex: auto;
+}
+.owner-dashboard article > .container > .box1 a {
+  display: block;
+  height: 10rem;
+}
+.owner-dashboard article > .container > .box1 img {
+  border-radius: 1rem;
 }

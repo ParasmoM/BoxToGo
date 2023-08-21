@@ -70,7 +70,11 @@
                             <li class="menu-dropdown--personal">
                                 <a href="">Messages</a>
                                 <a href="">Notifications</a>
-                                <a href="">Tableau de board</a>
+                                {% if 'ROLE_OWNER' in app.user.roles %}
+                                    <a href="{{ path('priver_owner_reservations', {'id': app.user.id}) }}">Tableau de board</a>
+                                {% else %}
+                                    <a href="{{ path('public_user_reservations', {'id': app.user.id}) }}">Réservations</a>
+                                {% endif %}
                             </li>
 
                             <li class="menu-dropdown--settings">

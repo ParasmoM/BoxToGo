@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contents;
 use App\Entity\Spaces;
 use App\Entity\SpaceImages;
 use App\Service\PictureServices;
@@ -29,40 +30,57 @@ class ListingController extends AbstractController
         $forms->handleRequest($request);
         
         if ($forms->isSubmitted() && $forms->isValid()) {
-            dd($forms);
-            // $space = $this->handleSpaceSteps($formSteps, $request, $entityManager);
 
-            // $this->handleImages($formSteps, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface);
+            $space = $this->handleSpaceSteps($forms, $request, $entityManager);
 
-            // $entityManager->persist($space);
-            // $entityManager->flush();
+            $this->handleImages($forms, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface);
 
-            // return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
+            $entityManager->persist($space);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->render('listing/index.html.twig', compact('forms'));
     }
 
-    private function handleSpaceSteps($formSteps, $request, $entityManager): Spaces {
+    private function handleSpaceSteps($forms, $request, $entityManager): Spaces {
+        $user = $this->getUser();
+        $roles = $user->getRoles();
+        
         // Space
-        $formStep1 = $formSteps->getViewData()["formStep1"];
+        if (!in_array('ROLE_OWNER', $roles)) {
+            $user->setRoles(['ROLE_USER', 'ROLE_OWNER']);
+        }
+
+        $formStep1 = $forms->getData()["step1"];
         $formStep1->setUser($this->getUser());
         
         // Adresse
-        $formStep2 = $formSteps->getViewData()["formStep2"];
+        $formStep2 = $forms->getData()["step2"];
         $formStep2->setSpace($formStep1);
 
         // SpaceEquipmentLink
-        $formStep3 = $formSteps->getViewData()["formStep3"];
-        $this->getUser()->setStatus($request->request->all()['steps_form']['formStep3']['status']);
+        $formStep3 = $forms->getData()["step3"];
+        
+        if (count($request->request->all()['new_item_composite_form']['step3']) === 2) {
+            $status = $request->request->all()['new_item_composite_form']['step3']['status'];
+            $user->setStatus($status);
+        }
         $formStep3->setSpace($formStep1);
-
+        
         // SpaceTranslation
-        $formStep5 = $formSteps->getViewData()["formStep5"];
-        $formStep5->setSpace($formStep1);
-
+        $formStep5 = $forms->getData()["step5"];
+        $language = $forms->getData()["step5"]["language"];
+        $title = $forms->getData()["step5"]["title"];
+        $description = $forms->getData()["step5"]["description"];
+        $contents = new Contents();
+        $contents->setTitle($language, $title);
+        $contents->setDescription($language, $description);
+        $contents->setSpace($formStep1);
+        
         $formStep1->addAdresse($formStep2);
-        $formStep1->addContent($formStep5);
+        $formStep1->setContent($contents);
 
         $entityManager->persist($formStep1);
         $entityManager->flush();
@@ -70,12 +88,11 @@ class ListingController extends AbstractController
         return $formStep1;
     }
 
-    private function handleImages($formSteps, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface) {
+    private function handleImages($forms, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface) {
         // SpaceImages
-        $formStep4 = $formSteps->get('formStep4')->get('imagePath');
+        $formStep4 = $forms->get('step4')->get('imagePath');
         
-        $givenNameInitials = substr($this->getUser()->getGivenName(), 0, 2);
-        $folder = $this->getUser()->getFamilyName() . $givenNameInitials . '-' . $this->getUser()->getId() . '-' . $space->getId();
+        $folder = 'Archives/Spaces/' . $space->getId() . '/Galleries';
         
         $initialOrder = count($spaceImagesRepository->findAll());
         

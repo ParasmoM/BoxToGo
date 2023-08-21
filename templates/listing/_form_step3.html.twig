@@ -9,9 +9,11 @@
         {{ form_widget(form.spaceEquipments, {'attr': {'class': 'listing-form__checkbox'}}) }}
     </div>
 
+    {% if app.user.status is not defined %}
     <div class="listing-form__item">
         {{ form_label(form.status, 'Veuillez sélectionner votre statut ?'|trans, {'label_attr': {'class': 'listing-form__label'}}) }}
         {{ form_widget(form.status, {'attr': {'class': 'listing-form__radio'}}) }}
     </div>
+    {% endif %}
 
 </section>

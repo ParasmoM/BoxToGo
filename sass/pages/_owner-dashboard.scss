@@ -1,0 +1,44 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.owner-dashboard {
+
+    .dashboard {
+        .container {
+            @extend %container-secondary;   
+            @extend %section;
+        }
+    }
+    .titre {
+        @extend %title-primary;
+    }
+
+    article > .container{
+        border-radius: $border-radius;
+        background-color: var(--clr-gray-200);
+        @extend %padding-lg;
+
+        > .box1 {
+            display: flex;
+            gap: var(--spacing-sm);
+            @extend %padding-bottom-sm;
+            border-bottom: solid 1px $border-color;
+
+            .text {
+                flex: auto;
+            }
+            
+            a {
+                display: block;
+                height: 10rem;
+            }
+            img {
+                border-radius: $border-radius;
+            }
+        }
+
+        > .box2 {
+            @extend %margin-top-sm;
+        }
+    }
+}

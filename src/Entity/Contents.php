@@ -38,6 +38,32 @@ class Contents
     #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
     private ?Spaces $space = null;
 
+    public function setTitle(string $language, ?string $title): self
+    {
+        $method = 'setTitle' . ucfirst(strtolower($language));
+        if (method_exists($this, $method)) {
+            $this->$method($title);
+        }
+
+        return $this;
+    }
+
+    public function setDescription(string $language, ?string $description): self
+    {
+        $method = 'setDescription' . ucfirst(strtolower($language));
+        if (method_exists($this, $method)) {
+            $this->$method($description);
+        }
+
+        return $this;
+    }
+
+    public function getTitleBasedOnLanguage($language) {
+        $method = 'title' . ucfirst(strtolower($language));
+
+        return $method;
+    }
+
     public function getTitleFr(): ?string
     {
         return $this->titleFr;
@@ -62,12 +88,12 @@ class Contents
         return $this;
     }
 
-    public function getTitleNe(): ?string
+    public function getTitleNl(): ?string
     {
         return $this->titleNe;
     }
 
-    public function setTitleNe(?string $titleNe): static
+    public function setTitleNl(?string $titleNe): static
     {
         $this->titleNe = $titleNe;
 
@@ -98,12 +124,12 @@ class Contents
         return $this;
     }
 
-    public function getDescriptionNe(): ?string
+    public function getDescriptionNl(): ?string
     {
         return $this->descriptionNe;
     }
 
-    public function setDescriptionNe(?string $descriptionNe): static
+    public function setDescriptionNl(?string $descriptionNe): static
     {
         $this->descriptionNe = $descriptionNe;
 

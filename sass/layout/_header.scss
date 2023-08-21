@@ -174,3 +174,42 @@
 
     }
 }
+
+.ownerhead {
+    @extend %padding-block-lg;
+
+    > .container {
+        @extend %container-primary;
+        display: flex;
+
+        > div {flex: 1;}
+        > nav {flex: auto;}
+    }
+
+    .logo .container {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+
+        img {
+            height: 6rem;
+        }
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @extend %fw-semibold;
+
+        a {
+            @extend %padding-inline-sm;
+            @extend %padding-block-xs;
+        }
+    }
+
+    .masthead__section--action {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}

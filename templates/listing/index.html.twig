@@ -36,13 +36,14 @@
 
             <form action="{{ path('public_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list" id="newItem">
 
-
                 <div class="listing-form__form-container">
 
                     {% for form in forms.children %}
+
                         {% if not loop.last  %}
                             {% include "listing/_form_" ~ form.vars.name ~ ".html.twig" with {'form': form} only %}
                         {% endif %}
+                    
                     {% endfor %}
                     
                     {{ form_row(forms._token) }}

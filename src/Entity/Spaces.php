@@ -98,9 +98,7 @@ class Spaces
 
     public function file()
     {
-        $givenNameInitials = substr($this->user->getGivenName(), 0, 2);
-        $folder = $this->user->getFamilyName() . $givenNameInitials . '-' . $this->user->getId() . '-' . $this->getId();
-        return $folder;
+        return 'Archives/Spaces/' . $this->getId() . '/Galleries';
     }
 
     public function __toString()

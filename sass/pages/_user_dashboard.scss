@@ -1,0 +1,12 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.user-dashboard {
+    > .container {
+        @extend %container-secondary;
+        @extend %section;
+    }
+    .titre {
+        @extend %title-primary;
+    }
+}
