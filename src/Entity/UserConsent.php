@@ -26,6 +26,16 @@ class UserConsent
     #[ORM\ManyToOne(inversedBy: 'consent')]
     private ?Users $user = null;
 
+    public function __construct()
+    {
+        $this->consentDate = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->consentType;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

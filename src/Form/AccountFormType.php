@@ -17,6 +17,7 @@ class AccountFormType extends AbstractType
         $builder
             ->add('profilePicture', FileType::class, [
                 'attr' => ['class' => 'section-input'],
+                'required' => false
             ])
             ->add('familyName')
             ->add('givenName')
@@ -57,6 +58,7 @@ class AccountFormType extends AbstractType
                 'multiple' => false, // Only one can be selected
                 'attr' => ['class' => 'custom-class'],
             ])
+            
         ;
     }
 

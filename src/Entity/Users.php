@@ -83,7 +83,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Payments::class)]
     private Collection $payment;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserConsent::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserConsent::class, cascade: ['persist', 'remove'])]
     private Collection $consent;
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
@@ -113,10 +113,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Contents $content = null;
 
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $preference = [];
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $appearance = null;
+
     public function __construct()
     {
         $this->registrationDate = new \DateTime();
         $this->language = 'EN';
+        $this->appearance = 'light';
         $this->reservation = new ArrayCollection();
         $this->message = new ArrayCollection();
         $this->favorite = new ArrayCollection();
@@ -761,6 +768,30 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setContent(?Contents $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPreference(): ?array
+    {
+        return $this->preference;
+    }
+
+    public function setPreference(?array $preference): static
+    {
+        $this->preference = $preference;
+
+        return $this;
+    }
+
+    public function getAppearance(): ?string
+    {
+        return $this->appearance;
+    }
+
+    public function setAppearance(?string $appearance): static
+    {
+        $this->appearance = $appearance;
 
         return $this;
     }
