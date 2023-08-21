@@ -21,6 +21,13 @@ class SpacesRepository extends ServiceEntityRepository
         parent::__construct($registry, Spaces::class);
     }
 
+    public function save(Spaces $space): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($space);
+        $entityManager->flush();
+    }
+
 //    /**
 //     * @return Spaces[] Returns an array of Spaces objects
 //     */

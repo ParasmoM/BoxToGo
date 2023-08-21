@@ -21,7 +21,7 @@ class Contents
     private ?string $titleEn = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $titleNe = null;
+    private ?string $titleNl = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descriptionFr = null;
@@ -30,7 +30,7 @@ class Contents
     private ?string $descriptionEn = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descriptionNe = null;
+    private ?string $descriptionNl = null;
 
     #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
     private ?Users $user = null;
@@ -90,12 +90,12 @@ class Contents
 
     public function getTitleNl(): ?string
     {
-        return $this->titleNe;
+        return $this->titleNl;
     }
 
-    public function setTitleNl(?string $titleNe): static
+    public function setTitleNl(?string $titleNl): static
     {
-        $this->titleNe = $titleNe;
+        $this->titleNl = $titleNl;
 
         return $this;
     }
@@ -126,12 +126,12 @@ class Contents
 
     public function getDescriptionNl(): ?string
     {
-        return $this->descriptionNe;
+        return $this->descriptionNl;
     }
 
-    public function setDescriptionNl(?string $descriptionNe): static
+    public function setDescriptionNl(?string $descriptionNl): static
     {
-        $this->descriptionNe = $descriptionNe;
+        $this->descriptionNl = $descriptionNl;
 
         return $this;
     }

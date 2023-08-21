@@ -2,6 +2,8 @@
 
 {% block title %}Hello OwnerReservationsController!{% endblock %}
 
+{% set menuItems = ['réservations', 'annonces', 'publier une annonce'] %}
+
 {% block body %}
 <main class="owner-dashboard">
     <div class="container">
@@ -100,45 +102,15 @@
         <section class="dashboard">
             <div class="container">
 
-                <h1 class="titre">Annonces</h1>
+                <h1 class="titre">Editer</h1>
 
-                {% for space in spaces %}
-                {% set language = space.user.language|lower|capitalize %}
-                {% if language == 'En' %}
-                    {% set title = space.content.titleEn %}
+                {% if form is defined %}
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button class="btn">{{ button_label|default('Save') }}</button>
+                    {{ form_end(form) }}
                 {% endif %}
-                {% if language == 'Fr' %}
-                    {% set title = space.content.titleFr %}
-                {% endif %}
-                {% if language == 'Nl' %}
-                    {% set title = space.content.titleNl %}
-                {% endif %}
-                <article>
-                    <div class="container">
 
-                        <div class="box1">
-                            <a href="{{ path('public_property_details', {'id': space.id}) }}">
-                                <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="Image {{ space.spaceCateg.name }}">
-                            </a>
-                            <div class="text">
-                                <p>{{ title }}</p>
-                                <p>{{ space }} {{ space.adresse.first }} </p>
-                                <p>{{ space.price }} €</p>
-                                <p>{{ space.surface }} m <sup>2</sup> </p>
-                            </div>
-                            <div>
-                                <p>{{ space.status }}</p>
-                            </div>
-                        </div>
-                        <div class="box2">
-                            <a href="{{ path('priver_owner_edit', {'id': space.id}) }}">Modifier</a>
-                        </div>
-
-                    </div>
-                </article>
-                <p>Numéro de réservation : ****</p>
-                {% endfor %}
-                
             </div>
         </section>
     </div>
