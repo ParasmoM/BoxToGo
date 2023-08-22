@@ -2,6 +2,11 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
+{% block javascripts %}
+<script src="{{ asset('js/masthead.js') }}" defer></script>
+<script src="{{ asset('js/favori.js') }}" defer></script>
+{% endblock %}
+
 {% block body %}
 <main class="home">
     <div class="container">
@@ -22,15 +27,28 @@
                 </button>
             </div>
         </header>
-        
+
         <section>
             <div class="container">
                 {% for space in allSpaces ? allSpaces : [] %}
+                    {% set spaceIdToCheck = space.id %}
+                    {% set favorites = app.user.getFavorite %}
+                    {% set isFavorited = false %}
+
+                    {% for favorite in favorites %}
+                        {% if favorite.space.id == spaceIdToCheck %}
+                            {% set isFavorited = true %}
+                        {% endif %}
+                    {% endfor %}
+                
+                {# {{ dump(app.user.getFavorite.first.space, space) }} #}
                 <div class="card">
                     <div class="image">
-                        <a href="{{ path('public_property_details', {'id': space.id}) }}">
+                        <div>
                             <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="Image {{ space.spaceCateg.name }}">
-                        </a>
+                        </div>
+                        <button class="favorite {{ isFavorited ? 'favorited' : '' }}" id="favo" data-user-id="{{ app.user.id }}"  data-space-id="{{ space.id }}">
+                        </button>
                     </div>
                     <article>
                         <section>

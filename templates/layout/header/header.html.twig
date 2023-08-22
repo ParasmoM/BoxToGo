@@ -78,7 +78,7 @@
                             </li>
 
                             <li class="menu-dropdown--settings">
-                                <a href="">Favoris</a>
+                                <a href="{{ path('app_favorites', {'id': app.user.id}) }}">Favoris</a>
                                 <a href="{{ path('public_account', {'id': app.user.id}) }}">Paramètres</a>
                                 <a href="">Publier mon annonce</a>
 

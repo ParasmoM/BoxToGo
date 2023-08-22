@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\FavorisRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FavorisRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: FavorisRepository::class)]
 class Favoris
@@ -23,6 +25,11 @@ class Favoris
     #[ORM\ManyToOne(inversedBy: 'favorite')]
     private ?Spaces $space = null;
 
+    public function __construct()
+    {
+        $this->addedDate = new \DateTime();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;

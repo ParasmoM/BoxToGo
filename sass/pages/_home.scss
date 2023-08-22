@@ -52,14 +52,32 @@
         .image {
             width: 100%;
             aspect-ratio: 1/1;
-            background-color: var(--clr-black);
-            border-radius: $border-radius;
-            overflow: hidden;
+            position: relative;
 
-            img {
+            > div {
                 width: 100%;
-                height: 100%;  /* Ajout de la hauteur */
-                object-fit: cover;
+                height: 100%; 
+                img {
+                    width: 100%;
+                    height: 100%;  /* Ajout de la hauteur */
+                    object-fit: cover;
+                    border-radius: $border-radius;
+                }
+            }
+            .favorite {
+                position: absolute;
+                top: 3rem; right: 3rem;
+                height: 3rem;
+                width: 3rem;
+                background: url("/images/icones/favorite-empty.svg") no-repeat center;
+                
+                &.favorited {
+                    position: absolute;
+                    top: 3rem; right: 3rem;
+                    height: 3rem;
+                    width: 3rem;
+                    background: url("/images/icones/favorite-filled.svg") no-repeat center;
+                }
             }
         }
 
