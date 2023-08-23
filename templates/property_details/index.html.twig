@@ -17,14 +17,14 @@
             <div class="zone">
                 <div class="box1">
                     <div class="buttons">
-                        <button>Contacter le propriétaire</button>
+                        <a href="{{ path('app_reviews', {'id': space.id}) }}">Laisser un commentaires</a>
                         <button><img src="{{ asset('images/icones/envelope.svg') }}" alt=""></button>
                         <button><img src="{{ asset('images/icones/share.svg') }}" alt=""></button>
                         <button><img src="{{ asset('images/icones/favorite.svg') }}" alt=""></button>
                     </div>
 
                     <div class="map">
-                        <p>{{ space.spaceCateg|capitalize }} - {{ space.user.status|capitalize }} - {{ space.adresse.first|capitalize }}</p>
+                        <p>{{ space.spaceCateg|capitalize }} - {{ space.host.status|capitalize }} - {{ space.adresse.first|capitalize }}</p>
                         <div></div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </section>
-
+        {# {{ dump() }} #}
         <section>
             <h2>Installations du bien </h2>
             <ul>
@@ -56,11 +56,11 @@
         <section>
             <h2>Faites connaissance avec votre hôte</h2>
             <div class="content">
-                <a href="{{ path('public_owner_profile', {'id': space.user.id}) }}" class="avatar">
+                <a href="{{ path('public_owner_profile', {'id': space.host.id}) }}" class="avatar">
                     
                 </a>
                 <article>
-                    <h3><a href="{{ path('public_owner_profile', {'id': space.user.id}) }}">{{ space.user }}</a></h3>
+                    <h3><a href="{{ path('public_owner_profile', {'id': space.host.id}) }}">{{ space.user }}</a></h3>
                     <div>
                         
                     </div>
@@ -81,10 +81,10 @@
                         <p>****</p>
                         <p>****</p>
                         <p>****</p>
-                        <p>{{ space.user.status }}</p>
-                        <p>{{ space.user.email }}</p>
-                        <p>{{ space.user.phoneNumber }}</p>
-                        <p>{{ space.user.language }}</p>
+                        <p>{{ space.host.status }}</p>
+                        <p>{{ space.host.email }}</p>
+                        <p>{{ space.host.phoneNumber }}</p>
+                        <p>{{ space.host.language }}</p>
                         <p>****</p>
                         <p>****</p>
                     </div>
@@ -92,6 +92,9 @@
             </div>
         </section>
 
+        <section>
+            
+        </section>
     </div>
 </main>
 {% endblock %}

@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
+use App\DTO\FormAddNewSpaceModel;
 use App\Entity\Contents;
 use App\Entity\Spaces;
 use App\Entity\SpaceImages;
+use App\Form\FormAddNewSpaceType;
 use App\Service\PictureServices;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpaceImagesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\NewItemCompositeFormType;
+use Masterminds\HTML5\Entities;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Length;
@@ -26,16 +29,66 @@ class ListingController extends AbstractController
         PictureServices $pictureService,
         SpaceImagesRepository $spaceImagesRepository
     ): Response {
-        $forms = $this->createForm(NewItemCompositeFormType::class, null);
+        $model = new FormAddNewSpaceModel();
+        
+        // Space
+        $model->getSpace()->setPrice(100);
+        $model->getSpace()->setSurface(100);
+        $model->getSpace()->setEntryWidth(100);
+        $model->getSpace()->setEntryLength(100);
+        $model->getSpace()->setFloorPosition("Rez de chaussée");
+        $model->getSpace()->setItemCondition("neuf");
+        $model->getSpace()->setHost($this->getUser()); // ! Je vais garder ça 
+
+        // Adresse 
+        $model->getAdresse()->setCountry('Belgique');
+        $model->getAdresse()->setCity('Liège');
+        $model->getAdresse()->setStreetNumber(1);
+        $model->getAdresse()->setStreet('Saint Laurent');
+        $model->getAdresse()->setPostalCode(4000);
+
+
+
+        // dd($model->request()->all()); 
+        $forms = $this->createForm(FormAddNewSpaceType::class, $model);
         $forms->handleRequest($request);
         
         if ($forms->isSubmitted() && $forms->isValid()) {
+            $user = $this->getUser();
+            $roles = $user->getRoles();
 
-            $space = $this->handleSpaceSteps($forms, $request, $entityManager);
+            if (!in_array('ROLE_OWNER', $roles)) {
+                $user->setRoles(['ROLE_USER', 'ROLE_OWNER']);
+            }
 
-            $this->handleImages($forms, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface);
+            $dataArray = $this->extractFormData($forms->getData(), $request);
 
-            $entityManager->persist($space);
+            $entityManager->persist($dataArray['space']);
+            $entityManager->flush();
+
+            $dataArray['adresse']->setSpace($dataArray['space']);
+            $entityManager->persist($dataArray['adresse']);
+
+            $dataArray['equipment']->setSpace($dataArray['space']);
+            $entityManager->persist($dataArray['equipment']);
+
+            $dataArray['image']->setSpace($dataArray['space']);
+            $folder = 'Archives/Spaces/' . $dataArray['space']->getId() . '/Galleries';
+            $initialOrder = count($spaceImagesRepository->findBy(['space' => $dataArray['space']]));
+            
+            foreach ($dataArray['newImages'] as $index => $file) {
+                $fichier = $pictureService->add($file, $folder);
+                $order = $initialOrder + $index + 1;
+                $dataArray['image']->setImagePath($fichier);
+                $dataArray['image']->setSortOrder($order);
+                $entityManager->persist($dataArray['image']);
+            }
+            
+            $dataArray['content']->setTitle($dataArray['language'], $dataArray['title']);
+            $dataArray['content']->setDescription($dataArray['language'], $dataArray['description']);
+            $dataArray['content']->setSpace($dataArray['space']);
+            $entityManager->persist($dataArray['content']);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
@@ -43,6 +96,25 @@ class ListingController extends AbstractController
         
         return $this->render('listing/index.html.twig', compact('forms'));
     }
+
+    private function extractFormData($formData, Request $request) {
+        return [
+            'space' => $formData->getSpace(),
+            'adresse' => $formData->getAdresse(),
+            'equipment' => $formData->getEquipment(),
+            'image' => $formData->getImage(),
+            'content' => $formData->getContent(),
+            'language' => $request->request->all()['form_add_new_space']['content']['language'],
+            'title' => $request->request->all()['form_add_new_space']['content']['title'],
+            'description' => $request->request->all()['form_add_new_space']['content']['description'],
+            'newImages' => $request->files->all()['form_add_new_space']['image']['imagePath']
+        ];
+    }
+
+
+
+
+
 
     private function handleSpaceSteps($forms, $request, $entityManager): Spaces {
         $user = $this->getUser();
@@ -54,7 +126,7 @@ class ListingController extends AbstractController
         }
 
         $formStep1 = $forms->getData()["step1"];
-        $formStep1->setUser($this->getUser());
+        $formStep1->setHost($this->getUser());
         
         // Adresse
         $formStep2 = $forms->getData()["step2"];

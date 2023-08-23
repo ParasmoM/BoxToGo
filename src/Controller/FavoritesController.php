@@ -62,7 +62,7 @@ class FavoritesController extends AbstractController
         $favorites = $favorisRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
 
         
-        dd($user->getFavorite());
+        // dd($user->getFavorite());
         return $this->render('favorites/index.html.twig', compact('favorites'));
     }
 }

@@ -78,16 +78,16 @@ body {
   font-weight: 400;
 }
 
-.masthead-action__button-menu ul {
+.masthead-action__button-menu ul, .card-space__info-group:first-of-type p:first-child {
   font-weight: 500;
 }
 
-.settings .navbar .button.active, .masthead, .ownerhead nav, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner-dashboard .titre, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings .navbar .button.active, .masthead, .ownerhead nav, .card-space__info-group:first-of-type p:last-child, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner-dashboard .titre, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-weight: 600;
 }
 
-.home header > .container li,
-.home header > .container button, .masthead-action__button-lang ul, .masthead-action__button-menu .menu-dropdown--personal,
+.home__header .home__category-item,
+.home__header .home__filters-btn, .masthead-action__button-lang ul, .masthead-action__button-menu .menu-dropdown--personal,
 .masthead-action__button-menu .menu-dropdown--settings,
 .masthead-action__button-menu .menu-dropdown--logout {
   padding: 1.5rem;
@@ -97,7 +97,7 @@ body {
   padding: 3rem;
 }
 
-.owner-dashboard article > .container > .box2, .home .card > article, .listing-form__title:not(:first-of-type), .loginpage__link:last-of-type {
+.owner-dashboard article > .container > .box2, .listing-form__title:not(:first-of-type), .loginpage__link:last-of-type, .card-space__info-container {
   margin-top: 1.5rem;
 }
 
@@ -109,7 +109,7 @@ body {
   margin-top: 3rem;
 }
 
-.home .container > section {
+.home__spaces {
   margin-top: 6rem;
 }
 
@@ -215,11 +215,11 @@ body {
   padding-inline: 3rem;
 }
 
-.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
+.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
   padding-inline: 6rem;
 }
 
-.listing-form__description-item, .owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
+.listing-form__description-item, .owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
   margin-inline: auto;
 }
 
@@ -245,14 +245,14 @@ body {
   padding-block: 3rem;
 }
 
-.owner-detail > .container, .space-detail > .container, .home > .container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
+.owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
   max-width: 1920px;
 }
 .owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container {
   max-width: 1024px;
 }
 
-.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home > .container {
+.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home__container {
   margin-top: 10rem;
 }
 
@@ -295,6 +295,43 @@ body {
   color: var(--clr-black);
   background-color: var(--clr-white);
   line-height: 1.5;
+}
+
+.card-space {
+  flex: 0 1 36rem;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.card-space__image-zone {
+  position: relative;
+}
+.card-space__image-zone img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.card-space__image-zone .card-space__icon-btn {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  height: 3rem;
+  width: 3rem;
+  z-index: 2;
+  background: url("/images/icones/favorite-empty.svg") no-repeat center;
+}
+.card-space__info-container {
+  display: flex;
+}
+.card-space__info-group {
+  flex: 1;
+}
+.card-space__info-group:last-of-type {
+  text-align: right;
+}
+.card-space__info .card-space__icons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .masthead {
@@ -1143,19 +1180,22 @@ body {
   height: 2.5rem;
 }
 
-.home > .container {
+.home__container {
   background-color: var(--clr-white);
 }
-.home header > .container {
+.home__header-container {
   display: flex;
   justify-content: space-between;
 }
-.home header > .container > ul {
+.home__header img {
+  height: 2.5rem;
+}
+.home__header .home__category-list {
   display: flex;
   gap: var(--spacing-sm);
 }
-.home header > .container li,
-.home header > .container button {
+.home__header .home__category-item,
+.home__header .home__filters-btn {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
@@ -1164,63 +1204,10 @@ body {
   white-space: nowrap;
   font-family: "Open Sans", sans-serif;
 }
-.home header > .container img {
-  height: 2.5rem;
-}
-.home .container > section > .container {
+.home__spaces-container {
   display: flex;
   gap: var(--spacing-lg);
   flex-flow: wrap;
-}
-.home .card {
-  flex: 0 0 36rem;
-  overflow: hidden;
-  border-radius: 1rem;
-}
-.home .card .image {
-  width: 100%;
-  aspect-ratio: 1/1;
-  position: relative;
-}
-.home .card .image > div {
-  width: 100%;
-  height: 100%;
-}
-.home .card .image > div img {
-  width: 100%;
-  height: 100%; /* Ajout de la hauteur */
-  object-fit: cover;
-  border-radius: 1rem;
-}
-.home .card .image .favorite {
-  position: absolute;
-  top: 3rem;
-  right: 3rem;
-  height: 3rem;
-  width: 3rem;
-  background: url("/images/icones/favorite-empty.svg") no-repeat center;
-}
-.home .card .image .favorite.favorited {
-  position: absolute;
-  top: 3rem;
-  right: 3rem;
-  height: 3rem;
-  width: 3rem;
-  background: url("/images/icones/favorite-filled.svg") no-repeat center;
-}
-.home .card > article {
-  display: flex;
-  justify-content: space-between;
-}
-.home .card > article > section:last-of-type {
-  text-align: right;
-}
-.home .card > article .icones {
-  display: inline-flex;
-  color: var(--clr-gray-200);
-}
-.home .card > article .equipped {
-  color: var(--clr-black);
 }
 
 .space-detail section:first-of-type .gallery {

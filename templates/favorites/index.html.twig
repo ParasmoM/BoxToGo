@@ -107,10 +107,11 @@
             <div class="container">
                 {% for favori in favorites %}
                 {% set space = favori.space %}
+                {{ dump(favori) }}
                 <div class="card">
                     <div class="image">
                         <div>
-                            <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="Image {{ space.spaceCateg.name }}">
+                            {# <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="Image {{ space.spaceCateg.name }}"> #}
                         </div>
                         <button class="favorite" id="favo" data-user-id="{{ app.user.id }}"  data-space-id="{{ space.id }}">
                             <img src="{{ asset('images/icones/favorite.svg') }}" alt="Image d'un coeur">
@@ -120,7 +121,7 @@
                         <section>
                             <p>{{ space.spaceCateg.name }}</p>
                             <p>{{ space.adresse.first.city }}</p>
-                            <p>{{ space.user.status }}</p>
+                            <p>{{ space.host.status }}</p>
                             <p>{{ space.surface }} m<sup>2</sup></p>
                             <p>{{ space.price }} €</p>
                         </section>

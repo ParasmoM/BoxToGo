@@ -21,13 +21,17 @@ class ContentsFormType extends AbstractType
                     'Français' => 'FR',
                     'Néerlandais' => 'NL',
                 ],
+                'mapped' => false,
             ])
-            ->add('title')
+            ->add('title', null, [
+                'mapped' => false,
+            ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'placeholder' => 'Saisissez votre texte ici...',
                     'style' => 'height: 150px; resize: none;',
                 ],
+                'mapped' => false,
             ])
         ;
     }

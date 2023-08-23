@@ -2,23 +2,26 @@
 @use "../utils" as *;
 
 .home {
-    > .container {
+    &__container {
         @extend %container-primary;
         @extend %section;
         background-color: var(--clr-white);
     }
 
-    header > .container {
-        display: flex;
-        justify-content: space-between;
-
-        > ul {
+    &__header {
+        &-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        img {
+            height: 2.5rem;
+        }
+        .home__category-list {
             display: flex;
             gap: var(--spacing-sm);
         }
-
-        li,
-        button {
+        .home__category-item,
+        .home__filters-btn {
             @extend %padding-sm;
             display: flex;
             align-items: center;
@@ -28,74 +31,15 @@
             white-space: nowrap;
             font-family: $font-family-secondary;
         }
-
-        img {
-            height: 2.5rem;
-        }
     }
 
-
-    .container > section {
+    &__spaces {
         @extend %margin-top-xl;
 
-        > .container {
+        &-container {
             display: flex;
             gap: var(--spacing-lg);
             flex-flow: wrap;
-        }
-    }
-    .card {
-        flex: 0 0 36rem;
-        overflow: hidden;
-        border-radius: $border-radius;
-
-        .image {
-            width: 100%;
-            aspect-ratio: 1/1;
-            position: relative;
-
-            > div {
-                width: 100%;
-                height: 100%; 
-                img {
-                    width: 100%;
-                    height: 100%;  /* Ajout de la hauteur */
-                    object-fit: cover;
-                    border-radius: $border-radius;
-                }
-            }
-            .favorite {
-                position: absolute;
-                top: 3rem; right: 3rem;
-                height: 3rem;
-                width: 3rem;
-                background: url("/images/icones/favorite-empty.svg") no-repeat center;
-                
-                &.favorited {
-                    position: absolute;
-                    top: 3rem; right: 3rem;
-                    height: 3rem;
-                    width: 3rem;
-                    background: url("/images/icones/favorite-filled.svg") no-repeat center;
-                }
-            }
-        }
-
-        > article {
-            display: flex;
-            justify-content: space-between;
-            @extend %margin-top-sm;
-
-            > section:last-of-type {
-                text-align: right;
-            }
-            .icones {
-                display: inline-flex;
-                color: var(--clr-gray-200);
-            }
-            .equipped {
-                color: var(--clr-black);
-            }
         }
     }
 }

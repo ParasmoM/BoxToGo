@@ -1,0 +1,53 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.card-space {
+    flex: 0 1 36rem;
+    overflow: hidden;
+    border-radius: $border-radius;
+
+    &__image-zone {
+        position: relative;
+        
+        img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: $border-radius;
+        }
+        .card-space__icon-btn {
+            position: absolute;
+            top: 3rem; right: 3rem;
+            height: 3rem;
+            width: 3rem;
+            z-index: 2;
+            background: url("/images/icones/favorite-empty.svg") no-repeat center;
+        }
+    }
+
+    &__info {
+        &-container {
+            display: flex;
+            @extend %margin-top-sm;
+        }
+        &-group {
+            flex: 1;
+
+            &:first-of-type {
+                p:first-child {
+                    @extend %fw-medium;
+                }
+                p:last-child {
+                    @extend %fw-semibold;
+                }
+            }
+            &:last-of-type {
+                text-align: right;
+            }
+        }
+        .card-space__icons {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}

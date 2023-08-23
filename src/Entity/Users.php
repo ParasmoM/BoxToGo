@@ -74,7 +74,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favoris::class)]
     private Collection $favorite;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: SpaceReviews::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reviews::class)]
     private Collection $review;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notifications::class)]
@@ -444,7 +444,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->review;
     }
 
-    public function addReview(SpaceReviews $review): static
+    public function addReview(Reviews $review): static
     {
         if (!$this->review->contains($review)) {
             $this->review->add($review);
@@ -454,7 +454,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeReview(SpaceReviews $review): static
+    public function removeReview(Reviews $review): static
     {
         if ($this->review->removeElement($review)) {
             // set the owning side to null (unless already changed)

@@ -11,8 +11,8 @@ class OwnerProfileController extends AbstractController
 {
     #[Route('/owner/profile/{id}', name: 'public_owner_profile')]
     public function index(
-        Users $user
+        Users $host
     ): Response {
-        return $this->render('owner_profile/index.html.twig', compact('user'));
+        return $this->render('owner_profile/index.html.twig', compact('host'));
     }
 }

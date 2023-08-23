@@ -26,15 +26,15 @@
 
         <div class="listing-form__container">
 
-            <section class="listing-form__description-list">
+            {# <section class="listing-form__description-list">
                 
                 {% for index in 0..4 %}
                     {% include "listing/_description_card.html.twig" with {'index': index, 'title': titles[index], 'paragraph': paragraphs[index]} only%}
                 {% endfor %}
 
-            </section>
+            </section> #}
 
-            <form action="{{ path('public_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list" id="newItem">
+            {# <form action="{{ path('public_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list" id="newItem">
 
                 <div class="listing-form__form-container">
 
@@ -50,7 +50,14 @@
                     
                 </div>
                 
-            </form>
+            </form> #}
+
+            {% if forms is defined %}
+                {{ form_start(forms) }}
+                    {{ form_widget(forms) }}
+                    <button class="btn">{{ button_label|default('Save') }}</button>
+                {{ form_end(forms) }}
+            {% endif %}
 
         </div>
 

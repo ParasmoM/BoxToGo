@@ -55,7 +55,7 @@ class Spaces
     #[ORM\ManyToOne(inversedBy: 'owner')]
     private ?Users $host = null;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Favoris::class)]
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Favoris::class, cascade: ["persist"])]
     private Collection $favorite;
 
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reservations::class)]
@@ -82,6 +82,9 @@ class Spaces
     #[ORM\OneToOne(inversedBy: 'space', cascade: ['persist', 'remove'])]
     private ?Contents $content = null;
 
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reviews::class, cascade: ["persist"])]
+    private Collection $review;
+
     public function __construct()
     {
         $this->registrationDate = new \DateTime();
@@ -94,6 +97,7 @@ class Spaces
         $this->equipment = new ArrayCollection();
         $this->conversation = new ArrayCollection();
         $this->adresse = new ArrayCollection();
+        $this->review = new ArrayCollection();
     }
 
     public function file()
@@ -497,6 +501,36 @@ class Spaces
     public function setContent(?Contents $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SpaceReviews>
+     */
+    public function getReview(): Collection
+    {
+        return $this->review;
+    }
+
+    public function addReview(SpaceReviews $review): static
+    {
+        if (!$this->review->contains($review)) {
+            $this->review->add($review);
+            $review->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(SpaceReviews $review): static
+    {
+        if ($this->review->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getSpace() === $this) {
+                $review->setSpace(null);
+            }
+        }
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\SpaceReviews;
+use App\Entity\Reviews;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,11 +14,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method SpaceReviews[]    findAll()
  * @method SpaceReviews[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SpaceReviewsRepository extends ServiceEntityRepository
+class ReviewsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, SpaceReviews::class);
+        parent::__construct($registry, Reviews::class);
     }
 
 //    /**

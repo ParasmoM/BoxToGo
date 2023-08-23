@@ -7,13 +7,13 @@
     <div class="container">
 
         <section>
-            <h2>Information sur {{ user.familyName }}</h2>
+            <h2>Information sur {{ host.familyName }}</h2>
             <div class="content">
-                <a href="{{ path('public_owner_profile', {'id': user.id}) }}" class="avatar">
+                <a href="{{ path('public_owner_profile', {'id': host.id}) }}" class="avatar">
                     
                 </a>
                 <article>
-                    <h3><a href="{{ path('public_owner_profile', {'id': user.id}) }}">{{ user }}</a></h3>
+                    <h3><a href="{{ path('public_owner_profile', {'id': host.id}) }}">{{ host }}</a></h3>
                     <div>
                         
                     </div>
@@ -34,10 +34,10 @@
                         <p>****</p>
                         <p>****</p>
                         <p>****</p>
-                        <p>{{ user.status }}</p>
-                        <p>{{ user.email }}</p>
-                        <p>{{ user.phoneNumber }}</p>
-                        <p>{{ user.language }}</p>
+                        <p>{{ host.status }}</p>
+                        <p>{{ host.email }}</p>
+                        <p>{{ host.phoneNumber }}</p>
+                        <p>{{ host.language }}</p>
                         <p>****</p>
                         <p>****</p>
                     </div>
@@ -46,7 +46,7 @@
         </section>
 
         <section>
-            <h2>Annonces publiées par {{ user.familyName }}</h2>
+            <h2>Annonces publiées par {{ host.familyName }}</h2>
             <div class="content">
                 <div class="box1">
                     <div class="item">
@@ -57,13 +57,21 @@
                     </div>
                 </div>
                 <div class="box2">
-                    <h3>Vous avez des questions ? Contactez {{ user.familyName }}</h3>
+                    <h3>Vous avez des questions ? Contactez {{ host.familyName }}</h3>
                     <textarea name="" id="" cols="30" rows="10"></textarea>
                     <button>Envoyer le message</button>
                 </div>
             </div>
         </section>
 
+        <section>
+            <h2>Commentaires pour {{ host.familyName }}</h2>
+
+            {{ dump(host, host.owner.first) }}
+            {% for row in host.review %}
+            {{ dump(row) }}
+            {% endfor %}
+        </section>
     </div>
 </main>
 {% endblock %}
