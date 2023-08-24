@@ -2,12 +2,7 @@
 @use "../utils" as *;
 
 .owner {
-    &__header {
-        &-container {
-            @extend %container-primary; 
-            @extend %padding-inline-xl;
-        }
-    }
+
     &__title {
         @extend %container-secondary; 
         @extend %title-primary;

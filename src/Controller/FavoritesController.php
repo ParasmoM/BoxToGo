@@ -52,17 +52,17 @@ class FavoritesController extends AbstractController
         return $this->json(['message' => $message]);
     }
     
-    #[Route('/favorites/{id}', name: 'app_favorites')]
+    #[Route('/favorites', name: 'app_favorites')]
     public function index(
         Request $request,
-        Users $user,
         FavorisRepository $favorisRepository,
         EntityManagerInterface $entityManager,
     ): Response {
-        $favorites = $favorisRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
+        if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        $user = $this->getUser();
 
+        $favorites = $favorisRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
         
-        // dd($user->getFavorite());
         return $this->render('favorites/index.html.twig', compact('favorites'));
     }
 }

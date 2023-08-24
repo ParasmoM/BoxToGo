@@ -9,7 +9,19 @@
                 </a>
 
                 {% if app.user %}
-                    <button class="card-space__icon-btn" data-user-id="{{ app.user.id }}" data-space-id="{{ space.id }}"></button>
+                    {% set class = "card-space__icon-btn" %}
+                    
+                    {% for myFavori in app.user.favorite %}
+
+                        {% if myFavori.space.id == space.id %}
+
+                            {% set class = "card-space__icon-btn active" %}
+
+                        {% endif %}
+                        
+                    {% endfor %}
+
+                    <button class="{{ class }}" data-user-id="{{ app.user.id }}" data-space-id="{{ space.id }}"></button>
                 {% endif %}
 
             </div>
@@ -61,5 +73,6 @@
                 </section>
             </div>
         </article>
+        {# {{ dump(space, app.user) }} #}
     </div>
 </div>

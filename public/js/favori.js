@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Récupérez tous les boutons avec la classe favorite
-    const favButtons = document.querySelectorAll('.favorite');
-    
+    const favButtons = document.querySelectorAll('.card-space__icon-btn');
+
     // Ajoutez un gestionnaire d'événements à chaque bouton
     favButtons.forEach((favButton) => {
         favButton.addEventListener('click', (event) => {

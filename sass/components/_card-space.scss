@@ -22,6 +22,10 @@
             width: 3rem;
             z-index: 2;
             background: url("/images/icones/favorite-empty.svg") no-repeat center;
+
+            &.active {
+                background: url("/images/icones/favorite-filled.svg") no-repeat center;
+            }
         }
     }
 

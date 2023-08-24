@@ -1,6 +1,26 @@
 @use "../base/variables" as *;
 @use "../utils" as *;
 
-.favorites {
-    
+.favorite {
+
+    &__title {
+        @extend %container-secondary; 
+        @extend %title-primary;
+        
+        margin-top: 22rem;
+    }
+
+    &__content {
+        &-container {
+            @extend %container-secondary; 
+
+            display: flex;
+            flex-flow: wrap;
+            gap: var(--spacing-lg);
+        }
+
+        .card-space {
+            flex: 0 1 32rem;
+        }
+    }
 }

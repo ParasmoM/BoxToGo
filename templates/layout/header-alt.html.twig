@@ -1,3 +1,15 @@
+{% set menuItemsBase = {
+    'Réservations' : 'ROLE_OWNER' in app.user.roles ? 'owner_reservations' : 'public_user_reservations',
+    'Messages' : 'app_messages',
+    'Notifications' : 'app_messages',
+    'Favoris' : 'app_favorites',
+    'Publier une annonce' : 'public_listing',
+} %}
+
+{% set ownerItems = 'ROLE_OWNER' in app.user.roles ? {'Annonces': 'owner_annonces'} : {} %}
+
+{% set menuItems = ownerItems|merge(menuItemsBase) %}
+
 <div class="header-alt">
     <div class="header-alt__container">
 
@@ -15,16 +27,9 @@
         </div>
 
         <nav class="header-alt__nav">
-            {% if 'ROLE_OWNER' in app.user.roles %}
-            <a href="{{ path('owner_annonces') }}" class="header-alt__nav-link {{ route == 'owner_annonces' ? 'active' : null }}">Annonces</a>
-            <a href="{{ path('owner_reservations') }}" class="header-alt__nav-link">Réservations</a>
-            {% else %}
-            <a href="{{ path('public_user_reservations') }}" class="header-alt__nav-link">Réservations</a>
-            {% endif %}
-            <a href="" class="header-alt__nav-link">Messages</a>
-            <a href="" class="header-alt__nav-link">Notifications</a>
-            <a href="{{ path('app_favorites', {'id': app.user.id}) }}" class="header-alt__nav-link">Favoris</a>
-            <a href="{{ path('public_listing') }}" class="header-alt__nav-link">Publier une annonce</a>
+            {% for name, pathKey in menuItems %}
+                <a href="{{ path(pathKey) }}" class="{% if route == pathKey %}active{% endif %}">{{ name }}</a>
+            {% endfor %}
         </nav>
 
         <div class="header-alt__options">

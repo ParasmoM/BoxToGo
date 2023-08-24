@@ -87,7 +87,7 @@ body {
   font-weight: 500;
 }
 
-.settings .navbar .button.active, .header-alt, .masthead, .ownerhead nav, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner__title, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings .navbar .button.active, .header-alt, .masthead, .ownerhead nav, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .owner__title, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-weight: 600;
 }
 
@@ -270,14 +270,10 @@ body {
   padding-inline: 3rem;
 }
 
-.owner__header-container {
-  padding-inline: 6rem;
-}
-
-.listing-form__description-item, .owner__title, .owner .ticket, .master-form .language-section,
+.listing-form__description-item, .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner__header-container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .masthead__container, .ownerhead > .container {
+.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .masthead__container, .ownerhead > .container {
   margin-inline: auto;
 }
 
@@ -303,10 +299,10 @@ body {
   padding-block: 3rem;
 }
 
-.owner__header-container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .masthead__container, .ownerhead > .container {
+.owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .masthead__container, .ownerhead > .container {
   max-width: 1920px;
 }
-.owner__title, .owner .ticket, .master-form .language-section,
+.favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container {
@@ -317,13 +313,13 @@ body {
   margin-top: 10rem;
 }
 
-.owner__title, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.favorite__title, .owner__title, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.owner__title::before, .user-dashboard .titre::before, .settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
+.favorite__title::before, .owner__title::before, .user-dashboard .titre::before, .settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -438,6 +434,9 @@ body {
   width: 3rem;
   z-index: 2;
   background: url("/images/icones/favorite-empty.svg") no-repeat center;
+}
+.card-space__image-zone .card-space__icon-btn.active {
+  background: url("/images/icones/favorite-filled.svg") no-repeat center;
 }
 .card-space__info-container {
   display: flex;
@@ -1694,4 +1693,15 @@ body {
 .master-form .btn-master__container {
   display: flex;
   justify-content: flex-end;
+}
+.favorite__title {
+  margin-top: 22rem;
+}
+.favorite__content-container {
+  display: flex;
+  flex-flow: wrap;
+  gap: var(--spacing-lg);
+}
+.favorite__content .card-space {
+  flex: 0 1 32rem;
 }
