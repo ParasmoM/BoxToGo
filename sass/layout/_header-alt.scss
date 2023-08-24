@@ -1,0 +1,106 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.header-alt {
+    @extend %fs-sm;
+    @extend %fw-semibold;
+
+    position: fixed;
+    z-index: 10;
+    top: 0; left: 0; right: 0;
+    height: 12.5rem;
+    background-color: var(--clr-white);
+    box-shadow: $box-shadow;
+
+    &__container {
+        @extend %container-primary;
+        @extend %padding-lg;
+        
+        display: flex;
+        align-items: center;
+    }
+
+    &__branding {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+
+        .header-alt__logo img {
+            height: 6.5rem;
+            aspect-ratio: 1/1;
+        }
+        .header-alt__switch {
+            @extend %btn-radio-slide;
+        }
+    }
+    &__nav {
+        flex: auto;
+        display: flex;
+        justify-content: center;
+
+        > * {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 4rem;
+            padding-inline: 1.2rem;
+            border-radius: $border-radius;
+
+            &:hover {
+                background-color: var(--clr-gray-200);
+            }
+        }
+        .active {
+            position: relative;
+
+            &::after {
+                content: "";
+                display: inline-block;
+                height: .1rem;
+                width: 3rem;
+                background-color: var(--clr-black);
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+    &__options {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--spacing-lg);
+
+        a {
+            @extend %padding-inline-sm;
+            border-radius: $border-radius;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                background-color: var(--clr-gray-200);
+            }
+        }
+
+        .header-alt__option-lang {
+            position: relative;
+
+
+            ul {
+                display: none;
+                backdrop-filter: blur(20px);
+                border: solid 1px $border-color;
+                border-radius: $border-radius;
+                font-family: $font-family-secondary;
+                position: absolute;
+                top: 5rem; left: -4.1rem;
+
+                &.show {
+                    display: block;
+                }
+            }
+        }
+    }
+}

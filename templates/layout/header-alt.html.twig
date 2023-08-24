@@ -1,0 +1,49 @@
+<div class="header-alt">
+    <div class="header-alt__container">
+
+        <div class="header-alt__branding">
+            <a href="{{ path('public_home') }}" class="header-alt__logo">
+                <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
+            </a>
+
+            {% if app.user.admin is defined %}
+                <div class="header-alt__switch">
+                    <a href="" class="active">Public Site</a>
+                    <a href="">Admin Interface</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <nav class="header-alt__nav">
+            {% if 'ROLE_OWNER' in app.user.roles %}
+            <a href="{{ path('owner_annonces') }}" class="header-alt__nav-link {{ route == 'owner_annonces' ? 'active' : null }}">Annonces</a>
+            <a href="{{ path('owner_reservations') }}" class="header-alt__nav-link">Réservations</a>
+            {% else %}
+            <a href="{{ path('public_user_reservations') }}" class="header-alt__nav-link">Réservations</a>
+            {% endif %}
+            <a href="" class="header-alt__nav-link">Messages</a>
+            <a href="" class="header-alt__nav-link">Notifications</a>
+            <a href="{{ path('app_favorites', {'id': app.user.id}) }}" class="header-alt__nav-link">Favoris</a>
+            <a href="{{ path('public_listing') }}" class="header-alt__nav-link">Publier une annonce</a>
+        </nav>
+
+        <div class="header-alt__options">
+            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="header-alt__option-link">Paramètres</a>
+            <div class="header-alt__option-lang" id="btn-lang">
+                <img src="{{ asset('images/icones/langue.svg') }}" alt="Language selector">
+                <ul>
+                    <li>
+                        <a href="">Français</a>
+                    </li>
+                    <li>
+                        <a href="">Anglais</a>
+                    </li>
+                    <li>
+                        <a href="">Néerlandais</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

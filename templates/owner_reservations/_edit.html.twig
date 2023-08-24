@@ -1,0 +1,163 @@
+
+{% extends "owner_reservations/index.html.twig" %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/btn-master.js') }}" defer></script>
+<script src="{{ asset('js/language-section.js') }}" defer></script>
+{% endblock %}
+{% block heading %}Editer votre {{ space.spaceCateg.name }}{% endblock heading %}
+
+{% block content %}
+
+{% if form is defined %}
+    {{ form_start(form, {
+        'attr': {'class': 'master-form'},
+    }) }}
+
+        <div class="language-section">
+            <div class="language-buttons">
+                <button class="language-btn language-btn-fr active">English version</button>
+                <button class="language-btn language-btn-en">Version Française</button>
+                <button class="language-btn language-btn-nl">Nederlandse versie</button>
+            </div>
+
+            <div class="title-description-section">
+                {{ form_label(form.content, 'Titre & description', {
+                    'label_attr': {'class': 'section-header'}
+                }) }}
+
+                <div class="title-description-inputs">
+                    {{ form_row(form.content.titleFr, {
+                        'row_attr': {'class': 'title-input-set active'},
+                        'label_attr': {'class': 'title-label'},
+                        'attr': {'class': 'title-input'}
+                    }) }}
+                    
+                    {{ form_row(form.content.titleEn, {
+                        'row_attr': {'class': 'title-input-set'},
+                        'label_attr': {'class': 'title-label'},
+                        'attr': {'class': 'title-input'}
+                    }) }}
+                    
+                    {{ form_row(form.content.titleNl, {
+                        'row_attr': {'class': 'title-input-set'},
+                        'label_attr': {'class': 'title-label'},
+                        'attr': {'class': 'title-input'}
+                    }) }}
+
+                    {{ form_row(form.content.descriptionFr, {
+                        'row_attr': {'class': 'description-textarea-set active'},
+                        'label_attr': {'class': 'description-label'},
+                        'attr': {'class': 'description-textarea'}
+                    }) }}
+                    
+                    {{ form_row(form.content.descriptionEn, {
+                        'row_attr': {'class': 'description-textarea-set'},
+                        'label_attr': {'class': 'description-label'},
+                        'attr': {'class': 'description-textarea'}
+                    }) }}
+                    
+                    {{ form_row(form.content.descriptionNl, {
+                        'row_attr': {'class': 'description-textarea-set'},
+                        'label_attr': {'class': 'description-label'},
+                        'attr': {'class': 'description-textarea'}
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="price-category-section">
+            {{ form_label(form.space, 'Prix & catégorie', {
+                'label_attr': {'class': 'section-header'}
+            }) }}
+
+            <div class="price-category-inputs">
+                {{ form_row(form.space.spaceCateg, {
+                    'row_attr': {'class': 'category-input-set'},
+                    'label_attr': {'class': 'category-label'},
+                    'attr': {'class': 'category-select'}
+                }) }}
+                
+                {{ form_row(form.space.price, {
+                    'row_attr': {'class': 'price-input-set'},
+                    'label_attr': {'class': 'price-label'},
+                    'attr': {'class': 'price-input'}
+                }) }}
+            </div>
+        </div>
+
+        <div class="address-section">
+
+            {{ form_label(form.adresse, 'Adresse', {
+                'label_attr': {'class': 'section-header'}
+            }) }}
+
+            <div class="address-inputs">
+                {{ form_row(form.adresse.country, {
+                    'row_attr': {'class': 'address-input-set'},
+                    'label_attr': {'class': 'address-label'},
+                    'attr': {'class': 'country-select'}
+                }) }}
+                
+                {{ form_row(form.adresse.city, {
+                    'row_attr': {'class': 'address-input-set'},
+                    'label_attr': {'class': 'address-label'},
+                    'attr': {'class': 'city-input'}
+                }) }}
+                
+                {{ form_row(form.adresse.street, {
+                    'row_attr': {'class': 'address-input-set'},
+                    'label_attr': {'class': 'address-label'},
+                    'attr': {'class': 'street-input'}
+                }) }}
+                
+                {{ form_row(form.adresse.streetNumber, {
+                    'row_attr': {'class': 'address-input-set'},
+                    'label_attr': {'class': 'address-label'},
+                    'attr': {'class': 'number-input'}
+                }) }}
+                
+                {{ form_row(form.adresse.postalCode, {
+                    'row_attr': {'class': 'address-input-set'},
+                    'label_attr': {'class': 'address-label'},
+                    'attr': {'class': 'postal-code-input'}
+                }) }}
+            </div>
+
+        </div>
+
+        <div class="equipment-section">
+            {{ form_label(form.equipment, 'Equipements', {
+                'label_attr': {'class': 'section-header'}
+            }) }}
+
+            <div class="equipment-inputs">
+                {{ form_row(form.equipment.status, {
+                    'row_attr': {'class': 'status-input-set'},
+                    'label_attr': {'class': 'status-label'},
+                    'attr': {'class': 'status-options'}
+                }) }}
+
+                {{ form_row(form.equipment.spaceEquipments, {
+                    'row_attr': {'class': 'space-equipment-input-set'},
+                    'label_attr': {'class': 'equipment-label'},
+                    'attr': {'class': 'equipment-options'}
+                }) }}
+            </div>
+        </div>
+
+        {{ form_widget(form) }}
+
+        <div class="btn-master">
+            <div class="btn-master__container">
+                <button>{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endif %}
+    
+{% endblock content %}
+
+

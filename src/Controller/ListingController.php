@@ -30,7 +30,6 @@ class ListingController extends AbstractController
         SpaceImagesRepository $spaceImagesRepository
     ): Response {
         $model = new FormAddNewSpaceModel();
-        
         // Space
         $model->getSpace()->setPrice(100);
         $model->getSpace()->setSurface(100);
@@ -39,7 +38,6 @@ class ListingController extends AbstractController
         $model->getSpace()->setFloorPosition("Rez de chaussée");
         $model->getSpace()->setItemCondition("neuf");
         $model->getSpace()->setHost($this->getUser()); // ! Je vais garder ça 
-
         // Adresse 
         $model->getAdresse()->setCountry('Belgique');
         $model->getAdresse()->setCity('Liège');
@@ -47,50 +45,38 @@ class ListingController extends AbstractController
         $model->getAdresse()->setStreet('Saint Laurent');
         $model->getAdresse()->setPostalCode(4000);
 
-
-
-        // dd($model->request()->all()); 
         $forms = $this->createForm(FormAddNewSpaceType::class, $model);
         $forms->handleRequest($request);
-        
         if ($forms->isSubmitted() && $forms->isValid()) {
             $user = $this->getUser();
-            $roles = $user->getRoles();
-
-            if (!in_array('ROLE_OWNER', $roles)) {
+        
+            if (!in_array('ROLE_OWNER', $user->getRoles())) {
                 $user->setRoles(['ROLE_USER', 'ROLE_OWNER']);
             }
-
+        
             $dataArray = $this->extractFormData($forms->getData(), $request);
-
+        
+            // Persist and flush space to ensure it has an ID
             $entityManager->persist($dataArray['space']);
             $entityManager->flush();
-
+        
+            // Now handle images since space has an ID
+            $this->handleNewImages($dataArray, $pictureService, $entityManager);
+        
             $dataArray['adresse']->setSpace($dataArray['space']);
-            $entityManager->persist($dataArray['adresse']);
-
             $dataArray['equipment']->setSpace($dataArray['space']);
-            $entityManager->persist($dataArray['equipment']);
-
-            $dataArray['image']->setSpace($dataArray['space']);
-            $folder = 'Archives/Spaces/' . $dataArray['space']->getId() . '/Galleries';
-            $initialOrder = count($spaceImagesRepository->findBy(['space' => $dataArray['space']]));
-            
-            foreach ($dataArray['newImages'] as $index => $file) {
-                $fichier = $pictureService->add($file, $folder);
-                $order = $initialOrder + $index + 1;
-                $dataArray['image']->setImagePath($fichier);
-                $dataArray['image']->setSortOrder($order);
-                $entityManager->persist($dataArray['image']);
-            }
-            
             $dataArray['content']->setTitle($dataArray['language'], $dataArray['title']);
             $dataArray['content']->setDescription($dataArray['language'], $dataArray['description']);
             $dataArray['content']->setSpace($dataArray['space']);
+        
+            // Persist the other entities
+            $entityManager->persist($dataArray['adresse']);
+            $entityManager->persist($dataArray['equipment']);
             $entityManager->persist($dataArray['content']);
-
+            
+            // Flush again to save the other entities
             $entityManager->flush();
-
+        
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
         
@@ -111,74 +97,21 @@ class ListingController extends AbstractController
         ];
     }
 
+    private function handleNewImages($dataArray, $pictureService, EntityManagerInterface $entityManager) {
+        $folder = 'Archives/Spaces/' . $dataArray['space']->getId() . '/Galleries';
+        $initialOrder = count($entityManager->getRepository(SpaceImages::class)->findBy(['space' => $dataArray['space']]));
 
-
-
-
-
-    private function handleSpaceSteps($forms, $request, $entityManager): Spaces {
-        $user = $this->getUser();
-        $roles = $user->getRoles();
-        
-        // Space
-        if (!in_array('ROLE_OWNER', $roles)) {
-            $user->setRoles(['ROLE_USER', 'ROLE_OWNER']);
-        }
-
-        $formStep1 = $forms->getData()["step1"];
-        $formStep1->setHost($this->getUser());
-        
-        // Adresse
-        $formStep2 = $forms->getData()["step2"];
-        $formStep2->setSpace($formStep1);
-
-        // SpaceEquipmentLink
-        $formStep3 = $forms->getData()["step3"];
-        
-        if (count($request->request->all()['new_item_composite_form']['step3']) === 2) {
-            $status = $request->request->all()['new_item_composite_form']['step3']['status'];
-            $user->setStatus($status);
-        }
-        $formStep3->setSpace($formStep1);
-        
-        // SpaceTranslation
-        $formStep5 = $forms->getData()["step5"];
-        $language = $forms->getData()["step5"]["language"];
-        $title = $forms->getData()["step5"]["title"];
-        $description = $forms->getData()["step5"]["description"];
-        $contents = new Contents();
-        $contents->setTitle($language, $title);
-        $contents->setDescription($language, $description);
-        $contents->setSpace($formStep1);
-        
-        $formStep1->addAdresse($formStep2);
-        $formStep1->setContent($contents);
-
-        $entityManager->persist($formStep1);
-        $entityManager->flush();
-
-        return $formStep1;
-    }
-
-    private function handleImages($forms, $space, $pictureService, $spaceImagesRepository, $parameterBagInterface) {
-        // SpaceImages
-        $formStep4 = $forms->get('step4')->get('imagePath');
-        
-        $folder = 'Archives/Spaces/' . $space->getId() . '/Galleries';
-        
-        $initialOrder = count($spaceImagesRepository->findAll());
-        
-        foreach ($formStep4->getData() as $index => $file) {
+        foreach ($dataArray['newImages'] as $index => $file) {
             $fichier = $pictureService->add($file, $folder);
-            
             $order = $initialOrder + $index + 1;
-            
-            $spaceImage = new SpaceImages();
-            $spaceImage->setImagePath($fichier);
-            $spaceImage->setSortOrder($order);
-            $spaceImage->setSpace($space);
 
-            $space->addImage($spaceImage);
+            // Create a new Image object for each file
+            $image = new SpaceImages();
+            $image->setSpace($dataArray['space']);
+            $image->setImagePath($fichier);
+            $image->setSortOrder($order);
+            
+            $entityManager->persist($image);
         }
     }
 }

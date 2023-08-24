@@ -38,7 +38,6 @@
 
 // Containers
 %container {
-    @extend %padding-inline-xl;
     @extend %margin-inline-auto;
     
     &-primary {
@@ -68,15 +67,31 @@
 
 // Buttons
 %btn {
+    @extend %fs-md;
+    @extend %fw-medium;
+    display: inline-flex;
+    align-items: center;
+    border-radius: $border-radius;
+    cursor: pointer;
 
     &-color {
 
     }
     &-black {
-        
+        @extend %btn;
+        @extend %padding-inline-md;
+        height: 4rem;
+        justify-content: center;
+        border: solid 1px $border-color;
+        color: var(--clr-white);
+        background-color: var(--clr-black);
     }
     &-white {
-        
+        @extend %btn;
+        @extend %padding-inline-md;
+        height: 4rem;
+        justify-content: center;
+        border: solid 1px $border-color;
     }
     
     &-icone-color {
@@ -93,50 +108,42 @@
 
     }
     &-checkbox-press {
-        
+        @extend %btn;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+
+        label {
+            @extend %padding-inline-sm;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            border-radius: $border-radius;
+            background-color: var(--clr-gray-200);
+            // display: block;
+        }
+        input[type="checkbox"]:checked + label {
+            background-color: var(--clr-white);
+            border:solid 1px var(--clr-primary);
+            color: var(--clr-primary);
+        }
+        input[type="checkbox"] {
+            display: none;
+        }
     }
 
     &-radio-slide {
-
-    }
-    &-radio-select {
-        
-    }
-    &-radio-group {
-        
-    }
-}
-
-// Buttons
-%btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    border-radius: $border-radius;
-    padding-inline: 2.4rem;
-    cursor: pointer;
-    height: 4rem;
-
-    &-primary{
         @extend %btn;
-
-        // @each $variant, $colors in $btn-colors {
-        //     &--#{$variant} {
-        //         @include button-variant(map-get($colors, bg), map-get($colors, text), map-get($colors, border), map-get($colors, hover-bg));
-        //     }
-        // }
-    }
-
-    &-radio {
-        border-radius: $border-radius;
         background-color:  var(--clr-gray-200);
-        padding: 2.5px;
+        padding: 3px;
 
         & > * {
-            @extend %padding-block-xs;
             @extend %padding-inline-sm;
+            display: inline-flex;
+            align-items: center;
             border-radius: $border-radius;
-            display: inline-block;
+            white-space: nowrap;
+            height: 100%;
 
             &.active {
                 background-color:  var(--clr-white);
@@ -144,4 +151,32 @@
             }
         }
     }
+    &-radio-press {
+        @extend %btn;
+        gap: var(--spacing-sm);
+        height: 4rem;
+
+        label {
+            @extend %padding-inline-sm;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border-radius: $border-radius;
+            background-color: var(--clr-gray-200);
+            // border: solid 1px $border-color;
+        }
+        input[type="radio"]:checked + label {
+            background-color: var(--clr-white);
+            border:solid 1px var(--clr-primary);
+            color: var(--clr-primary);
+        }
+        
+        input[type="radio"] {
+            display: none;
+        }
+    }
+    &-radio-group {
+        
+    }
 }
+

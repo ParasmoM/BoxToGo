@@ -38,7 +38,7 @@
     height: 100%;
 
     &__sub-section {
-        @extend %btn-radio;
+        @extend %btn-radio-slide;
         height: fit-content;
         white-space: nowrap;
     }
@@ -168,7 +168,7 @@
             white-space: nowrap;
 
             form {
-                @extend %btn-radio;
+                @extend %btn-radio-slide;
             }
         }
 

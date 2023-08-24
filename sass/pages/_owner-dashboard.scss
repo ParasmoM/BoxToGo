@@ -1,44 +1,156 @@
 @use "../base/variables" as *;
 @use "../utils" as *;
 
-.owner-dashboard {
-
-    .dashboard {
-        .container {
-            @extend %container-secondary;   
-            @extend %section;
+.owner {
+    &__header {
+        &-container {
+            @extend %container-primary; 
+            @extend %padding-inline-xl;
         }
     }
-    .titre {
+    &__title {
+        @extend %container-secondary; 
         @extend %title-primary;
+        
+        margin-top: 22rem;
     }
 
-    article > .container{
-        border-radius: $border-radius;
-        background-color: var(--clr-gray-200);
-        @extend %padding-lg;
+    .ticket {
+        @extend %container-secondary; 
+    }
 
-        > .box1 {
+    @at-root .master-form {
+        .language-section,
+        .price-category-section,
+        .address-section,
+        .equipment-section {
+            @extend %margin-bottom-xl;
+            @extend %container-secondary; 
+            @extend %padding-lg;
+
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+
+        .language-section {
             display: flex;
-            gap: var(--spacing-sm);
-            @extend %padding-bottom-sm;
-            border-bottom: solid 1px $border-color;
+            padding: 0;
 
-            .text {
+            .language-buttons {
+                display: flex;
+                flex-direction: column;
+                background-color: var(--clr-gray-200);
+            
+                .language-btn {
+                    @extend %fw-medium;
+                    @extend %padding-lg;
+                    
+                    text-align: left;
+
+                    &.active {
+                        background-color: var(--clr-white);
+                    }
+                }
+                .language-btn-fr {
+                    border-top-left-radius: $border-radius;
+                }
+            }
+
+            .title-description-section {
+                @extend %padding-lg;
+
                 flex: auto;
             }
-            
-            a {
-                display: block;
-                height: 10rem;
+            .title-input-set {
+                display: none;
+
+                &.active {
+                    display: flex;
+                }
             }
-            img {
+            .description-textarea-set {
+                display: none;
+
+                &.active {
+                    display: flex;
+                }
+            }
+        }
+        .equipment-section {
+            margin-bottom: 16rem;
+        }
+
+        .section-header {
+            @extend %title-tertiary;
+        }
+
+        .title-description-inputs,
+        .price-category-inputs,
+        .address-inputs,
+        .equipment-inputs {
+            @extend %margin-top-lg;
+        }
+
+        .title-input-set,
+        .description-textarea-set,
+        .category-input-set,
+        .price-input-set,
+        .address-input-set,
+        .status-input-set,
+        .space-equipment-input-set {
+            @extend %margin-top-lg;
+
+            display: flex;
+            flex-direction: column;
+
+            > label {
+                @extend %margin-left-sm;
+                @extend %margin-bottom-xs;
+            }
+            > input[type=text],
+            > select {
+                @extend %padding-left-sm;
+
+                border: solid 1px $border-color;
                 border-radius: $border-radius;
+                height: 4rem;
+            }
+            > textarea {
+                @extend %padding-sm;
+
+                border: solid 1px $border-color;
+                border-radius: $border-radius;
+                height: 16rem;
             }
         }
 
-        > .box2 {
-            @extend %margin-top-sm;
+        .status-options {
+            @extend %btn-radio-press;
+        }
+        .equipment-options {
+            @extend %btn-checkbox-press;
+        }
+
+        .btn-master {
+            position: fixed;
+            bottom: -11rem;
+            left: 0; right: 0; 
+            background-color: var(--clr-white);
+            box-shadow: rgba(0, 0, 0, 0.15) 0px -3px 3px 0px;
+            transition: bottom .3s ease-in;
+
+            &__container {
+                @extend %padding-block-lg;
+                @extend %container-secondary; 
+
+                display: flex;
+                justify-content: flex-end;
+            }
+            button {
+                @extend %btn-black;
+            }
         }
     }
 }

@@ -1,0 +1,13 @@
+{% extends "owner_reservations/index.html.twig" %}
+
+{% block heading %}Annonces{% endblock heading %}
+
+{% block content %}
+
+<div class="ticket">
+    {% for space in app.user.owner %}
+        {% include "components/_card-ticket.html.twig" %}
+    {% endfor %}
+</div>
+    
+{% endblock content %}

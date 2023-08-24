@@ -71,9 +71,9 @@
                                 <a href="">Messages</a>
                                 <a href="">Notifications</a>
                                 {% if 'ROLE_OWNER' in app.user.roles %}
-                                    <a href="{{ path('priver_owner_reservations', {'id': app.user.id}) }}">Tableau de board</a>
+                                    <a href="{{ path('owner_annonces') }}">Tableau de board</a>
                                 {% else %}
-                                    <a href="{{ path('public_user_reservations', {'id': app.user.id}) }}">Réservations</a>
+                                    <a href="{{ path('public_user_reservations') }}">Réservations</a>
                                 {% endif %}
                             </li>
 

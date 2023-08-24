@@ -49,6 +49,7 @@ button {
   --spacing-xxl: 10rem;
   --spacing-auto: auto;
   --clr-primary: #1DB9BF;
+  --clr-primary-light: rgba(29, 186, 191, 0.168627451);
   --clr-success: #44E35D;
   --clr-error: #E86A6A;
   --clr-white: #FFFFFF;
@@ -66,38 +67,51 @@ button {
   --clr-other-dark-blue: #444F5A;
 }
 
-.masthead {
+.header-alt, .masthead {
   font-size: 1.4rem;
 }
 
-body {
+body, .master-form .status-options, .header-alt__branding .header-alt__switch, .masthead-logo__sub-section, .masthead-action__button-menu .menu-dropdown--settings form, .master-form .equipment-options, .master-form .btn-master button, .card-ticket__section:last-of-type .card-ticket__edit-link {
   font-size: 1.6rem;
+}
+
+.card-ticket__status {
+  font-size: 1.8rem;
 }
 
 body {
   font-weight: 400;
 }
 
-.masthead-action__button-menu ul, .card-space__info-group:first-of-type p:first-child {
+.master-form .language-section .language-buttons .language-btn, .masthead-action__button-menu ul, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-alt__branding .header-alt__switch, .masthead-logo__sub-section, .masthead-action__button-menu .menu-dropdown--settings form, .master-form .equipment-options, .master-form .btn-master button, .card-ticket__section:last-of-type .card-ticket__edit-link {
   font-weight: 500;
 }
 
-.settings .navbar .button.active, .masthead, .ownerhead nav, .card-space__info-group:first-of-type p:last-child, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner-dashboard .titre, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings .navbar .button.active, .header-alt, .masthead, .ownerhead nav, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .owner__title, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-weight: 600;
 }
 
-.home__header .home__category-item,
+.master-form .title-input-set > textarea,
+.master-form .description-textarea-set > textarea,
+.master-form .category-input-set > textarea,
+.master-form .price-input-set > textarea,
+.master-form .address-input-set > textarea,
+.master-form .status-input-set > textarea,
+.master-form .space-equipment-input-set > textarea, .home__header .home__category-item,
 .home__header .home__filters-btn, .masthead-action__button-lang ul, .masthead-action__button-menu .menu-dropdown--personal,
 .masthead-action__button-menu .menu-dropdown--settings,
 .masthead-action__button-menu .menu-dropdown--logout {
   padding: 1.5rem;
 }
 
-.owner-dashboard article > .container, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .listing-form__checkbox, .listing-footer__container, .admin-aside__list, .dashboard-add__container, .modal .content, .masthead__container {
+.master-form .language-section,
+.master-form .price-category-section,
+.master-form .address-section,
+.master-form .equipment-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .listing-form__checkbox, .listing-footer__container, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .card-ticket__inner {
   padding: 3rem;
 }
 
-.owner-dashboard article > .container > .box2, .listing-form__title:not(:first-of-type), .loginpage__link:last-of-type, .card-space__info-container {
+.listing-form__title:not(:first-of-type), .loginpage__link:last-of-type, .card-ticket__section:last-of-type, .card-space__info-container {
   margin-top: 1.5rem;
 }
 
@@ -105,7 +119,16 @@ body {
   padding-top: 3rem;
 }
 
-.dashboard-edit-form button {
+.master-form .title-description-inputs,
+.master-form .price-category-inputs,
+.master-form .address-inputs,
+.master-form .equipment-inputs, .master-form .title-input-set,
+.master-form .description-textarea-set,
+.master-form .category-input-set,
+.master-form .price-input-set,
+.master-form .address-input-set,
+.master-form .status-input-set,
+.master-form .space-equipment-input-set, .dashboard-edit-form button, .card-ticket__reservation-number {
   margin-top: 3rem;
 }
 
@@ -133,11 +156,17 @@ body {
   margin-right: 3rem;
 }
 
-.listing-form__label {
+.master-form .title-input-set > label,
+.master-form .description-textarea-set > label,
+.master-form .category-input-set > label,
+.master-form .price-input-set > label,
+.master-form .address-input-set > label,
+.master-form .status-input-set > label,
+.master-form .space-equipment-input-set > label, .listing-form__label {
   margin-bottom: 0.8rem;
 }
 
-.owner-dashboard article > .container > .box1 {
+.card-ticket__section:first-of-type {
   padding-bottom: 1.5rem;
 }
 
@@ -159,7 +188,10 @@ body {
   padding-bottom: 6rem;
 }
 
-.space-detail section:first-of-type .gallery, .space-detail section:first-of-type .box1 .buttons {
+.master-form .language-section,
+.master-form .price-category-section,
+.master-form .address-section,
+.master-form .equipment-section, .space-detail section:first-of-type .gallery, .space-detail section:first-of-type .box1 .buttons, .card-ticket__reservation-number {
   margin-bottom: 6rem;
 }
 
@@ -171,11 +203,30 @@ body {
   padding-left: 0.8rem;
 }
 
-.dashboard-edit-form input {
+.master-form .title-input-set > input[type=text],
+.master-form .title-input-set > select,
+.master-form .description-textarea-set > input[type=text],
+.master-form .description-textarea-set > select,
+.master-form .category-input-set > input[type=text],
+.master-form .category-input-set > select,
+.master-form .price-input-set > input[type=text],
+.master-form .price-input-set > select,
+.master-form .address-input-set > input[type=text],
+.master-form .address-input-set > select,
+.master-form .status-input-set > input[type=text],
+.master-form .status-input-set > select,
+.master-form .space-equipment-input-set > input[type=text],
+.master-form .space-equipment-input-set > select, .dashboard-edit-form input {
   padding-left: 1.5rem;
 }
 
-.listing-form__label, .register__form .register__divider-text::after, .loginpage__divider-text::after {
+.master-form .title-input-set > label,
+.master-form .description-textarea-set > label,
+.master-form .category-input-set > label,
+.master-form .price-input-set > label,
+.master-form .address-input-set > label,
+.master-form .status-input-set > label,
+.master-form .space-equipment-input-set > label, .listing-form__label, .register__form .register__divider-text::after, .loginpage__divider-text::after {
   margin-left: 1.5rem;
 }
 
@@ -185,6 +236,10 @@ body {
 
 .listing-form__input, .listing-form__select {
   padding-left: 3rem;
+}
+
+.card-ticket__reservation-number {
+  margin-left: 3rem;
 }
 
 .dashboard-edit-form button {
@@ -197,9 +252,9 @@ body {
   padding-inline: 0.8rem;
 }
 
-.space-detail section:first-of-type .box1 .buttons button, .register__form .register__social-login a, .admin-aside__item a, .masthead-nav__minimal-search-bar, .masthead-nav__minimal-search-bar button, .masthead-action__button-menu .menu-dropdown--personal a,
+.space-detail section:first-of-type .box1 .buttons button, .register__form .register__social-login a, .admin-aside__item a, .header-alt__options a, .masthead-nav__minimal-search-bar, .masthead-nav__minimal-search-bar button, .masthead-action__button-menu .menu-dropdown--personal a,
 .masthead-action__button-menu .menu-dropdown--settings a,
-.masthead-action__button-menu .menu-dropdown--logout a, .ownerhead nav a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
+.masthead-action__button-menu .menu-dropdown--logout a, .ownerhead nav a, .master-form .status-options label, .header-alt__branding .header-alt__switch > *, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > *, .master-form .equipment-options label {
   padding-inline: 1.5rem;
 }
 
@@ -207,7 +262,7 @@ body {
   margin-inline: 1.5rem;
 }
 
-.listing-header__back-link, .dashboard-edit-form button {
+.listing-header__back-link, .dashboard-edit-form button, .master-form .btn-master button, .card-ticket__section:last-of-type .card-ticket__edit-link {
   padding-inline: 2.4rem;
 }
 
@@ -215,17 +270,20 @@ body {
   padding-inline: 3rem;
 }
 
-.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
+.owner__header-container {
   padding-inline: 6rem;
 }
 
-.listing-form__description-item, .owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
+.listing-form__description-item, .owner__title, .owner .ticket, .master-form .language-section,
+.master-form .price-category-section,
+.master-form .address-section,
+.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container, .owner__header-container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .masthead__container, .ownerhead > .container {
   margin-inline: auto;
 }
 
 .settings .navbar .button, .admin-aside__item a, .masthead-action__button-menu .menu-dropdown--personal a,
 .masthead-action__button-menu .menu-dropdown--settings a,
-.masthead-action__button-menu .menu-dropdown--logout a, .ownerhead nav a, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
+.masthead-action__button-menu .menu-dropdown--logout a, .ownerhead nav a {
   padding-block: 0.8rem;
 }
 
@@ -241,28 +299,31 @@ body {
   margin-block: 1.5rem;
 }
 
-.owner-detail section:first-of-type .content, .space-detail section:nth-child(4) .content, .listing-header__container, .admin-header, .ownerhead {
+.master-form .btn-master__container, .owner-detail section:first-of-type .content, .space-detail section:nth-child(4) .content, .listing-header__container, .admin-header, .ownerhead {
   padding-block: 3rem;
 }
 
-.owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .masthead__container, .ownerhead > .container {
+.owner__header-container, .owner-detail > .container, .space-detail > .container, .home__container, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .masthead__container, .ownerhead > .container {
   max-width: 1920px;
 }
-.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container {
+.owner__title, .owner .ticket, .master-form .language-section,
+.master-form .price-category-section,
+.master-form .address-section,
+.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings > .container, .register__container, .loginpage__container {
   max-width: 1024px;
 }
 
-.owner-dashboard .dashboard .container, .user-dashboard > .container, .settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home__container {
+.user-dashboard > .container, .settings > .container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4), .home__container {
   margin-top: 10rem;
 }
 
-.owner-dashboard .titre, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.owner__title, .user-dashboard .titre, .settings .titre, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.owner-dashboard .titre::before, .user-dashboard .titre::before, .settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
+.owner__title::before, .user-dashboard .titre::before, .settings .titre::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail section:first-of-type h1::before, .space-detail section:nth-child(2) h2::before, .space-detail section:nth-child(3) h2::before, .space-detail section:nth-child(4) h2::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -276,20 +337,78 @@ body {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
 }
-.masthead-logo__sub-section, .masthead-action__button-menu .menu-dropdown--settings form {
+.master-form .section-header, .card-ticket__info .card-ticket__title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.8rem;
+}
+
+.master-form .status-options, .header-alt__branding .header-alt__switch, .masthead-logo__sub-section, .masthead-action__button-menu .menu-dropdown--settings form, .master-form .equipment-options, .master-form .btn-master button, .card-ticket__section:last-of-type .card-ticket__edit-link {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.master-form .btn-master button, .card-ticket__section:last-of-type .card-ticket__edit-link {
+  height: 4rem;
+  justify-content: center;
+  border: solid 1px var(--clr-gray-700);
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+}
+.master-form .equipment-options {
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+.master-form .equipment-options label {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
   border-radius: 1rem;
   background-color: var(--clr-gray-200);
-  padding: 2.5px;
 }
-.masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
+.master-form .equipment-options input[type=checkbox]:checked + label {
+  background-color: var(--clr-white);
+  border: solid 1px var(--clr-primary);
+  color: var(--clr-primary);
+}
+.master-form .equipment-options input[type=checkbox] {
+  display: none;
+}
+.header-alt__branding .header-alt__switch, .masthead-logo__sub-section, .masthead-action__button-menu .menu-dropdown--settings form {
+  background-color: var(--clr-gray-200);
+  padding: 3px;
+}
+.header-alt__branding .header-alt__switch > *, .masthead-logo__sub-section > *, .masthead-action__button-menu .menu-dropdown--settings form > * {
+  display: inline-flex;
+  align-items: center;
   border-radius: 1rem;
-  display: inline-block;
+  white-space: nowrap;
+  height: 100%;
 }
-.masthead-logo__sub-section > *.active, .masthead-action__button-menu .menu-dropdown--settings form > *.active {
+.header-alt__branding .header-alt__switch > *.active, .masthead-logo__sub-section > *.active, .masthead-action__button-menu .menu-dropdown--settings form > *.active {
   background-color: var(--clr-white);
   color: var(--clr-primary);
 }
-
+.master-form .status-options {
+  gap: var(--spacing-sm);
+  height: 4rem;
+}
+.master-form .status-options label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+}
+.master-form .status-options input[type=radio]:checked + label {
+  background-color: var(--clr-white);
+  border: solid 1px var(--clr-primary);
+  color: var(--clr-primary);
+}
+.master-form .status-options input[type=radio] {
+  display: none;
+}
 body {
   font-family: "Montserrat", sans-serif;
   color: var(--clr-black);
@@ -334,6 +453,34 @@ body {
   justify-content: flex-end;
 }
 
+.card-ticket__inner {
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+}
+.card-ticket__section:first-of-type {
+  display: flex;
+  gap: var(--spacing-sm);
+  border-bottom: solid 1px var(--clr-gray-700);
+}
+.card-ticket__section:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+}
+.card-ticket__media img {
+  height: 11.4rem;
+  width: 16rem;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.card-ticket__info {
+  flex: auto;
+}
+.card-ticket__info .card-ticket__title {
+  text-decoration: underline;
+}
+.card-ticket__status {
+  color: var(--clr-primary);
+}
 .masthead {
   position: sticky;
   top: 0;
@@ -495,6 +642,91 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.header-alt {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12.5rem;
+  background-color: var(--clr-white);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.header-alt__container {
+  display: flex;
+  align-items: center;
+}
+.header-alt__branding {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+.header-alt__branding .header-alt__logo img {
+  height: 6.5rem;
+  aspect-ratio: 1/1;
+}
+.header-alt__nav {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+}
+.header-alt__nav > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  padding-inline: 1.2rem;
+  border-radius: 1rem;
+}
+.header-alt__nav > *:hover {
+  background-color: var(--clr-gray-200);
+}
+.header-alt__nav .active {
+  position: relative;
+}
+.header-alt__nav .active::after {
+  content: "";
+  display: inline-block;
+  height: 0.1rem;
+  width: 3rem;
+  background-color: var(--clr-black);
+  position: absolute;
+  bottom: 0;
+}
+.header-alt__options {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-lg);
+}
+.header-alt__options a {
+  border-radius: 1rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+.header-alt__options a:hover {
+  background-color: var(--clr-gray-200);
+}
+.header-alt__options .header-alt__option-lang {
+  position: relative;
+}
+.header-alt__options .header-alt__option-lang ul {
+  display: none;
+  backdrop-filter: blur(20px);
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  font-family: "Open Sans", sans-serif;
+  position: absolute;
+  top: 5rem;
+  left: -4.1rem;
+}
+.header-alt__options .header-alt__option-lang ul.show {
+  display: block;
 }
 
 .admin-inteface {
@@ -1363,22 +1595,103 @@ body {
   background-color: var(--clr-white);
 }
 
-.owner-dashboard article > .container {
+.owner__title {
+  margin-top: 22rem;
+}
+.master-form .language-section,
+.master-form .price-category-section,
+.master-form .address-section,
+.master-form .equipment-section {
+  border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.master-form .language-section {
+  display: flex;
+  padding: 0;
+}
+.master-form .language-section .language-buttons {
+  display: flex;
+  flex-direction: column;
   background-color: var(--clr-gray-200);
 }
-.owner-dashboard article > .container > .box1 {
-  display: flex;
-  gap: var(--spacing-sm);
-  border-bottom: solid 1px var(--clr-gray-700);
+.master-form .language-section .language-buttons .language-btn {
+  text-align: left;
 }
-.owner-dashboard article > .container > .box1 .text {
+.master-form .language-section .language-buttons .language-btn.active {
+  background-color: var(--clr-white);
+}
+.master-form .language-section .language-buttons .language-btn-fr {
+  border-top-left-radius: 1rem;
+}
+.master-form .language-section .title-description-section {
   flex: auto;
 }
-.owner-dashboard article > .container > .box1 a {
-  display: block;
-  height: 10rem;
+.master-form .language-section .title-input-set {
+  display: none;
 }
-.owner-dashboard article > .container > .box1 img {
+.master-form .language-section .title-input-set.active {
+  display: flex;
+}
+.master-form .language-section .description-textarea-set {
+  display: none;
+}
+.master-form .language-section .description-textarea-set.active {
+  display: flex;
+}
+.master-form .equipment-section {
+  margin-bottom: 16rem;
+}
+.master-form .title-input-set,
+.master-form .description-textarea-set,
+.master-form .category-input-set,
+.master-form .price-input-set,
+.master-form .address-input-set,
+.master-form .status-input-set,
+.master-form .space-equipment-input-set {
+  display: flex;
+  flex-direction: column;
+}
+.master-form .title-input-set > input[type=text],
+.master-form .title-input-set > select,
+.master-form .description-textarea-set > input[type=text],
+.master-form .description-textarea-set > select,
+.master-form .category-input-set > input[type=text],
+.master-form .category-input-set > select,
+.master-form .price-input-set > input[type=text],
+.master-form .price-input-set > select,
+.master-form .address-input-set > input[type=text],
+.master-form .address-input-set > select,
+.master-form .status-input-set > input[type=text],
+.master-form .status-input-set > select,
+.master-form .space-equipment-input-set > input[type=text],
+.master-form .space-equipment-input-set > select {
+  border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
+  height: 4rem;
+}
+.master-form .title-input-set > textarea,
+.master-form .description-textarea-set > textarea,
+.master-form .category-input-set > textarea,
+.master-form .price-input-set > textarea,
+.master-form .address-input-set > textarea,
+.master-form .status-input-set > textarea,
+.master-form .space-equipment-input-set > textarea {
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  height: 16rem;
+}
+.master-form .btn-master {
+  position: fixed;
+  bottom: -11rem;
+  left: 0;
+  right: 0;
+  background-color: var(--clr-white);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px -3px 3px 0px;
+  transition: bottom 0.3s ease-in;
+}
+.master-form .btn-master__container {
+  display: flex;
+  justify-content: flex-end;
 }
