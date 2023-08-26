@@ -33,7 +33,7 @@
         </nav>
 
         <div class="header-alt__options">
-            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="header-alt__option-link">Paramètres</a>
+            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="{% if route == 'public_account' %}active{% endif %}">Paramètres</a>
             <div class="header-alt__option-lang" id="btn-lang">
                 <img src="{{ asset('images/icones/langue.svg') }}" alt="Language selector">
                 <ul>

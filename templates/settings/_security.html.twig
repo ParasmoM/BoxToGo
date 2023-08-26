@@ -1,0 +1,42 @@
+{% extends "settings/index.html.twig" %}
+
+{% block content %}
+
+{% if form is defined %}
+    {{ form_start(form, {
+        'attr': {'class': 'settings__form'},
+    }) }}
+    
+        <h2>Gestion du compte</h2>
+        
+        <div class="settings__account-management">
+            
+            {{ form_row(form.password, {'row_attr': {'class': 'settings__account-item'}}) }}
+
+            {{ form_row(form.new_password.first, {'row_attr': {'class': 'settings__account-item'}}) }}
+
+            {{ form_row(form.new_password.second, {'row_attr': {'class': 'settings__account-item'}}) }}
+
+        </div>
+
+    {{ form_widget(form) }}
+    
+        <div class="settings__submit">
+            <div class="settings__submit-container">
+                <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endif %}
+
+    <form class="settings__form-delete" method="post" action="{{ path('public_settings_delete', {'id': app.user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+        
+        <button class="btn">Supprimer le compte</button>
+
+    </form>
+    
+{% endblock content %}
+

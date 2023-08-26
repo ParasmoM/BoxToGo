@@ -2,14 +2,19 @@
 @use "../utils" as *;
 
 .settings {
-    > .container {
+    &__container {
         @extend %container-secondary;
         @extend %section;
     }
-    .titre {
+    &__title {
+        @extend %container-secondary; 
         @extend %title-primary;
+        
+        margin-top: 22rem;
     }
-    .navbar {
+    &__navbar {
+        @extend %margin-bottom-xl;
+        
         display: flex;
         justify-content: space-between;
         border-radius: $border-radius;
@@ -19,14 +24,202 @@
         .button {
             @extend %padding-block-xs;
             @extend %padding-inline-lg;
+
             display: inline-block;
             border-radius: $border-radius;
             background-color: inherit;
             
             &.active {
                 @extend %fw-semibold;
+
                 background-color: var(--clr-white);
             }
         }
     }
+    &__content-container {
+        padding-bottom: 10rem;
+    }
+    .setting {
+        position: relative;
+
+        .settings__avatar-uploader__button--delete {
+            position: absolute;
+            top: 0;
+            border: solid 1px red;
+        }
+    }
 }
+
+.settings {
+    &__form {
+        h2 {
+            @extend %title-tertiary;
+            @extend %margin-bottom-lg;
+        }
+    }
+
+    &__avatar-uploader,
+    &__personal-details,
+    &__info-fields,
+    &__address-info,
+    &__notification-preference,
+    &__notification-actions,
+    &__preferences,
+    &__account-management,
+    &__form-delete {
+        @extend %padding-lg;
+        @extend %margin-bottom-xl;
+
+        border-radius: $border-radius;
+        border: solid 1px $border-color;
+    }
+
+    &__avatar-uploader {
+        display: flex;
+        gap: var(--spacing-lg);
+
+        &__image-zone {
+            height: 10rem;
+            width: 10rem;
+        }
+        &__button--upload {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            label {
+                @extend %btn-white;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                width: fit-content;
+            }
+            input {
+                display: none;
+                visibility: hidden;
+            }
+            > div {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            p {
+                color: $border-color;
+            }
+        }
+    }
+
+    &__personal-details {
+        > div {
+            @extend %input-text;
+        }
+    }
+    &__description-langs {
+        position: relative;
+        
+        .settings__description--en,
+        .settings__description--fr,
+        .settings__description--nl {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+        textarea {
+            @extend %padding-sm;
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            height: 16rem;
+            width: 100%;
+        }
+        .buttons {
+            position: absolute;
+            top: -2.6rem; right: 0;
+            display: inline-flex;
+
+            button {
+                border: solid 1px $border-color;
+                @extend %padding-inline-sm;
+            }
+            button.active {
+                background-color: var(--clr-black);
+                color: var(--clr-white);
+            }
+        }
+    }
+
+
+    &__phone-number-field {
+        @extend %input-text;
+    }
+
+    &__language-choice,
+    &__status-choice,
+    &__gender-choice {
+        > label {
+            @extend %margin-label;
+        }
+        > div {
+            @extend %margin-top-xs;
+        }
+    }
+
+    &__status-choice {
+        @extend %margin-top-lg;
+        @extend %margin-bottom-lg;
+    }
+    &__radio-options {
+        @extend %input-style-press;
+    
+        label {
+            @extend %margin-right-sm;
+        }
+    }
+
+    &__address-info {
+        > div {
+            @extend %input-text;
+        }
+    }
+
+    &__notification-type,
+    &__action {
+        @extend %input-chechbox;
+    }
+
+    &__preference-item {
+        @extend %input-select;
+    }
+
+    &__account-item {
+        @extend %input-text;
+    }
+
+    &__form-delete {
+        
+        button {
+            @extend %btn-white;
+            height: 5rem;
+        }
+    }
+
+    &__submit {
+        position: fixed;
+        bottom: 0; left: 0; right: 0; 
+        background-color: var(--clr-white);
+        box-shadow: rgba(0, 0, 0, 0.15) 0px -3px 3px 0px;
+        transition: .3s ease-in;
+
+        &-container {
+            @extend %padding-block-lg;
+            @extend %container-secondary; 
+
+            display: flex;
+            justify-content: flex-end;
+        }
+        button {
+            @extend %btn-black;
+        }
+    }
+}
+
+

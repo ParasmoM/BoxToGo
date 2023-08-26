@@ -14,7 +14,7 @@ class SpaceImages
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 250)]
     private ?string $imagePath = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -28,6 +28,9 @@ class SpaceImages
 
     #[ORM\ManyToOne(inversedBy: 'image')]
     private ?Spaces $space = null;
+
+    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
+    private ?Users $user = null;
 
     public function __construct()
     {
@@ -100,6 +103,28 @@ class SpaceImages
     public function setSpace(?Spaces $space): static
     {
         $this->space = $space;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getImage() !== $this) {
+            $user->setImage($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

@@ -1,0 +1,39 @@
+
+{% extends "owner_reservations/index.html.twig" %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('js/btn-master.js') }}" defer></script>
+<script src="{{ asset('js/language-section.js') }}" defer></script>
+{% endblock %}
+{% block heading %}Editer votre {{ space.spaceCateg.name }}{% endblock heading %}
+
+{% block content %}
+
+{% if form is defined %}
+    {{ form_start(form, {
+        'attr': {'class': 'master-form'},
+    }) }}
+
+        {% include "owner_reservations/_language-section.html.twig" %}
+
+        {% include "owner_reservations/_price-category-section.html.twig" %}
+
+        {% include "owner_reservations/_address-section.html.twig" %}
+
+        {% include "owner_reservations/_equipment-section.html.twig" %}
+
+    {{ form_widget(form) }}
+
+        <div class="btn-master">
+            <div class="btn-master__container">
+                <button>{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endif %}
+    
+{% endblock content %}
+
+

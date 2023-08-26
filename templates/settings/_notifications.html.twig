@@ -1,0 +1,65 @@
+{% extends "settings/index.html.twig" %}
+
+{% block content %}
+
+{% if form is defined %}
+    {{ form_start(form, {
+        'attr': {'class': 'settings__form'},
+    }) }}
+    
+        <h2>Informations d’adresse</h2>
+        
+        <div class="settings__notification-preference">
+
+            <p>Veuillez choisir votre préférence pour recevoir des notifications.</p>
+
+            <div class="settings__notification-type">
+                {{ form_widget(form.email) }}
+                {{ form_label(form.email, ' ') }}
+                {{ form_label(form.email, null) }}
+            </div>
+
+            <div class="settings__notification-type">
+                {{ form_widget(form.alert) }}
+                {{ form_label(form.alert, ' ') }}
+                {{ form_label(form.alert, null) }}
+            </div>
+
+        </div>
+
+        <div class="settings__notification-actions">
+
+            <p>Indiquez pour quelles actions vous souhaitez recevoir des notifications.</p>
+
+            <div class="settings__action">
+                {{ form_widget(form.Commentaires) }}
+                {{ form_label(form.Commentaires, ' ') }}
+                {{ form_label(form.Commentaires, null) }}
+            </div>
+
+            <div class="settings__action">
+                {{ form_widget(form.Favoris) }}
+                {{ form_label(form.Favoris, ' ') }}
+                {{ form_label(form.Favoris, null) }}
+            </div>
+
+            <div class="settings__action">
+                {{ form_widget(form.Messages) }}
+                {{ form_label(form.Messages, ' ') }}
+                {{ form_label(form.Messages, null) }}
+            </div>
+
+        </div>
+
+    {{ form_widget(form) }}
+    
+        <div class="settings__submit">
+            <div class="settings__submit-container">
+                <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endif %}
+    
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "settings/index.html.twig" %}
+
+{% block content %}
+
+{% if form is defined %}
+    {{ form_start(form, {
+        'attr': {'class': 'settings__form'},
+    }) }}
+    
+        <h2>Préférences globales</h2>
+        
+        <div class="settings__preferences">
+
+            {{ form_row(form.appearance, {'row_attr': {'class': 'settings__preference-item'}, 'attr': {'class': 'settings__preference-select'}}) }}
+
+            {{ form_row(form.language, {'row_attr': {'class': 'settings__preference-item'}, 'attr': {'class': 'settings__preference-select'}}) }}
+
+        </div>
+
+    {{ form_widget(form) }}
+    
+        <div class="settings__submit">
+            <div class="settings__submit-container">
+                <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endif %}
+    
+{% endblock content %}
+

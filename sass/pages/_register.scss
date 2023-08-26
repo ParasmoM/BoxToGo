@@ -3,15 +3,13 @@
 
 .register {
     height: 100vh;
-    position: relative;
-    display: flex;
-    place-content: center;
     
     &__container {
         @extend %container-secondary;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 100%;
     }
 }
 

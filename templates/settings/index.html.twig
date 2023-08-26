@@ -5,31 +5,33 @@
 {% set menuItems = ['account', 'address', 'notifications', 'preferences', 'security', 'payments'] %}
 
 {% block body %}
-<main class="settings">
+<div class="settings">
+    <div class="settings__container">
 
-    <div class="container">
-        <h1 class="titre">Paramètres</h1>
+        <header class="settings__header">
+            {% include "layout/header-alt.html.twig" %}
+        </header>
 
-        <nav class="navbar">
+        <h1 class="settings__title">Paramètres</h1>
+
+        <nav class="settings__navbar">
+
             {% for menuItem in menuItems %}
-                <a class="button {% if route == 'public_' ~ menuItem %}active{% endif %}" href="{{ path('public_' ~ menuItem, {'id': app.user.id}) }}">{{ menuItem }}</a>
+
+                <a class="button {% if route == 'public_' ~ menuItem %}active{% endif %}" href="{{ path('public_' ~ menuItem, {'id': app.user.id}) }}">{{ menuItem|capitalize }}</a>
+            
             {% endfor %}
+
         </nav>
-        {# {{ dump() }} #}
-        {% if form is defined %}
-            {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <button class="btn">{{ button_label|default('Save') }}</button>
-            {{ form_end(form) }}
-        {% endif %}
 
-        {% if route == 'public_security' %}
-        <form method="post" action="{{ path('public_settings_delete', {'id': app.user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
-            <button class="btn">Supprimer le compte</button>
-        </form>
-        {% endif %}
+        <main class="settings__content">
+            <div class="settings__content-container">
+
+                {% block content %}{% endblock content %}
+
+            </div>
+        </main>
+
     </div>
-
-</main>
+</div>
 {% endblock %}

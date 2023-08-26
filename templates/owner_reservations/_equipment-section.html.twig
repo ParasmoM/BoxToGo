@@ -1,0 +1,19 @@
+<div class="equipment-section">
+    {{ form_label(form.equipment, 'Equipements', {
+        'label_attr': {'class': 'section-header'}
+    }) }}
+
+    <div class="equipment-inputs">
+        {{ form_row(form.equipment.status, {
+            'row_attr': {'class': 'status-input-set'},
+            'label_attr': {'class': 'status-label'},
+            'attr': {'class': 'status-options'}
+        }) }}
+
+        {{ form_row(form.equipment.spaceEquipments, {
+            'row_attr': {'class': 'space-equipment-input-set'},
+            'label_attr': {'class': 'equipment-label'},
+            'attr': {'class': 'equipment-options'}
+        }) }}
+    </div>
+</div>

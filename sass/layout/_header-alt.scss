@@ -40,11 +40,12 @@
         justify-content: center;
 
         > * {
+            @extend %padding-inline-sm;
+
             display: flex;
             align-items: center;
             justify-content: center;
             height: 4rem;
-            padding-inline: 1.2rem;
             border-radius: $border-radius;
 
             &:hover {
@@ -74,13 +75,28 @@
 
         a {
             @extend %padding-inline-sm;
-            border-radius: $border-radius;
-            height: 4rem;
             display: flex;
             align-items: center;
+            justify-content: center;
+            height: 4rem;
+            border-radius: $border-radius;
+
 
             &:hover {
                 background-color: var(--clr-gray-200);
+            }
+            &.active {
+                position: relative;
+    
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    height: .1rem;
+                    width: 3rem;
+                    background-color: var(--clr-black);
+                    position: absolute;
+                    bottom: 0;
+                }
             }
         }
 

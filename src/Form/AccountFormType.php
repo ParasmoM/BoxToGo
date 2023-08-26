@@ -15,10 +15,6 @@ class AccountFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('profilePicture', FileType::class, [
-                'attr' => ['class' => 'section-input'],
-                'required' => false
-            ])
             ->add('familyName')
             ->add('givenName')
             ->add('email', null, [
@@ -37,7 +33,7 @@ class AccountFormType extends AbstractType
                 ],
                 'expanded' => true, // Render as radio buttons
                 'multiple' => false, // Only one can be selected
-                'attr' => ['class' => 'custom-class'],
+                // 'attr' => ['class' => 'custom-class'],
             ])
             ->add('status',  ChoiceType::class, [
                 'choices'  => [
@@ -46,7 +42,7 @@ class AccountFormType extends AbstractType
                 ],
                 'expanded' => true, // Render as radio buttons
                 'multiple' => false, // Only one can be selected
-                'attr' => ['class' => 'custom-class'],
+                // 'attr' => ['class' => 'custom-class'],
             ])
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
@@ -56,7 +52,7 @@ class AccountFormType extends AbstractType
                 ],
                 'expanded' => true, // Render as radio buttons
                 'multiple' => false, // Only one can be selected
-                'attr' => ['class' => 'custom-class'],
+                // 'attr' => ['class' => 'custom-class'],
             ])
             
         ;

@@ -1,0 +1,96 @@
+{% extends "settings/index.html.twig" %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/account-description.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+    {% if form is defined %}
+        {{ form_start(form, {
+            'attr': {'class': 'settings__form'},
+        }) }}
+
+            <div class="settings__public-profile">
+
+                <h2>Profil public</h2>
+
+                <div class="settings__avatar-uploader">
+                    <div class="settings__avatar-uploader__image-zone">
+                        {% include "components/_avatar.html.twig" %}
+                    </div>
+
+                    <div class="settings__avatar-uploader__actions">
+                        <button type="button" class="settings__avatar-uploader__button--upload">
+                            
+                            {{ form_row(form.photo.imagePath) }}
+
+                            <div>
+                                <label for="form_settings_account_photo_imagePath">Update</label>
+                                <p>JPEG, PNG, WEBP et AVIF</p>
+                            </div>
+                            
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings__personal-details">
+                
+                {{ form_row(form.account.email, {'row_attr': {'class': 'settings__email-field'}}) }}
+                
+                {{ form_row(form.account.familyName, {'row_attr': {'class': 'settings__lastname-field'}}) }}
+
+                {{ form_row(form.account.givenName, {'row_attr': {'class': 'settings__firstname-field'}}) }}
+                    
+                {{ form_row(form.account.birthDate, {'row_attr': {'class': 'settings__birthdate-field'}}) }}
+
+                <div class="settings__field--description">
+                    {{ form_label(form.description) }}
+
+                    <div class="settings__description-langs">
+                        {{ form_widget(form.description.descriptionEn, {'attr': {'class': 'settings__description settings__description--en' ~ (app.user.language == 'EN' ? ' active' : '')}}) }}
+                        {{ form_widget(form.description.descriptionFr, {'attr': {'class': 'settings__description settings__description--fr' ~ (app.user.language == 'FR' ? ' active' : '')}}) }}
+                        {{ form_widget(form.description.descriptionNl, {'attr': {'class': 'settings__description settings__description--nl' ~ (app.user.language == 'NL' ? ' active' : '')}}) }}                    
+                        
+                        <div class="buttons">
+                            <button type="button" class="langBtn langBtn--en {{ app.user.language == 'EN' ? 'active' : null }}">Anglais</button>
+                            <button type="button" class="langBtn langBtn--fr {{ app.user.language == 'FR' ? 'active' : null }}">Français</button>
+                            <button type="button" class="langBtn langBtn--nl {{ app.user.language == 'NL' ? 'active' : null }}">Néerlandais</button> 
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="settings__additional-info">
+
+                <h2>Informations personnelles</h2>
+
+                <div class="settings__info-fields">
+
+                    {{ form_row(form.account.phoneNumber, {'row_attr': {'class': 'settings__phone-number-field'}}) }}
+
+                    {{ form_row(form.account.language, {'row_attr': {'class': 'settings__language-choice'}, 'attr': {'class': 'settings__radio-options'}}) }}
+
+                    {{ form_row(form.account.status, {'row_attr': {'class': 'settings__status-choice'}, 'attr': {'class': 'settings__radio-options'}}) }}
+
+                    {{ form_row(form.account.gender, {'row_attr': {'class': 'settings__gender-choice'}, 'attr': {'class': 'settings__radio-options'}}) }}
+
+                </div>
+
+            </div>
+
+        {{ form_widget(form) }}
+        
+            <div class="settings__submit">
+                <div class="settings__submit-container">
+
+                    <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+                    
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+
+    {% endif %}   
+{% endblock content %}

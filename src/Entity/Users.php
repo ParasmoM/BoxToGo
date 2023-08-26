@@ -119,6 +119,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $appearance = null;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?SpaceImages $image = null;
+
     public function __construct()
     {
         $this->registrationDate = new \DateTime();
@@ -792,6 +795,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAppearance(?string $appearance): static
     {
         $this->appearance = $appearance;
+
+        return $this;
+    }
+
+    public function getImage(): ?SpaceImages
+    {
+        return $this->image;
+    }
+
+    public function setImage(?SpaceImages $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

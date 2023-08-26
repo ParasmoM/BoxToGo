@@ -58,29 +58,51 @@ class PictureServices
         return $fichier;
     }
 
+    public function deleteImage(?string $folder = '')
+    {
+        $path = $this->parameterBagInterface->get('image_directory') . $folder;
+
+        // Supprimer tous les fichiers dans le dossier
+        $files = glob($path . '/*'); 
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+
+        // Supprimer le dossier
+        if (file_exists($path) && is_dir($path)) {
+            rmdir($path);
+        }
+    }
+
     public function delete(string $fichier, ?string $folder = '', ?int $width = 250, ?int $height = 250)
     {
-        if ($fichier !== 'default.webp') {
-            $success = false;
-            $path = $this->parameterBagInterface->get('image_directory') . $folder;
+        $path = $this->parameterBagInterface->get('image_directory') . $folder;
+        if(file_exists($path)) {
+            unlink($path);
+        }
+        // dd('ici');
+        // if ($fichier !== 'default.webp') {
+        //     $success = false;
 
-            $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
+        //     $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
 
-            if (file_exists($mini)) {
-                unlink($mini);
-                $success = true;
-            }
+        //     if (file_exists($mini)) {
+        //         unlink($mini);
+        //         $success = true;
+        //     }
 
-            $original = $path . '/' . $fichier;
+        //     $original = $path . '/' . $fichier;
 
-            if (file_exists($original)) {
-                unlink($mini);
-                $success = true;
-            }
+        //     if (file_exists($original)) {
+        //         unlink($mini);
+        //         $success = true;
+        //     }
 
-            return $success;
-        }  
+        //     return $success;
+        // }  
 
-        return false;
+        // return false;
     }
 }

@@ -21,6 +21,12 @@ class SpaceImagesRepository extends ServiceEntityRepository
         parent::__construct($registry, SpaceImages::class);
     }
 
+    public function remove(SpaceImages $spaceImages): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($spaceImages);
+        $entityManager->flush();
+    }
 //    /**
 //     * @return SpaceImages[] Returns an array of SpaceImages objects
 //     */

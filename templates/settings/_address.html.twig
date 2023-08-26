@@ -1,0 +1,38 @@
+{% extends "settings/index.html.twig" %}
+
+{% block content %}
+
+{% if form is defined %}
+    {{ form_start(form, {
+        'attr': {'class': 'settings__form'},
+    }) }}
+    
+        <div class="settings__address-info">
+
+            <h2>Informations d’adresse</h2>
+
+            {{ form_row(form.country, {'row_attr': {'label': 'Pays', 'class': 'settings__country-field'}}) }}
+
+            {{ form_row(form.city, {'row_attr': {'label': 'Ville', 'class': 'settings__city-field'}}) }}
+
+            {{ form_row(form.street, {'row_attr': {'label': 'Rue', 'class': 'settings__street-field'}}) }}
+
+            {{ form_row(form.streetNumber, {'label': 'Numéro', 'row_attr': {'class': 'settings__number-field'}}) }}
+
+            {{ form_row(form.postalCode, {'label': 'Code postal', 'row_attr': {'class': 'settings__postal-code-field'}}) }}
+
+        </div>
+
+    {{ form_widget(form) }}
+    
+        <div class="settings__submit">
+            <div class="settings__submit-container">
+                <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endif %}
+    
+{% endblock content %}
+

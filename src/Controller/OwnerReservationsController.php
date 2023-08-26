@@ -20,7 +20,7 @@ class OwnerReservationsController extends AbstractController
     public function annonce(
         Request $request,
     ): Response {
-        return $this->render('owner_reservations/_annonces.html.twig');
+        return $this->render('owner_reservations/annonces.html.twig');
     }
 
     #[Route('/owner/reservations', name: 'owner_reservations')]
@@ -63,6 +63,6 @@ class OwnerReservationsController extends AbstractController
             return $this->redirectToRoute('owner_annonces', [], Response::HTTP_SEE_OTHER);
         }
         
-        return $this->render('owner_reservations/_edit.html.twig', compact('space', 'form'));
+        return $this->render('owner_reservations/edit.html.twig', compact('space', 'form'));
     }
 }

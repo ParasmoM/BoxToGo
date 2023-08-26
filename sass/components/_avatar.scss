@@ -1,0 +1,22 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.avatar {
+    height: 100%;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    border-radius: $border-radius;
+    font-size: 2.5rem;
+    font-weight: 600;
+    overflow: hidden;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}

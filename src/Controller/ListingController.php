@@ -103,6 +103,7 @@ class ListingController extends AbstractController
 
         foreach ($dataArray['newImages'] as $index => $file) {
             $fichier = $pictureService->add($file, $folder);
+            dd($fichier, $file);
             $order = $initialOrder + $index + 1;
 
             // Create a new Image object for each file
