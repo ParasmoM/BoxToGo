@@ -6,7 +6,7 @@ use App\DTO\FormAddNewSpaceModel;
 use App\Entity\Contents;
 use App\Entity\Spaces;
 use App\Entity\SpaceImages;
-use App\Form\FormAddNewSpaceType;
+use App\Form\Combined\FormAddNewSpaceType;
 use App\Service\PictureServices;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpaceImagesRepository;
@@ -103,7 +103,7 @@ class ListingController extends AbstractController
 
         foreach ($dataArray['newImages'] as $index => $file) {
             $fichier = $pictureService->add($file, $folder);
-            dd($fichier, $file);
+            
             $order = $initialOrder + $index + 1;
 
             // Create a new Image object for each file

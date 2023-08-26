@@ -37,10 +37,10 @@ class SpaceFormType extends AbstractType
                 ],
                 'expanded' => true,
             ])
-            ->add('availabilityStart', DateType::class, [
-                'label' => 'Date de disponibilité',
-                'widget' => 'single_text', // Ceci rendra le champ en tant qu'input de type "date"
-            ])
+            // ->add('availabilityStart', DateType::class, [
+            //     'label' => 'Date de disponibilité',
+            //     'widget' => 'single_text', // Ceci rendra le champ en tant qu'input de type "date"
+            // ])
         ;
     }
 

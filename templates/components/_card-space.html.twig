@@ -5,7 +5,7 @@
             <div class="card-space__image-container">
 
                 <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
-                    {# <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt=""> #}
+                    <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
                 </a>
 
                 {% if app.user %}
@@ -73,6 +73,5 @@
                 </section>
             </div>
         </article>
-        {{ dump(space) }}
     </div>
 </div>

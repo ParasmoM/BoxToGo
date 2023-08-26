@@ -2,6 +2,10 @@
 
 {% block title %}Hello ListingController!{% endblock %}
 
+{% block javascripts %}
+<script src="{{ asset('js/addNewSpace.js') }}" defer></script>
+{% endblock %}
+
 {% set titles = [
     'Faisons connaissance avec votre bien',
     'Où se cache votre bien ?',
@@ -18,51 +22,29 @@
 ] %}
 
 {% block body %}
-<main class="listing-main">
+<section class="listing listing-main">
+    <div class="listing__container">
 
-    {% include "listing/_header.html.twig" %}
-
-    <section class="listing-form">
-
-        <div class="listing-form__container">
-
-            {# <section class="listing-form__description-list">
-                
-                {% for index in 0..4 %}
-                    {% include "listing/_description_card.html.twig" with {'index': index, 'title': titles[index], 'paragraph': paragraphs[index]} only%}
-                {% endfor %}
-
-            </section> #}
-
-            {# <form action="{{ path('public_listing') }}" enctype="multipart/form-data" method="POST" class="listing-form__form-list" id="newItem">
-
-                <div class="listing-form__form-container">
-
-                    {% for form in forms.children %}
-
-                        {% if not loop.last  %}
-                            {% include "listing/_form_" ~ form.vars.name ~ ".html.twig" with {'form': form} only %}
-                        {% endif %}
-                    
-                    {% endfor %}
-                    
-                    {{ form_row(forms._token) }}
-                    
-                </div>
-                
-            </form> #}
-
-            {% if forms is defined %}
-                {{ form_start(forms) }}
-                    {{ form_widget(forms) }}
-                    <button class="btn">{{ button_label|default('Save') }}</button>
-                {{ form_end(forms) }}
-            {% endif %}
-
+        <div class="listing__header">
+            {% include "listing/_header.html.twig" %}
         </div>
 
-    </section>    
+        <div class="listing__content">
+            <div class="listing__content-container">
 
-    {# {% include "listing/_footer.html.twig" %} #}
-</main>
+                <section class="listing__descriptions">
+                    {% for index in 0..4 %}
+                        {% include "listing/_card_description.html.twig" with {'index': index, 'title': titles[index], 'paragraph': paragraphs[index]} only %}
+                    {% endfor %}
+                </section>
+
+                <section class="listing__templates">
+                    {% include "listing/_template.html.twig" with {'forms': forms} only %}
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+</section>
 {% endblock %}

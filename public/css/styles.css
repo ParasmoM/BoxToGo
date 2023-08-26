@@ -205,17 +205,17 @@ button {
     transform: translate(0);
   }
 }
-.header-alt, .header-main, .masthead {
+.listing, .header-alt, .header-main, .masthead {
   font-size: 1.4rem;
 }
 
 body, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
-.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .master-form .btn-master button, .settings__submit button, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
   font-size: 1.6rem;
 }
 
-.card-ticket__status {
+.listing__description-item--step, .card-ticket__status {
   font-size: 1.8rem;
 }
 
@@ -225,11 +225,11 @@ body {
 
 .master-form .language-section .language-buttons .language-btn, .header-main, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
-.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .master-form .btn-master button, .settings__submit button, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
   font-weight: 500;
 }
 
-.settings__navbar .button.active, .home__navbar, .header-alt, .masthead, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .settings__form h2, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
+.settings__navbar .button.active, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .space-detail section:nth-child(4) h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail section:first-of-type h1, .space-detail section:nth-child(2) h2, .space-detail section:nth-child(3) h2, .space-detail section:nth-child(4) h2 {
   font-weight: 600;
 }
 
@@ -243,14 +243,14 @@ body {
 .master-form .price-input-set > textarea,
 .master-form .address-input-set > textarea,
 .master-form .status-input-set > textarea,
-.master-form .space-equipment-input-set > textarea, .settings__description-langs textarea {
+.master-form .space-equipment-input-set > textarea, .settings__description-langs textarea, .listing__template__footer-container, .listing__template-step__textarea textarea {
   padding: 1.5rem;
 }
 
 .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .listing-form__checkbox, .listing-footer__container, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .card-ticket__inner {
+.master-form .equipment-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .card-ticket__inner {
   padding: 3rem;
 }
 
@@ -258,7 +258,7 @@ body {
   margin-top: 0.8rem;
 }
 
-.listing-form__title:not(:first-of-type), .loginpage__link:last-of-type, .card-ticket__section:last-of-type, .card-space__info-container {
+.loginpage__link:last-of-type, .card-ticket__section:last-of-type, .card-space__info-container {
   margin-top: 1.5rem;
 }
 
@@ -283,7 +283,7 @@ body {
   padding-right: 0.8rem;
 }
 
-.settings__radio-options label, .listing-form__checkbox input, .register__form .register__divider-text::before, .loginpage__divider-text::before {
+.settings__radio-options label, .register__form .register__divider-text::before, .loginpage__divider-text::before {
   margin-right: 1.5rem;
 }
 
@@ -305,7 +305,7 @@ body {
 .master-form .price-input-set > label,
 .master-form .address-input-set > label,
 .master-form .status-input-set > label,
-.master-form .space-equipment-input-set > label, .listing-form__label, .settings__language-choice > label, .settings__status-choice > label, .settings__gender-choice > label, .settings__preference-item label, .settings__personal-details > div label, .settings__phone-number-field label, .settings__address-info > div label, .settings__account-item label {
+.master-form .space-equipment-input-set > label, .settings__language-choice > label, .settings__status-choice > label, .settings__gender-choice > label, .listing__template-step__group-radio > label, .listing__template-step__textarea label, .settings__preference-item label, .listing__template-step__select label, .settings__personal-details > div label, .settings__phone-number-field label, .settings__address-info > div label, .settings__account-item label, .listing__template-step__input label {
   margin-bottom: 0.8rem;
 }
 
@@ -313,7 +313,7 @@ body {
   padding-bottom: 1.5rem;
 }
 
-.owner-detail section:nth-child(2) .box1 .item > div, .space-detail section:first-of-type .box1 .map p, .listing-form__title, .listing-form__input, .listing-form__select, .register__form .register__social-login p, .register__form input[type=text],
+.owner-detail section:nth-child(2) .box1 .item > div, .space-detail section:first-of-type .box1 .map p, .register__form .register__social-login p, .register__form input[type=text],
 .register__form input[type=password],
 .register__form input[type=date], .loginpage__link, .loginpage__form-input input, .loginpage__social-login p, .dashboard-edit-form h2 {
   margin-bottom: 1.5rem;
@@ -323,7 +323,7 @@ body {
   margin-bottom: 2.4rem;
 }
 
-.settings__form h2, .settings__status-choice, .listing-form__description-item, .listing-form__step, .listing-footer__container, .register__form-agreement, .admin-aside__title, .dashboard-add__container, .settings__preference-item:not(:last-child), .settings__personal-details > div:not(:last-child), .settings__phone-number-field:not(:last-child), .settings__address-info > div:not(:last-child), .settings__account-item:not(:last-child) {
+.settings__form h2, .settings__status-choice, .listing__template__footer-container, .listing-form__description-item, .listing-form__step, .register__form-agreement, .admin-aside__title, .dashboard-add__container {
   margin-bottom: 3rem;
 }
 
@@ -369,16 +369,12 @@ body {
 .master-form .price-input-set > label,
 .master-form .address-input-set > label,
 .master-form .status-input-set > label,
-.master-form .space-equipment-input-set > label, .listing-form__label, .register__form .register__divider-text::after, .loginpage__divider-text::after, .settings__language-choice > label, .settings__status-choice > label, .settings__gender-choice > label, .settings__preference-item label, .settings__personal-details > div label, .settings__phone-number-field label, .settings__address-info > div label, .settings__account-item label {
+.master-form .space-equipment-input-set > label, .register__form .register__divider-text::after, .loginpage__divider-text::after, .settings__language-choice > label, .settings__status-choice > label, .settings__gender-choice > label, .listing__template-step__group-radio > label, .listing__template-step__textarea label, .settings__preference-item label, .listing__template-step__select label, .settings__personal-details > div label, .settings__phone-number-field label, .settings__address-info > div label, .settings__account-item label, .listing__template-step__input label {
   margin-left: 1.5rem;
 }
 
 .dashboard-add__item, .dashboard-add__item input, .dashboard-add-form input {
   padding-left: 2.4rem;
-}
-
-.listing-form__input, .listing-form__select {
-  padding-left: 3rem;
 }
 
 .card-ticket__reservation-number {
@@ -395,13 +391,13 @@ body {
   padding-inline: 0.8rem;
 }
 
-.settings__description-langs .buttons button, .space-detail section:first-of-type .box1 .buttons button, .register__form .register__social-login a, .admin-aside__item a, .header-alt__nav > *, .header-alt__options a, .settings__preference-item select, .settings__personal-details > div input, .settings__phone-number-field input, .settings__address-info > div input, .settings__account-item input, .master-form .status-options label, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form > *,
+.settings__description-langs .buttons button, .space-detail section:first-of-type .box1 .buttons button, .register__form .register__social-login a, .admin-aside__item a, .header-alt__nav > *, .header-alt__options a, .settings__preference-item select, .listing__template-step__select select, .settings__personal-details > div input, .settings__phone-number-field input, .settings__address-info > div input, .settings__account-item input, .listing__template-step__input input, .master-form .status-options label, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form > *,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form > *,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form > *, .master-form .equipment-options label, .home__navbar-category--list li, .home__navbar-filters {
   padding-inline: 1.5rem;
 }
 
-.listing-header__back-link, .dashboard-edit-form button, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .master-form .btn-master button, .settings__submit button, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.dashboard-edit-form button, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
   padding-inline: 2.4rem;
 }
 
@@ -412,7 +408,7 @@ body {
 .listing-form__description-item, .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   margin-inline: auto;
 }
 
@@ -424,7 +420,7 @@ body {
   margin-block: 0.8rem;
 }
 
-.register__form .register__social-login a {
+.listing-header__container, .register__form .register__social-login a {
   padding-block: 1.5rem;
 }
 
@@ -432,17 +428,17 @@ body {
   margin-block: 1.5rem;
 }
 
-.master-form .btn-master__container, .settings__submit-container, .owner-detail section:first-of-type .content, .space-detail section:nth-child(4) .content, .listing-header__container, .admin-header, .header-main__container {
+.master-form .btn-master__container, .settings__submit-container, .owner-detail section:first-of-type .content, .space-detail section:nth-child(4) .content, .admin-header, .header-main__container {
   padding-block: 3rem;
 }
 
 .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   width: calc(100% - 6rem);
 }
-.owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing-form__container, .listing-footer__container, .header-alt__container, .header-main__container, .masthead__container {
+.owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   max-width: 1920px;
 }
 .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
@@ -476,33 +472,36 @@ body {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
 }
-.master-form .section-header, .settings__form h2, .card-ticket__info .card-ticket__title {
+.master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .card-ticket__info .card-ticket__title {
   font-family: "Open Sans", sans-serif;
   font-size: 1.8rem;
 }
 
 .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
-.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .master-form .btn-master button, .settings__submit button, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
   display: inline-flex;
   align-items: center;
   border-radius: 1rem;
   cursor: pointer;
 }
-.master-form .btn-master button, .settings__submit button, .card-ticket__section:last-of-type .card-ticket__edit-link {
-  height: 5rem;
+.master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
+  height: 4rem;
   justify-content: center;
   border: solid 1px var(--clr-gray-700);
   color: var(--clr-white);
   background-color: var(--clr-black);
 }
-.settings__avatar-uploader__button--upload label, .settings__form-delete button {
-  height: 5rem;
+.settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link {
+  height: 4rem;
   justify-content: center;
   border: solid 1px var(--clr-gray-700);
 }
+.settings__avatar-uploader__button--upload label:hover, .settings__form-delete button:hover, .listing-header__back-link:hover {
+  background-color: var(--clr-gray-200);
+}
 .home__navbar-category--list li, .home__navbar-filters {
-  height: 5rem;
+  height: 4rem;
   justify-content: center;
   border: solid 1px var(--clr-gray-700);
 }
@@ -566,36 +565,36 @@ body {
 .master-form .status-options input[type=radio] {
   display: none;
 }
-.settings__personal-details > div, .settings__phone-number-field, .settings__address-info > div, .settings__account-item {
+.settings__personal-details > div, .settings__phone-number-field, .settings__address-info > div, .settings__account-item, .listing__template-step__input {
   display: flex;
   flex-direction: column;
 }
-.settings__personal-details > div input, .settings__phone-number-field input, .settings__address-info > div input, .settings__account-item input {
-  height: 5rem;
+.settings__personal-details > div input, .settings__phone-number-field input, .settings__address-info > div input, .settings__account-item input, .listing__template-step__input input {
+  height: 4rem;
   border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
   outline-color: var(--clr-primary);
 }
-.settings__preference-item {
+.settings__preference-item, .listing__template-step__select {
   display: flex;
   flex-direction: column;
 }
-.settings__preference-item select {
-  height: 5rem;
+.settings__preference-item select, .listing__template-step__select select {
+  height: 4rem;
   border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
   outline-color: var(--clr-primary);
 }
-.settings__notification-type, .settings__action {
+.settings__notification-type, .settings__action, .listing__template-step__input-checkbox {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
 }
-.settings__notification-type label, .settings__action label {
+.settings__notification-type label, .settings__action label, .listing__template-step__input-checkbox label {
   display: inline-block;
   cursor: pointer;
 }
-.settings__notification-type label:first-of-type, .settings__action label:first-of-type {
+.settings__notification-type label:first-of-type, .settings__action label:first-of-type, .listing__template-step__input-checkbox label:first-of-type {
   position: relative;
   width: 17px;
   height: 17px;
@@ -603,7 +602,7 @@ body {
   border-radius: 3px;
   transition: background 0.1s ease;
 }
-.settings__notification-type label:first-of-type:after, .settings__action label:first-of-type:after {
+.settings__notification-type label:first-of-type:after, .settings__action label:first-of-type:after, .listing__template-step__input-checkbox label:first-of-type:after {
   content: "";
   position: absolute;
   left: 5px;
@@ -616,20 +615,29 @@ body {
   transition: all 0.3s ease;
   transition-delay: 0.15s;
 }
-.settings__notification-type input[type=checkbox], .settings__action input[type=checkbox] {
+.settings__notification-type input[type=checkbox], .settings__action input[type=checkbox], .listing__template-step__input-checkbox input[type=checkbox] {
   display: none;
   visibility: hidden;
 }
-.settings__notification-type input[type=checkbox]:checked ~ label:first-of-type, .settings__action input[type=checkbox]:checked ~ label:first-of-type {
+.settings__notification-type input[type=checkbox]:checked ~ label:first-of-type, .settings__action input[type=checkbox]:checked ~ label:first-of-type, .listing__template-step__input-checkbox input[type=checkbox]:checked ~ label:first-of-type {
   border-color: transparent;
   background: var(--clr-primary);
   animation: jelly-42 0.6s ease;
 }
-.settings__notification-type input[type=checkbox]:checked ~ label:first-of-type:after, .settings__action input[type=checkbox]:checked ~ label:first-of-type:after {
+.settings__notification-type input[type=checkbox]:checked ~ label:first-of-type:after, .settings__action input[type=checkbox]:checked ~ label:first-of-type:after, .listing__template-step__input-checkbox input[type=checkbox]:checked ~ label:first-of-type:after {
   opacity: 1;
   transform: rotate(45deg) scale(1);
 }
-.settings__radio-options label {
+.listing__template-step__textarea {
+  display: flex;
+  flex-direction: column;
+}
+.listing__template-step__textarea textarea {
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  outline-color: var(--clr-primary);
+}
+.settings__radio-options label, .listing__template-step__radio label {
   position: relative;
   display: inline-flex;
   line-height: 2;
@@ -637,7 +645,7 @@ body {
   padding-right: 1em;
   cursor: pointer;
 }
-.settings__radio-options label:before {
+.settings__radio-options label:before, .listing__template-step__radio label:before {
   content: " ";
   display: block;
   position: absolute;
@@ -649,18 +657,18 @@ body {
   border-radius: 6px;
   z-index: -1;
 }
-.settings__radio-options label,
-.settings__radio-options label::before {
+.settings__radio-options label, .listing__template-step__radio label,
+.settings__radio-options label::before,
+.listing__template-step__radio label::before {
   transition: 0.25s all ease;
 }
-.settings__radio-options input {
-  display: none;
+.settings__radio-options input, .listing__template-step__radio input {
   visibility: hidden;
 }
-.settings__radio-options input:checked + label {
+.settings__radio-options input:checked + label, .listing__template-step__radio input:checked + label {
   padding-left: var(--spacing-sm);
 }
-.settings__radio-options input:checked + label:before {
+.settings__radio-options input:checked + label:before, .listing__template-step__radio input:checked + label:before {
   top: 0;
   width: 100%;
   height: 2em;
@@ -918,7 +926,7 @@ body {
   padding: 0.2rem;
   border: solid 1px var(--clr-gray-700);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .header-main__actions .header-main__action--user .user-selector a {
   display: block;
@@ -975,7 +983,7 @@ body {
   position: sticky;
   top: 0;
   background-color: var(--clr-white);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   height: 18.4rem;
   transition: height 0.3s ease-in-out;
 }
@@ -992,7 +1000,7 @@ body {
   right: 0;
   background-color: var(--clr-white);
   height: 12.5rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .header-alt__container {
   display: flex;
@@ -1120,7 +1128,7 @@ body {
 .admin-header__links a.active {
   background-color: var(--clr-white);
   color: var(--clr-primary);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .admin-header__profile {
   display: flex;
@@ -1149,7 +1157,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .admin-aside__item a {
   border-radius: 1rem;
@@ -1173,7 +1181,7 @@ body {
 .dashboard-add__container {
   border-radius: 3rem;
   background-color: var(--clr-white);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   font-family: "Open Sans", sans-serif;
   display: flex;
   gap: var(--spacing-xs);
@@ -1281,7 +1289,7 @@ body {
 .loginpage__form {
   border: none;
   border-radius: 3rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   padding: var(--spacing-lg);
   display: flex;
   flex-flow: column;
@@ -1360,7 +1368,7 @@ body {
 .register__form {
   border: none;
   border-radius: 3rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .register__form .register__heading {
   margin-bottom: 0;
@@ -1445,30 +1453,151 @@ body {
   height: 100%;
 }
 
+.listing__container {
+  height: 100vh;
+}
 .listing-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  z-index: 100;
+  background-color: var(--clr-white);
+  z-index: 10;
 }
 .listing-header__container {
   display: flex;
   justify-content: space-between;
+  background-color: var(--clr-white);
 }
 .listing-header__logo-image {
-  height: 6rem;
-}
-.listing-header__back-link {
-  display: inline-flex;
-  align-items: center;
-  border: solid 1px var(--clr-gray-700);
-  border-radius: 1rem;
   height: 4rem;
 }
-.listing-header__back-link:hover {
+.listing__content {
+  margin-top: 3rem;
+  margin-bottom: 17rem;
+}
+.listing__content-container {
+  display: flex;
+  gap: var(--spacing-xl);
+  overflow: hidden;
+  height: calc(100vh - 17.5rem);
+}
+.listing__descriptions {
+  flex: 1;
+}
+.listing__description-item {
+  padding: var(--spacing-lg);
+  border-radius: 1rem;
+  display: flex;
+  gap: var(--spacing-lg);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.listing__description-item:not(:nth-child(1)) {
+  margin-top: var(--spacing-lg);
+}
+.listing__description-item--step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+.listing__description-item--step p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px;
+  height: 5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.listing__description-item--content {
+  font-family: "Open Sans", sans-serif;
+}
+.listing__description-item--content h3 {
+  margin-bottom: var(--spacing-sm);
+}
+.listing__description-item--content p {
+  height: 7.2rem;
+}
+.listing__description-item--deco {
+  display: none;
+}
+.listing__templates {
+  flex: 1;
+}
+.listing__template-steps {
+  position: relative;
+  overflow: hidden;
+  height: 86rem;
+  transition: all 3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.listing__template-steps .listing__template-step {
+  position: absolute;
+  top: 86rem;
+  width: 100%;
+  transition: all 3s ease;
+}
+.listing__template-steps .listing__template-step > button {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  color: var(--clr-primary);
+}
+.listing__template-steps .listing__template-step.show {
+  top: 0;
+}
+.listing__template-steps .listing__template-step.prev {
+  top: -86rem;
+}
+.listing__template-step__group {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+.listing__template-step__group > div {
+  flex: 1;
+}
+.listing__template-step__group-radio {
+  margin-bottom: var(--spacing-lg);
+}
+.listing__template-step__group-radio > label {
+  display: block;
+}
+.listing__template-step__title {
+  margin-bottom: var(--spacing-lg);
+}
+.listing__template-step__select {
+  margin-bottom: var(--spacing-sm);
+}
+.listing__template-step__checkbox {
+  display: flex;
+}
+.listing__template-step__checkbox > div {
+  flex: 1;
+}
+.listing__template-step__input {
+  margin-bottom: var(--spacing-sm);
+}
+.listing__template__footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--clr-white);
+  z-index: 100;
+}
+.listing__template__footer-container {
   background-color: var(--clr-gray-200);
+  border-radius: 1rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border: solid 1px var(--clr-gray-700);
+  display: flex;
+  justify-content: flex-end;
+}
+.listing__template__footer p {
+  gap: var(--spacing-sm);
+  margin-left: auto;
+}
+.listing__template__footer img {
+  height: 2.5rem;
 }
 
 .listing-form {
@@ -1489,7 +1618,7 @@ body {
   display: flex;
   gap: var(--spacing-lg);
   border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   width: 80%;
   height: 15.3rem;
   position: relative;
@@ -1704,61 +1833,6 @@ body {
 .listing-form__step.prev {
   top: -70rem;
 }
-.listing-form__group {
-  display: flex;
-  gap: var(--spacing-lg);
-}
-.listing-form__item {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.listing-form__input, .listing-form__select {
-  height: 4rem;
-  border: solid 1px var(--clr-gray-700);
-  border-radius: 1rem;
-}
-.listing-form__checkbox {
-  border: solid 1px var(--clr-gray-700);
-  border-radius: 1rem;
-  display: flex;
-  gap: 5rem;
-}
-.listing-form__checkbox > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
-.listing-form__checkbox p {
-  display: inline-flex;
-  align-items: center;
-}
-.listing-footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--clr-white);
-  z-index: 100;
-}
-.listing-footer__container {
-  background-color: var(--clr-gray-200);
-  border-radius: 1rem;
-}
-.listing-footer__next-link {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  height: 4rem;
-  padding-inline: 2.4rem;
-  margin-left: auto;
-  border-radius: 1rem;
-  background-color: var(--clr-black);
-  color: var(--clr-white);
-}
-.listing-footer__next-link img {
-  height: 2.5rem;
-}
 
 .home__content {
   margin-top: 28rem;
@@ -1782,6 +1856,12 @@ body {
 }
 .home__navbar-filters {
   gap: var(--spacing-sm);
+}
+.home__listing {
+  margin-top: var(--spacing-xl);
+}
+.home__listing-container {
+  display: flex;
 }
 
 .space-detail section:first-of-type .gallery {
@@ -1913,7 +1993,7 @@ body {
 .owner-detail section:nth-child(2) .box2 {
   border-radius: 1rem;
   flex: 0 0 45rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .owner-detail section:nth-child(2) .box2 textarea {
   width: 100%;

@@ -1,0 +1,14 @@
+<h2 class="listing__template-step__title">Étape 4 - Ajoutez quelques photos</h2>
+
+<p class="listing-form__info">
+    Pour commencer, vous aurez besoin de 5 photos. Vous pourrez en ajouter d’autres ou faire des modifications plus tard.
+</p>
+
+<div class="listing-form__photo-upload">
+
+    <div class="listing-form__item">
+        {{ form_label(form.imagePath, null, {'label_attr': {'class': 'listing-form__label'}}) }}
+        {{ form_widget(form.imagePath, {'attr': {'class': 'listing-form__'}}) }}
+    </div>
+
+</div>

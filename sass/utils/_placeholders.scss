@@ -88,7 +88,7 @@
     &-black {
         @extend %btn;
         @extend %padding-inline-md;
-        height: 5rem;
+        height: 4rem;
         justify-content: center;
         border: solid 1px $border-color;
         color: var(--clr-white);
@@ -97,14 +97,18 @@
     &-white {
         @extend %btn;
         @extend %padding-inline-md;
-        height: 5rem;
+        height: 4rem;
         justify-content: center;
         border: solid 1px $border-color;
+
+        &:hover {
+            background-color: var(--clr-gray-200);
+        }
     }
     &-white-icone {
         @extend %btn;
         @extend %padding-inline-sm;
-        height: 5rem;
+        height: 4rem;
         justify-content: center;
         border: solid 1px $border-color;
     }
@@ -208,14 +212,10 @@
         input {
             @extend %padding-inline-sm;
 
-            height: 5rem;
+            height: 4rem;
             border: solid 1px $border-color;
             border-radius: $border-radius;
             outline-color: var(--clr-primary);
-        }
-
-        &:not(:last-child) {
-            @extend %margin-bottom-lg;
         }
     }
     &-select {
@@ -229,14 +229,10 @@
         select {
             @extend %padding-inline-sm;
 
-            height: 5rem;
+            height: 4rem;
             border: solid 1px $border-color;
             border-radius: $border-radius;
             outline-color: var(--clr-primary);
-        }
-
-        &:not(:last-child) {
-            @extend %margin-bottom-lg;
         }
     }
     &-chechbox {
@@ -285,7 +281,21 @@
             transform: rotate(45deg) scale(1);
         }
     }
+    &-textarea {
+        display: flex;
+        flex-direction: column;
 
+        label {
+            @extend %margin-label;
+        }
+
+        textarea {
+            @extend %padding-sm;
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            outline-color: var(--clr-primary);
+        }
+    }
     &-style-press {
         label {
             position: relative;
@@ -311,7 +321,7 @@
             transition: 0.25s all ease;
         }
         input {
-            display: none;
+            // display: none;
             visibility: hidden;
         }
         input:checked + label {

@@ -1,0 +1,22 @@
+<h2 class="listing__template-step__title">Étape 1 - Détails du bien</h2>
+
+{{ form_row(form.spaceCateg, {'row_attr': {'class': 'listing__template-step__select'}}) }}
+
+{{ form_row(form.itemCondition, {'row_attr': {'class': 'listing__template-step__select'}}) }}
+
+{{ form_row(form.price, {'row_attr': {'class': 'listing__template-step__input'}}) }}
+
+{{ form_row(form.surface, {'row_attr': {'class': 'listing__template-step__input'}}) }}
+
+
+<h2 class="listing__template-step__title">Dimension de l’entrée</h2>
+
+<div class="listing__template-step__group">
+
+    {{ form_row(form.entryWidth, {'row_attr': {'class': 'listing__template-step__input'}}) }}
+
+    {{ form_row(form.entryLength, {'row_attr': {'class': 'listing__template-step__input'}}) }}
+    
+</div>
+
+{{ form_row(form.floorPosition, {'row_attr': {'class': 'listing__template-step__group-radio'}, 'attr': {'class': 'listing__template-step__radio'}}) }}

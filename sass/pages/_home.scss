@@ -37,4 +37,12 @@
             gap: var(--spacing-sm);
         }
     }
+
+    &__listing {
+        margin-top: var(--spacing-xl);
+        &-container {
+            display: flex;
+            
+        }
+    }
 }
