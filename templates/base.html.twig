@@ -15,9 +15,6 @@
     </head>
     <body>
         {% set route = app.request.attributes.get('_route') %}
-        {% if route starts with 'public_' and route != 'public_listing' %}
-            {% include "layout/header/header.html.twig" %}
-        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

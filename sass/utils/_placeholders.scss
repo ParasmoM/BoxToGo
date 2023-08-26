@@ -46,6 +46,7 @@
 // Containers
 %container {
     @extend %margin-inline-auto;
+    width: calc(100% - 6rem);
     
     &-primary {
         @extend %container;
@@ -87,7 +88,7 @@
     &-black {
         @extend %btn;
         @extend %padding-inline-md;
-        height: 4rem;
+        height: 5rem;
         justify-content: center;
         border: solid 1px $border-color;
         color: var(--clr-white);
@@ -96,7 +97,14 @@
     &-white {
         @extend %btn;
         @extend %padding-inline-md;
-        height: 4rem;
+        height: 5rem;
+        justify-content: center;
+        border: solid 1px $border-color;
+    }
+    &-white-icone {
+        @extend %btn;
+        @extend %padding-inline-sm;
+        height: 5rem;
         justify-content: center;
         border: solid 1px $border-color;
     }

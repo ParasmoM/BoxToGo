@@ -1,18 +1,3 @@
-const masthead = document.querySelector('#masthead');
-const link = document.querySelector('.masthead-nav__publish-link');
-
-// Écoutez l'événement de défilement sur la fenêtre
-window.addEventListener('scroll', function() {
-    // Si le défilement est supérieur ou égal à 10rem (converti en pixels)
-    if (window.scrollY >= 90) { // 16 est une supposition pour 1rem, cela dépend de la taille de base de votre navigateur.
-        masthead.style.height = '12rem';
-        link.style.display = 'none';
-    } else {
-        masthead.style.height = ''; // Réinitialisez à la valeur par défaut quand il est moins de 10rem.
-        link.style.display = '';
-    }
-});
-
 // Sélectionnez tous les éléments ayant l'ID btn-dropdown
 const dropdowns = document.querySelectorAll('#btn-dropdown');
 
@@ -21,6 +6,7 @@ dropdowns.forEach(dropdown => {
     dropdown.addEventListener('click', function(event) {
         // Sélectionnez le premier ul enfant de l'élément sur lequel vous avez cliqué
         const ulElement = this.querySelector('ul');
+
         if (ulElement) {
             // Basculez la classe show
             ulElement.classList.toggle('show');
@@ -43,3 +29,20 @@ document.addEventListener('click', function(event) {
         });
     }
 });
+
+// const masthead = document.querySelector('#masthead');
+// const link = document.querySelector('.masthead-nav__publish-link');
+
+// // Écoutez l'événement de défilement sur la fenêtre
+// window.addEventListener('scroll', function() {
+//     // Si le défilement est supérieur ou égal à 10rem (converti en pixels)
+//     if (window.scrollY >= 90) { // 16 est une supposition pour 1rem, cela dépend de la taille de base de votre navigateur.
+//         masthead.style.height = '12rem';
+//         link.style.display = 'none';
+//     } else {
+//         masthead.style.height = ''; // Réinitialisez à la valeur par défaut quand il est moins de 10rem.
+//         link.style.display = '';
+//     }
+// });
+
+

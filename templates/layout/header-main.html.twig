@@ -1,0 +1,103 @@
+<div class="header-main" id="masthead">
+    <div class="header-main__container">
+
+        <div class="header-main__logo">
+            {% include "layout/_logo.html.twig" %}
+        </div>
+
+        <div class="header-main__searchbar">
+            <div class="header-main__searchbar-container">
+
+                <div class="header-main__searchbar__minimal">
+                    <button type="button">Types de stockage</button>
+                    <button type="button">Dates</button>
+                    <button type="button">Code postal</button>
+
+                    <form action="">
+                        <input type="text" placeholder="Votre recherche">
+                        <img src="{{ asset('images/icones/loupe.svg') }}" alt="Icone d'une loupe">
+                    </form>
+                </div>
+
+                <a href="{{ path('public_listing') }}" class="header-main__searchbar__publish-link">
+                    {{ 'Post my listing on BoxToGo'|trans }}
+                </a>
+
+                <div class="header-main__searchbar__advanced">
+
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="header-main__actions">
+
+            <div class="header-main__action--lang" id="btn-dropdown">
+
+                <div class="lang-selector" id="btn-lang">
+                    <img src="{{ asset('images/icones/langue.svg') }}" alt="Language selector">
+                </div>
+
+                <ul class="lang-list">
+                    <li class="lang-item">
+                        <a href="">Français</a>
+                    </li>
+                    <li class="lang-item">
+                        <a href="">Anglais</a>
+                    </li>
+                    <li class="lang-item">
+                        <a href="">Néerlandais</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="header-main__action--alert">
+                <a href="#">
+                    <img src="{{ asset('images/icones/alert.svg') }}" alt="Notification icon">
+                </a>
+            </div>
+
+            <div class="header-main__action--user" id="btn-dropdown">
+                <div class="user-selector">
+                    {% if app.user %}
+                    <img src="{{ asset('images/icones/icone-menu.svg') }}" alt="User menu" id="btn-user">
+                    {% else %}
+                    <a href="{{ path("app_login") }}" class="login-link">{{ 'Log in'|trans }}</a>
+                    {% endif %}
+                </div>
+
+                <ul class="menu-dropdown">
+
+                    <li class="menu-dropdown--personal">
+                        <a href="">Messages</a>
+                        <a href="">Notifications</a>
+                        {% if 'ROLE_OWNER' in app.user.roles %}
+                            <a href="{{ path('owner_annonces') }}">Tableau de board</a>
+                        {% else %}
+                            <a href="{{ path('public_user_reservations') }}">Réservations</a>
+                        {% endif %}
+                    </li>
+
+                    <li class="menu-dropdown--settings">
+                        <a href="{{ path('app_favorites', {'id': app.user.id}) }}">Favoris</a>
+                        <a href="{{ path('public_account', {'id': app.user.id}) }}">Paramètres</a>
+                        <a href="">Publier mon annonce</a>
+
+                        <form>
+                            <button class="active">Thème claire</button>
+                            <button>Thème sombre</button>
+                        </form>
+                    </li>
+
+                    <li class="menu-dropdown--logout">
+                        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -2,44 +2,39 @@
 @use "../utils" as *;
 
 .home {
-    &__container {
+
+    &__content {
         @extend %container-primary;
-        @extend %section;
-        background-color: var(--clr-white);
+        
+        margin-top: 28rem;
     }
 
-    &__header {
+    &__navbar {
+        @extend %fw-semibold;
+        white-space: nowrap;
+
         &-container {
             display: flex;
             justify-content: space-between;
+
+            img {
+                height: 2.8rem;
+            }
         }
-        img {
-            height: 2.5rem;
-        }
-        .home__category-list {
-            display: flex;
+
+        &-category--list {
+            display: inline-flex;
             gap: var(--spacing-sm);
-        }
-        .home__category-item,
-        .home__filters-btn {
-            @extend %padding-sm;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-lg);
-            border: solid 1px $border-color;
-            border-radius: $border-radius;
-            white-space: nowrap;
-            font-family: $font-family-secondary;
-        }
-    }
 
-    &__spaces {
-        @extend %margin-top-xl;
+            li {
+                @extend %btn-white-icone;
+                gap: var(--spacing-sm);
+            }
+        }
 
-        &-container {
-            display: flex;
-            gap: var(--spacing-lg);
-            flex-flow: wrap;
+        &-filters {
+            @extend %btn-white-icone;
+            gap: var(--spacing-sm);
         }
     }
 }

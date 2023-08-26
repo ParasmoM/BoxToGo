@@ -8,8 +8,8 @@
     position: fixed;
     z-index: 10;
     top: 0; left: 0; right: 0;
-    height: 12.5rem;
     background-color: var(--clr-white);
+    height: 12.5rem;
     box-shadow: $box-shadow;
 
     &__container {
@@ -19,19 +19,15 @@
         display: flex;
         align-items: center;
     }
-
-    &__branding {
+    &__logo {
         flex: 1;
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-md);
-
-        .header-alt__logo img {
+        img {
             height: 6.5rem;
             aspect-ratio: 1/1;
         }
-        .header-alt__switch {
-            @extend %btn-radio-slide;
+
+        .admin-switch {
+            bottom: -7rem;
         }
     }
     &__nav {

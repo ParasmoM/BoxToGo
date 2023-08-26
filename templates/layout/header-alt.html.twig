@@ -13,17 +13,8 @@
 <div class="header-alt">
     <div class="header-alt__container">
 
-        <div class="header-alt__branding">
-            <a href="{{ path('public_home') }}" class="header-alt__logo">
-                <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
-            </a>
-
-            {% if app.user.admin is defined %}
-                <div class="header-alt__switch">
-                    <a href="" class="active">Public Site</a>
-                    <a href="">Admin Interface</a>
-                </div>
-            {% endif %}
+        <div class="header-alt__logo">
+            {% include "layout/_logo.html.twig" %}
         </div>
 
         <nav class="header-alt__nav">

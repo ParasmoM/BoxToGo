@@ -4,44 +4,52 @@
 
 {% block javascripts %}
 <script src="{{ asset('js/masthead.js') }}" defer></script>
-<script src="{{ asset('js/favori.js') }}" defer></script>
+{# <script src="{{ asset('js/favori.js') }}" defer></script> #}
 {% endblock %}
 
 {% block body %}
-<main class="home">
+<div class="home">
     <div class="home__container">
 
         <header class="home__header">
-            <div class="home__header-container">
-
-                <ul class="home__category-list">
-                    {% for category in categories %}
-                    <li class="home__category-item">
-                        <img src="{{ asset('images/icones/' ~ category|lower|replace({' ': '_'}) ~ '.svg') }}" alt="Icone {{ category }}">
-                        {{ category }}
-                    </li>
-                    {% endfor %}
-                </ul>
-
-                <button class="home__filters-btn">
-                    <img src="{{ asset('images/icones/filtres.svg') }}" alt="">
-                    <span>{{ 'Filtres'|trans }}</span>
-                </button>
-
-            </div>
+            {% include "layout/header-main.html.twig" %}
         </header>
 
-        <section class="home__spaces">
-            <div class="home__spaces-container">
+        <main class="home__content">
+            <div class="home__content-container">
 
-                {% for space in allSpaces ? allSpaces : [] %}
-                    {% include "components/_card-space.html.twig" %}
-                {% endfor %}
+                <nav class="home__navbar">
+                    <div class="home__navbar-container">
+
+                        <ul class="home__navbar-category--list">
+                            {% for category in categories %}
+                            <li class="home__navbar-category-item">
+                                <img src="{{ asset('images/icones/' ~ category|lower|replace({' ': '_'}) ~ '.svg') }}" alt="Icone {{ category }}">
+                                {{ category }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+        
+                        <button class="home__navbar-filters">
+                            <img src="{{ asset('images/icones/filtres.svg') }}" alt="">
+                            <span>{{ 'Filtres'|trans }}</span>
+                        </button>
+
+                    </div>
+                </nav>
+
+                <div class="home__listing">
+                    <div class="home__listing-container">
+
+                    {% for space in allSpaces ? allSpaces : [] %}
+                        {% include "components/_card-space.html.twig" %}
+                    {% endfor %}
+
+                    </div>
+                </div>
 
             </div>
-        </section>
-
+        </main>
     </div>
-    {{ dump(app.user.content) }}
-</main>
+</div>
 {% endblock %}
