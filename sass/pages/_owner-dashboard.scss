@@ -18,7 +18,8 @@
         .language-section,
         .price-category-section,
         .address-section,
-        .equipment-section {
+        .equipment-section,
+        .galleries-section {
             @extend %margin-bottom-xl;
             @extend %container-secondary; 
             @extend %padding-lg;
@@ -79,6 +80,20 @@
 
         .section-header {
             @extend %title-tertiary;
+        }
+        .galleries-section {
+            > div {
+                display: flex;
+                gap: var(--spacing-lg);
+                flex-wrap: wrap;
+                margin-top: var(--spacing-lg);
+            }
+            img {
+                height: 11rem;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: $border-radius;
+            }
         }
 
         .title-description-inputs,

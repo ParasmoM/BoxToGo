@@ -1,0 +1,20 @@
+<div class="galleries-section">
+    {{ form_label(form.galleries, 'Gallerie', {
+        'label_attr': {'class': 'section-header'}
+    }) }}
+    <div>
+        {% if space.image %}
+            {% for image in galleries %}
+                {% if image.sortOrder != 21 %}
+                <div class="dropzone">
+                    <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ image.imagePath) }}" class="draggable" draggable="true" data-id="{{ image.id }}" alt="">
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {{ form_row(form.galleries) }}
+        <div id="hiddenFields">
+            <!-- Les champs cachés seront insérés ici -->
+        </div>
+    </div>
+</div>

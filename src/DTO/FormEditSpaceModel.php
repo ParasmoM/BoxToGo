@@ -6,12 +6,14 @@ use App\Entity\Spaces;
 use App\Entity\Adresses;
 use App\Entity\Contents;
 use App\Entity\SpaceEquipementLink;
+use App\Entity\SpaceImages;
 
-class DynamicCompositeModel {
+class FormEditSpaceModel {
     private Contents $content;
     private Spaces $space;
     private Adresses $adresse;
     private SpaceEquipementLink $equipment;
+    private SpaceImages $galleries;
 
     public function __construct()
     {
@@ -19,6 +21,7 @@ class DynamicCompositeModel {
         $this->space = new Spaces();
         $this->adresse = new Adresses();
         $this->equipment = new SpaceEquipementLink();
+        $this->galleries = new SpaceImages();
     }
 
     public function hydrate(Spaces $space): void
@@ -27,6 +30,7 @@ class DynamicCompositeModel {
         $this->setAdresse($space->getAdresse()->first()); 
         $this->setContent($space->getContent());
         $this->setEquipment($space->getEquipment()->first());
+        // $this->setGalleries($space->getImage());
     }    
 
     public function getContent(): Contents
@@ -67,5 +71,15 @@ class DynamicCompositeModel {
     public function setEquipment(SpaceEquipementLink $equipment): void
     {
         $this->equipment = $equipment;
+    }
+
+    public function getGalleries(): SpaceImages
+    {
+        return $this->galleries;
+    }
+
+    public function setGalleries(SpaceImages $galleries): void
+    {
+        $this->galleries = $galleries;
     }
 }

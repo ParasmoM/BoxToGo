@@ -55,7 +55,7 @@
 
     &-secondary {
         @extend %container;
-        max-width: calc(map-get($breakpoints, 'md') - 224px);
+        max-width: calc(map-get($breakpoints, 'md'));
         // width: calc(map-get($breakpoints, 'md') - 224px);
     }
 }

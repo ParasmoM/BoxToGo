@@ -68,8 +68,8 @@ class SettingsController extends AbstractController
                 $photo->setUser($user);
                 $photo->setImagePath($fichier);
                 $photo->setSortOrder(21);
+                $user->setProfilePicture($fichier);
             }
-            // dd($form);
             $userRepository->save($user);
 
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);

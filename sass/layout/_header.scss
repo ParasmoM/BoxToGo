@@ -168,7 +168,7 @@
 
             border: solid 1px $border-color;
             border-radius: 50%;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            box-shadow: $box-shadow;
         }
 
         .header-main__action--user {
@@ -183,6 +183,7 @@
                     border: solid 1px $border-color;
                     border-radius: 50%;
                     box-shadow: $box-shadow;
+                    object-fit: cover;
                 }
                 a {
                     display: block;

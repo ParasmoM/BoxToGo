@@ -250,7 +250,8 @@ body {
 .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .card-ticket__inner {
+.master-form .equipment-section,
+.master-form .galleries-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .card-ticket__inner {
   padding: 3rem;
 }
 
@@ -334,7 +335,8 @@ body {
 .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .settings__navbar, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .space-detail section:first-of-type .gallery, .space-detail section:first-of-type .box1 .buttons, .card-ticket__reservation-number {
+.master-form .equipment-section,
+.master-form .galleries-section, .settings__navbar, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .space-detail section:first-of-type .gallery, .space-detail section:first-of-type .box1 .buttons, .card-ticket__reservation-number {
   margin-bottom: 6rem;
 }
 
@@ -408,7 +410,8 @@ body {
 .listing-form__description-item, .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .equipment-section,
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   margin-inline: auto;
 }
 
@@ -435,7 +438,8 @@ body {
 .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .equipment-section,
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   width: calc(100% - 6rem);
 }
 .owner-detail > .container, .space-detail > .container, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
@@ -444,8 +448,9 @@ body {
 .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container {
-  max-width: 800px;
+.master-form .equipment-section,
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container {
+  max-width: 1024px;
 }
 
 .user-dashboard > .container, .settings__container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail section:first-of-type, .space-detail section:nth-child(2), .space-detail section:nth-child(3), .space-detail section:nth-child(4) {
@@ -914,7 +919,7 @@ body {
 .header-main__actions .header-main__action--alert {
   border: solid 1px var(--clr-gray-700);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .header-main__actions .header-main__action--user {
   position: relative;
@@ -927,6 +932,7 @@ body {
   border: solid 1px var(--clr-gray-700);
   border-radius: 50%;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  object-fit: cover;
 }
 .header-main__actions .header-main__action--user .user-selector a {
   display: block;
@@ -2119,7 +2125,8 @@ body {
 .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
-.master-form .equipment-section {
+.master-form .equipment-section,
+.master-form .galleries-section {
   border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
   overflow: hidden;
@@ -2160,6 +2167,18 @@ body {
 }
 .master-form .equipment-section {
   margin-bottom: 16rem;
+}
+.master-form .galleries-section > div {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-lg);
+}
+.master-form .galleries-section img {
+  height: 11rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 1rem;
 }
 .master-form .title-input-set,
 .master-form .description-textarea-set,

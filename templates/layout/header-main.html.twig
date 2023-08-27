@@ -61,7 +61,11 @@
             <div class="header-main__action--user" id="btn-dropdown">
                 <div class="user-selector">
                     {% if app.user %}
-                    <img src="{{ asset('images/icones/icone-menu.svg') }}" alt="User menu" id="btn-user">
+                        {% if app.user.image %}
+                            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ app.user.id ~ '/Profile/' ~ app.user.image.imagePath) }}" alt="Image de profile">
+                        {% else %}
+                            <img src="{{ asset('images/icones/icone-menu.svg') }}" alt="User menu" id="btn-user">
+                        {% endif %}
                     {% else %}
                     <a href="{{ path("app_login") }}" class="login-link">{{ 'Log in'|trans }}</a>
                     {% endif %}
@@ -101,3 +105,4 @@
 
     </div>
 </div>
+{# {{ dump(app.user) }} #}
