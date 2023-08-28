@@ -63,6 +63,15 @@ class Contents
 
         return $method;
     }
+    public function getDescriptionBasedOnLanguage($language) {
+        $method = 'get' . 'Description' . ucfirst(strtolower($language));
+
+        if (method_exists($this, $method)) {
+            return call_user_func([$this, $method]);
+        } else {
+            return "La méthode $method n'existe pas.";
+        }
+    }
 
     public function getTitleFr(): ?string
     {

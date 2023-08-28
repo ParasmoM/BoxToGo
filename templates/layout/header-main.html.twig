@@ -62,7 +62,7 @@
                 <div class="user-selector">
                     {% if app.user %}
                         {% if app.user.image %}
-                            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ app.user.id ~ '/Profile/' ~ app.user.image.imagePath) }}" alt="Image de profile">
+                            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ app.user.id ~ '/Profile/' ~ app.user.image.imagePath) }}" alt="Image de profile" id="btn-user">
                         {% else %}
                             <img src="{{ asset('images/icones/icone-menu.svg') }}" alt="User menu" id="btn-user">
                         {% endif %}
