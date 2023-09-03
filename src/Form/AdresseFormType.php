@@ -15,7 +15,6 @@ class AdresseFormType extends AbstractType
         $builder
             ->add('country', TextType::class, [
                 'data' => 'Belgique',
-                'disabled' => true,
             ])
             ->add('city')
             ->add('streetNumber')

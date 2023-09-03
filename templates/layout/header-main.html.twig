@@ -71,6 +71,7 @@
                     {% endif %}
                 </div>
 
+                {% if app.user %}
                 <ul class="menu-dropdown">
 
                     <li class="menu-dropdown--personal">
@@ -79,7 +80,7 @@
                         {% if 'ROLE_OWNER' in app.user.roles %}
                             <a href="{{ path('owner_annonces') }}">Tableau de board</a>
                         {% else %}
-                            <a href="{{ path('public_user_reservations') }}">Réservations</a>
+                            <a href="{{ path('public_owner_profile') }}">Réservations</a>
                         {% endif %}
                     </li>
 
@@ -99,6 +100,7 @@
                     </li>
 
                 </ul>
+                {% endif %}
             </div>
 
         </div>

@@ -6,7 +6,11 @@
             <div class="card-ticket__section">
                 <div class="card-ticket__media">
                     <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-ticket__image-link">
-                        <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="Description de l'image" class="card-ticket__image">
+                        {% if space.image.first %}
+                            <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                        {% else %}
+                            <img src="{{ asset('images/icones/download.svg') }}" alt="">
+                        {% endif %}
                     </a>
                 </div>
                 

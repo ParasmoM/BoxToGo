@@ -10,7 +10,7 @@ use App\Form\AccountFormType;
 use App\Form\AdresseFormType;
 use App\Form\SecurityFormType;
 use App\Form\AppearanceFormType;
-use App\Service\PictureServices;
+use App\Services\PictureServices;
 use App\Form\NotificationFormType;
 use App\Repository\UsersRepository;
 use App\DTO\FormSettingsAccountModel;
@@ -55,6 +55,8 @@ class SettingsController extends AbstractController
         $form->get('description')->remove('titleEn');
         $form->get('description')->remove('titleNl');
         $form->handleRequest($request);
+
+        // dd($form);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->get('account')->getData();
             $photo = $form->get('photo')->getData();

@@ -233,13 +233,18 @@
             margin-left: 5rem;
         }
         &-link {
-            height: 10rem;
-            aspect-ratio: 1/1;
+
             border-radius: 50%;
             overflow: hidden;
             position: absolute;
             top: 3rem; left: -5rem;
             box-shadow: $box-shadow;
+
+            img {
+                height: 10rem;
+                aspect-ratio: 1/1;
+                object-fit: cover
+            }
         }
         &-profile {
             @extend %padding-right-lg;

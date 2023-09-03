@@ -7,7 +7,7 @@ use App\Entity\Contents;
 use App\Entity\Spaces;
 use App\Entity\SpaceImages;
 use App\Form\Combined\FormAddNewSpaceType;
-use App\Service\PictureServices;
+use App\Services\PictureServices;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpaceImagesRepository;
 use Symfony\Component\HttpFoundation\Request;

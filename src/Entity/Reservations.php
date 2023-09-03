@@ -14,29 +14,62 @@ class Reservations
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateStart = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateEnd = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $price = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $reservationDate = null;
-
-    #[ORM\Column(length: 20)]
-    private ?string $status = null;
-
     #[ORM\ManyToOne(inversedBy: 'reservation')]
     private ?Users $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservation')]
     private ?Spaces $space = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $price = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $status = null;
+
     #[ORM\OneToOne(inversedBy: 'reservation', cascade: ['persist', 'remove'])]
     private ?Payments $payment = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $reference = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeToken = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $brandStripe = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $last4Stripe = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $idChargeStripe = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $statusStripe = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateStart = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateEnd = null;
+
+    public function __construct($space)
+    {
+        $this->createdAt = new \DateTime();
+        $this->reference = 'R-' . date('Y') . '-' . uniqid();
+        $this->status = 'busy';
+    }
+    
+    public function updateStatusBasedOnDate(): void
+    {
+        $currentDate = new \DateTime();
+        if ($currentDate > $this->dateEnd) {
+            $this->status = 'finished';
+        }
+    }
 
     public function getId(): ?int
     {
@@ -81,12 +114,12 @@ class Reservations
 
     public function getReservationDate(): ?\DateTimeInterface
     {
-        return $this->reservationDate;
+        return $this->createdAt;
     }
 
-    public function setReservationDate(\DateTimeInterface $reservationDate): static
+    public function setReservationDate(\DateTimeInterface $createdAt): static
     {
-        $this->reservationDate = $reservationDate;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -135,6 +168,78 @@ class Reservations
     public function setPayment(?Payments $payment): static
     {
         $this->payment = $payment;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?string $reference): static
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripeToken(): ?string
+    {
+        return $this->stripeToken;
+    }
+
+    public function setStripeToken(?string $stripeToken): static
+    {
+        $this->stripeToken = $stripeToken;
+
+        return $this;
+    }
+
+    public function getBrandStripe(): ?string
+    {
+        return $this->brandStripe;
+    }
+
+    public function setBrandStripe(?string $brandStripe): static
+    {
+        $this->brandStripe = $brandStripe;
+
+        return $this;
+    }
+
+    public function getLast4Stripe(): ?string
+    {
+        return $this->last4Stripe;
+    }
+
+    public function setLast4Stripe(?string $last4Stripe): static
+    {
+        $this->last4Stripe = $last4Stripe;
+
+        return $this;
+    }
+
+    public function getIdChargeStripe(): ?string
+    {
+        return $this->idChargeStripe;
+    }
+
+    public function setIdChargeStripe(?string $idChargeStripe): static
+    {
+        $this->idChargeStripe = $idChargeStripe;
+
+        return $this;
+    }
+
+    public function getStatusStripe(): ?string
+    {
+        return $this->statusStripe;
+    }
+
+    public function setStatusStripe(?string $statusStripe): static
+    {
+        $this->statusStripe = $statusStripe;
 
         return $this;
     }

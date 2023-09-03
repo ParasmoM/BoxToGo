@@ -147,6 +147,29 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->givenName . ' ' . $this->familyName;
     }
 
+    public function calculateYearsAndMonthsSinceRegistration(): array
+    {
+        if ($this->registrationDate === null) {
+            return [0, 'non défini'];
+        }
+
+        $currentDate = new \DateTime();
+        $interval = $this->registrationDate->diff($currentDate);
+
+        $years = $interval->y;
+        $months = $interval->m;
+
+        $unit = 'mois';
+        if ($years >= 1) {
+            $unit = 'année';
+            if ($years > 1) {
+                $unit .= 's'; // Pluraliser "année" si nécessaire
+            }
+        }
+
+        return [$years > 0 ? $years : $months, $unit];
+    }
+
     public function getId(): ?int
     {
         return $this->id;

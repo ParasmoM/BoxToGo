@@ -58,11 +58,21 @@ class Contents
         return $this;
     }
 
-    public function getTitleBasedOnLanguage($language) {
-        $method = 'title' . ucfirst(strtolower($language));
+    // public function getTitleBasedOnLanguage($language) {
+    //     $method = 'title' . ucfirst(strtolower($language));
 
-        return $method;
+    //     return $method;
+    // }
+    public function getTitleBasedOnLanguage($language) {
+        $method = 'get' . 'title' . ucfirst(strtolower($language));
+
+        if (method_exists($this, $method)) {
+            return call_user_func([$this, $method]);
+        } else {
+            return "La méthode $method n'existe pas.";
+        }
     }
+
     public function getDescriptionBasedOnLanguage($language) {
         $method = 'get' . 'Description' . ucfirst(strtolower($language));
 

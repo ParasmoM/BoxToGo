@@ -946,6 +946,7 @@ body {
   padding-block: var(--spacing-xs);
   transition: all 0.3s ease-in;
   background-color: var(--clr-white);
+  white-space: nowrap;
 }
 .header-main__actions .header-main__action--user .user-selector a:hover {
   border-radius: 1rem 2rem;
@@ -2040,14 +2041,17 @@ body {
   margin-left: 5rem;
 }
 .space-detail__host-link {
-  height: 10rem;
-  aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
   position: absolute;
   top: 3rem;
   left: -5rem;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.space-detail__host-link img {
+  height: 10rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 .space-detail__host-profile {
   flex: auto;

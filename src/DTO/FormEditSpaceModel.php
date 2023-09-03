@@ -27,9 +27,14 @@ class FormEditSpaceModel {
     public function hydrate(Spaces $space): void
     {
         $this->setSpace($space);
-        $this->setAdresse($space->getAdresse()->first()); 
+        if ($space->getAdresse()->first()) {
+            $this->setAdresse($space->getAdresse()->first()); 
+        }
         $this->setContent($space->getContent());
-        $this->setEquipment($space->getEquipment()->first());
+        if ($space->getEquipment()->first()) {
+            $this->setEquipment($space->getEquipment()->first());
+        }
+
         // $this->setGalleries($space->getImage());
     }    
 

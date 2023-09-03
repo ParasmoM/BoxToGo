@@ -7,52 +7,56 @@
 <script src="{{ asset('js/property_detail.js') }}" defer></script>
 {% endblock %}
 
-{% set image1 = space.image.first.imagePath ? space.image.first.imagePath : false %}
-{% set image2 = space.image.next.imagePath ? space.image.next.imagePath : false %}
-{% set image3 = space.image.next.imagePath ? space.image.next.imagePath : false %}
-{% set image4 = space.image.next.imagePath ? space.image.next.imagePath : false %}
-{% set image5 = space.image.next.imagePath ? space.image.next.imagePath : false %}
+{% set images = [] %}
+{% for image in space.image %}
+    {% set images = images|merge([image.imagePath]) %}
+{% endfor %}
+
+{% set spaceCateg = space.spaceCateg|capitalize ? false %}
+{% set adresse = space.adresse.first ? space.adresse.first.city|capitalize : false %}
+
 {% block body %}
+
 <section class="space-detail">
     <div class="space-detail__container">
 
         <header class="space-detail__header">
             {% include "layout/header-main.html.twig" %}
         </header>
-
+        
         <main class="space-detail__content">
             <div class="space-detail__content-container">
 
                 <section class="space-detail__gallery">
 
                     <div class="space-detail__gallery-header">
-                        <h1 class="space-detail__gallery-title">{{ space.spaceCateg|capitalize }} à louer sur {{ space.adresse.first.city|capitalize }} - {{ space.surface }} m<sup>2</sup></h1>
+                        <h1 class="space-detail__gallery-title">{{ spaceCateg }} à louer sur {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
                         <p class="space-detail__gallery-evaluation">
                             <span class="space-detail__gallery-stars">******* ?? évaluation</span>
-                            <span class="space-detail__gallery-ref">REF **********</span>
+                            <span class="space-detail__gallery-ref">REF {{ space.reference }}</span>
                         </p>
                     </div>
 
                     <div class="space-detail__gallery-images">
 
                         <div class="space-detail__gallery-image-item">
-                            {% if image1 %}
-                            <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ image1) }}" alt="">
+                            {% if images[0] %}
+                                <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[0]) }}" alt="">
                             {% endif %}
                         </div>
-                        {% if image2 %}
+                        {% if  images[1] is defined %}
                             <div class="space-detail__gallery-image-item">
                                 <div>
-                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ image2) }}" alt=""></p>
-                                    {% if image4 %}
-                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ image4) }}" alt=""></p>
+                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[1]) }}" alt=""></p>
+                                    {% if images[3] is defined %}
+                                        <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[3]) }}" alt=""></p>
                                     {% endif %}
                                 </div>
-                                {% if image3 %}
+                                {% if images[2] is defined %}
                                 <div>
-                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ image3) }}" alt=""></p>
-                                    {% if image5 %}
-                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ image5) }}" alt=""></p>
+                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[2]) }}" alt=""></p>
+                                    {% if images[4] is defined %}
+                                        <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[4]) }}" alt=""></p>
                                     {% endif %}
                                 </div>
                                 {% endif %}
@@ -89,35 +93,29 @@
 
                         <div class="space-detail__gallery__billing">
                             <p>Faites votre réservation</p>
-                            <p><span>55 €</span> Par mois</p>
-                            <form action="#">
-                                <div>
-                                    <p>
-                                        <label for="">Dépot</label>
-                                        <input type="text" placeholder="Ajouter une date">
-                                    </p>
-                                    <p>
-                                        <label for="">Retrait</label>
-                                        <input type="text" placeholder="Ajouter une date">
-                                    </p>
-                                </div>
+                            <p><span>{{ space.price }} €</span></p>
 
-                                <button>Réserver le lieu</button>
-                            </form>
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                                <button>{{ button_label|default('Commander') }}</button>
+                            {{ form_end(form) }}
+
                         </div>
                     </div>
 
                 </section>
-
+                
                 <section class="space-detail__info">
 
                     <h1 class="space-detail__info-title">Installations du bien </h1>
                     <div class="space-detail__info-equipments">
+                        {% if space.equipment.first %}
                         {% for equipment in space.equipment.first.spaceEquipments %}
                             <p>
                                 <img src="{{ asset('images/icones/svg/' ~ equipment.id ~ '.svg') }}" alt="">{{ equipment }}
                             </p>
                         {% endfor %}
+                        {% endif %}
                     </div>
 
                     <h1 class="space-detail__info-title">Description du bien</h1>
@@ -143,7 +141,7 @@
 
                     <div class="space-detail__host-content">
                         <a href="" class="space-detail__host-link">
-                            {% include "components/_avatar.html.twig" %}
+                            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ space.host.id ~ '/Profile/' ~ space.host.image.imagePath) }}" alt="Image de profile">
                         </a>
 
                         <article class="space-detail__host-profile">
@@ -170,7 +168,7 @@
                             <div class="space-detail__host-details__values">
                                 <p>****</p>
                                 <p>****</p>
-                                <p>****</p>
+                                <p>{{ space.host.calculateYearsAndMonthsSinceRegistration[0] }} {{ space.host.calculateYearsAndMonthsSinceRegistration[1] }}</p>
                                 <p>{{ space.host.status }}</p>
                                 <p>{{ space.host.email }}</p>
                                 <p>{{ space.host.phoneNumber }}</p>
@@ -181,7 +179,7 @@
                         </article>
                     </div>
                 </section>
-
+                
             </div>
         </main>
 

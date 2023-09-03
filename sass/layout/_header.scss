@@ -193,6 +193,7 @@
                     padding-block: var(--spacing-xs);
                     transition: all .3s ease-in;
                     background-color: var(--clr-white);
+                    white-space: nowrap;
                 }
                 a:hover {
                     border-radius: 1rem 2rem;

@@ -5,7 +5,11 @@
             <div class="card-space__image-container">
 
                 <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
-                    <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                    {% if space.image.first %}
+                        <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                    {% else %}
+                        <img src="{{ asset('images/icones/download.svg') }}" alt="">
+                    {% endif %}
                 </a>
 
                 {% if app.user %}

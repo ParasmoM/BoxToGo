@@ -85,10 +85,14 @@ class Spaces
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reviews::class, cascade: ["persist"])]
     private Collection $review;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $reference = null;
+
     public function __construct()
     {
         $this->registrationDate = new \DateTime();
         $this->status = 'free';
+        $this->reference = date('Y') . '-' . uniqid();
         $this->isPublished = true;
         $this->favorite = new ArrayCollection();
         $this->reservation = new ArrayCollection();
@@ -531,6 +535,18 @@ class Spaces
                 $review->setSpace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?string $reference): static
+    {
+        $this->reference = $reference;
 
         return $this;
     }

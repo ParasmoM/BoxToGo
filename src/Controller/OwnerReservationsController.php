@@ -6,7 +6,7 @@ namespace App\Controller;
 use App\Entity\Spaces;
 use App\Entity\SpaceImages;
 use App\DTO\FormEditSpaceModel;
-use App\Service\PictureServices;
+use App\Services\PictureServices;
 use App\Repository\UsersRepository;
 use App\Repository\SpacesRepository;
 use App\Form\Combined\FormEditSpaceType;
@@ -18,6 +18,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OwnerReservationsController extends AbstractController
 {
+    public function __construct(Private EntityManagerInterface $entityManager) {
+        $this->entityManager = $entityManager;
+    }
     #[Route('/owner/annonces', name: 'owner_annonces')]
     public function annonce(
         Request $request,
@@ -62,7 +65,10 @@ class OwnerReservationsController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $status = $request->request->all()['form_edit_space']['equipment']['status'];
-            // dd($_POST);
+            $adresse =  $form->getData()->getAdresse();
+            $equipments =  $form->getData()->getEquipment();
+            // $adresse =  $form->getData()->getAdresse();
+            // dd($form, $form->getData()->getAdresse());
             if (isset($_POST['images'])) {
                 $oldOrder = $_POST['images'];
                 $newOrder = [];
@@ -80,8 +86,13 @@ class OwnerReservationsController extends AbstractController
                 $this->handleNewImages($form, $request, $pictureService, $entityManager);
                 
             }
+            $form->getData()->getAdresse();
 
-            $user->setStatus($status);
+            $this->entityManager->persist($adresse);
+            // $this->entityManager->flush();
+
+            $space->addAdresse($adresse);
+            $space->addEquipment($equipments);
             $usersRepository->save($user);
             $spacesRepository->save($space);
             return $this->redirectToRoute('owner_annonces', [], Response::HTTP_SEE_OTHER);

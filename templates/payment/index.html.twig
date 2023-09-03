@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaymentController!{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+{% endblock %}
+{% block javascripts %}
+<script src="https://js.stripe.com/v3/" defer></script>
+<script src="{{ asset('js/checkout.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+<!-- Display a payment form -->
+<form action="{{ path('app_checkout', {'id': resa.id }) }}" id="payment-form" data-client-secret="{{ clientSecret }}" data-api-public-key="{{ stripeSecretKey }}" data-return-url="{{ returnUrl }}">
+    <!--Stripe.js injects the Link Authentication Element-->
+    <div id="link-authentication-element"></div>
+    
+    <div id="address-element"></div>
+
+    <!--Stripe.js injects the Payment Element-->
+    <div id="payment-element"></div>
+    
+    <!-- We'll put the error messages in this element -->
+    <div id="payment-errors" role="alert"></div>
+
+    <button type="submit" id="checkout-button">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Pay now</span>
+    </button>
+    
+    <div id="payment-message" class="hidden"></div>
+</form>
+{% endblock %}
