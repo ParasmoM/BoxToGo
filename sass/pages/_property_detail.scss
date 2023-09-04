@@ -22,6 +22,24 @@
             display: flex;
             justify-content: space-between; 
         }
+        &-evaluation {
+            display: flex;
+            gap: var(--spacing-sm);
+
+            .space-detail__gallery-stars {
+                display: flex;
+                gap: .4rem;
+
+                img {
+                    height: 2rem;
+                    aspect-ratio: 1/1;
+                }
+            }
+
+            .space-detail__gallery-ref {
+                margin-left: 4.5rem;
+            }
+        }
 
         &-images {
             position: relative;
@@ -221,55 +239,140 @@
         }
     }
 
-    &__host {
-        &-content {
+    &__reviews {
+        &-stats {
             @extend %padding-lg;
-
-            position: relative;
-            border: solid 1px $border-color;
+            display: inline-flex;
+            border: solid 1px;
+            margin-bottom: var(--spacing-xl);
             border-radius: $border-radius;
-            box-shadow: $box-shadow;
-            display: flex;
-            margin-left: 5rem;
-        }
-        &-link {
 
-            border-radius: 50%;
-            overflow: hidden;
-            position: absolute;
-            top: 3rem; left: -5rem;
-            box-shadow: $box-shadow;
+            @at-root .reviews-stats__rating-section {
+                width: 42.2rem;
+                display: inline-flex;
+                flex-direction: column;
+                gap: var(--spacing-sm);
 
-            img {
-                height: 10rem;
-                aspect-ratio: 1/1;
-                object-fit: cover
+                .reviews-stats__rating-container {
+                    display: flex;
+                    gap: var(--spacing-sm);
+                }
+
+                .reviews-stats__rating-stars {
+                    display: flex;
+                    gap: .4rem;
+
+                    img {
+                        height: 2rem;
+                        aspect-ratio: 1/1   ;
+                    }
+                }
+
+                .reviews-stats__read-button {
+                    margin-top: auto;
+                    width: fit-content;
+                    color: var(--clr-primary);
+                }
+            }
+
+            @at-root .reviews-stats__progress-section {
+                display: inline-flex;
+                flex-direction: column;
+                gap: var(--spacing-sm);
+
+                .reviews-stats__progress-row {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-lg);
+                    white-space: nowrap;
+                }
+
+                .progress-row__star-label {
+                    width: 7rem;
+                }
+
+                .progress-row__progress-container {
+                    width: 20rem;
+                    height: 1rem;
+                    background-color: var(--clr-gray-300);
+                    border-radius: .4rem;
+                    overflow: hidden;
+                }
+                .progress-container__progress-bar {
+                    height: 100%;
+                    background-color: var(--clr-primary);
+                    text-align: center;
+                    line-height: 30px;
+                    color: white;
+                }
+
+                .progress-row__percentage {
+                    width: 5rem;
+                }
             }
         }
-        &-profile {
-            @extend %padding-right-lg;
-
-            flex: auto;
-            margin-left: 5rem;
-        }
-        &-details {
-            @extend %padding-left-lg;
-
+        &-comments {
             display: flex;
             gap: var(--spacing-xl);
-            border-left: solid 1px $border-color;
+            justify-content: space-between;
+            overflow: hidden;
 
             > div {
-                display: flex;
-                flex-direction: column;
-                gap: var(--spacing-xs);
-            }
-            p {
-                height: 2.65rem;
-                min-width: 15rem;
+                flex: 1 0 43rem;
             }
         }
     }
+
+    // &__host {
+    //     &-content {
+    //         @extend %padding-lg;
+
+    //         position: relative;
+    //         border: solid 1px $border-color;
+    //         border-radius: $border-radius;
+    //         box-shadow: $box-shadow;
+    //         display: flex;
+    //         margin-left: 5rem;
+    //     }
+    //     &-link {
+
+    //         border-radius: 50%;
+    //         overflow: hidden;
+    //         position: absolute;
+    //         top: 3rem; left: -5rem;
+    //         box-shadow: $box-shadow;
+
+    //         img {
+    //             height: 10rem;
+    //             aspect-ratio: 1/1;
+    //             object-fit: cover
+    //         }
+    //     }
+    //     &-profile {
+    //         @extend %padding-right-lg;
+
+    //         flex: auto;
+    //         margin-left: 5rem;
+    //     }
+    //     &-details {
+    //         @extend %padding-left-lg;
+
+    //         display: flex;
+    //         gap: var(--spacing-xl);
+    //         border-left: solid 1px $border-color;
+
+    //         > div {
+    //             display: flex;
+    //             flex-direction: column;
+    //             gap: var(--spacing-xs);
+    //         }
+    //         p {
+    //             height: 2.65rem;
+    //             min-width: 15rem;
+    //             white-space: nowrap;
+    //         }
+    //     }
+    // }
     // section:nth-child(4) {
     //     @extend %section;
     //     h2 {

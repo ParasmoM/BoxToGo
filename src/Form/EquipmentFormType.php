@@ -23,8 +23,8 @@ class EquipmentFormType extends AbstractType
             ])
             ->add('status', ChoiceType::class, [
                 'choices'  => [
-                    'Professionnel' => 'professionnel',
-                    'Particulier' => 'particulier',
+                    'Professionnel' => 'Professionnel',
+                    'Particulier' => 'Particulier',
                 ],
                 'expanded' => true,
                 'multiple' => false,

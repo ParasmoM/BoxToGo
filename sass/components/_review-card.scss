@@ -1,0 +1,49 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.review-card {
+    &__header {
+        display: flex;
+        gap: var(--spacing-lg);
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        flex: auto;
+    }
+    &__username {
+        @extend %fs-lg;
+        @extend %fw-semibold;
+    }
+    &__rating {
+        display: flex;
+        gap: .4rem;
+
+        img {
+            height: 2rem;
+            aspect-ratio: 1/1;
+        }
+    }
+    &__avatar {
+        height: 5rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        overflow: hidden;
+
+        .avatar {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__comment {
+        margin-block: var(--spacing-lg);
+        text-align: justify;
+        height: 14.4rem;
+    }
+
+    &__actions {
+        width: fit-content;
+        margin-left: auto;
+    }
+}

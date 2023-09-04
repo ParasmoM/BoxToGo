@@ -83,6 +83,17 @@
                 background-color: var(--clr-gray-200);
                 @extend %margin-bottom-sm;
             }
+            .avatar {
+                height: 31.3rem;
+                aspect-ratio: 1/1;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
         }
         .box2 {
             h3 {

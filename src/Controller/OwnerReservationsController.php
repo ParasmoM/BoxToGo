@@ -32,7 +32,18 @@ class OwnerReservationsController extends AbstractController
     public function reservation(
         Request $request,
     ): Response {
-        return $this->render('owner_reservations/index.html.twig');
+        $allSpaces = $this->entityManager->getRepository(Spaces::class)->findBy(['host' => $this->getUser()->getId()]);
+
+        $reservations = [];
+
+        foreach ($allSpaces as $space) {
+            // dd($space->getReservation());
+            foreach ($space->getReservation() as $reservation) {
+                $reservations[] = $reservation;
+            }
+        }
+        
+        return $this->render('owner_reservations/reservations.html.twig', compact('reservations'));
     }
 
     #[Route('/owner/edit/{id}', name: 'owner_edit')]
@@ -47,7 +58,7 @@ class OwnerReservationsController extends AbstractController
         if (!$this->getUser()) return $this->redirectToRoute('public_home');
         if (!$space->getHost() == $this->getUser()) return $this->redirectToRoute('public_home');
 
-        $galleries = $entityManager->getRepository(SpaceImages::class)->findBy([], ['sortOrder' => 'ASC']);
+        $galleries = $entityManager->getRepository(SpaceImages::class)->findBy(['space' => $space->getId()], ['sortOrder' => 'ASC']);
         
         $user = $space->getHost();
         $DTO_MODEL = new FormEditSpaceModel();

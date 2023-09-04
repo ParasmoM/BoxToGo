@@ -4,7 +4,7 @@
 
 {% block javascripts %}
 <script src="{{ asset('js/masthead.js') }}" defer></script>
-{# <script src="{{ asset('js/favori.js') }}" defer></script> #}
+<script src="{{ asset('js/favori.js') }}" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -19,23 +19,7 @@
             <div class="home__content-container">
 
                 <nav class="home__navbar">
-                    <div class="home__navbar-container">
-
-                        <ul class="home__navbar-category--list">
-                            {% for category in categories %}
-                            <li class="home__navbar-category-item">
-                                <img src="{{ asset('images/icones/' ~ category|lower|replace({' ': '_'}) ~ '.svg') }}" alt="Icone {{ category }}">
-                                {{ category }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-        
-                        <button class="home__navbar-filters">
-                            <img src="{{ asset('images/icones/filtres.svg') }}" alt="">
-                            <span>{{ 'Filtres'|trans }}</span>
-                        </button>
-
-                    </div>
+                    {% include "home/_navbar.html.twig" %}
                 </nav>
 
                 <div class="home__listing">
@@ -47,10 +31,10 @@
 
                     </div>
                 </div>
-
+                
             </div>
         </main>
     </div>
 </div>
-{# {{ dump(app.user.image) }} #}
+
 {% endblock %}

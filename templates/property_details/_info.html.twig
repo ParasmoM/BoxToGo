@@ -1,0 +1,15 @@
+<h1 class="space-detail__info-title">Installations du bien </h1>
+<div class="space-detail__info-equipments">
+    {% if space.equipment.first %}
+    {% for equipment in space.equipment.first.spaceEquipments %}
+        <p>
+            <img src="{{ asset('images/icones/svg/' ~ equipment.id ~ '.svg') }}" alt="">{{ equipment }}
+        </p>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<h1 class="space-detail__info-title">Description du bien</h1>
+<p class="space-detail__info-description">
+    {{ space.content.getDescriptionBasedOnLanguage(space.host.language) }} 
+</p>

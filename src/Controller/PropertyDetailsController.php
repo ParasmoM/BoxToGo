@@ -6,6 +6,7 @@ use App\Entity\Spaces;
 use App\Form\ResaFormType;
 use App\Entity\SpaceImages;
 use App\Entity\Reservations;
+use App\Entity\Reviews;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,6 @@ class PropertyDetailsController extends AbstractController
     public function index(
         Spaces $space,
         Request $request,
-        EntityManagerInterface $entityManager,
     ): Response {
         $currentReservation = $this->findCurrentReservationAndUpdateStatus($space);
         // dd($currentReservation);
@@ -40,8 +40,10 @@ class PropertyDetailsController extends AbstractController
             // dd(2, $resa);
         }
 
+        $reviews = $this->em->getRepository(Reviews::class)->findBy(['space' => $space]);
+        // dd($reviews);
         // dd($space->getHost()->getId(), $this->getUser()->getId());
-        $nbr = count($entityManager->getRepository(SpaceImages::class)->findBy(['space' => $space])) - 1;
+        $nbr = count($this->em->getRepository(SpaceImages::class)->findBy(['space' => $space])) - 1;
 
         $form = $this->createForm(ResaFormType::class, $resa);
         $form->handleRequest($request);
@@ -53,11 +55,11 @@ class PropertyDetailsController extends AbstractController
 
             $space->setStatus('busy');
             $resa->setUser($this->getUser());
-            $entityManager->persist($resa);
-            $entityManager->flush();
+            $this->em->persist($resa);
+            $this->em->flush();
             return $this->redirectToRoute('app_checkout', ['id' => $resa->getId()]);
         }
-        return $this->render('property_details/index.html.twig', compact('space', 'nbr', 'form'));
+        return $this->render('property_details/index.html.twig', compact('space', 'nbr', 'form', 'reviews'));
     }
 
     public function findCurrentReservationAndUpdateStatus(Spaces $space)

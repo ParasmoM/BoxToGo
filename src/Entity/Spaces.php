@@ -109,6 +109,59 @@ class Spaces
         return 'Archives/Spaces/' . $this->getId() . '/Galleries';
     }
 
+    public function calculateAverageRating(): ?float
+    {
+        $totalRating = 0;
+        $reviewCount = 0;
+
+        foreach ($this->review as $review) {  
+            $rating = $review->getRating();
+            if ($rating !== null) { 
+                $totalRating += $rating;
+                $reviewCount++;
+            }
+        }
+
+        if ($reviewCount === 0) {
+            return null; 
+        }
+
+        return $totalRating / $reviewCount;
+    }
+
+    public function getRatingCountAndPercentage(int $targetRating): array
+    {
+        $totalReviews = count($this->review);
+        $targetRatingCount = 0;
+        // dd($totalReviews);
+        
+        foreach ($this->review as $review) {
+            $rating = $review->getRating();
+            if ($rating !== null) {
+                // Arrondi de la note à l'entier le plus proche
+                $roundedRating = round($rating);
+                // dd($roundedRating, round($targetRating));
+                if ($roundedRating === round($targetRating)) {
+                    $targetRatingCount++;
+                }
+            }
+        }
+
+        if ($totalReviews === 0) {
+            return [
+                'count' => 0,
+                'percentage' => 0,
+            ];
+        }
+        // dd($targetRatingCount);
+        $percentage = ($targetRatingCount / $totalReviews) * 100;
+        // dd($percentage, $targetRatingCount);
+        return [
+            'count' => $targetRatingCount,
+            'percentage' => $percentage,
+        ];
+    }
+
     public function __toString()
     {
         return $this->spaceCateg;
@@ -517,7 +570,7 @@ class Spaces
         return $this->review;
     }
 
-    public function addReview(SpaceReviews $review): static
+    public function addReview(Reviews $review): static
     {
         if (!$this->review->contains($review)) {
             $this->review->add($review);
@@ -527,7 +580,7 @@ class Spaces
         return $this;
     }
 
-    public function removeReview(SpaceReviews $review): static
+    public function removeReview(Reviews $review): static
     {
         if ($this->review->removeElement($review)) {
             // set the owning side to null (unless already changed)

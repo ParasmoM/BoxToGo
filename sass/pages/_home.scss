@@ -40,9 +40,10 @@
 
     &__listing {
         margin-top: var(--spacing-xl);
+
         &-container {
             display: flex;
-            
+            gap: var(--spacing-lg);
         }
     }
 }

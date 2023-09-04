@@ -1,0 +1,51 @@
+<h1 class="space-detail__info-title">Commentaires des clients</h1>
+
+<div class="space-detail__reviews-stats">
+    <div class="reviews-stats__rating-section">
+        <div class="reviews-stats__rating-container">
+
+            <div class="reviews-stats__rating-stars">
+                {% for i in 1..5 %}
+                    {% if i < rating %}
+                        <img class="review-card__star-icon" src="{{ asset('images/icones/star-full.svg') }}" alt="">
+                    {% else %}
+                        <img class="review-card__star-icon" src="{{ asset('images/icones/star-empty.svg') }}" alt="">
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <span class="reviews-stats__rating-text">{{ space.calculateAverageRating }} sur 5</span>
+        </div>
+        <div class="reviews-stats__evaluation-count">
+            {{ space.review|length }} évaluations
+        </div>
+        <button class="reviews-stats__read-button">
+            Lire tous les commentaires 
+        </button>
+    </div>
+
+    <div class="reviews-stats__progress-section">
+
+        {% for index in 5..1 %}
+        <div class="reviews-stats__progress-row">
+            <span class="progress-row__star-label">{{ index }} étoiles</span> 
+
+            <div class="progress-row__progress-container">
+                <div class="progress-container__progress-bar" style="width: {{ space.getRatingCountAndPercentage(index
+                    )['percentage'] }}%;"></div>
+            </div>
+
+            <span class="progress-row__percentage">{{ space.getRatingCountAndPercentage(index)['percentage'] }} %</span>
+
+            <span class="progress-row__count">{{ space.getRatingCountAndPercentage(index)['count'] }}</span>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<div class="space-detail__reviews-comments">
+    {% for review in reviews|slice(0, 3) %}
+        {% include "components/_review-card.html.twig"  %}
+    {% endfor %}
+</div>

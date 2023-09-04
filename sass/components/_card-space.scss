@@ -49,9 +49,37 @@
                 text-align: right;
             }
         }
+        &-content {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            height: 100%;
+        }
         .card-space__icons {
             display: flex;
+            gap: var(--spacing-xs);
             justify-content: flex-end;
+
+            img {
+                height: 2rem;
+                aspect-ratio: 1/1;
+                opacity: .4;
+            }
+            img.equipped {
+                opacity: 1;
+            }
+        }
+        .card-space__rating {
+            display: flex;
+            gap: .4rem;
+            margin-top: auto;
+            margin-left: auto;
+            width: fit-content;
+            // border: solid;
+            img {
+                height: 2rem;
+                aspect-ratio: 1/1;
+            }
         }
     }
 }

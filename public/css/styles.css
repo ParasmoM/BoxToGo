@@ -215,21 +215,25 @@ button {
   font-size: 1.6rem;
 }
 
-.space-detail__gallery__map p, .space-detail__gallery__billing p, .space-detail__gallery__billing button, .listing__description-item--step, .card-ticket__status {
+.space-detail__gallery__map p, .space-detail__gallery__billing p, .space-detail__gallery__billing button, .listing__description-item--step, .review-card__username, .card-ticket__status {
   font-size: 1.8rem;
+}
+
+.detail-host-card__profile--title {
+  font-size: 2.2rem;
 }
 
 .space-detail__gallery__map span, body {
   font-weight: 400;
 }
 
-.master-form .language-section .language-buttons .language-btn, .space-detail__gallery__billing button, .header-main, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
+.master-form .language-section .language-buttons .language-btn, .space-detail__gallery__billing button, .header-main, .detail-host-card__profile--title, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
   font-weight: 500;
 }
 
-.settings__navbar .button.active, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__gallery__billing form label, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail__content h1 {
+.settings__navbar .button.active, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__gallery__billing form label, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .review-card__username, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail__content h1, .detail-host-card__title {
   font-weight: 600;
 }
 
@@ -251,7 +255,7 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .space-detail__gallery__billing, .space-detail__host-content, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .card-ticket__inner {
+.master-form .galleries-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .space-detail__gallery__billing, .space-detail__reviews-stats, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .detail-host-card__content, .card-ticket__inner {
   padding: 3rem;
 }
 
@@ -292,7 +296,7 @@ button {
   margin-right: 2.4rem;
 }
 
-.owner-detail section:first-of-type .content article:first-of-type, .space-detail__host-profile {
+.owner-detail section:first-of-type .content article:first-of-type {
   padding-right: 3rem;
 }
 
@@ -379,7 +383,7 @@ button {
   padding-left: 2.4rem;
 }
 
-.space-detail__host-details {
+.detail-host-card__profile, .detail-host-card__details {
   padding-left: 3rem;
 }
 
@@ -461,13 +465,13 @@ button {
   margin-top: 10rem;
 }
 
-.favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail__content h1 {
+.favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail__content h1, .detail-host-card__title {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.favorite__title::before, .owner__title::before, .user-dashboard .titre::before, .settings__title::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail__content h1::before {
+.favorite__title::before, .owner__title::before, .user-dashboard .titre::before, .settings__title::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail__content h1::before, .detail-host-card__title::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -746,9 +750,35 @@ body {
 .card-space__info-group:last-of-type {
   text-align: right;
 }
+.card-space__info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  height: 100%;
+}
 .card-space__info .card-space__icons {
   display: flex;
+  gap: var(--spacing-xs);
   justify-content: flex-end;
+}
+.card-space__info .card-space__icons img {
+  height: 2rem;
+  aspect-ratio: 1/1;
+  opacity: 0.4;
+}
+.card-space__info .card-space__icons img.equipped {
+  opacity: 1;
+}
+.card-space__info .card-space__rating {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: auto;
+  margin-left: auto;
+  width: fit-content;
+}
+.card-space__info .card-space__rating img {
+  height: 2rem;
+  aspect-ratio: 1/1;
 }
 
 .card-ticket__inner {
@@ -779,6 +809,85 @@ body {
 .card-ticket__status {
   color: var(--clr-primary);
 }
+.review-card__header {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+.review-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: auto;
+}
+.review-card__rating {
+  display: flex;
+  gap: 0.4rem;
+}
+.review-card__rating img {
+  height: 2rem;
+  aspect-ratio: 1/1;
+}
+.review-card__avatar {
+  height: 5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.review-card__avatar .avatar {
+  font-size: 1.5rem;
+}
+.review-card__comment {
+  margin-block: var(--spacing-lg);
+  text-align: justify;
+  height: 14.4rem;
+}
+.review-card__actions {
+  width: fit-content;
+  margin-left: auto;
+}
+
+.detail-host-card__content {
+  display: flex;
+  position: relative;
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  margin-left: 5rem;
+}
+.detail-host-card__link {
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 3rem;
+  left: -5rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.detail-host-card__link img {
+  height: 10rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.detail-host-card__profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+.detail-host-card__details {
+  display: flex;
+  gap: var(--spacing-xl);
+  border-left: solid 1px var(--clr-gray-700);
+}
+.detail-host-card__details--labels, .detail-host-card__details--values {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.detail-host-card__details p {
+  height: 2.65rem;
+  min-width: 15rem;
+  white-space: nowrap;
+}
+
 .logo-container .admin-switch {
   position: absolute;
   bottom: -10rem;
@@ -1873,6 +1982,7 @@ body {
 }
 .home__listing-container {
   display: flex;
+  gap: var(--spacing-lg);
 }
 
 .space-detail {
@@ -1884,6 +1994,21 @@ body {
 .space-detail__gallery-header {
   display: flex;
   justify-content: space-between;
+}
+.space-detail__gallery-evaluation {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+.space-detail__gallery-evaluation .space-detail__gallery-stars {
+  display: flex;
+  gap: 0.4rem;
+}
+.space-detail__gallery-evaluation .space-detail__gallery-stars img {
+  height: 2rem;
+  aspect-ratio: 1/1;
+}
+.space-detail__gallery-evaluation .space-detail__gallery-ref {
+  margin-left: 4.5rem;
 }
 .space-detail__gallery-images {
   position: relative;
@@ -2032,44 +2157,76 @@ body {
   white-space: pre-line;
   width: 74rem;
 }
-.space-detail__host-content {
-  position: relative;
-  border: solid 1px var(--clr-gray-700);
+.space-detail__reviews-stats {
+  display: inline-flex;
+  border: solid 1px;
+  margin-bottom: var(--spacing-xl);
   border-radius: 1rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.reviews-stats__rating-section {
+  width: 42.2rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+.reviews-stats__rating-section .reviews-stats__rating-container {
   display: flex;
-  margin-left: 5rem;
+  gap: var(--spacing-sm);
 }
-.space-detail__host-link {
-  border-radius: 50%;
-  overflow: hidden;
-  position: absolute;
-  top: 3rem;
-  left: -5rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+.reviews-stats__rating-section .reviews-stats__rating-stars {
+  display: flex;
+  gap: 0.4rem;
 }
-.space-detail__host-link img {
-  height: 10rem;
+.reviews-stats__rating-section .reviews-stats__rating-stars img {
+  height: 2rem;
   aspect-ratio: 1/1;
-  object-fit: cover;
 }
-.space-detail__host-profile {
-  flex: auto;
-  margin-left: 5rem;
+.reviews-stats__rating-section .reviews-stats__read-button {
+  margin-top: auto;
+  width: fit-content;
+  color: var(--clr-primary);
 }
-.space-detail__host-details {
+
+.reviews-stats__progress-section {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+.reviews-stats__progress-section .reviews-stats__progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  white-space: nowrap;
+}
+.reviews-stats__progress-section .progress-row__star-label {
+  width: 7rem;
+}
+.reviews-stats__progress-section .progress-row__progress-container {
+  width: 20rem;
+  height: 1rem;
+  background-color: var(--clr-gray-300);
+  border-radius: 0.4rem;
+  overflow: hidden;
+}
+.reviews-stats__progress-section .progress-container__progress-bar {
+  height: 100%;
+  background-color: var(--clr-primary);
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+.reviews-stats__progress-section .progress-row__percentage {
+  width: 5rem;
+}
+
+.space-detail__reviews-comments {
   display: flex;
   gap: var(--spacing-xl);
-  border-left: solid 1px var(--clr-gray-700);
+  justify-content: space-between;
+  overflow: hidden;
 }
-.space-detail__host-details > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
-.space-detail__host-details p {
-  height: 2.65rem;
-  min-width: 15rem;
+.space-detail__reviews-comments > div {
+  flex: 1 0 43rem;
 }
 
 .owner-detail section:first-of-type .content {
@@ -2119,6 +2276,16 @@ body {
   aspect-ratio: 1/1;
   border-radius: 1rem;
   background-color: var(--clr-gray-200);
+}
+.owner-detail section:nth-child(2) .box1 .avatar {
+  height: 31.3rem;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.owner-detail section:nth-child(2) .box1 .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .owner-detail section:nth-child(2) .box2 {
   border-radius: 1rem;

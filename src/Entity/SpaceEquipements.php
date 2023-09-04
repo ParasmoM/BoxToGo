@@ -18,19 +18,13 @@ class SpaceEquipements
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $quantity = null;
-
-    #[ORM\Column]
-    private ?bool $equipped = null;
-
     #[ORM\ManyToMany(mappedBy: 'spaceEquipments', targetEntity: SpaceEquipementLink::class, cascade: ["persist"])]
     private Collection $equipment;
 
     public function __construct()
     {
-        $this->quantity = 0;
-        $this->equipped = true;
+        // $this->quantity = 0;
+        // $this->equipped = true;
         $this->equipment = new ArrayCollection();
     }
 
@@ -56,29 +50,29 @@ class SpaceEquipements
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
+    // public function getQuantity(): ?int
+    // {
+    //     return $this->quantity;
+    // }
 
-    public function setQuantity(?int $quantity): static
-    {
-        $this->quantity = $quantity;
+    // public function setQuantity(?int $quantity): static
+    // {
+    //     $this->quantity = $quantity;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function isEquipped(): ?bool
-    {
-        return $this->equipped;
-    }
+    // public function isEquipped(): ?bool
+    // {
+    //     return $this->equipped;
+    // }
 
-    public function setEquipped(bool $equipped): static
-    {
-        $this->equipped = $equipped;
+    // public function setEquipped(bool $equipped): static
+    // {
+    //     $this->equipped = $equipped;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, SpaceEquipementLink>

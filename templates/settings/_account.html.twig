@@ -16,7 +16,7 @@
 
                 <div class="settings__avatar-uploader">
                     <div class="settings__avatar-uploader__image-zone">
-                        {% include "components/_avatar.html.twig" %}
+                        {% include "components/_avatar.html.twig" with {'image': app.user } only %}
                     </div>
 
                     <div class="settings__avatar-uploader__actions">

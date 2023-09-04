@@ -15,6 +15,7 @@
 {% set spaceCateg = space.spaceCateg|capitalize ? false %}
 {% set adresse = space.adresse.first ? space.adresse.first.city|capitalize : false %}
 
+{% set rating = space.calculateAverageRating %} 
 {% block body %}
 
 <section class="space-detail">
@@ -28,156 +29,19 @@
             <div class="space-detail__content-container">
 
                 <section class="space-detail__gallery">
-
-                    <div class="space-detail__gallery-header">
-                        <h1 class="space-detail__gallery-title">{{ spaceCateg }} à louer sur {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
-                        <p class="space-detail__gallery-evaluation">
-                            <span class="space-detail__gallery-stars">******* ?? évaluation</span>
-                            <span class="space-detail__gallery-ref">REF {{ space.reference }}</span>
-                        </p>
-                    </div>
-
-                    <div class="space-detail__gallery-images">
-
-                        <div class="space-detail__gallery-image-item">
-                            {% if images[0] %}
-                                <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[0]) }}" alt="">
-                            {% endif %}
-                        </div>
-                        {% if  images[1] is defined %}
-                            <div class="space-detail__gallery-image-item">
-                                <div>
-                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[1]) }}" alt=""></p>
-                                    {% if images[3] is defined %}
-                                        <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[3]) }}" alt=""></p>
-                                    {% endif %}
-                                </div>
-                                {% if images[2] is defined %}
-                                <div>
-                                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[2]) }}" alt=""></p>
-                                    {% if images[4] is defined %}
-                                        <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[4]) }}" alt=""></p>
-                                    {% endif %}
-                                </div>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                        <button class="space-detail__gallery-images-btn">
-                            {% if nbr > 4 %}
-                                +{{ nbr }} photos
-                            {% endif %}
-                        </button>
-                    </div>
-
-                    <div class="space-detail__gallery-footer">
-                        <div class="space-detail__gallery__map-content">
-
-                            <div class="space-detail__gallery__actions">
-                                <a href="{{ path('app_reviews', {'id': space.id}) }}">Laisser un commentaires</a>
-
-                                <div>
-                                    <button><img src="{{ asset('images/icones/envelope.svg') }}" alt=""></button>
-                                    <button><img src="{{ asset('images/icones/share.svg') }}" alt=""></button>
-                                    <button><img src="{{ asset('images/icones/favorite.svg') }}" alt=""></button>
-                                </div>
-                            </div>
-
-                            <div class="space-detail__gallery__map">
-                                <p>{{ space.spaceCateg|capitalize }} <span>- {{ space.host.status|capitalize }} -</span> {{ space.adresse.first|capitalize }}</p>
-                                <div>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2531.626127283953!2d5.552801016138968!3d50.615484399237076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0f9ecae988717%3A0xd109734e9db8a544!2sRue%20du%20Perron%203%2C%204000%20Li%C3%A8ge!5e0!3m2!1sfr!2sbe!4v1693183790320!5m2!1sfr!2sbe" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="space-detail__gallery__billing">
-                            <p>Faites votre réservation</p>
-                            <p><span>{{ space.price }} €</span></p>
-
-                            {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                                <button>{{ button_label|default('Commander') }}</button>
-                            {{ form_end(form) }}
-
-                        </div>
-                    </div>
-
+                    {% include "property_details/_gallery.html.twig" %}
                 </section>
                 
                 <section class="space-detail__info">
-
-                    <h1 class="space-detail__info-title">Installations du bien </h1>
-                    <div class="space-detail__info-equipments">
-                        {% if space.equipment.first %}
-                        {% for equipment in space.equipment.first.spaceEquipments %}
-                            <p>
-                                <img src="{{ asset('images/icones/svg/' ~ equipment.id ~ '.svg') }}" alt="">{{ equipment }}
-                            </p>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-
-                    <h1 class="space-detail__info-title">Description du bien</h1>
-                    <p class="space-detail__info-description">
-                        {{ space.content.getDescriptionBasedOnLanguage(space.host.language) }} 
-                    </p>
-
+                    {% include "property_details/_info.html.twig" %}
                 </section>
 
-                <section class="space-detail__reviews-stats">
-                    <h1 class="space-detail__info-title">Commentaires des clients</h1>
-                    <div class="space-detail__reviews-stats">
-                        
-                    </div>
-
-                    <div class="space-detail__reviews-comments">
-                        
-                    </div>
+                <section class="space-detail__reviews">
+                    {% include "property_details/_review.html.twig" %}
                 </section>
 
                 <section class="space-detail__host">
-                    <h1 class="title">Faites connaissance avec votre hôte</h1>
-
-                    <div class="space-detail__host-content">
-                        <a href="" class="space-detail__host-link">
-                            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ space.host.id ~ '/Profile/' ~ space.host.image.imagePath) }}" alt="Image de profile">
-                        </a>
-
-                        <article class="space-detail__host-profile">
-                            <h3 class="space-detail__host-profile__title">
-                                <a href="{{ path('public_owner_profile', {'id': space.host.id}) }}">{{ space.host.familyName|capitalize }}  {{ space.host.givenName|capitalize }}</a>
-                            </h3>
-                            <div class="space-detail__host-profile__desciption">
-                                {{ space.host.content.getDescriptionBasedOnLanguage(space.host.language)|capitalize }}
-                            </div>
-                        </article>
-
-                        <article class="space-detail__host-details">
-                            <div class="space-detail__host-details__labels">
-                                <p>Notes globale :</p>
-                                <p>Nombres d’évaluations :</p>
-                                <p>Années d’expérience :</p>
-                                <p>Statut :</p>
-                                <p>Email :</p>
-                                <p>Téléphone :</p>
-                                <p>Langues :</p>
-                                <p>Taux de réponse :</p>
-                                <p>Délai de réponse :</p>
-                            </div>
-                            <div class="space-detail__host-details__values">
-                                <p>****</p>
-                                <p>****</p>
-                                <p>{{ space.host.calculateYearsAndMonthsSinceRegistration[0] }} {{ space.host.calculateYearsAndMonthsSinceRegistration[1] }}</p>
-                                <p>{{ space.host.status }}</p>
-                                <p>{{ space.host.email }}</p>
-                                <p>{{ space.host.phoneNumber }}</p>
-                                <p>{{ space.host.language }}</p>
-                                <p>****</p>
-                                <p>****</p>
-                            </div>
-                        </article>
-                    </div>
+                    {% include "components/_detail-host-card.html.twig" with {'name': 'votre hôte'} %}
                 </section>
                 
             </div>
@@ -185,59 +49,6 @@
 
     </div>
 </section>
-{# <main class="space-detail">
-    <div class="container">
 
-        <section>
-
-            <h2>Faites connaissance avec votre hôte</h2>
-
-            <div class="content">
-
-                <a href="{{ path('public_owner_profile', {'id': space.host.id}) }}" class="avatar">
-                    
-                </a>
-
-                <article>
-                    <h3><a href="{{ path('public_owner_profile', {'id': space.host.id}) }}">{{ space.user }}</a></h3>
-                    <div>
-                        
-                    </div>
-                </article>
-
-                <article>
-                    <div>
-                        <p>Notes globale :</p>
-                        <p>Nombres d’évaluations :</p>
-                        <p>Années d’expérience :</p>
-                        <p>Statut :</p>
-                        <p>Email :</p>
-                        <p>Téléphone :</p>
-                        <p>Langues :</p>
-                        <p>Taux de réponse :</p>
-                        <p>Délai de réponse :</p>
-                    </div>
-                    <div>
-                        <p>****</p>
-                        <p>****</p>
-                        <p>****</p>
-                        <p>{{ space.host.status }}</p>
-                        <p>{{ space.host.email }}</p>
-                        <p>{{ space.host.phoneNumber }}</p>
-                        <p>{{ space.host.language }}</p>
-                        <p>****</p>
-                        <p>****</p>
-                    </div>
-                </article>
-
-            </div>
-
-        </section>
-
-        <section>
-            
-        </section>
-    </div>
-</main> #}
 {% endblock %}
 

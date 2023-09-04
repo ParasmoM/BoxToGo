@@ -40,7 +40,7 @@ class SettingsController extends AbstractController
     ): Response {
         if (!$this->getUser()) return $this->redirectToRoute('public_home');
         if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
-
+        // dd($user);
         $DTO_MODEL = new FormSettingsAccountModel();
         $DTO_MODEL->setAccount($user);
         if ($user->getContent()) {

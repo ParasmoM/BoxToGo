@@ -37,8 +37,8 @@ class AccountFormType extends AbstractType
             ])
             ->add('status',  ChoiceType::class, [
                 'choices'  => [
-                    'Professionnel' => 'professionnel',
-                    'Particulier' => 'particulier',
+                    'Professionnel' => 'Professionnel',
+                    'Particulier' => 'Particulier',
                 ],
                 'expanded' => true, // Render as radio buttons
                 'multiple' => false, // Only one can be selected
@@ -46,8 +46,8 @@ class AccountFormType extends AbstractType
             ])
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
-                    'Femme' => 'femme',
-                    'Homme' => 'homme',
+                    'Femme' => 'Femme',
+                    'Homme' => 'Homme',
                     'Autre' => 'autre',
                 ],
                 'expanded' => true, // Render as radio buttons
