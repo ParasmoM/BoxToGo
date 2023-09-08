@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SpacesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -49,6 +51,41 @@ class Spaces
 
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
+
+    #[ORM\ManyToOne(inversedBy: 'space')]
+    private ?SpaceTypes $type = null;
+
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Reservations::class)]
+    private Collection $reservations;
+
+    #[ORM\OneToOne(inversedBy: 'spaces', cascade: ['persist', 'remove'])]
+    private ?Addresses $adresse = null;
+
+    #[ORM\OneToMany(mappedBy: 'spaces', targetEntity: Images::class)]
+    private Collection $image;
+
+    #[ORM\OneToOne(inversedBy: 'spaces', cascade: ['persist', 'remove'])]
+    private ?Contents $content = null;
+
+    #[ORM\OneToMany(mappedBy: 'spaces', targetEntity: SpaceAmenityLinks::class)]
+    private Collection $amenties;
+
+    #[ORM\OneToMany(mappedBy: 'spaces', targetEntity: FavoriteSpaces::class)]
+    private Collection $favorites;
+
+    #[ORM\ManyToOne(inversedBy: 'renters')]
+    private ?User $rentedByUser = null;
+
+    #[ORM\ManyToOne(inversedBy: 'owners')]
+    private ?User $ownedByUser = null;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+        $this->image = new ArrayCollection();
+        $this->amenties = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -195,6 +232,186 @@ class Spaces
     public function setReference(string $reference): static
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getType(): ?SpaceTypes
+    {
+        return $this->type;
+    }
+
+    public function setType(?SpaceTypes $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservations>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservations $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setSpace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservations $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getSpace() === $this) {
+                $reservation->setSpace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Addresses
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Addresses $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Images $image): static
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setSpaces($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): static
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getSpaces() === $this) {
+                $image->setSpaces(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getContent(): ?Contents
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Contents $content): static
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SpaceAmenityLinks>
+     */
+    public function getAmenties(): Collection
+    {
+        return $this->amenties;
+    }
+
+    public function addAmenty(SpaceAmenityLinks $amenty): static
+    {
+        if (!$this->amenties->contains($amenty)) {
+            $this->amenties->add($amenty);
+            $amenty->setSpaces($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAmenty(SpaceAmenityLinks $amenty): static
+    {
+        if ($this->amenties->removeElement($amenty)) {
+            // set the owning side to null (unless already changed)
+            if ($amenty->getSpaces() === $this) {
+                $amenty->setSpaces(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FavoriteSpaces>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(FavoriteSpaces $favorite): static
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites->add($favorite);
+            $favorite->setSpaces($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(FavoriteSpaces $favorite): static
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getSpaces() === $this) {
+                $favorite->setSpaces(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRentedByUser(): ?User
+    {
+        return $this->rentedByUser;
+    }
+
+    public function setRentedByUser(?User $rentedByUser): static
+    {
+        $this->rentedByUser = $rentedByUser;
+
+        return $this;
+    }
+
+    public function getOwnedByUser(): ?User
+    {
+        return $this->ownedByUser;
+    }
+
+    public function setOwnedByUser(?User $ownedByUser): static
+    {
+        $this->ownedByUser = $ownedByUser;
 
         return $this;
     }

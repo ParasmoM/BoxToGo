@@ -28,6 +28,12 @@ class Addresses
     #[ORM\Column(length: 255)]
     private ?string $postalCode = null;
 
+    #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
+    private ?Spaces $spaces = null;
+
+    #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +95,50 @@ class Addresses
     public function setPostalCode(string $postalCode): static
     {
         $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getSpaces(): ?Spaces
+    {
+        return $this->spaces;
+    }
+
+    public function setSpaces(?Spaces $spaces): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($spaces === null && $this->spaces !== null) {
+            $this->spaces->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($spaces !== null && $spaces->getAdresse() !== $this) {
+            $spaces->setAdresse($this);
+        }
+
+        $this->spaces = $spaces;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getAdresse() !== $this) {
+            $user->setAdresse($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

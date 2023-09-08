@@ -40,6 +40,12 @@ class Payments
     #[ORM\Column(length: 255)]
     private ?string $stripeStatus = null;
 
+    #[ORM\OneToOne(mappedBy: 'payment', cascade: ['persist', 'remove'])]
+    private ?Reservations $reservations = null;
+
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +155,40 @@ class Payments
     public function setStripeStatus(string $stripeStatus): static
     {
         $this->stripeStatus = $stripeStatus;
+
+        return $this;
+    }
+
+    public function getReservations(): ?Reservations
+    {
+        return $this->reservations;
+    }
+
+    public function setReservations(?Reservations $reservations): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($reservations === null && $this->reservations !== null) {
+            $this->reservations->setPayment(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($reservations !== null && $reservations->getPayment() !== $this) {
+            $reservations->setPayment($this);
+        }
+
+        $this->reservations = $reservations;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

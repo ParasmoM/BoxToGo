@@ -22,6 +22,12 @@ class Images
     #[ORM\Column]
     private ?int $sortOrder = null;
 
+    #[ORM\ManyToOne(inversedBy: 'image')]
+    private ?Spaces $spaces = null;
+
+    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +65,40 @@ class Images
     public function setSortOrder(int $sortOrder): static
     {
         $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    public function getSpaces(): ?Spaces
+    {
+        return $this->spaces;
+    }
+
+    public function setSpaces(?Spaces $spaces): static
+    {
+        $this->spaces = $spaces;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getImage() !== $this) {
+            $user->setImage($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

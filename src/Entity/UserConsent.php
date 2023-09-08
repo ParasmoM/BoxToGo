@@ -22,6 +22,9 @@ class UserConsent
     #[ORM\Column]
     private ?\DateTimeImmutable $createAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'consents')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class UserConsent
     public function setCreateAt(\DateTimeImmutable $createAt): static
     {
         $this->createAt = $createAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

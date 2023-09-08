@@ -24,8 +24,8 @@ class SpaceFixtures extends Fixture
     
     public function load(ObjectManager $manager): void
     {
-        $this->createSpace($manager);
-        $this->addItems($manager);
+        // $this->createSpace($manager);
+        // $this->addItems($manager);
     }
 
     public function getDependencies()

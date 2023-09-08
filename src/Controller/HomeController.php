@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Reservations;
 use Faker\Factory;
 use App\Entity\Users;
-use App\Entity\Reviews;
-use App\Entity\SpaceCategories;
 use App\Entity\Spaces;
+use App\Entity\Reviews;
+use App\Entity\Reservations;
+use App\Entity\SpaceAmenities;
+use App\Entity\SpaceCategories;
 use App\Repository\SpacesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpaceCategoriesRepository;
@@ -33,9 +34,11 @@ class HomeController extends AbstractController
 
         
         // dd('success');
-        $categories = $this->em->getRepository(SpaceCategories::class)->findBy([], ['name' => 'ASC']);
-        $allSpaces = $this->em->getRepository(Spaces::class)->findBy([], ['registrationDate' => 'ASC']);
-        return $this->render('home/index.html.twig', compact('categories', 'allSpaces'));
+        
+        // $allSpaces = $this->em->getRepository(Spaces::class)->findBy([], ['createAt' => 'ASC']);
+        return $this->render('home/index.html.twig', [
+            'spaceTypes' => $SpaceTypes = $this->em->getRepository(SpaceAmenities::class)->findBy([], ['name' => 'ASC']),
+        ]);
     }
 
     public function separateOwnersAndNonOwners()

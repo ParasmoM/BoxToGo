@@ -32,6 +32,15 @@ class Reservations
     #[ORM\Column(length: 255)]
     private ?string $price = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?Spaces $space = null;
+
+    #[ORM\OneToOne(inversedBy: 'reservations', cascade: ['persist', 'remove'])]
+    private ?Payments $payment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +114,42 @@ class Reservations
     public function setPrice(string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSpace(): ?Spaces
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Spaces $space): static
+    {
+        $this->space = $space;
+
+        return $this;
+    }
+
+    public function getPayment(): ?Payments
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(?Payments $payment): static
+    {
+        $this->payment = $payment;
 
         return $this;
     }

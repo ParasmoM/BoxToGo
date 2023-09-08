@@ -16,6 +16,12 @@ class FavoriteSpaces
     #[ORM\Column]
     private ?\DateTimeImmutable $createAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'favorites')]
+    private ?Spaces $spaces = null;
+
+    #[ORM\ManyToOne(inversedBy: 'favorites')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +35,30 @@ class FavoriteSpaces
     public function setCreateAt(\DateTimeImmutable $createAt): static
     {
         $this->createAt = $createAt;
+
+        return $this;
+    }
+
+    public function getSpaces(): ?Spaces
+    {
+        return $this->spaces;
+    }
+
+    public function setSpaces(?Spaces $spaces): static
+    {
+        $this->spaces = $spaces;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

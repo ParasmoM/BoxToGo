@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\SpaceAmenities;
 use App\Entity\SpaceCategories;
 use App\Entity\SpaceEquipements;
 use Doctrine\Persistence\ObjectManager;
@@ -11,8 +12,8 @@ class ConfigFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $this->createCategory($manager);
-        $this->createEquipments($manager);
+        $this->createSpaceTypes($manager);
+        // $this->createEquipments($manager);
     }
 
     public function createEquipments(ObjectManager $manager)
@@ -27,12 +28,12 @@ class ConfigFixtures extends Fixture
         }
     }
 
-    public function createCategory(ObjectManager $manager)
+    public function createSpaceTypes(ObjectManager $manager)
     {
         $datas = ['cellar', 'Commercial space', 'Garden shed', 'Others', 'Storage unit', 'Warehouse', 'Garage'];
 
         foreach($datas as $data) {
-            $categ = new SpaceCategories();
+            $categ = new SpaceAmenities();
             $categ->setName($data);
             $manager->persist($categ);
             $manager->flush();

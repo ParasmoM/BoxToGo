@@ -20,6 +20,12 @@ class Conversations
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sentConversations')]
+    private ?User $sentByUser = null;
+
+    #[ORM\ManyToOne(inversedBy: 'receivedConversations')]
+    private ?User $receivedByUser = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +51,30 @@ class Conversations
     public function setContent(?string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getSentByUser(): ?User
+    {
+        return $this->sentByUser;
+    }
+
+    public function setSentByUser(?User $sentByUser): static
+    {
+        $this->sentByUser = $sentByUser;
+
+        return $this;
+    }
+
+    public function getReceivedByUser(): ?User
+    {
+        return $this->receivedByUser;
+    }
+
+    public function setReceivedByUser(?User $receivedByUser): static
+    {
+        $this->receivedByUser = $receivedByUser;
 
         return $this;
     }

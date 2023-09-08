@@ -32,6 +32,12 @@ class Contents
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_ne = null;
 
+    #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
+    private ?Spaces $spaces = null;
+
+    #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +111,50 @@ class Contents
     public function setDescriptionNe(?string $description_ne): static
     {
         $this->description_ne = $description_ne;
+
+        return $this;
+    }
+
+    public function getSpaces(): ?Spaces
+    {
+        return $this->spaces;
+    }
+
+    public function setSpaces(?Spaces $spaces): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($spaces === null && $this->spaces !== null) {
+            $this->spaces->setContent(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($spaces !== null && $spaces->getContent() !== $this) {
+            $spaces->setContent($this);
+        }
+
+        $this->spaces = $spaces;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setContent(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getContent() !== $this) {
+            $user->setContent($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

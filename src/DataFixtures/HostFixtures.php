@@ -23,10 +23,10 @@ class HostFixtures extends Fixture
     
     public function load(ObjectManager $manager): void
     {
-        $this->createHost($manager);
-        $this->addAdress($manager);
-        $this->addImage($manager);
-        $this->addDescription($manager);
+        // $this->createHost($manager);
+        // $this->addAdress($manager);
+        // $this->addImage($manager);
+        // $this->addDescription($manager);
     }
 
     public function getDependencies()
