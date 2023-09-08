@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserConsentRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserConsentRepository::class)]
@@ -14,27 +13,14 @@ class UserConsent
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $consentType = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $consentGiven = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $consentDate = null;
-
-    #[ORM\ManyToOne(inversedBy: 'consent')]
-    private ?Users $user = null;
-
-    public function __construct()
-    {
-        $this->consentDate = new \DateTime();
-    }
-
-    public function __toString()
-    {
-        return $this->consentType;
-    }
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createAt = null;
 
     public function getId(): ?int
     {
@@ -46,7 +32,7 @@ class UserConsent
         return $this->consentType;
     }
 
-    public function setConsentType(string $consentType): static
+    public function setConsentType(?string $consentType): static
     {
         $this->consentType = $consentType;
 
@@ -58,33 +44,21 @@ class UserConsent
         return $this->consentGiven;
     }
 
-    public function setConsentGiven(bool $consentGiven): static
+    public function setConsentGiven(?bool $consentGiven): static
     {
         $this->consentGiven = $consentGiven;
 
         return $this;
     }
 
-    public function getConsentDate(): ?\DateTimeInterface
+    public function getCreateAt(): ?\DateTimeImmutable
     {
-        return $this->consentDate;
+        return $this->createAt;
     }
 
-    public function setConsentDate(\DateTimeInterface $consentDate): static
+    public function setCreateAt(\DateTimeImmutable $createAt): static
     {
-        $this->consentDate = $consentDate;
-
-        return $this;
-    }
-
-    public function getUser(): ?Users
-    {
-        return $this->user;
-    }
-
-    public function setUser(?Users $user): static
-    {
-        $this->user = $user;
+        $this->createAt = $createAt;
 
         return $this;
     }

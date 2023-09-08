@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Spaces;
+use App\Entity\SpaceAmenities;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Spaces>
+ * @extends ServiceEntityRepository<SpaceAmenities>
  *
- * @method Spaces|null find($id, $lockMode = null, $lockVersion = null)
- * @method Spaces|null findOneBy(array $criteria, array $orderBy = null)
- * @method Spaces[]    findAll()
- * @method Spaces[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SpaceAmenities|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SpaceAmenities|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SpaceAmenities[]    findAll()
+ * @method SpaceAmenities[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SpacesRepository extends ServiceEntityRepository
+class SpaceAmenitiesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Spaces::class);
+        parent::__construct($registry, SpaceAmenities::class);
     }
 
 //    /**
-//     * @return Spaces[] Returns an array of Spaces objects
+//     * @return SpaceAmenities[] Returns an array of SpaceAmenities objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class SpacesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Spaces
+//    public function findOneBySomeField($value): ?SpaceAmenities
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

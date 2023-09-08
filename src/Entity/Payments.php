@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PaymentsRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PaymentsRepository::class)]
@@ -14,88 +13,82 @@ class Payments
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'payment')]
-    private ?Users $user = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createAt = null;
 
-    #[ORM\OneToOne(mappedBy: 'payment', cascade: ['persist', 'remove'])]
-    private ?Reservations $reservation = null;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $amount = null;
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $method = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $stripeChargeId = null;
+    private ?string $price = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
+    private ?string $stripeId = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $stripeToken = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $stripeBrand = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $stripeLast4 = null;
-
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $stripeStatus = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $name = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $email = null;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-        $this->reference = 'P-' . date('Y') . '-' . uniqid();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAmount(): ?string
+    public function getCreateAt(): ?\DateTimeImmutable
     {
-        return $this->amount;
+        return $this->createAt;
     }
 
-    public function setAmount(string $amount): static
+    public function setCreateAt(\DateTimeImmutable $createAt): static
     {
-        $this->amount = $amount;
+        $this->createAt = $createAt;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getName(): ?string
     {
-        return $this->createdAt;
+        return $this->name;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    public function setName(string $name): static
     {
-        $this->createdAt = $createdAt;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getStripeStatus(): ?string
+    public function getEmail(): ?string
     {
-        return $this->stripeStatus;
+        return $this->email;
     }
 
-    public function setStripeStatus(string $stripeStatus): static
+    public function setEmail(string $email): static
     {
-        $this->stripeStatus = $stripeStatus;
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): static
+    {
+        $this->reference = $reference;
 
         return $this;
     }
@@ -112,60 +105,26 @@ class Payments
         return $this;
     }
 
-    public function getStripeChargeId(): ?string
+    public function getPrice(): ?string
     {
-        return $this->stripeChargeId;
+        return $this->price;
     }
 
-    public function setStripeChargeId(string $stripeChargeId): static
+    public function setPrice(string $price): static
     {
-        $this->stripeChargeId = $stripeChargeId;
+        $this->price = $price;
 
         return $this;
     }
 
-    public function getUser(): ?Users
+    public function getStripeId(): ?string
     {
-        return $this->user;
+        return $this->stripeId;
     }
 
-    public function setUser(?Users $user): static
+    public function setStripeId(string $stripeId): static
     {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getReservation(): ?Reservations
-    {
-        return $this->reservation;
-    }
-
-    public function setReservation(?Reservations $reservation): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($reservation === null && $this->reservation !== null) {
-            $this->reservation->setPayment(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($reservation !== null && $reservation->getPayment() !== $this) {
-            $reservation->setPayment($this);
-        }
-
-        $this->reservation = $reservation;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(?string $reference): static
-    {
-        $this->reference = $reference;
+        $this->stripeId = $stripeId;
 
         return $this;
     }
@@ -175,57 +134,21 @@ class Payments
         return $this->stripeToken;
     }
 
-    public function setStripeToken(?string $stripeToken): static
+    public function setStripeToken(string $stripeToken): static
     {
         $this->stripeToken = $stripeToken;
 
         return $this;
     }
 
-    public function getStripeBrand(): ?string
+    public function getStripeStatus(): ?string
     {
-        return $this->stripeBrand;
+        return $this->stripeStatus;
     }
 
-    public function setStripeBrand(?string $stripeBrand): static
+    public function setStripeStatus(string $stripeStatus): static
     {
-        $this->stripeBrand = $stripeBrand;
-
-        return $this;
-    }
-
-    public function getStripeLast4(): ?string
-    {
-        return $this->stripeLast4;
-    }
-
-    public function setStripeLast4(?string $stripeLast4): static
-    {
-        $this->stripeLast4 = $stripeLast4;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): static
-    {
-        $this->email = $email;
+        $this->stripeStatus = $stripeStatus;
 
         return $this;
     }

@@ -7,12 +7,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<SpaceReviews>
+ * @extends ServiceEntityRepository<Reviews>
  *
- * @method SpaceReviews|null find($id, $lockMode = null, $lockVersion = null)
- * @method SpaceReviews|null findOneBy(array $criteria, array $orderBy = null)
- * @method SpaceReviews[]    findAll()
- * @method SpaceReviews[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Reviews|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Reviews|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Reviews[]    findAll()
+ * @method Reviews[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ReviewsRepository extends ServiceEntityRepository
 {
@@ -22,24 +22,24 @@ class ReviewsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return SpaceReviews[] Returns an array of SpaceReviews objects
+//     * @return Reviews[] Returns an array of Reviews objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
+//        return $this->createQueryBuilder('r')
+//            ->andWhere('r.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
+//            ->orderBy('r.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?SpaceReviews
+//    public function findOneBySomeField($value): ?Reviews
 //    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
+//        return $this->createQueryBuilder('r')
+//            ->andWhere('r.exampleField = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()

@@ -3,56 +3,29 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<main class="loginpage">
-    <div class="loginpage__container">
-        <a href="{{ path('public_home') }}" class="loginpage__logo-link">
-            <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
-        </a>
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-        <form method="post" class="loginpage__form">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-        
-            {% if app.user %}
-                <div class="mb-3">
-                    You are logged in asici {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                </div>
-            {% endif %}
-        
-            <h3 class="loginpage__heading">{{ 'Log in'|trans }}</h3>
-            <p class="loginpage__prompt">{{ "Don't have a BOX ToGo username ?"|trans }}</p>
-            <a href="{{ path('app_register') }}" class="loginpage__link">{{ 'Sign up here'|trans }}</a>
-            <div class="loginpage__form-input">
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
-            </div>
-            <div class="loginpage__form-input">
-                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Mot de passe" required>
-            </div>
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
 
-        
-            <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate') }}"
-            >
-        
-            <button class="loginpage__form-submit" type="submit">
-                {{ 'Continue'|trans }}
-            </button>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-            <a href="" class="loginpage__link">{{ 'Forgot your password ?'|trans }}</a>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
 
-            <div class="loginpage__divider-text">
-                {{ 'Or'|trans }}
-            </div>
-
-            <div class="loginpage__social-login">
-                <p>{{ 'Log in with'|trans }}</p>
-                <a href="{{ path('connect_google') }}">
-                    <img src="{{ asset('images/icones/google.png') }}" alt="">
-                    <span>Google</span>
-                </a>
-            </div>
-        </form>
-    </div>
-</main>
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form>
 {% endblock %}

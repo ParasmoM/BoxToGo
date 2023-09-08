@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ReviewsRepository;
+use App\Repository\ConversationsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ReviewsRepository::class)]
-class Reviews
+#[ORM\Entity(repositoryClass: ConversationsRepository::class)]
+class Conversations
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,11 +17,8 @@ class Reviews
     #[ORM\Column]
     private ?\DateTimeImmutable $createAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $rating = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $comment = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $content = null;
 
     public function getId(): ?int
     {
@@ -40,26 +37,14 @@ class Reviews
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getContent(): ?string
     {
-        return $this->rating;
+        return $this->content;
     }
 
-    public function setRating(?int $rating): static
+    public function setContent(?string $content): static
     {
-        $this->rating = $rating;
-
-        return $this;
-    }
-
-    public function getComment(): ?string
-    {
-        return $this->comment;
-    }
-
-    public function setComment(string $comment): static
-    {
-        $this->comment = $comment;
+        $this->content = $content;
 
         return $this;
     }

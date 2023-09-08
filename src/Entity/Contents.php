@@ -15,189 +15,97 @@ class Contents
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $titleFr = null;
+    private ?string $title_fr = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $titleEn = null;
+    private ?string $title_en = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $titleNl = null;
+    private ?string $title_ne = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descriptionFr = null;
+    private ?string $description_fr = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descriptionEn = null;
+    private ?string $description_en = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descriptionNl = null;
+    private ?string $description_ne = null;
 
-    #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
-    private ?Users $user = null;
-
-    #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
-    private ?Spaces $space = null;
-
-    public function setTitle(string $language, ?string $title): self
+    public function getId(): ?int
     {
-        $method = 'setTitle' . ucfirst(strtolower($language));
-        if (method_exists($this, $method)) {
-            $this->$method($title);
-        }
-
-        return $this;
-    }
-
-    public function setDescription(string $language, ?string $description): self
-    {
-        $method = 'setDescription' . ucfirst(strtolower($language));
-        if (method_exists($this, $method)) {
-            $this->$method($description);
-        }
-
-        return $this;
-    }
-
-    // public function getTitleBasedOnLanguage($language) {
-    //     $method = 'title' . ucfirst(strtolower($language));
-
-    //     return $method;
-    // }
-    public function getTitleBasedOnLanguage($language) {
-        $method = 'get' . 'title' . ucfirst(strtolower($language));
-
-        if (method_exists($this, $method)) {
-            return call_user_func([$this, $method]);
-        } else {
-            return "La méthode $method n'existe pas.";
-        }
-    }
-
-    public function getDescriptionBasedOnLanguage($language) {
-        $method = 'get' . 'Description' . ucfirst(strtolower($language));
-
-        if (method_exists($this, $method)) {
-            return call_user_func([$this, $method]);
-        } else {
-            return "La méthode $method n'existe pas.";
-        }
+        return $this->id;
     }
 
     public function getTitleFr(): ?string
     {
-        return $this->titleFr;
+        return $this->title_fr;
     }
 
-    public function setTitleFr(?string $titleFr): static
+    public function setTitleFr(?string $title_fr): static
     {
-        $this->titleFr = $titleFr;
+        $this->title_fr = $title_fr;
 
         return $this;
     }
 
     public function getTitleEn(): ?string
     {
-        return $this->titleEn;
+        return $this->title_en;
     }
 
-    public function setTitleEn(?string $titleEn): static
+    public function setTitleEn(?string $title_en): static
     {
-        $this->titleEn = $titleEn;
+        $this->title_en = $title_en;
 
         return $this;
     }
 
-    public function getTitleNl(): ?string
+    public function getTitleNe(): ?string
     {
-        return $this->titleNl;
+        return $this->title_ne;
     }
 
-    public function setTitleNl(?string $titleNl): static
+    public function setTitleNe(?string $title_ne): static
     {
-        $this->titleNl = $titleNl;
+        $this->title_ne = $title_ne;
 
         return $this;
     }
 
     public function getDescriptionFr(): ?string
     {
-        return $this->descriptionFr;
+        return $this->description_fr;
     }
 
-    public function setDescriptionFr(?string $descriptionFr): static
+    public function setDescriptionFr(?string $description_fr): static
     {
-        $this->descriptionFr = $descriptionFr;
+        $this->description_fr = $description_fr;
 
         return $this;
     }
 
     public function getDescriptionEn(): ?string
     {
-        return $this->descriptionEn;
+        return $this->description_en;
     }
 
-    public function setDescriptionEn(?string $descriptionEn): static
+    public function setDescriptionEn(?string $description_en): static
     {
-        $this->descriptionEn = $descriptionEn;
+        $this->description_en = $description_en;
 
         return $this;
     }
 
-    public function getDescriptionNl(): ?string
+    public function getDescriptionNe(): ?string
     {
-        return $this->descriptionNl;
+        return $this->description_ne;
     }
 
-    public function setDescriptionNl(?string $descriptionNl): static
+    public function setDescriptionNe(?string $description_ne): static
     {
-        $this->descriptionNl = $descriptionNl;
+        $this->description_ne = $description_ne;
 
         return $this;
     }
-
-    public function getUser(): ?Users
-    {
-        return $this->user;
-    }
-
-    public function setUser(?Users $user): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setContent(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getContent() !== $this) {
-            $user->setContent($this);
-        }
-
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getSpace(): ?Spaces
-    {
-        return $this->space;
-    }
-
-    public function setSpace(?Spaces $space): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($space === null && $this->space !== null) {
-            $this->space->setContent(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($space !== null && $space->getContent() !== $this) {
-            $space->setContent($this);
-        }
-
-        $this->space = $space;
-
-        return $this;
-    }
-
-    
 }

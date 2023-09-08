@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ReviewsRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\ImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ReviewsRepository::class)]
-class Reviews
+#[ORM\Entity(repositoryClass: ImagesRepository::class)]
+class Images
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,11 +16,11 @@ class Reviews
     #[ORM\Column]
     private ?\DateTimeImmutable $createAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $rating = null;
+    #[ORM\Column(length: 255)]
+    private ?string $imagePath = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $comment = null;
+    #[ORM\Column]
+    private ?int $sortOrder = null;
 
     public function getId(): ?int
     {
@@ -40,26 +39,26 @@ class Reviews
         return $this;
     }
 
-    public function getRating(): ?int
+    public function getImagePath(): ?string
     {
-        return $this->rating;
+        return $this->imagePath;
     }
 
-    public function setRating(?int $rating): static
+    public function setImagePath(string $imagePath): static
     {
-        $this->rating = $rating;
+        $this->imagePath = $imagePath;
 
         return $this;
     }
 
-    public function getComment(): ?string
+    public function getSortOrder(): ?int
     {
-        return $this->comment;
+        return $this->sortOrder;
     }
 
-    public function setComment(string $comment): static
+    public function setSortOrder(int $sortOrder): static
     {
-        $this->comment = $comment;
+        $this->sortOrder = $sortOrder;
 
         return $this;
     }

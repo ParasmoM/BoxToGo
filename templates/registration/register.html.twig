@@ -3,58 +3,17 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {# {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %} #}
+    <h1>Register</h1>
 
-    <main class="register">
-        <div class="register__container">
-            <a href="{{ path('public_home') }}" class="register__logo-link">
-                <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
-            </a>
-            
-            <form action="{{ path('app_register') }}" method="POST" class="register__form">
-                <h3 class="register__heading">{{ 'Create your BoxToGo username'|trans }}</h3>
-                <p class="register__prompt">{{ 'Do you already have a BOX ToGo username?'|trans }}</p>
-                <a href="{{ path('app_login') }}" class="register__link">{{ 'Log in here'|trans }}</a>
-                <div class="register__social-login">
-                    <p class="register__social-login-text">{{ 'Log in with'|trans }}</p>
-                    <a href="{{ path('connect_google') }}">
-                        <img src="{{ asset('images/icones/google.png') }}" alt="">
-                        <span>Google</span>
-                    </a>
-                </div>
+    {{ form_errors(registrationForm) }}
 
-                <div class="register__divider-text">
-                    {{ 'Or'|trans }}
-                </div>
-                
-                <div class="register__form-inputs">
-                    <div class="register__form-input">
-                        {{ form_widget(registrationForm.given_name) }}
-                    </div>
-                    <div class="register__form-input">
-                        {{ form_widget(registrationForm.family_name) }}
-                    </div>
-                    <div class="register__form-input">
-                        {{ form_widget(registrationForm.birth_date) }}
-                    </div>
-                    <div class="register__form-input">
-                        {{ form_widget(registrationForm.email) }}
-                    </div>
-                    <div class="register__form-input">
-                        {{ form_widget(registrationForm.password) }}
-                    </div>
-                    <div class="register__form-agreement">
-                        {{ form_widget(registrationForm.agreeTerms) }}
-                        {{ form_label(registrationForm.agreeTerms) }}
-                    </div>
-                    {{ form_widget(registrationForm._token) }}
-                    <div class="register__form-submit">
-                        {{ form_widget(registrationForm.submit) }}
-                    </div>
-                </div>
-            </form>
-        </div>
-    </main>    
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
 {% endblock %}
