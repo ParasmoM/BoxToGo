@@ -1,40 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'template-main.html.twig' %}
 
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('js/masthead.js') }}" defer></script>
-<script src="{{ asset('js/favori.js') }}" defer></script>
+    {{ parent() }}
+    <script src="{{ asset('js/favori.js') }}" defer></script>
 {% endblock %}
 
-{% block body %}
-<div class="home">
+{% block main %}
+<section class="home">
     <div class="home__container">
 
-        <header class="home__header">
-            {% include "layout/header-main.html.twig" %}
-        </header>
+        <nav class="home__navbar">
+            {% include "home/_navbar.html.twig" %}
+        </nav>
 
-        <main class="home__content">
-            <div class="home__content-container">
+        <div class="home__listing">
+            <div class="home__listing-container">
 
-                <nav class="home__navbar">
-                    {% include "home/_navbar.html.twig" %}
-                </nav>
+            {% for space in allSpaces ? allSpaces : [] %}
+                {% include "components/_card-space.html.twig" %}
+            {% endfor %}
 
-                <div class="home__listing">
-                    <div class="home__listing-container">
-
-                    {% for space in allSpaces ? allSpaces : [] %}
-                        {% include "components/_card-space.html.twig" %}
-                    {% endfor %}
-
-                    </div>
-                </div>
-                
             </div>
-        </main>
+        </div>
+        
     </div>
-</div>
+</section>
+{% endblock main %}
 
-{% endblock %}

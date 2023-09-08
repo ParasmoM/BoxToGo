@@ -31,7 +31,8 @@ class HomeController extends AbstractController
 
         // $this->createResaction($data);
 
-        // dd($this->getUser()->getId());
+        
+        // dd('success');
         $categories = $this->em->getRepository(SpaceCategories::class)->findBy([], ['name' => 'ASC']);
         $allSpaces = $this->em->getRepository(Spaces::class)->findBy([], ['registrationDate' => 'ASC']);
         return $this->render('home/index.html.twig', compact('categories', 'allSpaces'));

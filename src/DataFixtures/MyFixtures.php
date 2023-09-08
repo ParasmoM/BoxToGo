@@ -29,14 +29,14 @@ class MyFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->createCategory($manager);
-        $this->createEquipments($manager);
+        // $this->createCategory($manager);
+        // $this->createEquipments($manager);
 
-        $this->createHosts(1, $manager);
+        // $this->createHosts(1, $manager);
 
-        for ($i = 1; $i < 11; $i++) {
-            $this->createUser($manager);
-        }
+        // for ($i = 1; $i < 11; $i++) {
+        //     $this->createUser($manager);
+        // }
 
         // $this->createReview($manager);
         // $manager->flush();
@@ -139,9 +139,9 @@ class MyFixtures extends Fixture
         $manager->flush();
 
         $content = new Contents();
-        $content->setDescriptionFr('Français' . $this->faker->sentences(5, true));
-        $content->setDescriptionEn('Anglais' . $this->faker->sentences(5, true));
-        $content->setDescriptionNl('Néerlandais' . $this->faker->sentences(5, true));
+        $content->setDescriptionFr('Français' . $this->faker->sentences(10, true));
+        $content->setDescriptionEn('Anglais' . $this->faker->sentences(10, true));
+        $content->setDescriptionNl('Néerlandais' . $this->faker->sentences(10, true));
         $host->setContent($content);
         $manager->persist($content);
         $manager->flush();

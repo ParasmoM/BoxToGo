@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Template-main{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/masthead.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+    <main class="main-main">
+        <div class="main-main__container">
+
+            <header class="header-main">
+                {% include "layout/header-main.html.twig" %}
+            </header>
+
+            {% block main %}{% endblock main %}
+        </div>
+    </main>
+{% endblock %}

@@ -64,7 +64,7 @@
     top: 0; left: 0; right: 0;
     background-color: var(--clr-white);
     font-family: $font-family-secondary;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     &__container {
         @extend %container-primary;

@@ -412,7 +412,7 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   margin-inline: auto;
 }
 
@@ -444,10 +444,10 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   width: calc(100% - 6rem);
 }
-.error__container, .message-board, .owner-detail__content, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.error__container, .message-board, .owner-detail__content, .space-detail__content, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   max-width: 1920px;
 }
 .favorite__title, .favorite__content-container, .dashboard-user__ticket, .dashboard-host__title, .dashboard-host__ticket, .master-form .language-section,
@@ -919,7 +919,6 @@ body {
   right: 0;
   background-color: var(--clr-white);
   font-family: "Open Sans", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .header-main__container {
   display: flex;
@@ -1928,7 +1927,7 @@ body {
   top: -70rem;
 }
 
-.home__content {
+.home__container {
   margin-top: 28rem;
 }
 .home__navbar {
