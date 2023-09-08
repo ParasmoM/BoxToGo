@@ -1,0 +1,36 @@
+{% extends "template-alt.html.twig" %}
+
+{% block heading %}Messages{% endblock heading %}
+
+{% block main %}
+
+    <div class="message-board">
+        <aside class="message-board__aside">
+            <input type="text" class="message-board__search-bar">
+
+            {% if interlocutors is empty %}
+                <div class="message-board__conversation-list">
+                    <p class="message-board__conversation-empty">
+                        <span>
+                            Aucune conversation en cours. N'hésitez pas à en commencer une !
+                        </span>
+                    </p>
+                </div>
+            {% else %}
+                {% include "talks/_aside.html.twig" %}
+            {% endif %}  
+            
+        </aside>
+
+        <div class="message-board__chat-window">
+            {% if interlocutors is empty %}
+                <div class="message-board__chat-window--empty">
+                    <span>Vous n'avez pas encore entamé de conversation.</span>
+                </div>
+            {% else %}
+                {% block content %}{% endblock content %}
+            {% endif %}   
+        </div>     
+    </div>
+    
+{% endblock main %}

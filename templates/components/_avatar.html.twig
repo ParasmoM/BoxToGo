@@ -1,7 +1,7 @@
 {% if app.user %}
 <div class="avatar">
     {% if image.image %}
-        <img src="{{ asset('assets/uploads/Archives/Photos/' ~ image.id ~ '/Profile/' ~ app.user.image.imagePath) }}" alt="Image de profile">
+        <img src="{{ asset('assets/uploads/Archives/Photos/' ~ image.id ~ '/Profile/' ~ image.profilePicture) }}" alt="Image de profile">
     {% else %}
         {{ (image.familyName|first)|upper }}{{ (image.givenName|first)|upper }}
     {% endif %}

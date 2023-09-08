@@ -1,0 +1,55 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.error {
+    height: 100vh;
+    width: 100vw;
+
+    &__container {
+        @extend %container-primary; 
+
+        position: relative;
+        height: 100%;
+    }
+
+    &__header {
+        @extend %padding-block-lg;
+
+        position: absolute;
+        
+        img {
+            height: 6rem;
+        }
+    }
+
+    &__content {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__content--container {
+        h1 {
+            @extend %fw-semibold;
+
+            font-size: 30rem;
+            font-family: $font-family-secondary;
+            line-height: 1;
+        }
+
+        p {
+            @extend %fw-semibold;
+            
+            text-align: center;
+        }
+
+        a {
+            @extend %btn-black;
+
+            display: flex;
+            width: fit-content;
+            margin: var(--spacing-lg) auto 0;
+        }
+    }
+}

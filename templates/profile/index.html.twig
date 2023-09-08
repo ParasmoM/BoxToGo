@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OwnerProfileController!{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/masthead.js') }}" defer></script>
+{# <script src="{{ asset('js/favori.js') }}" defer></script> #}
+{% endblock %}
+
+{% block body %}
+<section class="owner-detail">
+    <div class="owner-detail__container">
+
+        <header class="owner-detail__header">
+            {% include "layout/header-main.html.twig" %}
+        </header>
+
+        <main class="owner-detail__content">
+            <div class="owner-detail__content-container">
+
+                <section class="owner-info-section">
+                    {% include "components/_detail-host-card.html.twig" with {'instance': user, 'name': user.familyName|capitalize} %}
+                </section>
+        
+                <section class="owner-properties-section">
+                    {% include "profile/_owner-properties.html.twig" with {'instance': user} %}
+                </section>
+        
+                <section class="owner-reviews-section">
+                    <h1 class="owner-reviews__title">Commentaires pour {{ user.familyName }}</h1>
+
+                    <div class="owner-reviews__content">
+                        {% for review in reviews|slice(0, 3) %}
+                            {% include "components/_review-card.html.twig"  %}
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</section>
+{% endblock %}

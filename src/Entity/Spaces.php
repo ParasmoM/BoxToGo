@@ -70,8 +70,8 @@ class Spaces
     #[ORM\OneToMany(mappedBy: 'space', targetEntity: SpaceEquipementLink::class, cascade: ["persist"])]
     private Collection $equipment;
 
-    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Conversations::class)]
-    private Collection $conversation;
+    #[ORM\OneToMany(mappedBy: 'space', targetEntity: Talks::class)]
+    private Collection $talks;
 
     #[ORM\ManyToOne(inversedBy: 'space')]
     private ?SpaceCategories $spaceCateg = null;
@@ -99,7 +99,7 @@ class Spaces
         $this->report = new ArrayCollection();
         $this->image = new ArrayCollection();
         $this->equipment = new ArrayCollection();
-        $this->conversation = new ArrayCollection();
+        $this->talks = new ArrayCollection();
         $this->adresse = new ArrayCollection();
         $this->review = new ArrayCollection();
     }
@@ -479,29 +479,29 @@ class Spaces
     }
 
     /**
-     * @return Collection<int, Conversations>
+     * @return Collection<int, Talks>
      */
-    public function getConversation(): Collection
+    public function getTalks(): Collection
     {
-        return $this->conversation;
+        return $this->talks;
     }
 
-    public function addConversation(Conversations $conversation): static
+    public function addTalks(Talks $talks): static
     {
-        if (!$this->conversation->contains($conversation)) {
-            $this->conversation->add($conversation);
-            $conversation->setSpace($this);
+        if (!$this->talks->contains($talks)) {
+            $this->talks->add($talks);
+            $talks->setSpace($this);
         }
 
         return $this;
     }
 
-    public function removeConversation(Conversations $conversation): static
+    public function removeTalks(Talks $talks): static
     {
-        if ($this->conversation->removeElement($conversation)) {
+        if ($this->talks->removeElement($talks)) {
             // set the owning side to null (unless already changed)
-            if ($conversation->getSpace() === $this) {
-                $conversation->setSpace(null);
+            if ($talks->getSpace() === $this) {
+                $talks->setSpace(null);
             }
         }
 

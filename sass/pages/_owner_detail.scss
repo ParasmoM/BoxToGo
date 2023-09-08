@@ -2,114 +2,94 @@
 @use "../utils" as *;
 
 .owner-detail {
-    > .container {
+    margin-bottom: 10rem;
+
+    &__content {
         @extend %container-primary;
-    }
+        
+        margin-top: 28rem;
 
-    section:first-of-type {
-        @extend %section;
-
-        h2 {
+        h1 {
             @extend %title-primary;
         }
-        h3 {
-            @extend %title-secondary;
-        }
-
-        .content {
-            border: solid 1px $border-color;
-            border-radius: $border-radius;
-            height: 30rem;
-            position: relative;
-            margin-left: 5rem;
-            @extend %padding-block-lg;
-
-            display: flex;
-        }
-        .avatar {
-            height: 10rem;
-            aspect-ratio: 1/1;
-            background-color: var(--clr-gray-200);
-            border-radius: 50%;
-            position: absolute;
-            top: 3rem;
-            left: -5rem;
-        }
-        .content article:first-of-type {
-            @extend %padding-left-xs;
-            @extend %padding-right-lg;
-            flex: auto;
-        }
-        article:last-of-type {
-            border-left: solid 1px $border-color;
-            @extend %padding-inline-lg;
-
-            display: flex;
-            gap: var(--spacing-lg);
-
-
-            > div {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-
-                p {
-                    flex: 1;
-                }
-            }
+        section {
+            @extend %section;
         }
     }
 
-    section:nth-child(2) {
-        @extend %section;
-        h2 {
-            @extend %title-primary;
-        }
-
-        .content {
+    .owner-properties {
+        &__content {
             display: flex;
             gap: var(--spacing-xl);
         }
-
-        .box1 {
-            flex: 1;
+        &__listing-section {
             display: flex;
             gap: var(--spacing-lg);
-            height: fit-content;
+            width: fit-content;
+        }
+        &__item {
+            flex: 1 0 29rem;
+            position: relative;
 
-            .item > div {
-                aspect-ratio: 1/1;
-                border-radius: $border-radius;
-                background-color: var(--clr-gray-200);
-                @extend %margin-bottom-sm;
-            }
-            .avatar {
-                height: 31.3rem;
-                aspect-ratio: 1/1;
-                overflow: hidden;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+            button {
+                position: absolute;
+                top: 3rem; right: 3rem;
+                height: 3rem;
+                width: 3rem;
+                z-index: 2;
+                background: url("/images/icones/favorite-empty.svg") no-repeat center;
             }
         }
-        .box2 {
-            h3 {
-                @extend %title-secondary;
-            }
-            
-            border-radius: $border-radius;
-            flex: 0 0 45rem;
-            @extend %padding-lg;
-            box-shadow: $box-shadow;
+        &__avatar {
+            @extend %margin-bottom-sm;
 
-            textarea {
-                width: 100%;
-                border: solid 1px $border-color;
-                border-radius: $border-radius;
+            display: block;
+            overflow: hidden;
+        }
+        &__avatar img {
+            border-radius: $border-radius;
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        &__address span {
+            @extend %fw-semibold;
+        }
+
+        &__contact-section {
+            @extend %padding-lg;
+
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            height: fit-content;
+
+            button {
+                @extend %btn-color;
             }
+        }
+        &__subtitle {
+            @extend %fw-semibold;
+            @extend %fs-md;
+            white-space: nowrap;
+        }
+        &__textarea {
+            width: 100%;
+            height: 15rem;
+            border: solid 1px $border-color;
+            border-radius: $border-radius;
+            margin-block: var(--spacing-lg);
+            background-color: var(--clr-gray-200);
+        }
+    }
+
+    .owner-reviews__content {
+        display: flex;
+        gap: var(--spacing-xl);
+        justify-content: space-between;
+        overflow: hidden;
+
+        > div {
+            flex: 1 0 43rem;
         }
     }
 }

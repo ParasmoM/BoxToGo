@@ -75,12 +75,12 @@
                 <ul class="menu-dropdown">
 
                     <li class="menu-dropdown--personal">
-                        <a href="">Messages</a>
+                        <a href="{{ path('app_talks') }}">Messages</a>
                         <a href="">Notifications</a>
                         {% if 'ROLE_OWNER' in app.user.roles %}
-                            <a href="{{ path('owner_annonces') }}">Tableau de board</a>
+                            <a href="{{ path('dashboard_host_annonces') }}">Tableau de board</a>
                         {% else %}
-                            <a href="{{ path('public_owner_profile') }}">Réservations</a>
+                            <a href="{{ path('app_dashboard_user') }}">Réservations</a>
                         {% endif %}
                     </li>
 

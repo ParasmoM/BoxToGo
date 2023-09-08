@@ -69,12 +69,17 @@
 
     </div>
 
-    <div class="space-detail__gallery__billing">
+    <div class="space-detail__billing">
         <p>Faites votre réservation</p>
-        <p><span>{{ space.price }} €</span></p>
+        <p><span>{{ space.price }} €</span> Par mois</p>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_start(form, {'attr': {'class': 'space-detail__billing-form'}}) }}
+
+            <div class="space-detail__billing-form__container">
+                {{ form_row(form.dateStart, {'row_attr': {'class': 'space-detail__billing-input'}}) }}
+                {{ form_row(form.dateEnd, {'row_attr': {'class': 'space-detail__billing-input'}}) }}
+            </div>
+
             <button>{{ button_label|default('Commander') }}</button>
         {{ form_end(form) }}
 

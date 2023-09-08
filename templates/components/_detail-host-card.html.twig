@@ -4,18 +4,18 @@
 
     <div class="detail-host-card__content">
 
-        <a href="{{ path('public_owner_profile', {'id': space.host.id}) }}" class="detail-host-card__link">
-            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ space.host.id ~ '/Profile/' ~ space.host.image.imagePath) }}" alt="Image de profile">
+        <a href="{{ path('profile_page', {'id': instance.id}) }}" class="detail-host-card__link">
+            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ instance.id ~ '/Profile/' ~ instance.image.imagePath) }}" alt="Image de profile">
         </a>
 
         <article class="detail-host-card__profile">
 
             <h3 class="detail-host-card__profile--title">
-                <a href="{{ path('public_owner_profile', {'id': space.host.id}) }}">{{ space.host.familyName|capitalize }}  {{ space.host.givenName|capitalize }}</a>
+                <a href="{{ path('profile_page', {'id': instance.id}) }}">{{ instance.familyName|capitalize }}  {{ instance.givenName|capitalize }}</a>
             </h3>
 
             <div class="detail-host-card__profile--desciption">
-                {{ space.host.content.getDescriptionBasedOnLanguage(space.host.language)|capitalize }}
+                {{ instance.content.getDescriptionBasedOnLanguage(instance.language)|capitalize }}
             </div>
 
         </article>
@@ -26,6 +26,7 @@
 
                 <p>Notes globale :</p>
                 <p>Nombres d’évaluations :</p>
+                <p>Nombres de bien :</p>
                 <p>Années d’expérience :</p>
                 <p>Statut :</p>
                 <p>Email :</p>
@@ -38,14 +39,15 @@
 
             <div class="detail-host-card__details--values">
 
-                <p>{{ space.calculateAverageRating }}</p>
-                <p>{{ space.review|length }}</p>
-                {% set duration = space.host.calculateYearsAndMonthsSinceRegistration %}
+                <p>{{ instance.calculateTotalAndAverageRatings['averageRating'] }}</p>
+                <p>{{ instance.calculateTotalAndAverageRatings['totalReviews'] }}</p>
+                <p>{{ instance.owner|length }}</p>
+                {% set duration = instance.calculateYearsAndMonthsSinceRegistration %}
                 <p>{{ duration[0] }} {{ duration[1] }}</p>
-                <p>{{ space.host.status }}</p>
-                <p>{{ space.host.email }}</p>
-                <p>{{ space.host.phoneNumber }}</p>
-                <p>{{ space.host.language }}</p>
+                <p>{{ instance.status }}</p>
+                <p>{{ instance.email }}</p>
+                <p>{{ instance.phoneNumber }}</p>
+                <p>{{ instance.language }}</p>
                 <p>****</p>
                 <p>****</p>
 

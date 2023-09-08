@@ -6,5 +6,8 @@
 @use "owner_detail";
 @use "settings";
 @use "user_dashboard";
-@use "owner-dashboard";
+@use "dashboard_host";
+@use "dashboard_user";
 @use "favorites";
+@use "message_board";
+@use "error";

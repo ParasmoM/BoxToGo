@@ -205,21 +205,21 @@ button {
     transform: translate(0);
   }
 }
-.space-detail__gallery__billing form p, .listing, .header-alt, .header-main, .masthead {
+.listing, .header-alt, .header-main, .masthead {
   font-size: 1.4rem;
 }
 
-.space-detail__gallery__map span, body, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
+.owner-detail .owner-properties__subtitle, .space-detail__gallery__map span, body, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
-.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .error__content--container a, .ticket-card__section:last-of-type > div, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .owner-detail .owner-properties__contact-section button {
   font-size: 1.6rem;
 }
 
-.space-detail__gallery__map p, .space-detail__gallery__billing p, .space-detail__gallery__billing button, .listing__description-item--step, .review-card__username, .card-ticket__status {
+.ticket-card__section--status, .space-detail__gallery__map p, .space-detail__billing button, .listing__description-item--step, .review-card__username {
   font-size: 1.8rem;
 }
 
-.detail-host-card__profile--title {
+.space-detail__billing p, .detail-host-card__profile--title {
   font-size: 2.2rem;
 }
 
@@ -227,13 +227,14 @@ button {
   font-weight: 400;
 }
 
-.master-form .language-section .language-buttons .language-btn, .space-detail__gallery__billing button, .header-main, .detail-host-card__profile--title, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
+.message-board__conversation .sender > p,
+.message-board__conversation .receiver > p, .master-form .language-section .language-buttons .language-btn, .space-detail__billing button, .header-main, .detail-host-card__profile--title, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
-.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .error__content--container a, .ticket-card__section:last-of-type > div, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .owner-detail .owner-properties__contact-section button {
   font-weight: 500;
 }
 
-.settings__navbar .button.active, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__gallery__billing form label, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .review-card__username, .card-ticket__info .card-ticket__address, .card-ticket__status, .card-space__info-group:first-of-type p:last-child, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .card-ticket__info .card-ticket__title, .owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail__content h1, .detail-host-card__title {
+.error__content--container h1, .error__content--container p, .message-board__aside .sender-name, .message-board__user-info > p, .ticket-card__section:last-of-type > p, .ticket-card__section--info p:nth-of-type(2), .ticket-card__section--status, .settings__navbar .button.active, .owner-detail .owner-properties__address span, .owner-detail .owner-properties__subtitle, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__billing p:last-of-type span, .space-detail__billing-input label, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .review-card__username, .card-space__info-group:first-of-type p:last-child, .ticket-card__section--info p:first-of-type, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__content h1, .space-detail__content h1, .detail-host-card__title {
   font-weight: 600;
 }
 
@@ -251,11 +252,11 @@ button {
   padding: 1.5rem;
 }
 
-.master-form .language-section,
+.ticket-card__content, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail section:nth-child(2) .box2, .space-detail__gallery__billing, .space-detail__reviews-stats, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .detail-host-card__content, .card-ticket__inner {
+.master-form .galleries-section, .master-form .language-section .language-buttons .language-btn, .master-form .language-section .title-description-section, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .owner-detail .owner-properties__contact-section, .space-detail__billing, .space-detail__reviews-stats, .listing-form__description-item, .admin-aside__list, .dashboard-add__container, .modal .content, .header-alt__container, .masthead__container, .detail-host-card__content {
   padding: 3rem;
 }
 
@@ -263,7 +264,7 @@ button {
   margin-top: 0.8rem;
 }
 
-.space-detail__gallery__billing button, .loginpage__link:last-of-type, .card-ticket__section:last-of-type, .card-space__info-container {
+.ticket-card__section:last-of-type, .space-detail__billing button, .loginpage__link:last-of-type, .card-space__info-container {
   margin-top: 1.5rem;
 }
 
@@ -271,7 +272,7 @@ button {
   padding-top: 3rem;
 }
 
-.master-form .title-description-inputs,
+.ticket-card__ref, .master-form .title-description-inputs,
 .master-form .price-category-inputs,
 .master-form .address-inputs,
 .master-form .equipment-inputs, .master-form .title-input-set,
@@ -280,7 +281,7 @@ button {
 .master-form .price-input-set,
 .master-form .address-input-set,
 .master-form .status-input-set,
-.master-form .space-equipment-input-set, .settings__status-choice, .dashboard-edit-form button, .card-ticket__reservation-number {
+.master-form .space-equipment-input-set, .settings__status-choice, .dashboard-edit-form button {
   margin-top: 3rem;
 }
 
@@ -296,10 +297,6 @@ button {
   margin-right: 2.4rem;
 }
 
-.owner-detail section:first-of-type .content article:first-of-type {
-  padding-right: 3rem;
-}
-
 .master-form .title-input-set > label,
 .master-form .description-textarea-set > label,
 .master-form .category-input-set > label,
@@ -310,11 +307,11 @@ button {
   margin-bottom: 0.8rem;
 }
 
-.card-ticket__section:first-of-type {
+.ticket-card__section:first-of-type {
   padding-bottom: 1.5rem;
 }
 
-.owner-detail section:nth-child(2) .box1 .item > div, .space-detail__gallery__map p, .register__form .register__social-login p, .register__form input[type=text],
+.owner-detail .owner-properties__avatar, .space-detail__gallery__map p, .register__form .register__social-login p, .register__form input[type=text],
 .register__form input[type=password],
 .register__form input[type=date], .loginpage__link, .loginpage__form-input input, .loginpage__social-login p, .dashboard-edit-form h2 {
   margin-bottom: 1.5rem;
@@ -328,7 +325,7 @@ button {
   padding-bottom: 3rem;
 }
 
-.settings__form h2, .settings__status-choice, .space-detail__gallery__actions, .listing__template__footer-container, .listing-form__description-item, .listing-form__step, .register__form-agreement, .admin-aside__title, .dashboard-add__container {
+.message-board__search-bar, .settings__form h2, .settings__status-choice, .space-detail__gallery__actions, .listing__template__footer-container, .listing-form__description-item, .listing-form__step, .register__form-agreement, .admin-aside__title, .dashboard-add__container {
   margin-bottom: 3rem;
 }
 
@@ -336,20 +333,16 @@ button {
   padding-bottom: 6rem;
 }
 
-.master-form .language-section,
+.ticket-card__ref, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .settings__navbar, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete, .card-ticket__reservation-number {
+.master-form .galleries-section, .settings__navbar, .settings__avatar-uploader, .settings__personal-details, .settings__info-fields, .settings__address-info, .settings__notification-preference, .settings__notification-actions, .settings__preferences, .settings__account-management, .settings__form-delete {
   margin-bottom: 6rem;
 }
 
 .admin-header {
   margin-bottom: 10rem;
-}
-
-.owner-detail section:first-of-type .content article:first-of-type {
-  padding-left: 0.8rem;
 }
 
 .master-form .title-input-set > input[type=text],
@@ -387,7 +380,7 @@ button {
   padding-left: 3rem;
 }
 
-.card-ticket__reservation-number {
+.ticket-card__ref {
   margin-left: 3rem;
 }
 
@@ -401,25 +394,25 @@ button {
   padding-inline: 0.8rem;
 }
 
-.settings__description-langs .buttons button, .register__form .register__social-login a, .admin-aside__item a, .header-alt__nav > *, .header-alt__options a, .settings__preference-item select, .listing__template-step__select select, .settings__personal-details > div input, .settings__phone-number-field input, .settings__address-info > div input, .settings__account-item input, .listing__template-step__input input, .master-form .status-options label, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form > *,
+.settings__description-langs .buttons button, .space-detail__billing-input, .register__form .register__social-login a, .admin-aside__item a, .header-alt__nav > *, .header-alt__options a, .settings__preference-item select, .listing__template-step__select select, .settings__personal-details > div input, .settings__phone-number-field input, .settings__address-info > div input, .settings__account-item input, .listing__template-step__input input, .master-form .status-options label, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form > *,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form > *,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form > *, .master-form .equipment-options label, .home__navbar-category--list li, .home__navbar-filters {
   padding-inline: 1.5rem;
 }
 
-.space-detail__gallery__actions a, .dashboard-edit-form button, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.space-detail__gallery__actions a, .dashboard-edit-form button, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .error__content--container a, .ticket-card__section:last-of-type > div, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .owner-detail .owner-properties__contact-section button {
   padding-inline: 2.4rem;
 }
 
-.settings__navbar .button, .owner-detail section:first-of-type article:last-of-type, .register__form {
+.settings__navbar .button, .register__form {
   padding-inline: 3rem;
 }
 
-.listing-form__description-item, .favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
+.listing-form__description-item, .favorite__title, .favorite__content-container, .dashboard-user__ticket, .dashboard-host__title, .dashboard-host__ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   margin-inline: auto;
 }
 
@@ -439,21 +432,25 @@ button {
   margin-block: 1.5rem;
 }
 
-.master-form .btn-master__container, .settings__submit-container, .owner-detail section:first-of-type .content, .admin-header, .header-main__container {
+.error__header, .master-form .btn-master__container, .settings__submit-container, .admin-header, .header-main__container {
   padding-block: 3rem;
 }
 
-.favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
+.space-detail__billing-form__container {
+  margin-block: 3rem;
+}
+
+.favorite__title, .favorite__content-container, .dashboard-user__ticket, .dashboard-host__title, .dashboard-host__ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .owner-detail > .container, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   width: calc(100% - 6rem);
 }
-.owner-detail > .container, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.error__container, .message-board, .owner-detail__content, .space-detail__content, .home__content, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   max-width: 1920px;
 }
-.favorite__title, .favorite__content-container, .owner__title, .owner .ticket, .master-form .language-section,
+.favorite__title, .favorite__content-container, .dashboard-user__ticket, .dashboard-host__title, .dashboard-host__ticket, .master-form .language-section,
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
@@ -461,17 +458,17 @@ button {
   max-width: 1024px;
 }
 
-.user-dashboard > .container, .settings__container, .owner-detail section:first-of-type, .owner-detail section:nth-child(2), .space-detail__content section {
+.user-dashboard > .container, .settings__container, .owner-detail__content section, .space-detail__content section {
   margin-top: 10rem;
 }
 
-.favorite__title, .owner__title, .user-dashboard .titre, .settings__title, .owner-detail section:first-of-type h2, .owner-detail section:nth-child(2) h2, .space-detail__content h1, .detail-host-card__title {
+.favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__content h1, .space-detail__content h1, .detail-host-card__title {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.favorite__title::before, .owner__title::before, .user-dashboard .titre::before, .settings__title::before, .owner-detail section:first-of-type h2::before, .owner-detail section:nth-child(2) h2::before, .space-detail__content h1::before, .detail-host-card__title::before {
+.favorite__title::before, .dashboard-host__title::before, .user-dashboard .titre::before, .settings__title::before, .owner-detail__content h1::before, .space-detail__content h1::before, .detail-host-card__title::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -480,25 +477,31 @@ button {
   position: absolute;
   bottom: 0;
 }
-.owner-detail section:first-of-type h3, .owner-detail section:nth-child(2) .box2 h3, .listing-form__details-title, .register__form .register__heading, .loginpage__heading {
+.listing-form__details-title, .register__form .register__heading, .loginpage__heading {
   font-family: "Open Sans", sans-serif;
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
 }
-.master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .card-ticket__info .card-ticket__title {
+.ticket-card__section--info p:first-of-type, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title {
   font-family: "Open Sans", sans-serif;
   font-size: 1.8rem;
 }
 
 .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
-.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list li, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .error__content--container a, .ticket-card__section:last-of-type > div, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .owner-detail .owner-properties__contact-section button {
   display: inline-flex;
   align-items: center;
   border-radius: 1rem;
   cursor: pointer;
 }
-.master-form .btn-master button, .settings__submit button, .listing__template__footer p, .card-ticket__section:last-of-type .card-ticket__edit-link {
+.owner-detail .owner-properties__contact-section button {
+  height: 4rem;
+  border: solid 1px var(--clr-gray-700);
+  color: var(--clr-white);
+  background-color: var(--clr-primary);
+}
+.error__content--container a, .ticket-card__section:last-of-type > div, .master-form .btn-master button, .settings__submit button, .listing__template__footer p {
   height: 4rem;
   justify-content: center;
   border: solid 1px var(--clr-gray-700);
@@ -781,34 +784,6 @@ body {
   aspect-ratio: 1/1;
 }
 
-.card-ticket__inner {
-  border-radius: 1rem;
-  background-color: var(--clr-gray-200);
-}
-.card-ticket__section:first-of-type {
-  display: flex;
-  gap: var(--spacing-sm);
-  border-bottom: solid 1px var(--clr-gray-700);
-}
-.card-ticket__section:last-of-type {
-  display: flex;
-  justify-content: flex-end;
-}
-.card-ticket__media img {
-  height: 11.4rem;
-  width: 16rem;
-  object-fit: cover;
-  border-radius: 1rem;
-}
-.card-ticket__info {
-  flex: auto;
-}
-.card-ticket__info .card-ticket__title {
-  text-decoration: underline;
-}
-.card-ticket__status {
-  color: var(--clr-primary);
-}
 .review-card__header {
   display: flex;
   gap: var(--spacing-lg);
@@ -1119,8 +1094,7 @@ body {
   left: 0;
   right: 0;
   background-color: var(--clr-white);
-  height: 12.5rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  height: 12rem;
 }
 .header-alt__container {
   display: flex;
@@ -1130,7 +1104,7 @@ body {
   flex: 1;
 }
 .header-alt__logo img {
-  height: 6.5rem;
+  height: 6rem;
   aspect-ratio: 1/1;
 }
 .header-alt__logo .admin-switch {
@@ -2092,36 +2066,31 @@ body {
   overflow: hidden;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
-.space-detail__gallery__billing {
+.space-detail__billing {
   border-radius: 1rem;
   border: solid 1px var(--clr-gray-700);
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   height: fit-content;
 }
-.space-detail__gallery__billing form {
-  margin-top: 3rem;
-}
-.space-detail__gallery__billing form div {
-  border-radius: 1rem;
-  background-color: var(--clr-gray-300);
-  padding: 3px;
+.space-detail__billing-form__container {
   display: flex;
   gap: 4px;
+  border-radius: 1rem;
+  background-color: var(--clr-gray-300);
+  padding: 0.4rem;
 }
-.space-detail__gallery__billing form p {
-  flex: 1;
-  display: inline-flex;
+.space-detail__billing-input {
+  display: flex;
   flex-direction: column;
   border-radius: 1rem;
   background-color: var(--clr-white);
-  padding: var(--spacing-xs) var(--spacing-sm);
 }
-.space-detail__gallery__billing form input {
+.space-detail__billing-input input {
   width: 17.5rem;
   outline: none;
   border: none;
 }
-.space-detail__gallery__billing button {
+.space-detail__billing button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2229,73 +2198,68 @@ body {
   flex: 1 0 43rem;
 }
 
-.owner-detail section:first-of-type .content {
-  border: solid 1px var(--clr-gray-700);
-  border-radius: 1rem;
-  height: 30rem;
-  position: relative;
-  margin-left: 5rem;
-  display: flex;
+.owner-detail {
+  margin-bottom: 10rem;
 }
-.owner-detail section:first-of-type .avatar {
-  height: 10rem;
-  aspect-ratio: 1/1;
-  background-color: var(--clr-gray-200);
-  border-radius: 50%;
-  position: absolute;
-  top: 3rem;
-  left: -5rem;
+.owner-detail__content {
+  margin-top: 28rem;
 }
-.owner-detail section:first-of-type .content article:first-of-type {
-  flex: auto;
-}
-.owner-detail section:first-of-type article:last-of-type {
-  border-left: solid 1px var(--clr-gray-700);
-  display: flex;
-  gap: var(--spacing-lg);
-}
-.owner-detail section:first-of-type article:last-of-type > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.owner-detail section:first-of-type article:last-of-type > div p {
-  flex: 1;
-}
-.owner-detail section:nth-child(2) .content {
+.owner-detail .owner-properties__content {
   display: flex;
   gap: var(--spacing-xl);
 }
-.owner-detail section:nth-child(2) .box1 {
-  flex: 1;
+.owner-detail .owner-properties__listing-section {
   display: flex;
   gap: var(--spacing-lg);
-  height: fit-content;
+  width: fit-content;
 }
-.owner-detail section:nth-child(2) .box1 .item > div {
-  aspect-ratio: 1/1;
-  border-radius: 1rem;
-  background-color: var(--clr-gray-200);
+.owner-detail .owner-properties__item {
+  flex: 1 0 29rem;
+  position: relative;
 }
-.owner-detail section:nth-child(2) .box1 .avatar {
-  height: 31.3rem;
-  aspect-ratio: 1/1;
+.owner-detail .owner-properties__item button {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  height: 3rem;
+  width: 3rem;
+  z-index: 2;
+  background: url("/images/icones/favorite-empty.svg") no-repeat center;
+}
+.owner-detail .owner-properties__avatar {
+  display: block;
   overflow: hidden;
 }
-.owner-detail section:nth-child(2) .box1 .avatar img {
+.owner-detail .owner-properties__avatar img {
+  border-radius: 1rem;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1/1;
   object-fit: cover;
 }
-.owner-detail section:nth-child(2) .box2 {
-  border-radius: 1rem;
-  flex: 0 0 45rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-}
-.owner-detail section:nth-child(2) .box2 textarea {
-  width: 100%;
+.owner-detail .owner-properties__contact-section {
   border: solid 1px var(--clr-gray-700);
   border-radius: 1rem;
+  height: fit-content;
+}
+.owner-detail .owner-properties__subtitle {
+  white-space: nowrap;
+}
+.owner-detail .owner-properties__textarea {
+  width: 100%;
+  height: 15rem;
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  margin-block: var(--spacing-lg);
+  background-color: var(--clr-gray-200);
+}
+.owner-detail .owner-reviews__content {
+  display: flex;
+  gap: var(--spacing-xl);
+  justify-content: space-between;
+  overflow: hidden;
+}
+.owner-detail .owner-reviews__content > div {
+  flex: 1 0 43rem;
 }
 
 .settings__title {
@@ -2410,8 +2374,45 @@ body {
   display: flex;
   justify-content: flex-end;
 }
-.owner__title {
+.dashboard-host__title {
   margin-top: 22rem;
+}
+.ticket-card__content {
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+}
+.ticket-card__section:first-of-type {
+  display: flex;
+  gap: var(--spacing-sm);
+  border-bottom: solid 1px var(--clr-gray-700);
+  height: fit-content;
+}
+.ticket-card__section:last-of-type {
+  display: flex;
+  justify-content: space-between;
+}
+.ticket-card__section:last-of-type > div {
+  margin-left: auto;
+}
+.ticket-card__section--media {
+  display: block;
+  height: 13rem;
+  aspect-ratio: 16/9;
+}
+.ticket-card__section--media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.ticket-card__section--info {
+  flex: auto;
+}
+.ticket-card__section--info p:first-of-type {
+  text-decoration: underline;
+}
+.ticket-card__section--status {
+  color: var(--clr-primary);
 }
 .master-form .language-section,
 .master-form .price-category-section,
@@ -2533,4 +2534,209 @@ body {
 }
 .favorite__content .card-space {
   flex: 0 1 32rem;
+}
+
+.message-board {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-top: 25rem;
+}
+.message-board__aside {
+  flex: 0 0 30rem;
+}
+.message-board__search-bar {
+  width: 100%;
+  height: 4rem;
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+}
+
+.message-board__conversation-list {
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  height: 50rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.message-board__conversation-empty {
+  border: solid 1px;
+  border-radius: 1rem;
+  margin: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+
+.message-board__aside .sender {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 3rem;
+  transition: background-color 0.3s linear;
+}
+.message-board__aside .sender:hover, .message-board__aside .sender.active {
+  background-color: var(--clr-gray-300);
+}
+.message-board__aside .sender-avatar {
+  height: 4rem;
+  aspect-ratio: 1/1;
+  border-radius: 5rem 0rem 5rem 5rem;
+  overflow: hidden;
+}
+.message-board__aside .sender-avatar > div {
+  font-size: 1.5rem;
+  border-radius: 0;
+}
+.message-board__chat-window {
+  position: relative;
+  flex: auto;
+  border: solid 2px var(--clr-gray-700);
+  border-radius: 1rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  overflow: hidden;
+  height: 57rem;
+  padding: 3.5rem;
+}
+.message-board__chat-window--empty {
+  text-align: center;
+}
+.message-board__user-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7.25rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--clr-gray-300);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.message-board__user-info > div {
+  height: 4rem;
+  aspect-ratio: 1/1;
+  border-radius: 5rem 0rem 5rem 5rem;
+  overflow: hidden;
+  margin-left: var(--spacing-lg);
+}
+.message-board__user-info > div > div {
+  font-size: 1.5rem;
+  border-radius: 0;
+}
+.message-board__conversation {
+  max-height: 100%;
+  padding-block: 5.75rem;
+  overflow: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.message-board__conversation::-webkit-scrollbar {
+  display: none;
+}
+.message-board__conversation-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+.message-board__conversation .sender,
+.message-board__conversation .receiver {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+.message-board__conversation .sender > div,
+.message-board__conversation .receiver > div {
+  height: 4rem;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.message-board__conversation .sender > div > div,
+.message-board__conversation .receiver > div > div {
+  font-size: 1.5rem;
+  border-radius: 0;
+}
+.message-board__conversation .sender > p,
+.message-board__conversation .receiver > p {
+  background-color: var(--clr-gray-300);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  max-width: 30rem;
+}
+.message-board__conversation .sender > div {
+  border-radius: 5rem 0rem 5rem 5rem;
+}
+.message-board__conversation .sender > p {
+  border-radius: 0 1rem 1rem 1rem;
+}
+.message-board__conversation .receiver {
+  flex-direction: row-reverse;
+}
+.message-board__conversation .receiver > div {
+  border-radius: 0rem 5rem 5rem 5rem;
+}
+.message-board__conversation .receiver > p {
+  border-radius: 1rem 0rem 1rem 1rem;
+  background-color: var(--clr-primary) !important;
+  color: var(--clr-white);
+}
+.message-board__message-action {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  right: 3rem;
+  border: solid 2px var(--clr-gray-700);
+  border-radius: 1rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  display: flex;
+  align-items: center;
+  background-color: var(--clr-white);
+  padding: var(--spacing-xs);
+}
+.message-board__message-action textarea {
+  flex: auto;
+  border: none;
+  outline: none;
+  height: 2.5rem;
+}
+.message-board__message-action button {
+  height: 2.4rem;
+  aspect-ratio: 1/1;
+  background-color: var(--clr-primary);
+  border-radius: 0.4rem;
+  padding: 0.1rem;
+}
+
+.error {
+  height: 100vh;
+  width: 100vw;
+}
+.error__container {
+  position: relative;
+  height: 100%;
+}
+.error__header {
+  position: absolute;
+}
+.error__header img {
+  height: 6rem;
+}
+.error__content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.error__content--container h1 {
+  font-size: 30rem;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1;
+}
+.error__content--container p {
+  text-align: center;
+}
+.error__content--container a {
+  display: flex;
+  width: fit-content;
+  margin: var(--spacing-lg) auto 0;
 }

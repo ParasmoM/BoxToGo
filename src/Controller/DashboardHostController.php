@@ -16,19 +16,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class OwnerReservationsController extends AbstractController
+class DashboardHostController extends AbstractController
 {
     public function __construct(Private EntityManagerInterface $entityManager) {
         $this->entityManager = $entityManager;
     }
-    #[Route('/owner/annonces', name: 'owner_annonces')]
+    #[Route('/owner/annonces', name: 'dashboard_host_annonces')]
     public function annonce(
         Request $request,
     ): Response {
-        return $this->render('owner_reservations/annonces.html.twig');
+        return $this->render('dashboard_host/annonces.html.twig');
     }
 
-    #[Route('/owner/reservations', name: 'owner_reservations')]
+    #[Route('/owner/reservations', name: 'dashboard_host_reservations')]
     public function reservation(
         Request $request,
     ): Response {
@@ -43,10 +43,10 @@ class OwnerReservationsController extends AbstractController
             }
         }
         
-        return $this->render('owner_reservations/reservations.html.twig', compact('reservations'));
+        return $this->render('dashboard_host/reservations.html.twig', compact('reservations'));
     }
 
-    #[Route('/owner/edit/{id}', name: 'owner_edit')]
+    #[Route('/owner/edit/{id}', name: 'dashboard_host_edit')]
     public function edit(
         Request $request,
         Spaces $space,
@@ -106,10 +106,10 @@ class OwnerReservationsController extends AbstractController
             $space->addEquipment($equipments);
             $usersRepository->save($user);
             $spacesRepository->save($space);
-            return $this->redirectToRoute('owner_annonces', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('dashboard_host_annonces', [], Response::HTTP_SEE_OTHER);
         }
         
-        return $this->render('owner_reservations/edit.html.twig', compact('space', 'form', 'galleries'));
+        return $this->render('dashboard_host/edit.html.twig', compact('space', 'form', 'galleries'));
     }
 
     private function handleNewImages($dataArray, $request, $pictureService, EntityManagerInterface $entityManager) {

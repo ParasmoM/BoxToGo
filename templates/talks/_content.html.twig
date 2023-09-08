@@ -1,0 +1,51 @@
+{% extends "talks/index.html.twig" %}
+
+{% block content %}
+
+    <div class="message-board__user-info">
+        <div>
+            {% include "components/_avatar.html.twig" with {'image': conversations['interlocutor'] } only %}
+        </div>
+
+        <p class="sender-name">{{ conversations['interlocutor']|capitalize }}</p>
+    </div>
+
+    <div class="message-board__conversation">
+        <div class="message-board__conversation-container">
+            {% for content in conversations['conversations'] %}
+                {% if content.sender == app.user %}
+                    <div class="receiver">
+                        <div>
+                            {% include "components/_avatar.html.twig" with {'image': content.sender } only %}
+                        </div>
+                        <p>
+                            {{ content.content }}
+                        </p>
+                    </div>
+                {% else %}
+                    <div class="sender">
+                        <div>
+                            {% include "components/_avatar.html.twig" with {'image': content.sender } only %}
+                        </div>
+                        <p>
+                            {{ content.content }}
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ form_start(form, {'attr': {'class': 'message-board__message-action' }}) }}
+
+        {{ form_widget(form.content, {
+            'placeholder': 'Écris ton message ...'
+        }) }}
+
+        <button>
+            <img src="{{ asset('images/icones/send.svg') }}" alt="">
+        </button>
+    {{ form_end(form) }}
+        {# {{ dump() }} #}
+{% endblock content %}
+

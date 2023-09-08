@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservations;
 use Faker\Factory;
 use App\Entity\Users;
 use App\Entity\Reviews;
@@ -24,16 +25,20 @@ class HomeController extends AbstractController
 
     #[Route('/', name: 'public_home')]
     public function index(): Response {
-        // $this->createReviewAction();
-        // dd('stop');
+        // $data = $this->separateOwnersAndNonOwners();
+
+        // $this->createReviewAction($data);
+
+        // $this->createResaction($data);
+
+        // dd($this->getUser()->getId());
         $categories = $this->em->getRepository(SpaceCategories::class)->findBy([], ['name' => 'ASC']);
         $allSpaces = $this->em->getRepository(Spaces::class)->findBy([], ['registrationDate' => 'ASC']);
         return $this->render('home/index.html.twig', compact('categories', 'allSpaces'));
     }
 
-    public function createReviewAction()
+    public function separateOwnersAndNonOwners()
     {
-        $faker = Factory::create('fr_BE');
         $owners = [];
         $nonOwners = [];
         
@@ -49,9 +54,19 @@ class HomeController extends AbstractController
             }
         }
 
-        foreach ($owners as $host) {
+        return $users = [
+            'host' => $owners,
+            'user' => $nonOwners
+        ];
+    }
+
+    public function createReviewAction($data)
+    {
+        $faker = Factory::create('fr_BE');
+
+        foreach ($data['host'] as $host) {
             foreach ($host->getOwner() as $space) {
-                foreach ($nonOwners as $user) {
+                foreach ($data['user'] as $user) {
                     $review = New Reviews();
                     $review->setComment($faker->sentences(5, true));
                     $review->setRating($faker->randomElement([1, 2, 3, 4, 5]));
@@ -63,6 +78,33 @@ class HomeController extends AbstractController
             }
         }
 
+        $this->em->flush();
+    }
+
+    public function createResaction($data)
+    {
+        $faker = Factory::create('fr_BE');
+
+        $yesterday = new \DateTime('yesterday');
+        $lastWeek = new \DateTime('-1 week');
+
+        foreach ($data['host'] as $host) {
+            foreach ($host->getOwner() as $space) {
+                foreach ($data['user'] as $user) {
+                    $resa = new Reservations();
+                    $resa->setPrice($space->getPrice());
+                    $resa->setSpace($space);
+                    $resa->setUser($user);
+                    $resa->setDateStart(clone $lastWeek);
+                    $resa->setDateEnd(clone $yesterday);
+                    $space->setUser($user);
+                    $space->setStatus('busy');
+                    $user->addRenter($space);
+
+                    $this->em->persist($resa);
+                }
+            }
+        }
         $this->em->flush();
     }
 }

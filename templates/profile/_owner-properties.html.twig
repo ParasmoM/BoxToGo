@@ -1,0 +1,41 @@
+<div class="owner-properties">
+    <h1 class="owner-properties__title">Annonces publiées par {{ instance.familyName }}</h1>
+        
+    <div class="owner-properties__content">
+
+        <div class="owner-properties__listing-section">
+
+            {% for space in instance.owner %}
+            <div class="owner-properties__item">
+
+                <a href="{{ path('public_property_details', {'id': space.id}) }}" class="owner-properties__avatar">
+                    <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                </a>
+                
+                {% if app.user %}
+                <button class="owner-properties__button" data-user-id="{{ app.user.id }}" data-space-id="{{ space.id }}"></button>
+                {% endif %}
+                
+                <p class="owner-properties__address">
+                    <span>{{ space }} </span>
+                    - Rue {{ space.adresse.first.street }} {{ space.adresse.first.streetNumber }}, {{ space.adresse.first.postalCode }} {{ space.adresse.first.city }}
+                </p>
+            
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {{ form_start(form, {'attr': {'class': 'owner-properties__contact-section' }}) }}
+
+            {{ form_row(form.content, {
+                'label': 'Vous avez des questions ? Contactez ' ~ instance.familyName,
+                'label_attr': {'class': 'owner-properties__subtitle'},
+                'attr': {'class': 'owner-properties__textarea'}
+            }) }}
+
+            <button>{{ button_label|default('Envoyer un message') }}</button>
+        {{ form_end(form) }}
+
+    </div>
+</div>

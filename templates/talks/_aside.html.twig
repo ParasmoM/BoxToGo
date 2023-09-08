@@ -1,0 +1,29 @@
+<ul class="message-board__conversation-list">
+    {% for interlocutor in interlocutors|reverse %}
+
+
+        {% if interlocutor.sender == app.user %}
+            {% set currentParticipant = interlocutor.receiver %}
+        {% else %}
+            {% set currentParticipant = interlocutor.sender %}
+        {% endif %}
+
+        {% set isActiveConversation = currentInterlocutor == currentParticipant ? 'active' : null %} 
+
+        <li class="message-board__conversation-item">
+            <a href="{{ path('app_current_talk', {'id': currentParticipant.id}) }}" class="sender {{ isActiveConversation }}">
+                
+                <div class="sender-avatar">
+                    {% include "components/_avatar.html.twig" with {'image': currentParticipant } only %}
+                </div>
+                
+                <div class="sender-info">
+                    <p class="sender-name">{{ currentParticipant|capitalize }}</p>
+                    <p class="sender-date">{{ interlocutor.createdAt|date('d/m/y H:i') }}</p>
+                </div>
+                
+            </a>
+        </li>
+        {# {{ dump(currentParticipant.id, currentInterlocutor.id, interlocutor, app.user.id) }} #}
+    {% endfor %}
+</ul>

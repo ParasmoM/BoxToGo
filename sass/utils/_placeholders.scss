@@ -83,7 +83,13 @@
     cursor: pointer;
 
     &-color {
-
+        @extend %btn;
+        @extend %padding-inline-md;
+        
+        height: 4rem;
+        border: solid 1px $border-color;
+        color: var(--clr-white);
+        background-color: var(--clr-primary);
     }
     &-black {
         @extend %btn;

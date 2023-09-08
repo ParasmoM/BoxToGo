@@ -1,0 +1,13 @@
+{% extends "dashboard_host/index.html.twig" %}
+
+{% block heading %}Reservations{% endblock heading %}
+
+{% block content %}
+
+<div class="dashboard-host__ticket">
+    {% for resa in reservations %}
+        {% include "dashboard_host/_ticket-card.html.twig" with {'instance': resa} %}
+    {% endfor %}
+</div>
+    
+{% endblock content %}

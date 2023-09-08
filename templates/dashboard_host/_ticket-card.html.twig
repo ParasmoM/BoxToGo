@@ -1,0 +1,52 @@
+{% set order = route == 'dashboard_host_annonces' ? 'Numéro de référence' : 'Numéro de réservation ' %}
+{% set image = route == 'dashboard_host_annonces' ? space : instance.space %}
+{% set text = route == 'dashboard_host_annonces' ? space : instance.space %}
+
+<div class="ticket-card">
+
+    <div class="ticket-card__content">
+        
+        <div class="ticket-card__section">
+            
+            <div class="ticket-card__section--media">
+                <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-ticket__image-link">
+                    {% if image.image.first %}
+                        <img src="{{ asset('assets/uploads/' ~ image.file ~ '/' ~ image.image.first.imagePath) }}" alt="">
+                    {% else %}
+                        <img src="{{ asset('images/icones/download.svg') }}" alt="">
+                    {% endif %}
+                </a>
+            </div>
+            
+            <div class="ticket-card__section--info">
+                <p>{{ text.content.titleFr|capitalize }}</p>
+                <p>{{ text }} {{ text.adresse.first }} </p>
+                <p>{{ text.price }} €</p>
+                <p>{{ text.surface }} m<sup>2</sup> </p>
+                {% if route == 'dashboard_host_reservations' %}
+                <p>Date du : {{ instance.dateStart|date('d-m-Y') }} au {{ instance.dateEnd|date('d-m-Y') }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="ticket-card__section--status">
+                <p>{{ instance.status|capitalize }}</p>
+            </div>
+
+        </div>
+        
+        <div class="ticket-card__section">
+            {% if route == 'dashboard_host_annonces' %}
+                <div>
+                    <a href="{{ path('dashboard_host_edit', {'id': instance.id}) }}" class="card-ticket__edit-link">Modifier</a>
+                </div>
+            {% else %}
+                <p>TOTAL</p>
+                <p>{{ instance.price }} €</p>
+            {% endif %}
+        </div>
+        
+    </div>
+    
+    <p class="ticket-card__ref">{{ order }} {{ instance.reference }}</p>
+    
+</div>

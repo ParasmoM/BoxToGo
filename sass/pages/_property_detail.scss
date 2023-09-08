@@ -152,59 +152,61 @@
                 @extend %fw-regular;
             }
         }
-        &__billing {
-            @extend %padding-lg;
+    }
 
+    &__billing {
+        @extend %padding-lg;
+
+        border-radius: $border-radius;
+        border: solid 1px $border-color;
+        box-shadow: $box-shadow;
+        height: fit-content;
+
+        p {
+            @extend %fs-xl;
+        }
+        p:last-of-type span {
+            @extend %fw-semibold;
+        }
+
+        &-form__container {
+            @extend %margin-block-lg;
+
+            display: flex;
+            gap: 4px;
             border-radius: $border-radius;
-            border: solid 1px $border-color;
-            box-shadow: $box-shadow;
-            height: fit-content;
+            background-color: var(--clr-gray-300);
+            padding: .4rem;
+        }
+        &-input {
+            display: flex;
+            flex-direction: column;
+            border-radius: $border-radius;
+            background-color: var(--clr-white);
+            @extend %padding-inline-sm;
 
-            p {
-                @extend %fs-lg;
-            }
-            form {
-                margin-top: 3rem;
-            }
-            form div {
-                border-radius: $border-radius;
-                background-color: var(--clr-gray-300);
-                padding: 3px;
-                display: flex;
-                gap: 4px;
-            }
-            form p {
-                @extend %fs-sm;
-
-                flex: 1;
-                display: inline-flex;
-                flex-direction: column;
-                border-radius: $border-radius;
-                background-color: var(--clr-white);
-                padding: var(--spacing-xs) var(--spacing-sm);
-            }
-            form label {
+            label {
                 @extend %fw-semibold;
             }
-            form input {
+            input {
                 width: 17.5rem;
                 outline: none;
                 border: none;
             }
-            button {
-                @extend %fw-medium;
-                @extend %fs-lg;
-                @extend %margin-top-sm;
+        }
+        button {
+            @extend %fw-medium;
+            @extend %fs-lg;
+            @extend %margin-top-sm;
 
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 5rem;
-                width: 100%;
-                border-radius: $border-radius;
-                background-color: var(--clr-primary);
-                color: var(--clr-white);
-            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 5rem;
+            width: 100%;
+            border-radius: $border-radius;
+            background-color: var(--clr-primary);
+            color: var(--clr-white);
         }
     }
 
@@ -322,106 +324,4 @@
             }
         }
     }
-
-    // &__host {
-    //     &-content {
-    //         @extend %padding-lg;
-
-    //         position: relative;
-    //         border: solid 1px $border-color;
-    //         border-radius: $border-radius;
-    //         box-shadow: $box-shadow;
-    //         display: flex;
-    //         margin-left: 5rem;
-    //     }
-    //     &-link {
-
-    //         border-radius: 50%;
-    //         overflow: hidden;
-    //         position: absolute;
-    //         top: 3rem; left: -5rem;
-    //         box-shadow: $box-shadow;
-
-    //         img {
-    //             height: 10rem;
-    //             aspect-ratio: 1/1;
-    //             object-fit: cover
-    //         }
-    //     }
-    //     &-profile {
-    //         @extend %padding-right-lg;
-
-    //         flex: auto;
-    //         margin-left: 5rem;
-    //     }
-    //     &-details {
-    //         @extend %padding-left-lg;
-
-    //         display: flex;
-    //         gap: var(--spacing-xl);
-    //         border-left: solid 1px $border-color;
-
-    //         > div {
-    //             display: flex;
-    //             flex-direction: column;
-    //             gap: var(--spacing-xs);
-    //         }
-    //         p {
-    //             height: 2.65rem;
-    //             min-width: 15rem;
-    //             white-space: nowrap;
-    //         }
-    //     }
-    // }
-    // section:nth-child(4) {
-    //     @extend %section;
-    //     h2 {
-    //         @extend %title-primary;
-    //     }
-    //     h3 {
-    //         @extend %title-secondary;
-    //     }
-
-    //     .content {
-    //         border: solid 1px $border-color;
-    //         border-radius: $border-radius;
-    //         height: 30rem;
-    //         position: relative;
-    //         margin-left: 5rem;
-    //         @extend %padding-block-lg;
-
-    //         display: flex;
-    //     }
-    //     .avatar {
-    //         height: 10rem;
-    //         aspect-ratio: 1/1;
-    //         background-color:  var(--clr-gray-200);
-    //         border-radius: 50%;
-    //         position: absolute;
-    //         top: 3rem; left: -5rem;
-    //     }
-    //     .content article:first-of-type {
-    //         @extend %padding-left-xs;
-    //         @extend %padding-right-lg;
-    //         flex: auto;
-    //     }
-    //     article:last-of-type {
-    //         border-left: solid 1px $border-color;
-    //         @extend %padding-inline-lg;
-
-    //         display: flex;
-    //         gap: var(--spacing-lg);
-
-
-    //         > div {
-    //             display: flex;
-    //             flex-direction: column;
-    //             justify-content: space-between;
-
-    //             p {
-    //                 flex: 1;
-    //             }
-    //         }
-    //     }
-    // }
 }

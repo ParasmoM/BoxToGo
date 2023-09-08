@@ -1,0 +1,13 @@
+{% extends "dashboard_host/index.html.twig" %}
+
+{% block heading %}Annonces{% endblock heading %}
+
+{% block content %}
+
+<div class="dashboard-host__ticket">
+    {% for space in app.user.owner %}
+        {% include "dashboard_host/_ticket-card.html.twig" with {'instance': space} %}
+    {% endfor %}
+</div>
+    
+{% endblock content %}

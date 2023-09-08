@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès interdit - Erreur 403{% endblock %}
+
+{% block body %}
+    <div class="error">
+        <div class="error__container">
+
+            <a href="{{ path('public_home') }}" class="error__header">
+                <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo">
+            </a>
+
+            <div class="error__content">
+                <div class="error__content--container">
+
+                    <h1>{{ typeError }}</h1>
+                    {% if message %}
+                        <p>{{ message }}</p>
+                    {% else %}
+                        <p>Vous n'avez pas la permission d'accéder à cette page.</p>
+                    {% endif %}
+                    <a href="{{ path('public_home') }}">Retour à la page d'accueil</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{ dump() }}
+{% endblock %}

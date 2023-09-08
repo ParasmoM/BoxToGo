@@ -2,23 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Traits\IdTrait;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use IdTrait;
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
@@ -101,11 +99,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'host', targetEntity: Spaces::class)]
     private Collection $owner;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Conversations::class)]
-    private Collection $conversationUser;
+    #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Talks::class)]
+    private Collection $sender;
 
-    #[ORM\OneToMany(mappedBy: 'host', targetEntity: Conversations::class)]
-    private Collection $conversationHost;
+    #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Talks::class)]
+    private Collection $receiver;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
@@ -170,16 +168,32 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return [$years > 0 ? $years : $months, $unit];
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    // ...
 
-    public function setId(): ?int
+    public function calculateTotalAndAverageRatings(): array
     {
-        return $this->id;
+        $totalReviews = 0; // Total des avis pour tous les espaces
+        $totalRating = 0;  // Somme des notes moyennes de tous les espaces
+        $spacesCount = 0;  // Nombre d'espaces avec au moins un avis
 
-        return $this;
+        // Parcourir tous les espaces que possède l'utilisateur
+        foreach ($this->owner as $space) {
+            $averageRating = $space->calculateAverageRating(); // Récupérer la note moyenne pour cet espace
+
+            if ($averageRating !== null) { // Si l'espace a au moins un avis
+                $totalReviews += count($space->getReview()); // Ajouter le nombre d'avis de cet espace au total
+                $totalRating += $averageRating;              // Ajouter la note moyenne de cet espace au total
+                $spacesCount++;                              // Incrémenter le compteur d'espaces avec au moins un avis
+            }
+        }
+
+        // Calculer la note moyenne générale
+        $averageRating = $spacesCount ? $totalRating / $spacesCount : null;
+
+        return [
+            'totalReviews' => $totalReviews,
+            'averageRating' => round($averageRating, 2),
+        ];
     }
 
     public function getEmail(): ?string
@@ -722,29 +736,29 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Conversations>
+     * @return Collection<int, Talks>
      */
-    public function getConversationUser(): Collection
+    public function getSender(): Collection
     {
-        return $this->conversationUser;
+        return $this->sender;
     }
 
-    public function addConversationUser(Conversations $conversationUser): static
+    public function addSender(Talks $sender): static
     {
-        if (!$this->conversationUser->contains($conversationUser)) {
-            $this->conversationUser->add($conversationUser);
-            $conversationUser->setUser($this);
+        if (!$this->sender->contains($sender)) {
+            $this->sender->add($sender);
+            $sender->setSender($this);
         }
 
         return $this;
     }
 
-    public function removeConversationUser(Conversations $conversationUser): static
+    public function removeSender(Talks $sender): static
     {
-        if ($this->conversationUser->removeElement($conversationUser)) {
+        if ($this->sender->removeElement($sender)) {
             // set the owning side to null (unless already changed)
-            if ($conversationUser->getUser() === $this) {
-                $conversationUser->setUser(null);
+            if ($sender->getSender() === $this) {
+                $sender->setSender(null);
             }
         }
 
@@ -752,29 +766,29 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Conversations>
+     * @return Collection<int, Talks>
      */
-    public function getConversationHost(): Collection
+    public function getReceiver(): Collection
     {
-        return $this->conversationHost;
+        return $this->receiver;
     }
 
-    public function addConversationHost(Conversations $conversationHost): static
+    public function addReceiver(Talks $receiver): static
     {
-        if (!$this->conversationHost->contains($conversationHost)) {
-            $this->conversationHost->add($conversationHost);
-            $conversationHost->setHost($this);
+        if (!$this->receiver->contains($receiver)) {
+            $this->receiver->add($receiver);
+            $receiver->setReceiver($this);
         }
 
         return $this;
     }
 
-    public function removeConversationHost(Conversations $conversationHost): static
+    public function removeReceiver(Talks $receiver): static
     {
-        if ($this->conversationHost->removeElement($conversationHost)) {
+        if ($this->receiver->removeElement($receiver)) {
             // set the owning side to null (unless already changed)
-            if ($conversationHost->getHost() === $this) {
-                $conversationHost->setHost(null);
+            if ($receiver->getReceiver() === $this) {
+                $receiver->setReceiver(null);
             }
         }
 

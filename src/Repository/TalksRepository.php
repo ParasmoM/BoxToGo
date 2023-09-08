@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Conversations;
+use App\Entity\Talks;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Conversations>
+ * @extends ServiceEntityRepository<Talks>
  *
- * @method Conversations|null find($id, $lockMode = null, $lockVersion = null)
- * @method Conversations|null findOneBy(array $criteria, array $orderBy = null)
- * @method Conversations[]    findAll()
- * @method Conversations[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Talks|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Talks|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Talks[]    findAll()
+ * @method Talks[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ConversationsRepository extends ServiceEntityRepository
+class TalksRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Conversations::class);
+        parent::__construct($registry, Talks::class);
     }
 
 //    /**
-//     * @return Conversations[] Returns an array of Conversations objects
+//     * @return Talks[] Returns an array of Talks objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class ConversationsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Conversations
+//    public function findOneBySomeField($value): ?Talks
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')

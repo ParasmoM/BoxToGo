@@ -56,7 +56,7 @@ class Reservations
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateEnd = null;
 
-    public function __construct($space)
+    public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->reference = 'R-' . date('Y') . '-' . uniqid();

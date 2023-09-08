@@ -1,5 +1,5 @@
 
-{% extends "owner_reservations/index.html.twig" %}
+{% extends "dashboard_host/index.html.twig" %}
 
 {% block javascripts %}
 {{ parent() }}
@@ -15,15 +15,15 @@
         'attr': {'class': 'master-form'},
     }) }}
 
-        {% include "owner_reservations/_language-section.html.twig" %}
+        {% include "dashboard_host/edit/_language-section.html.twig" %}
 
-        {% include "owner_reservations/_price-category-section.html.twig" %}
+        {% include "dashboard_host/edit/_price-category-section.html.twig" %}
 
-        {% include "owner_reservations/_address-section.html.twig" %}
+        {% include "dashboard_host/edit/_address-section.html.twig" %}
 
-        {% include "owner_reservations/_equipment-section.html.twig" %}
+        {% include "dashboard_host/edit/_equipment-section.html.twig" %}
         
-        {% include "owner_reservations/_gallerie-section.html.twig" %}
+        {% include "dashboard_host/edit/_gallerie-section.html.twig" %}
 
     {{ form_widget(form) }}
 

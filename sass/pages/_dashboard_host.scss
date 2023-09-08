@@ -1,7 +1,7 @@
 @use "../base/variables" as *;
 @use "../utils" as *;
 
-.owner {
+.dashboard-host {
 
     &__title {
         @extend %container-secondary; 
@@ -10,8 +10,74 @@
         margin-top: 22rem;
     }
 
-    .ticket {
+    &__ticket {
         @extend %container-secondary; 
+        
+        @at-root .ticket-card {
+            &__content {
+                @extend %padding-lg;
+                
+                border-radius: $border-radius;
+                background-color: var(--clr-gray-200);
+            }
+            &__section {
+                &:first-of-type {
+                    @extend %padding-bottom-sm;
+        
+                    display: flex;
+                    gap: var(--spacing-sm);
+                    border-bottom: solid 1px $border-color;
+                    height: fit-content;
+                }
+                &:last-of-type {
+                    @extend %margin-top-sm;
+                    display: flex;
+                    justify-content: space-between;
+            
+                    > div {
+                        @extend %btn-black;
+        
+                        margin-left: auto;
+                    }
+                    > p {
+                        @extend %fw-semibold;
+                    }
+                }
+                
+                &--media {
+                    display: block;
+                    height: 13rem;
+                    aspect-ratio: 16/9;
+                }
+                &--media img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: $border-radius;
+                }
+                &--info {
+                    flex: auto;
+            
+                    p:first-of-type {
+                        @extend %title-tertiary;
+                        text-decoration: underline;
+                    }
+                    p:nth-of-type(2) {
+                        @extend %fw-semibold;
+                    }
+                }
+                &--status {
+                    @extend %fs-lg;
+                    @extend %fw-semibold;
+                    color: var(--clr-primary);
+                }
+            }
+            &__ref {
+                @extend %margin-top-lg;
+                @extend %margin-bottom-xl;
+                @extend %margin-left-lg;
+            }
+        }
     }
 
     @at-root .master-form {

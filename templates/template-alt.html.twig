@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Template-alt{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/btn-lang.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+    <main class="main-alt">
+        <div class="main-alt__container">
+
+            <header class="header-alt">
+                {% include "layout/header-alt.html.twig" %}
+            </header>
+
+            {% block main %}{% endblock main %}
+        </div>
+    </main>
+{% endblock %}

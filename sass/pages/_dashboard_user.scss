@@ -1,0 +1,8 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.dashboard-user {
+    &__ticket {
+        @extend %container-secondary; 
+    }
+}

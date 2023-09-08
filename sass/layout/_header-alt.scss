@@ -9,8 +9,8 @@
     z-index: 10;
     top: 0; left: 0; right: 0;
     background-color: var(--clr-white);
-    height: 12.5rem;
-    box-shadow: $box-shadow;
+    height: 12rem;
+    // box-shadow: $box-shadow;
 
     &__container {
         @extend %container-primary;
@@ -22,7 +22,7 @@
     &__logo {
         flex: 1;
         img {
-            height: 6.5rem;
+            height: 6rem;
             aspect-ratio: 1/1;
         }
 

@@ -1,12 +1,12 @@
 {% set menuItemsBase = {
-    'Réservations' : 'ROLE_OWNER' in app.user.roles ? 'owner_reservations' : 'public_user_reservations',
-    'Messages' : 'app_messages',
-    'Notifications' : 'app_messages',
+    'Réservations' : 'ROLE_OWNER' in app.user.roles ? 'dashboard_host_reservations' : 'app_dashboard_user',
+    'Messages' : 'app_talks',
+    'Notifications' : 'app_talks',
     'Favoris' : 'app_favorites',
     'Publier une annonce' : 'public_listing',
 } %}
 
-{% set ownerItems = 'ROLE_OWNER' in app.user.roles ? {'Annonces': 'owner_annonces'} : {} %}
+{% set ownerItems = 'ROLE_OWNER' in app.user.roles ? {'Annonces': 'dashboard_host_annonces'} : {} %}
 
 {% set menuItems = ownerItems|merge(menuItemsBase) %}
 
