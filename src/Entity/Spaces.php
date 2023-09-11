@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\SpacesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTimeImmutable;
+use App\Traits\IdTrait;
+use App\Traits\SpaceTrait;
+use App\Traits\CreateAtTrait;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SpacesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: SpacesRepository::class)]
 class Spaces
 {
+    use IdTrait, CreateAtTrait, SpaceTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -68,7 +74,7 @@ class Spaces
     private ?Contents $content = null;
 
     #[ORM\OneToMany(mappedBy: 'spaces', targetEntity: SpaceAmenityLinks::class)]
-    private Collection $amenties;
+    private Collection $amenities;
 
     #[ORM\OneToMany(mappedBy: 'spaces', targetEntity: FavoriteSpaces::class)]
     private Collection $favorites;
@@ -79,161 +85,83 @@ class Spaces
     #[ORM\ManyToOne(inversedBy: 'owners')]
     private ?User $ownedByUser = null;
 
+    #[ORM\OneToMany(mappedBy: 'spaces', targetEntity: Reviews::class)]
+    private Collection $reviews;
+
     public function __construct()
     {
+        $this->createAt = new DateTimeImmutable();
+        $this->status = 'free';
+        $this->reference = date('Y') . '-' . uniqid();
+        $this->isPublished = true;
         $this->reservations = new ArrayCollection();
         $this->image = new ArrayCollection();
-        $this->amenties = new ArrayCollection();
+        $this->amenities = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function __toString()
     {
-        return $this->id;
+        return $this->type;
     }
 
-    public function getCreateAt(): ?\DateTimeImmutable
+    public function file()
     {
-        return $this->createAt;
+        return 'Archives/Spaces/' . $this->getId() . '/Galleries';
     }
 
-    public function setCreateAt(\DateTimeImmutable $createAt): static
+    public function calculateAverageRating(): ?float
     {
-        $this->createAt = $createAt;
+        $totalRating = 0;
+        $reviewCount = 0;
 
-        return $this;
+        foreach ($this->reviews as $review) {  
+            $rating = $review->getRating();
+            if ($rating !== null) { 
+                $totalRating += $rating;
+                $reviewCount++;
+            }
+        }
+
+        if ($reviewCount === 0) {
+            return null; 
+        }
+
+        return $totalRating / $reviewCount;
     }
 
-    public function getPrice(): ?string
+    public function getRatingCountAndPercentage(int $targetRating): array
     {
-        return $this->price;
-    }
+        $totalReviews = count($this->reviews);
+        $targetRatingCount = 0;
+        // dd($totalReviews);
+        
+        foreach ($this->reviews as $review) {
+            $rating = $review->getRating();
+            if ($rating !== null) {
+                // Arrondi de la note à l'entier le plus proche
+                $roundedRating = round($rating);
+                // dd($roundedRating, round($targetRating));
+                if ($roundedRating === round($targetRating)) {
+                    $targetRatingCount++;
+                }
+            }
+        }
 
-    public function setPrice(string $price): static
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getSurface(): ?int
-    {
-        return $this->surface;
-    }
-
-    public function setSurface(int $surface): static
-    {
-        $this->surface = $surface;
-
-        return $this;
-    }
-
-    public function getEntryWidth(): ?int
-    {
-        return $this->entryWidth;
-    }
-
-    public function setEntryWidth(?int $entryWidth): static
-    {
-        $this->entryWidth = $entryWidth;
-
-        return $this;
-    }
-
-    public function getEntryLength(): ?int
-    {
-        return $this->entryLength;
-    }
-
-    public function setEntryLength(?int $entryLength): static
-    {
-        $this->entryLength = $entryLength;
-
-        return $this;
-    }
-
-    public function getFloorLevel(): ?string
-    {
-        return $this->floorLevel;
-    }
-
-    public function setFloorLevel(?string $floorLevel): static
-    {
-        $this->floorLevel = $floorLevel;
-
-        return $this;
-    }
-
-    public function getConditionStatus(): ?string
-    {
-        return $this->conditionStatus;
-    }
-
-    public function setConditionStatus(?string $conditionStatus): static
-    {
-        $this->conditionStatus = $conditionStatus;
-
-        return $this;
-    }
-
-    public function getAvailabilityStartDate(): ?\DateTimeInterface
-    {
-        return $this->availabilityStartDate;
-    }
-
-    public function setAvailabilityStartDate(?\DateTimeInterface $availabilityStartDate): static
-    {
-        $this->availabilityStartDate = $availabilityStartDate;
-
-        return $this;
-    }
-
-    public function getAvailabilityEndDate(): ?\DateTimeInterface
-    {
-        return $this->availabilityEndDate;
-    }
-
-    public function setAvailabilityEndDate(?\DateTimeInterface $availabilityEndDate): static
-    {
-        $this->availabilityEndDate = $availabilityEndDate;
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function isIsPublished(): ?bool
-    {
-        return $this->isPublished;
-    }
-
-    public function setIsPublished(?bool $isPublished): static
-    {
-        $this->isPublished = $isPublished;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): static
-    {
-        $this->reference = $reference;
-
-        return $this;
+        if ($totalReviews === 0) {
+            return [
+                'count' => 0,
+                'percentage' => 0,
+            ];
+        }
+        // dd($targetRatingCount);
+        $percentage = ($targetRatingCount / $totalReviews) * 100;
+        // dd($percentage, $targetRatingCount);
+        return [
+            'count' => $targetRatingCount,
+            'percentage' => $percentage,
+        ];
     }
 
     public function getType(): ?SpaceTypes
@@ -335,27 +263,27 @@ class Spaces
     /**
      * @return Collection<int, SpaceAmenityLinks>
      */
-    public function getAmenties(): Collection
+    public function getAmenities(): Collection
     {
-        return $this->amenties;
+        return $this->amenities;
     }
 
-    public function addAmenty(SpaceAmenityLinks $amenty): static
+    public function addAmenty(SpaceAmenityLinks $amenity): static
     {
-        if (!$this->amenties->contains($amenty)) {
-            $this->amenties->add($amenty);
-            $amenty->setSpaces($this);
+        if (!$this->amenities->contains($amenity)) {
+            $this->amenities->add($amenity);
+            $amenity->setSpaces($this);
         }
 
         return $this;
     }
 
-    public function removeAmenty(SpaceAmenityLinks $amenty): static
+    public function removeAmenty(SpaceAmenityLinks $amenity): static
     {
-        if ($this->amenties->removeElement($amenty)) {
+        if ($this->amenities->removeElement($amenity)) {
             // set the owning side to null (unless already changed)
-            if ($amenty->getSpaces() === $this) {
-                $amenty->setSpaces(null);
+            if ($amenity->getSpaces() === $this) {
+                $amenity->setSpaces(null);
             }
         }
 
@@ -412,6 +340,36 @@ class Spaces
     public function setOwnedByUser(?User $ownedByUser): static
     {
         $this->ownedByUser = $ownedByUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reviews>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Reviews $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setSpaces($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Reviews $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getSpaces() === $this) {
+                $review->setSpaces(null);
+            }
+        }
 
         return $this;
     }

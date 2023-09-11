@@ -2,10 +2,9 @@
 @use "../utils" as *;
 
 .card-space {
-    flex: 0 1 36rem;
     overflow: hidden;
     border-radius: $border-radius;
-
+    
     &__image-zone {
         position: relative;
         

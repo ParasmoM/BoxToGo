@@ -15,9 +15,11 @@ class ResaFormType extends AbstractType
         $builder
             ->add('dateStart', DateType::class, [
                 'widget' => 'single_text',
+                'input' => 'datetime_immutable'
             ])
             ->add('dateEnd', DateType::class, [
                 'widget' => 'single_text',
+                'input' => 'datetime_immutable'
             ])
             // ->add('price')
             // ->add('reservationDate')

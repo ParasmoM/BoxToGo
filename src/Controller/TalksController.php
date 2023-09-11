@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use Exception;
-use App\Entity\Talks;
-use App\Entity\Users;
-use App\Form\TalksFormType;
+use App\Entity\User;
+use App\Entity\Conversations;
+use App\Form\ConversationsFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Exception\SelfMessagingException;
 use Symfony\Component\Form\FormInterface;
@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Exception\UserNotAuthenticatedException;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TalksController extends AbstractController
@@ -47,7 +46,7 @@ class TalksController extends AbstractController
     }
     
     #[Route('/talks/{id}', name: 'app_current_talk')]
-    public function currentTalk(Users $currentInterlocutor, Request $request)
+    public function currentTalk(User $currentInterlocutor, Request $request)
     {
         try {
             if (!$this->getUser()) {
@@ -77,13 +76,13 @@ class TalksController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // On vérifie que ni le propriétaire ne peut s'envoyer de messages, ni un utilisateur non authentifié ne peut en envoyer.
             try {
-                $this->validateUserAndMessaging($form->getData()->getReceiver(), $request);
+                $this->validateUserAndMessaging($form->getData()->getReceivedByUser(), $request);
             } catch (UserNotAuthenticatedException | SelfMessagingException $e) {
                 return $this->redirectToRoute('app_error_403');
             }
 
             $talks = $form->getData();
-            dd($form->getData()->getReceiver());
+            // dd($form->getData()->getReceivedByUser());
             $this->em->persist($talks);
             $this->em->flush();
 
@@ -112,18 +111,18 @@ class TalksController extends AbstractController
         $currentUserId = $currentUser->getId();
     
         // Essayer de trouver le dernier message où l'utilisateur actuel est soit le destinataire soit l'émetteur
-        $latestMessage = $this->em->getRepository(Talks::class)->findOneBy(
-            ['receiver' => $currentUserId],
+        $latestMessage = $this->em->getRepository(Conversations::class)->findOneBy(
+            ['receivedByUser' => $currentUserId],
             ['id' => 'DESC']
-        ) ?? $this->em->getRepository(Talks::class)->findOneBy(
-            ['sender' => $currentUserId],
+        ) ?? $this->em->getRepository(Conversations::class)->findOneBy(
+            ['sentByUser' => $currentUserId],
             ['id' => 'DESC']
         );
     
         // Vérifier si un dernier message a été trouvé
         if ($latestMessage) {
             // Déterminer qui est l'interlocuteur dans cette conversation
-            $currentInterlocutor = ($currentUser === $latestMessage->getSender()) ? $latestMessage->getReceiver() : $latestMessage->getSender();
+            $currentInterlocutor = ($currentUser === $latestMessage->getSentByUser()) ? $latestMessage->getReceivedByUser() : $latestMessage->getSentByUser();
     
             // Si un interlocuteur est trouvé, récupérer son ID
             if ($currentInterlocutor) {
@@ -150,19 +149,19 @@ class TalksController extends AbstractController
      */
     public function getConversationsWithInterlocutor($currentInterlocutor): array {
         // Chercher tous les messages envoyés par l'interlocuteur actuel à l'utilisateur connecté
-        $messagesReceiver = $this->em->getRepository(Talks::class)
-            ->findBy(['sender' => $currentInterlocutor, 'receiver' => $this->getUser()]);
+        $messagesReceiver = $this->em->getRepository(Conversations::class)
+            ->findBy(['sentByUser' => $currentInterlocutor, 'receivedByUser' => $this->getUser()]);
     
         // Chercher tous les messages envoyés par l'utilisateur connecté à l'interlocuteur actuel
-        $messagesSender = $this->em->getRepository(Talks::class)
-            ->findBy(['sender' => $this->getUser(), 'receiver' => $currentInterlocutor]);
+        $messagesSender = $this->em->getRepository(Conversations::class)
+            ->findBy(['sentByUser' => $this->getUser(), 'receivedByUser' => $currentInterlocutor]);
 
         // Fusionner les deux tableaux de messages
         $mergedMessages = array_merge($messagesReceiver, $messagesSender);
     
         // Trier les messages par 'createdAt'
         usort($mergedMessages, function ($a, $b) {
-            return $a->getCreatedAt() <=> $b->getCreatedAt();
+            return $a->getCreateAt() <=> $b->getCreateAt();
         });
     
         // Déterminer l'interlocuteur (doit être différent de l'utilisateur connecté)
@@ -187,14 +186,14 @@ class TalksController extends AbstractController
      */
     public function createTalksForm(Request $request, $currentInterlocutor): FormInterface {
         // Initialisation d'une nouvelle entité "Talks"
-        $talks = new Talks();
+        $talks = new Conversations();
         
         // Définir l'émetteur et le destinataire de la conversation
-        $talks->setSender($this->getUser());
-        $talks->setReceiver($currentInterlocutor);
+        $talks->setSentByUser($this->getUser());
+        $talks->setReceivedByUser($currentInterlocutor);
 
         // Création du formulaire en utilisant TalksFormType
-        $form = $this->createForm(TalksFormType::class, $talks);
+        $form = $this->createForm(ConversationsFormType::class, $talks);
 
         // Traitement de la soumission du formulaire si elle existe
         $form->handleRequest($request);
@@ -203,7 +202,7 @@ class TalksController extends AbstractController
         return $form;
     }
 
-    private function validateUserAndMessaging(Users $user, Request $request): void
+    private function validateUserAndMessaging(User $user, Request $request): void
     {
         try {
             if (!$this->getUser()) {

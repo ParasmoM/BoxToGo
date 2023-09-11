@@ -3,10 +3,11 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Users;
-use App\Entity\Adresses;
+use App\Entity\User;
+use DateTimeImmutable;
 use App\Entity\Contents;
-use App\Entity\SpaceImages;
+use App\Entity\Addresses;
+use App\Entity\Images;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -18,15 +19,15 @@ class HostFixtures extends Fixture
     public function __construct(
         private UserPasswordHasherInterface $passwordEncoder, 
     ) {
-        $this->faker = $faker = Factory::create('fr_BE');
+        $this->faker = Factory::create('fr_BE');
     }
     
     public function load(ObjectManager $manager): void
     {
-        // $this->createHost($manager);
-        // $this->addAdress($manager);
-        // $this->addImage($manager);
-        // $this->addDescription($manager);
+        $this->createHost($manager);
+        $this->addAdresse($manager);
+        $this->addImage($manager);
+        $this->addDescription($manager);
     }
 
     public function getDependencies()
@@ -58,16 +59,16 @@ class HostFixtures extends Fixture
                 'birthDate' => '5/05/1983',
             ],
             [
-                'firstName' => 'Megan',
-                'lastName' => 'Fox',
+                'firstName' => 'Gal',
+                'lastName' => 'Gadot',
                 'gender' => 'Femme',
-                'birthDate' => '16/05/1986',
+                'birthDate' => '30/04/1985',
             ],
             [
-                'firstName' => 'Will',
-                'lastName' => 'Smith',
+                'firstName' => 'Joseph',
+                'lastName' => 'Momoa',
                 'gender' => 'Homme',
-                'birthDate' => '25/09/1968',
+                'birthDate' => '1/08/1979',
             ],
             [
                 'firstName' => 'Zoe',
@@ -84,7 +85,7 @@ class HostFixtures extends Fixture
         ];
     
         foreach ($hostData as $data) {
-            $host = new Users();
+            $host = new User();
             $host->setEmail($this->faker->email); 
             $host->setPassword($this->passwordEncoder->hashPassword($host, 'azertyui'));
             $host->setRoles(['ROLE_USER', 'ROLE_OWNER']);
@@ -100,16 +101,19 @@ class HostFixtures extends Fixture
     
             $host->setStatus($this->faker->randomElement(['Particulier', 'Professionnel']));
             $host->setPhoneNumber($this->faker->numerify('04########'));
-            $host->setRegistrationDate($this->faker->dateTimeBetween('-10 years', 'now'));
+            
+            $dateTime = $this->faker->dateTimeBetween('-10 years', 'now');
+            $dateTimeImmutable = DateTimeImmutable::createFromMutable($dateTime);
+            $host->setCreateAt($dateTimeImmutable);
     
             $manager->persist($host);
         }
         $manager->flush();
     }
     
-    public function addAdress($manager)
+    public function addAdresse($manager)
     {
-        $adressData = [
+        $adresseData = [
             [
                 'city' => 'Anvers',
                 'zip' => 2000,
@@ -154,19 +158,19 @@ class HostFixtures extends Fixture
             ],
         ];
 
-        $hostData = $manager->getRepository(Users::class)->findAll();
+        $hostData = $manager->getRepository(User::class)->findAll();
 
         for ($i = 0; $i < count($hostData); $i++) {
-            $address = new Adresses();
-            $address->setCountry('Belgique');
-            $address->setCity($adressData[$i]['city']);
-            $address->setStreet($adressData[$i]['street']);
-            $address->setStreetNumber($adressData[$i]['number']);
-            $address->setPostalCode($adressData[$i]['zip']);
+            $adresse = new Addresses();
+            $adresse->setCountry('Belgique');
+            $adresse->setCity($adresseData[$i]['city']);
+            $adresse->setStreet($adresseData[$i]['street']);
+            $adresse->setStreetNumber($adresseData[$i]['number']);
+            $adresse->setPostalCode($adresseData[$i]['zip']);
             
-            $manager->persist($address);
+            $manager->persist($adresse);
             
-            $hostData[$i]->setAdresse($address);
+            $hostData[$i]->setAdresse($adresse);
         }
     
         $manager->flush();
@@ -174,16 +178,16 @@ class HostFixtures extends Fixture
 
     public function addImage($manager)
     {
-        $hostData = $manager->getRepository(Users::class)->findAll();
+        $hostData = $manager->getRepository(User::class)->findAll();
     
         foreach ($hostData as $host) {
-            $photo = new SpaceImages();
+            $photo = new Images();
             
             $photo->setUser($host);
             $photo->setImagePath($host->getId(). '.jpeg');
             $photo->setSortOrder(21);
             
-            $host->setProfilePicture($host->getId() . '.jpeg');
+            $host->setPicture($host->getId() . '.jpeg');
             $host->setImage($photo);
     
             $manager->persist($photo);
@@ -195,7 +199,7 @@ class HostFixtures extends Fixture
     
     public function addDescription($manager)
     {
-        $hostData = $manager->getRepository(Users::class)->findAll();
+        $hostData = $manager->getRepository(User::class)->findAll();
 
         foreach ($hostData as $host) {
             $content = new Contents();

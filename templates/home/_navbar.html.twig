@@ -5,6 +5,7 @@
         <li class="home__navbar-category-item">
             <img src="{{ asset('images/icones/' ~ type|lower|replace({' ': '_'}) ~ '.svg') }}" alt="Icone {{ type }}">
             {{ type }}
+            {# {{ dump(type|lower|replace({' ': '_'})) }} #}
         </li>
         {% endfor %}
     </ul>

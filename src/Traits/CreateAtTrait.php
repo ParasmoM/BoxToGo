@@ -2,22 +2,15 @@
 
 namespace App\Traits;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\DBAL\Types\Types;
-
 trait CreateAtTrait {
-    
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
-
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreateAt(): ?\DateTimeImmutable
     {
-        return $this->createdAt;
+        return $this->createAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    public function setCreateAt(\DateTimeImmutable $createAt): static
     {
-        $this->createdAt = $createdAt;
+        $this->createAt = $createAt;
 
         return $this;
     }

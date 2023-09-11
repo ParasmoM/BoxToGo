@@ -2,11 +2,10 @@
 
 namespace App\Form;
 
-use App\Entity\Users;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -22,8 +21,9 @@ class AccountFormType extends AbstractType
             ])
             ->add('phoneNumber')
             ->add('birthDate', DateType::class, [
-                'label' => 'Date de disponibilité',
-                'widget' => 'single_text', // Ceci rendra le champ en tant qu'input de type "date"
+                'label' => 'Date de naissance',
+                'widget' => 'single_text', 
+                'required' => false, 
             ])
             ->add('language', ChoiceType::class, [
                 'choices'  => [
@@ -31,28 +31,35 @@ class AccountFormType extends AbstractType
                     'Français' => 'FR',
                     'Néerlandais' => 'NL',
                 ],
-                'expanded' => true, // Render as radio buttons
-                'multiple' => false, // Only one can be selected
-                // 'attr' => ['class' => 'custom-class'],
+                'expanded' => true, 
+                'multiple' => false, 
+                // 'required' => false, 
             ])
             ->add('status',  ChoiceType::class, [
                 'choices'  => [
+                    // 'Aucun' => null,
                     'Professionnel' => 'Professionnel',
                     'Particulier' => 'Particulier',
+                    // 'required' => false, 
                 ],
-                'expanded' => true, // Render as radio buttons
-                'multiple' => false, // Only one can be selected
-                // 'attr' => ['class' => 'custom-class'],
+                'expanded' => true,
+                'multiple' => false, 
+                'placeholder' => 'Non spécifié',
+
+                // 'required' => false, 
             ])
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
+                    // 'Aucun' => null,
                     'Femme' => 'Femme',
                     'Homme' => 'Homme',
                     'Autre' => 'autre',
                 ],
-                'expanded' => true, // Render as radio buttons
-                'multiple' => false, // Only one can be selected
-                // 'attr' => ['class' => 'custom-class'],
+                'expanded' => true,
+                'multiple' => false,
+                'placeholder' => 'Non spécifié',
+
+                // 'required' => false,  
             ])
             
         ;
@@ -61,7 +68,7 @@ class AccountFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Users::class,
+            'data_class' => User::class,
         ]);
     }
 }

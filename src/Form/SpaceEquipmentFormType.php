@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\SpaceEquipements;
+use App\Entity\SpaceAmenities;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +19,7 @@ class SpaceEquipmentFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SpaceEquipements::class,
+            'data_class' => SpaceAmenities::class,
         ]);
     }
 }

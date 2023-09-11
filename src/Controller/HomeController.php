@@ -7,11 +7,8 @@ use App\Entity\Users;
 use App\Entity\Spaces;
 use App\Entity\Reviews;
 use App\Entity\Reservations;
-use App\Entity\SpaceAmenities;
-use App\Entity\SpaceCategories;
-use App\Repository\SpacesRepository;
+use App\Entity\SpaceTypes;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\SpaceCategoriesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,18 +23,9 @@ class HomeController extends AbstractController
 
     #[Route('/', name: 'public_home')]
     public function index(): Response {
-        // $data = $this->separateOwnersAndNonOwners();
-
-        // $this->createReviewAction($data);
-
-        // $this->createResaction($data);
-
-        
-        // dd('success');
-        
-        // $allSpaces = $this->em->getRepository(Spaces::class)->findBy([], ['createAt' => 'ASC']);
         return $this->render('home/index.html.twig', [
-            'spaceTypes' => $SpaceTypes = $this->em->getRepository(SpaceAmenities::class)->findBy([], ['name' => 'ASC']),
+            'spaceTypes' => $this->em->getRepository(SpaceTypes::class)->findBy([], ['name' => 'ASC']),
+            'allSpaces' => $this->em->getRepository(Spaces::class)->findBy([], ['createAt' => 'ASC'])
         ]);
     }
 

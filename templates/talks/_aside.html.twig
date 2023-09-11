@@ -14,7 +14,7 @@
             <a href="{{ path('app_current_talk', {'id': currentParticipant.id}) }}" class="sender {{ isActiveConversation }}">
                 
                 <div class="sender-avatar">
-                    {% include "components/_avatar.html.twig" with {'image': currentParticipant } only %}
+                    {% include "components/_avatar.html.twig" with {'instance': currentParticipant } only %}
                 </div>
                 
                 <div class="sender-info">

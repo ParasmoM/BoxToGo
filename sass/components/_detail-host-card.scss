@@ -16,17 +16,13 @@
         margin-left: 5rem;
     }
     &__link {
+        height: 10rem;
+        aspect-ratio: 1/1;
         border-radius: 50%;
         overflow: hidden;
         position: absolute;
         top: 3rem; left: -5rem;
         box-shadow: $box-shadow;
-
-        img {
-            height: 10rem;
-            aspect-ratio: 1/1;
-            object-fit: cover
-        }
     }
 
     &__profile {
@@ -39,6 +35,10 @@
         &--title {
             @extend %fs-xl;
             @extend %fw-medium;
+        }
+        &--desciption {
+            text-align: justify;
+            padding-right: var(--spacing-lg);
         }
     }
     &__details {

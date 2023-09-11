@@ -6,7 +6,6 @@ use App\Entity\Spaces;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SpaceFormType extends AbstractType
@@ -14,8 +13,8 @@ class SpaceFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('spaceCateg')
-            ->add('itemCondition', ChoiceType::class, [
+            ->add('type')
+            ->add('conditionStatus', ChoiceType::class, [
                 'label' => 'État du bien',
                 'choices' => [
                     '' => '',
@@ -29,7 +28,7 @@ class SpaceFormType extends AbstractType
             ->add('surface')
             ->add('entryWidth')
             ->add('entryLength')
-            ->add('floorPosition', ChoiceType::class, [
+            ->add('floorLevel', ChoiceType::class, [
                 'choices' => [
                     'Rez de chaussée' => 'Rez de chaussée',
                     'Premier étage' => 'Premier étage',

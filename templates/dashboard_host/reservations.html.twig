@@ -6,7 +6,15 @@
 
 <div class="dashboard-host__ticket">
     {% for resa in reservations %}
-        {% include "dashboard_host/_ticket-card.html.twig" with {'instance': resa} %}
+        <div>
+            {% include "dashboard_host/_ticket-card.html.twig" with {'instance': resa} %}
+        </div>
+    {% endfor %}
+
+    {% for resa in userBookings %}
+        <div class="myresa">
+            {% include "dashboard_host/_ticket-card.html.twig" with {'instance': resa} %}
+        </div>
     {% endfor %}
 </div>
     

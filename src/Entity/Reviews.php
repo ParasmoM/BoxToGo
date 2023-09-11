@@ -26,6 +26,9 @@ class Reviews
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reviews')]
+    private ?Spaces $spaces = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Reviews
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSpaces(): ?Spaces
+    {
+        return $this->spaces;
+    }
+
+    public function setSpaces(?Spaces $spaces): static
+    {
+        $this->spaces = $spaces;
 
         return $this;
     }

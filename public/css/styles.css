@@ -234,7 +234,7 @@ button {
   font-weight: 500;
 }
 
-.error__content--container h1, .error__content--container p, .message-board__aside .sender-name, .message-board__user-info > p, .ticket-card__section:last-of-type > p, .ticket-card__section--info p:nth-of-type(2), .ticket-card__section--status, .settings__navbar .button.active, .owner-detail .owner-properties__address span, .owner-detail .owner-properties__subtitle, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__billing p:last-of-type span, .space-detail__billing-input label, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .review-card__username, .card-space__info-group:first-of-type p:last-child, .ticket-card__section--info p:first-of-type, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__content h1, .space-detail__content h1, .detail-host-card__title {
+.error__content--container h1, .error__content--container p, .message-board__aside .sender-name, .message-board__user-info > p, .ticket-card__section:last-of-type > p, .ticket-card__section--info p:nth-of-type(2), .ticket-card__section--status, .settings__navbar .button.active, .owner-detail .owner-properties__address span, .owner-detail .owner-properties__subtitle, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__billing p:last-of-type span, .space-detail__billing-input label, .home__navbar, .listing__description-item--step, .header-alt, .masthead, .review-card__username, .card-space__info-group:first-of-type p:last-child, .ticket-card__section--info p:first-of-type, .master-form .section-header, .settings__form h2, .listing__description-item--content h3, .listing__template-step__title, .listing-form__details-title, .register__form .register__heading, .loginpage__heading, .favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__container h1, .space-detail__container h1, .detail-host-card__title {
   font-weight: 600;
 }
 
@@ -412,7 +412,7 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   margin-inline: auto;
 }
 
@@ -444,10 +444,10 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__content, .space-detail__content, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   width: calc(100% - 6rem);
 }
-.error__container, .message-board, .owner-detail__content, .space-detail__content, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
+.error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .listing-form__container, .header-alt__container, .header-main__container, .masthead__container {
   max-width: 1920px;
 }
 .favorite__title, .favorite__content-container, .dashboard-user__ticket, .dashboard-host__title, .dashboard-host__ticket, .master-form .language-section,
@@ -458,17 +458,17 @@ button {
   max-width: 1024px;
 }
 
-.user-dashboard > .container, .settings__container, .owner-detail__content section, .space-detail__content section {
+.user-dashboard > .container, .settings__container, .owner-detail__container section, .space-detail__container section {
   margin-top: 10rem;
 }
 
-.favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__content h1, .space-detail__content h1, .detail-host-card__title {
+.favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__container h1, .space-detail__container h1, .detail-host-card__title {
   font-family: "Open Sans", sans-serif;
   font-size: 2.6rem;
   margin-bottom: 6rem;
   position: relative;
 }
-.favorite__title::before, .dashboard-host__title::before, .user-dashboard .titre::before, .settings__title::before, .owner-detail__content h1::before, .space-detail__content h1::before, .detail-host-card__title::before {
+.favorite__title::before, .dashboard-host__title::before, .user-dashboard .titre::before, .settings__title::before, .owner-detail__container h1::before, .space-detail__container h1::before, .detail-host-card__title::before {
   content: "";
   display: inline-block;
   height: 0.2rem;
@@ -719,7 +719,6 @@ body {
 }
 
 .card-space {
-  flex: 0 1 36rem;
   overflow: hidden;
   border-radius: 1rem;
 }
@@ -830,6 +829,8 @@ body {
   margin-left: 5rem;
 }
 .detail-host-card__link {
+  height: 10rem;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
   position: absolute;
@@ -837,15 +838,14 @@ body {
   left: -5rem;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
-.detail-host-card__link img {
-  height: 10rem;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
 .detail-host-card__profile {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+}
+.detail-host-card__profile--desciption {
+  text-align: justify;
+  padding-right: var(--spacing-lg);
 }
 .detail-host-card__details {
   display: flex;
@@ -1955,13 +1955,17 @@ body {
 }
 .home__listing-container {
   display: flex;
+  flex-flow: wrap;
   gap: var(--spacing-lg);
+}
+.home__listing-container > div {
+  flex: 0 1 36rem;
 }
 
 .space-detail {
   margin-bottom: 10rem;
 }
-.space-detail__content {
+.space-detail__container {
   margin-top: 28rem;
 }
 .space-detail__gallery-header {
@@ -2200,7 +2204,7 @@ body {
 .owner-detail {
   margin-bottom: 10rem;
 }
-.owner-detail__content {
+.owner-detail__container {
   margin-top: 28rem;
 }
 .owner-detail .owner-properties__content {
@@ -2412,6 +2416,9 @@ body {
 }
 .ticket-card__section--status {
   color: var(--clr-primary);
+}
+.dashboard-host__ticket .myresa .ticket-card__content {
+  background-color: var(--clr-primary);
 }
 .master-form .language-section,
 .master-form .price-category-section,
@@ -2725,6 +2732,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.error__content--container {
+  text-align: center;
 }
 .error__content--container h1 {
   font-size: 30rem;

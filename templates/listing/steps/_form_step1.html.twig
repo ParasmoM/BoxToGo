@@ -1,8 +1,8 @@
 <h2 class="listing__template-step__title">Étape 1 - Détails du bien</h2>
 
-{{ form_row(form.spaceCateg, {'row_attr': {'class': 'listing__template-step__select'}}) }}
+{{ form_row(form.type, {'row_attr': {'class': 'listing__template-step__select'}}) }}
 
-{{ form_row(form.itemCondition, {'row_attr': {'class': 'listing__template-step__select'}}) }}
+{{ form_row(form.conditionStatus, {'row_attr': {'class': 'listing__template-step__select'}}) }}
 
 {{ form_row(form.price, {'row_attr': {'class': 'listing__template-step__input'}}) }}
 
@@ -19,4 +19,4 @@
     
 </div>
 
-{{ form_row(form.floorPosition, {'row_attr': {'class': 'listing__template-step__group-radio'}, 'attr': {'class': 'listing__template-step__radio'}}) }}
+{{ form_row(form.floorLevel, {'row_attr': {'class': 'listing__template-step__group-radio'}, 'attr': {'class': 'listing__template-step__radio'}}) }}

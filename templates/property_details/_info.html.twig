@@ -1,9 +1,9 @@
 <h1 class="space-detail__info-title">Installations du bien </h1>
 <div class="space-detail__info-equipments">
-    {% if space.equipment.first %}
-    {% for equipment in space.equipment.first.spaceEquipments %}
+    {% if space.amenities.first.amenities is defined %}
+    {% for amenity in space.amenities.first.amenities %}
         <p>
-            <img src="{{ asset('images/icones/svg/' ~ equipment.id ~ '.svg') }}" alt="">{{ equipment }}
+            <img src="{{ asset('images/icones/svg/' ~ amenity.id ~ '.svg') }}" alt="">{{ amenity }}
         </p>
     {% endfor %}
     {% endif %}
@@ -11,5 +11,5 @@
 
 <h1 class="space-detail__info-title">Description du bien</h1>
 <p class="space-detail__info-description">
-    {{ space.content.getDescriptionBasedOnLanguage(space.host.language) }} 
+    {{ space.content.getDescriptionBasedOnLanguage(space.ownedByUser.language) }} 
 </p>

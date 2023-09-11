@@ -20,7 +20,7 @@ class StripeServices
     public function sessionDetailsSession (
         Reservations $resa
     ) {
-        $hostLanguage = $resa->getSpace()->getHost()->getLanguage();
+        $hostLanguage = $resa->getSpace()->getOwnedByUser()->getLanguage();
         $spaceTitle = $resa->getSpace()->getContent()->getTitleBasedOnLanguage($hostLanguage);
         
         return $this->stripeClient->checkout->sessions->create(
@@ -61,6 +61,7 @@ class StripeServices
             'status' => $sessionDetails['payment_status'],
             'method' => $sessionDetails['payment_method_types'][0],
             'stripeId' => $sessionDetails['id'],
+            'intent' => $sessionDetails['payment_intent'],
             'country' => $sessionDetails['customer_details']['address']['country'],
             'city' => $sessionDetails['customer_details']['address']['city'],
             'zip' => $sessionDetails['customer_details']['address']['postal_code'],

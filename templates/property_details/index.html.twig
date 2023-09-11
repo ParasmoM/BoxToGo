@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'template-main.html.twig' %}
 
 {% block title %}Hello PropertyDetailsController!{% endblock %}
 
@@ -7,45 +7,42 @@
 <script src="{{ asset('js/property_detail.js') }}" defer></script>
 {% endblock %}
 
-{% set images = [] %}
+{% set galleries = [] %}
 {% for image in space.image %}
-    {% set images = images|merge([image.imagePath]) %}
+    {% set galleries = galleries|merge([image.imagePath]) %}
 {% endfor %}
-
-{% set spaceCateg = space.spaceCateg|capitalize ? false %}
-{% set adresse = space.adresse.first ? space.adresse.first.city|capitalize : false %}
-
+{% set category = space.type|capitalize ? false %}
+{% set adresse = space.adresse ? space.adresse.city|capitalize : false %}
 {% set rating = space.calculateAverageRating %} 
-{% block body %}
 
+{% block main %}
 <section class="space-detail">
     <div class="space-detail__container">
-
-        <header class="space-detail__header">
-            {% include "layout/header-main.html.twig" %}
-        </header>
         
-        <main class="space-detail__content">
-            <div class="space-detail__content-container">
+        <section class="space-detail__gallery">
+            {% include "property_details/_gallery.html.twig" 
+            with {
+                'space': space,
+                'images': galleries, 
+                'category': category,
+                'adresse': adresse,
+                'rating': rating,
+                'imageCount': imageCount,
+                'form': form,
+            } only %}
+        </section>
+        
+        <section class="space-detail__info">
+            {% include "property_details/_info.html.twig" with {'space': space} only %}
+        </section>
 
-                <section class="space-detail__gallery">
-                    {% include "property_details/_gallery.html.twig" %}
-                </section>
-                
-                <section class="space-detail__info">
-                    {% include "property_details/_info.html.twig" %}
-                </section>
+        <section class="space-detail__reviews">
+            {% include "property_details/_review.html.twig" with {'space': space, 'reviews': reviews, 'rating': rating,} only %}
+        </section>
 
-                <section class="space-detail__reviews">
-                    {% include "property_details/_review.html.twig" %}
-                </section>
-
-                <section class="space-detail__host">
-                    {% include "components/_detail-host-card.html.twig" with {'instance': space.host, 'name': 'votre hôte'} %}
-                </section>
-                
-            </div>
-        </main>
+        <section class="space-detail__host">
+            {% include "components/_detail-host-card.html.twig" with {'instance': space.ownedByUser, 'name': 'votre hôte'} %}
+        </section>
 
     </div>
 </section>

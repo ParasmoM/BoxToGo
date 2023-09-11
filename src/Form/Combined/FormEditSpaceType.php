@@ -4,14 +4,13 @@ namespace App\Form\Combined;
 
 use App\Form\PhotoFormType;
 use App\Form\AdresseFormType;
+use App\Form\AmenityFormType;
 use App\Form\ContentFormType;
 use App\DTO\FormEditSpaceModel;
-use App\Form\EquipmentFormType;
 use App\Form\PriceAndCategFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FormEditSpaceType extends AbstractType
 {
@@ -21,7 +20,7 @@ class FormEditSpaceType extends AbstractType
             ->add('content', ContentFormType::class)
             ->add('space', PriceAndCategFormType::class)
             ->add('adresse', AdresseFormType::class)
-            ->add('equipment', EquipmentFormType::class)
+            ->add('amenity', AmenityFormType::class)
             ->add('galleries', PhotoFormType::class)
         ;
     }

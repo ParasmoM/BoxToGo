@@ -7,7 +7,7 @@ use App\Form\ImageFormType;
 use App\Form\SpaceFormType;
 use App\Form\AdresseFormType;
 use App\Form\ContentsFormType;
-use App\Form\EquipmentFormType;
+use App\Form\AmenityFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +19,7 @@ class FormAddNewSpaceType extends AbstractType
         $builder
             ->add('space', SpaceFormType::class)
             ->add('adresse', AdresseFormType::class)
-            ->add('equipment', EquipmentFormType::class)
+            ->add('amenity', AmenityFormType::class)
             ->add('image', ImageFormType::class)
             ->add('content', ContentsFormType::class)
         ;

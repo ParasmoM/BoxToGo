@@ -9,18 +9,37 @@
         <div class="ticket-card__section">
             
             <div class="ticket-card__section--media">
-                <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-ticket__image-link">
+                <!-- Module de présentation -->
+                {% if image.ownedByUser.id < 8 %}
+                
+                <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-space__image-link">
+                    <img src="{{ asset('assets/uploads/Archives/Spaces/test/' ~ image.type|replace({' ': '_'}) ~ '/' ~ random(1, 10) ~ '.jpg') }}" alt="">
+                </a>
+                
+                {% else %}
+                
+                <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-space__image-link">
+                    {% if image.image.first %}
+                    <img src="{{ asset('assets/uploads/' ~ image.file ~ '/' ~ image.image.first.imagePath) }}" alt="">
+                    {# {% else %}
+                    <img src="{{ asset('images/icones/download.svg') }}" alt=""> #}
+                    {% endif %}
+                </a>
+
+                {% endif %}
+            
+                {# <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-ticket__image-link">
                     {% if image.image.first %}
                         <img src="{{ asset('assets/uploads/' ~ image.file ~ '/' ~ image.image.first.imagePath) }}" alt="">
                     {% else %}
                         <img src="{{ asset('images/icones/download.svg') }}" alt="">
                     {% endif %}
-                </a>
+                </a> #}
             </div>
             
             <div class="ticket-card__section--info">
                 <p>{{ text.content.titleFr|capitalize }}</p>
-                <p>{{ text }} {{ text.adresse.first }} </p>
+                <p>{{ text }} {{ text.adresse }} </p>
                 <p>{{ text.price }} €</p>
                 <p>{{ text.surface }} m<sup>2</sup> </p>
                 {% if route == 'dashboard_host_reservations' %}

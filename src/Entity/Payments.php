@@ -34,7 +34,7 @@ class Payments
     #[ORM\Column(length: 255)]
     private ?string $stripeId = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $stripeToken = null;
 
     #[ORM\Column(length: 255)]
@@ -45,6 +45,12 @@ class Payments
 
     #[ORM\ManyToOne(inversedBy: 'payments')]
     private ?User $user = null;
+
+    public function __construct()
+    {
+        $this->createAt = new \DateTimeImmutable();
+        $this->reference = 'P-' . date('Y') . '-' . uniqid();
+    }
 
     public function getId(): ?int
     {

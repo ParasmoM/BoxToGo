@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationsRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReservationsRepository;
 
 #[ORM\Entity(repositoryClass: ReservationsRepository::class)]
 class Reservations
@@ -40,6 +41,24 @@ class Reservations
 
     #[ORM\OneToOne(inversedBy: 'reservations', cascade: ['persist', 'remove'])]
     private ?Payments $payment = null;
+
+    public function __construct($space)
+    {
+        $this->createAt = new \DateTimeImmutable();
+        $this->reference = 'R-' . date('Y') . '-' . uniqid();
+
+        $this->space = $space;
+        $this->price = $space->getPrice();
+        $this->status = $space->getStatus();
+    }
+
+    public function updateStatusBasedOnDate(): void
+    {
+        $currentDate = new DateTimeImmutable();
+        if ($currentDate > $this->dateEnd) {
+            $this->status = 'finished';
+        }
+    }
 
     public function getId(): ?int
     {

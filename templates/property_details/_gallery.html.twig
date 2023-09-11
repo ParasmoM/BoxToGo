@@ -1,5 +1,5 @@
 <div class="space-detail__gallery-header">
-    <h1 class="space-detail__gallery-title">{{ spaceCateg }} à louer sur {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
+    <h1 class="space-detail__gallery-title">{{ category }} à louer sur {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
     <p class="space-detail__gallery-evaluation">
         <span class="space-detail__gallery-stars">
             {% for i in 1..5 %}
@@ -10,7 +10,7 @@
                 {% endif %}
             {% endfor %}
         </span>
-        <span class="space-detail__gallery-reviews">{{ space.review|length > 1 ? space.review|length ~ ' évaluations' : space.review|length ~ ' évaluation' }}</span>
+        <span class="space-detail__gallery-reviews">{{ space.reviews|length > 1 ? space.reviews|length ~ ' évaluations' : space.reviews|length ~ ' évaluation' }}</span>
         <span class="space-detail__gallery-ref">REF - {{ space.reference }}</span>
     </p>
 </div>
@@ -18,35 +18,40 @@
 <div class="space-detail__gallery-images">
 
     <div class="space-detail__gallery-image-item">
+        
+        {% set file = space.file %}
+        {% if space.ownedByUser.id < 8  %}
+            {% set file = 'Archives/Spaces/test/' ~ space.type|replace({' ': '_'}) %}
+        {% endif %}
         {% if images[0] %}
-            <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[0]) }}" alt="">
+            <img src="{{ asset('assets/uploads/' ~ file ~ '/' ~ images[0]) }}" alt="">
         {% endif %}
     </div>
     {% if  images[1] is defined %}
         <div class="space-detail__gallery-image-item">
             <div>
-                <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[1]) }}" alt=""></p>
+                <p><img src="{{ asset('assets/uploads/' ~ file ~ '/' ~ images[1]) }}" alt=""></p>
                 {% if images[3] is defined %}
-                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[3]) }}" alt=""></p>
+                    <p><img src="{{ asset('assets/uploads/' ~ file ~ '/' ~ images[3]) }}" alt=""></p>
                 {% endif %}
             </div>
             {% if images[2] is defined %}
             <div>
-                <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[2]) }}" alt=""></p>
+                <p><img src="{{ asset('assets/uploads/' ~ file ~ '/' ~ images[2]) }}" alt=""></p>
                 {% if images[4] is defined %}
-                    <p><img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ images[4]) }}" alt=""></p>
+                    <p><img src="{{ asset('assets/uploads/' ~ file ~ '/' ~ images[4]) }}" alt=""></p>
                 {% endif %}
             </div>
             {% endif %}
         </div>
     {% endif %}
     <button class="space-detail__gallery-images-btn">
-        {% if nbr > 4 %}
-            +{{ nbr }} photos
+        {% if imageCount > 4 %}
+            +{{ imageCount }} photos
         {% endif %}
     </button>
 </div>
-
+{# {{ dump(form.vars.data.status) }} #}
 <div class="space-detail__gallery-footer">
     <div class="space-detail__gallery__map-content">
 
@@ -59,9 +64,9 @@
                 <button><img src="{{ asset('images/icones/favorite.svg') }}" alt=""></button>
             </div>
         </div>
-
+        
         <div class="space-detail__gallery__map">
-            <p>{{ space.spaceCateg|capitalize }} <span>- {{ space.host.status|capitalize }} -</span> {{ space.adresse.first|capitalize }}</p>
+            <p>{{ space.type|capitalize }} <span>- {{ space.ownedByUser.status|capitalize }} -</span> {{ space.adresse|capitalize }}</p>
             <div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2531.626127283953!2d5.552801016138968!3d50.615484399237076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0f9ecae988717%3A0xd109734e9db8a544!2sRue%20du%20Perron%203%2C%204000%20Li%C3%A8ge!5e0!3m2!1sfr!2sbe!4v1693183790320!5m2!1sfr!2sbe" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -80,7 +85,12 @@
                 {{ form_row(form.dateEnd, {'row_attr': {'class': 'space-detail__billing-input'}}) }}
             </div>
 
-            <button>{{ button_label|default('Commander') }}</button>
+            {% if form.vars.data.status == "busy" %}
+                <p>occuper</p>
+            {% else %}
+                <button>{{ button_label|default('Commander') }}</button>
+            {% endif %}
+
         {{ form_end(form) }}
 
     </div>

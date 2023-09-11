@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\SpaceImages;
+use App\Entity\Images;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,19 +16,15 @@ class ImageFormType extends AbstractType
             ->add('imagePath', FileType::class, [
                 'label' => false,
                 'multiple' => true,
-                'mapped' => false, // Ajouter cette ligne
+                'mapped' => false, 
             ])
-            // ->add('imageDescription')
-            // ->add('uploadDate')
-            // ->add('sortOrder')
-            // ->add('space')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SpaceImages::class,
+            'data_class' => Images::class,
         ]);
     }
 }

@@ -1,29 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'template-alt.html.twig' %}
 
 {% block title %}Hello OwnerReservationsController!{% endblock %}
 
-{% block javascripts %}
-<script src="{{ asset('js/btn-lang.js') }}" defer></script>
-<script src="{{ asset('js/dropzone.js') }}" defer></script>
-{% endblock %}
-
-{% block body %}
+{% block main %}
 <div class="dashboard-host">
     <div class="dashboard-host__container">
 
-        <header class="dashboard-host__header">
-            {% include "layout/header-alt.html.twig" %}
-        </header>
-
         <h1 class="dashboard-host__title">{% block heading %}{% endblock heading %}</h1>
 
-        <main class="dashboard-host__content">
-            <div class="dashboard-host__content-container">
-
-                {% block content %}{% endblock content %}
-                
-            </div>
-        </main>
+        {% block content %}{% endblock content %}
 
     </div>
 </div>

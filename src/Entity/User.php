@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use App\Traits\CreateAtTrait;
+use App\Traits\IdTrait;
+use App\Traits\UserTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -15,6 +18,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use IdTrait, CreateAtTrait, UserTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -47,7 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -98,11 +103,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: FavoriteSpaces::class)]
     private Collection $favorites;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserConsent::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserConsent::class, cascade: ['persist', 'remove'])]
     private Collection $consents;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $preference = [];
 
     public function __construct()
     {
+        $this->createAt = new \DateTimeImmutable();
+        $this->status = 'Particulier';
+        $this->language = 'EN';
+        $this->appearance = 'light';
         $this->reservations = new ArrayCollection();
         $this->renters = new ArrayCollection();
         $this->owners = new ArrayCollection();
@@ -114,21 +126,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->consents = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function __toString()
     {
-        return $this->id;
+        return $this->givenName . ' ' . $this->familyName;
     }
 
-    public function getEmail(): ?string
+    public function calculateYearsAndMonthsSinceRegistration(): array
     {
-        return $this->email;
+        if ($this->createAt === null) {
+            return [0, 'non défini'];
+        }
+
+        $currentDate = new \DateTime();
+        $interval = $this->createAt->diff($currentDate);
+
+        $years = $interval->y;
+        $months = $interval->m;
+
+        $unit = 'mois';
+        if ($years >= 1) {
+            $unit = 'année';
+            if ($years > 1) {
+                $unit .= 's'; // Pluraliser "année" si nécessaire
+            }
+        }
+
+        return [$years > 0 ? $years : $months, $unit];
     }
 
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
+    // ...
 
-        return $this;
+    public function calculateTotalAndAverageRatings(): array
+    {
+        $totalReviews = 0; // Total des avis pour tous les espaces
+        $totalRating = 0;  // Somme des notes moyennes de tous les espaces
+        $spacesCount = 0;  // Nombre d'espaces avec au moins un avis
+
+        // Parcourir tous les espaces que possède l'utilisateur
+        foreach ($this->owners as $space) {
+            $averageRating = $space->calculateAverageRating(); // Récupérer la note moyenne pour cet espace
+
+            if ($averageRating !== null) { // Si l'espace a au moins un avis
+                $totalReviews += count($space->getReviews()); // Ajouter le nombre d'avis de cet espace au total
+                $totalRating += $averageRating;              // Ajouter la note moyenne de cet espace au total
+                $spacesCount++;                              // Incrémenter le compteur d'espaces avec au moins un avis
+            }
+        }
+
+        // Calculer la note moyenne générale
+        $averageRating = $spacesCount ? $totalRating / $spacesCount : null;
+
+        return [
+            'totalReviews' => $totalReviews,
+            'averageRating' => round($averageRating, 2),
+        ];
     }
 
     /**
@@ -144,178 +195,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): static
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    public function getCreateAt(): ?\DateTimeImmutable
-    {
-        return $this->createAt;
-    }
-
-    public function setCreateAt(\DateTimeImmutable $createAt): static
-    {
-        $this->createAt = $createAt;
-
-        return $this;
-    }
-
-    public function getGivenName(): ?string
-    {
-        return $this->givenName;
-    }
-
-    public function setGivenName(string $givenName): static
-    {
-        $this->givenName = $givenName;
-
-        return $this;
-    }
-
-    public function getFamilyName(): ?string
-    {
-        return $this->familyName;
-    }
-
-    public function setFamilyName(string $familyName): static
-    {
-        $this->familyName = $familyName;
-
-        return $this;
-    }
-
-    public function getBirthDate(): ?\DateTimeInterface
-    {
-        return $this->birthDate;
-    }
-
-    public function setBirthDate(?\DateTimeInterface $birthDate): static
-    {
-        $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): static
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    public function setGender(?string $gender): static
-    {
-        $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(?string $phoneNumber): static
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    public function getLanguage(): ?string
-    {
-        return $this->language;
-    }
-
-    public function setLanguage(string $language): static
-    {
-        $this->language = $language;
-
-        return $this;
-    }
-
-    public function getAppearance(): ?string
-    {
-        return $this->appearance;
-    }
-
-    public function setAppearance(string $appearance): static
-    {
-        $this->appearance = $appearance;
-
-        return $this;
-    }
-
-    public function getGoogleId(): ?string
-    {
-        return $this->googleId;
-    }
-
-    public function setGoogleId(?string $googleId): static
-    {
-        $this->googleId = $googleId;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Reservations>
      */
@@ -618,6 +503,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $consent->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPreference(): ?array
+    {
+        return $this->preference;
+    }
+
+    public function setPreference(?array $preference): static
+    {
+        $this->preference = $preference;
 
         return $this;
     }

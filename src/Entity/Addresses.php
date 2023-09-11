@@ -33,6 +33,11 @@ class Addresses
 
     #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
     private ?User $user = null;
+    
+    public function __toString()
+    {
+        return $this->street . ' n°' . $this->streetNumber . ' - ' . $this->postalCode . ' ' . $this->city;
+    }
 
     public function getId(): ?int
     {

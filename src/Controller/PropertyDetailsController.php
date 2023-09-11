@@ -2,12 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Spaces;
-use App\Form\ResaFormType;
-use App\Entity\SpaceImages;
-use App\Entity\Reservations;
 use App\Entity\Reviews;
-use Doctrine\ORM\EntityManager;
+use App\Form\ResaFormType;
+use App\Entity\Reservations;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,26 +28,18 @@ class PropertyDetailsController extends AbstractController
         Request $request,
     ): Response {
         $currentReservation = $this->findCurrentReservationAndUpdateStatus($space);
-        
+        // dd($currentReservation, $space);
         if ($currentReservation) {
             // On renvoie la réservation avec le statut 'busy'.
             $resa = $currentReservation;
             // dd(1, $resa);
         } else {
             $resa = new Reservations($space);
-            $resa->setPrice($space->getPrice());
-            $resa->setSpace($space);
-            // dd(2, $resa);
         }
-
-        $reviews = $this->em->getRepository(Reviews::class)->findBy(['space' => $space]);
-        // dd($reviews);
-        // dd($space->getHost()->getId(), $this->getUser()->getId());
-        $nbr = count($this->em->getRepository(SpaceImages::class)->findBy(['space' => $space])) - 1;
-
+        // dd($resa);
+        
         $form = $this->createForm(ResaFormType::class, $resa);
         $form->handleRequest($request);
-        // dd($form);
         if ($form->isSubmitted() && $form->isValid()) {
             // On s'assure que l'utilisateur est connecté ; sinon, on le redirige.
             if (!$this->getUser()) return $this->redirectToRoute('app_login');
@@ -57,56 +48,66 @@ class PropertyDetailsController extends AbstractController
             if ($space->getStatus() == 'busy') return $this->redirectToRoute('public_home');
 
             // Nous nous assurons qu'un hôte ne peut pas réserver son propre bien.
-            if ($this->getUser()->getId() == $space->getHost()->getId()) return $this->redirectToRoute('public_home');
+            if ($this->getUser()->getId() == $space->getOwnedByUser()->getId()) return $this->redirectToRoute('public_home');
 
             // Nous associons la personne qui loue au bien et nous changeons le statut de ce dernier.
-            $space->setUser($this->getUser());
-            $space->setStatus('busy');
-            $this->getUser()->addRenter($space);
+            // $space->setRentedByUser($this->getUser());// ! Faut pas faire ça maintenant 
+            // $space->setStatus('in processing');// ! Faut pas faire ça maintenant 
+            // $this->getUser()->addRenter($space); // ! Faut pas faire ça maintenant 
 
             $resa->setUser($this->getUser());
+            $resa->setStatus('in processing');
             $this->em->persist($resa);
             $this->em->flush();
             return $this->redirectToRoute('app_checkout', ['id' => $resa->getId()]);
         }
-        return $this->render('property_details/index.html.twig', compact('space', 'nbr', 'form', 'reviews'));
+
+        return $this->render('property_details/index.html.twig', [
+            'form' => $form->createView(),
+            'space' => $space,
+            'imageCount' => count($this->em->getRepository(Images::class)->findBy(['spaces' => $space])),
+            'reviews' => $this->em->getRepository(Reviews::class)->findBy(['spaces' => $space]),
+        ]);
     }
 
     public function findCurrentReservationAndUpdateStatus(Spaces $space)
     {
+        $currentReservation = false; 
+
         // Nous vérifions si ce bien est présent dans la base de données.
         $reservations = $this->em->getRepository(Reservations::class)->findBy(['space' => $space->getId()]);
-
-        // if (empty($reservations)) {
-
-        //     dd($space);
-        // }
-        // dd($reservations);
-        // Nous changeons le statut du bien à 'libre' avant de procéder à la vérification.
-        $currentReservation = false; 
-        $space->setStatus('free');
+        // dd($reservations, $space);
 
         foreach ($reservations as $reservation) 
         {
             // Nous mettons à jour le statut de la réservation si cela est nécessaire.
             $reservation->updateStatusBasedOnDate();
             $this->em->persist($reservation);
-
+            
             // Si la réservation est toujours en cours, nous ajustons le statut du bien en conséquence.
             if ($reservation->getStatus() === 'busy') {
+
+                // dd($reservation, $space);
                 $currentReservation = $reservation;
                 $space->setStatus('busy');
-            }
-            if ($reservation->getStatus() === 'finished') {
-                if (!empty($reservation->getUser())) {
-                    $reservation->getUser()->removeRenter($space);
-                }
-                // dd($reservation->getUser(), $reservation->getSpace(), $reservation);
+                
+            } 
+
+            if ($reservation->getStatus() === 'in processing' && $reservation->getPayment() === null) {
+                $reservation->setStatus('failed');
             }
         }
 
-        $this->em->flush();
+        if (!$currentReservation) {
+            
+            if ($space->getRentedByUser()) {
+                $space->getRentedByUser()->removeRenter($space);
+            }
+            $space->setRentedByUser(null);
+            $space->setStatus('free');
+        }
 
+        $this->em->flush();
         // Renvoie la réservation en cours, ou retourne 'false' si aucune n'est trouvée.
         return $currentReservation ?: false; 
     }

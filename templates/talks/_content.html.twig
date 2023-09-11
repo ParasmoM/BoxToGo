@@ -4,7 +4,7 @@
 
     <div class="message-board__user-info">
         <div>
-            {% include "components/_avatar.html.twig" with {'image': conversations['interlocutor'] } only %}
+            {% include "components/_avatar.html.twig" with {'instance': conversations['interlocutor'] } only %}
         </div>
 
         <p class="sender-name">{{ conversations['interlocutor']|capitalize }}</p>
@@ -13,10 +13,11 @@
     <div class="message-board__conversation">
         <div class="message-board__conversation-container">
             {% for content in conversations['conversations'] %}
-                {% if content.sender == app.user %}
+            {# {{ dump(content) }} #}
+                {% if content.sentByUser == app.user %}
                     <div class="receiver">
                         <div>
-                            {% include "components/_avatar.html.twig" with {'image': content.sender } only %}
+                            {% include "components/_avatar.html.twig" with {'instance': content.sentByUser } only %}
                         </div>
                         <p>
                             {{ content.content }}
@@ -25,7 +26,7 @@
                 {% else %}
                     <div class="sender">
                         <div>
-                            {% include "components/_avatar.html.twig" with {'image': content.sender } only %}
+                            {% include "components/_avatar.html.twig" with {'instance': content.sentByUser } only %}
                         </div>
                         <p>
                             {{ content.content }}

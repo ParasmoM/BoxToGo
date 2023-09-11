@@ -30,6 +30,7 @@
     }
 
     &__content--container {
+        text-align: center;
         h1 {
             @extend %fw-semibold;
 

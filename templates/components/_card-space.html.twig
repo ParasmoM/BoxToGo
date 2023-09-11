@@ -1,43 +1,55 @@
 {% set camera = null %}
 {% set locker = null %}
 {% set alarm = null %}
-{% for item in space.equipment.first.spaceEquipments %}
-    {# {{ dump(row) }} #}
-    {% if item == "Surveillance Cameras" %}
-        {% set camera = 'equipped' %}
-    {% endif %}
-    {% if item == "Lockers" %}
-        {% set locker = 'equipped' %}
-    {% endif %}
-    {% if item == "Alarm" %}
-        {% set alarm = 'equipped' %}
-    {% endif %}
-{% endfor %}
+
+{% if space.amenities.first %}
+    {% for item in space.amenities.first.amenities %}
+        {% if item == "Surveillance Cameras" %}
+            {% set camera = 'equipped' %}
+        {% endif %}
+        {% if item == "Lockers" %}
+            {% set locker = 'equipped' %}
+        {% endif %}
+        {% if item == "Alarm" %}
+            {% set alarm = 'equipped' %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 <div class="card-space">
     <div class="card-space__container">
 
         <div class="card-space__image-zone">
             <div class="card-space__image-container">
+                <!-- Module de présentation -->
+                {% if space.ownedByUser.id < 8 %}
+                
+                    <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
+                        <img src="{{ asset('assets/uploads/Archives/Spaces/test/' ~ space.type|replace({' ': '_'}) ~ '/' ~ random(1, 10) ~ '.jpg') }}" alt="">
+                    </a>
+                    
+                {% else %}
 
-                <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
-                    {% if space.image.first %}
-                        <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
-                    {% else %}
-                        <img src="{{ asset('images/icones/download.svg') }}" alt="">
-                    {% endif %}
-                </a>
+                    <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
+                        {% if space.image.first %}
+                            <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                        {# {% else %}
+                            <img src="{{ asset('images/icones/download.svg') }}" alt=""> #}
+                        {% endif %}
+                    </a>
 
+                {% endif %}
                 {% if app.user %}
                     {% set class = "card-space__icon-btn" %}
                     
-                    {% for myFavori in app.user.favorite %}
+                    {% for myFavori in app.user.favorites %}
 
-                        {% if myFavori.space.id == space.id %}
+                        {% if myFavori.spaces.id == space.id %}
 
                             {% set class = "card-space__icon-btn active" %}
 
                         {% endif %}
+                        {# {{ dump() }} #}
                         
                     {% endfor %}
 
@@ -47,15 +59,21 @@
             </div>
         </div>
 
+        {% if route == 'app_favorites' %}
+        <article class="card-space__info">
+            <span>{{ space }} - </span>
+            <span>{{ space.adresse }}</span>
+        </article>
+        {% else %}
         <article class="card-space__info">
             <div class="card-space__info-container">
 
                 <section class="card-space__info-group">
                     <div class="card-space__info-content">
 
-                        <p><a href="{{ path('public_property_details', {'id': space.id}) }}">{{ space.spaceCateg.name }}</a></p>
-                        <p>{{ space.adresse.first.city }}</p>
-                        <p>{{ space.host.status }}</p>
+                        <p><a href="{{ path('public_property_details', {'id': space.id}) }}">{{ space.type.name }}</a></p>
+                        <p>{{ space.adresse.city }}</p>
+                        <p>{{ space.ownedByUser.status }}</p>
                         <p>{{ space.surface }} m<sup>2</sup></p>
                         <p>{{ space.price }} €</p>
 
@@ -84,5 +102,10 @@
                 </section>
             </div>
         </article>
+        {% endif %}
     </div>
 </div>
+{# {% if space.id == 1 %}
+    
+{{ dump(space.amenties.first.amenities) }}
+{% endif %} #}

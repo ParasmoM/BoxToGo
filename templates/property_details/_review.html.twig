@@ -17,7 +17,7 @@
             <span class="reviews-stats__rating-text">{{ space.calculateAverageRating }} sur 5</span>
         </div>
         <div class="reviews-stats__evaluation-count">
-            {{ space.review|length }} évaluations
+            {{ space.reviews|length }} évaluations
         </div>
         <button class="reviews-stats__read-button">
             Lire tous les commentaires 
@@ -45,7 +45,9 @@
 </div>
 
 <div class="space-detail__reviews-comments">
-    {% for review in reviews|slice(0, 3) %}
-        {% include "components/_review-card.html.twig"  %}
-    {% endfor %}
+    {% if reviews is defined %}
+        {% for review in reviews|slice(0, 3) %}
+            {% include "components/_review-card.html.twig"  %}
+        {% endfor %}
+    {% endif %}
 </div>

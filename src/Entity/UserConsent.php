@@ -25,6 +25,16 @@ class UserConsent
     #[ORM\ManyToOne(inversedBy: 'consents')]
     private ?User $user = null;
 
+    public function __construct()
+    {
+        $this->createAt = new \DateTimeImmutable();
+    }
+
+    public function __toString()
+    {
+        return $this->consentType;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

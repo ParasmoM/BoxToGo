@@ -14,9 +14,9 @@ class FormSettingsAccountType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('photo', PhotoFormType::class)
-            ->add('description', ContentFormType::class)
-            ->add('account', AccountFormType::class)
+            ->add('photo', PhotoFormType::class, ['required' => false])
+            ->add('description', ContentFormType::class, ['required' => false])
+            ->add('account', AccountFormType::class, ['required' => false])
         ;
     }
 

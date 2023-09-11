@@ -15,7 +15,7 @@ class SpaceAmenityLinks
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: SpaceAmenities::class, inversedBy: 'amenities')]
+    #[ORM\ManyToMany(targetEntity: SpaceAmenities::class, inversedBy: 'amenityLinks')]
     private Collection $amenities;
 
     #[ORM\ManyToOne(inversedBy: 'amenties')]
@@ -24,11 +24,28 @@ class SpaceAmenityLinks
     public function __construct()
     {
         $this->amenities = new ArrayCollection();
-    }
+    }    
+
+    // public function __toString()
+    // {
+    //     return $this->amenities;
+    // }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSpaces(): ?Spaces
+    {
+        return $this->spaces;
+    }
+
+    public function setSpaces(?Spaces $spaces): static
+    {
+        $this->spaces = $spaces;
+
+        return $this;
     }
 
     /**
@@ -43,6 +60,7 @@ class SpaceAmenityLinks
     {
         if (!$this->amenities->contains($amenity)) {
             $this->amenities->add($amenity);
+            $amenity->addAmenityLink($this);
         }
 
         return $this;
@@ -50,19 +68,9 @@ class SpaceAmenityLinks
 
     public function removeAmenity(SpaceAmenities $amenity): static
     {
-        $this->amenities->removeElement($amenity);
-
-        return $this;
-    }
-
-    public function getSpaces(): ?Spaces
-    {
-        return $this->spaces;
-    }
-
-    public function setSpaces(?Spaces $spaces): static
-    {
-        $this->spaces = $spaces;
+        if ($this->amenities->removeElement($amenity)) {
+            $amenity->removeAmenityLink($this);
+        }
 
         return $this;
     }

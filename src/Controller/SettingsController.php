@@ -2,54 +2,75 @@
 
 namespace App\Controller;
 
+use Exception;
+use App\Entity\User;
 use App\Entity\Users;
+use App\Entity\Images;
 use App\Entity\Adresses;
+use App\Entity\Addresses;
 use App\Entity\SpaceImages;
 use App\Entity\UserConsent;
-use App\Form\AccountFormType;
 use App\Form\AdresseFormType;
 use App\Form\SecurityFormType;
 use App\Form\AppearanceFormType;
 use App\Services\PictureServices;
 use App\Form\NotificationFormType;
 use App\Repository\UsersRepository;
+use App\Repository\ImagesRepository;
 use App\DTO\FormSettingsAccountModel;
 use Symfony\Component\Form\FormError;
-use function PHPUnit\Framework\isEmpty;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
-use App\Form\Combined\FormSettingsAccountType;
 use App\Repository\SpaceImagesRepository;
-use App\Repository\SpacesRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\Combined\FormSettingsAccountType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Exception\UserNotAuthenticatedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SettingsController extends AbstractController
 {   
+    public function __construct(
+        private EntityManagerInterface $em,
+    ) {
+        $this->em = $em;
+    }
+
     #[Route('/settings/account/{id}', name: 'public_account')]
     public function account(
         Request $request,
-        Users $user,
-        UsersRepository $userRepository,
+        User $user,
         PictureServices $pictureService,
-        EntityManagerInterface $entityManager,
     ): Response {
-        if (!$this->getUser()) return $this->redirectToRoute('public_home');
-        if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page de messages.");
+            }
+            if ($this->getUser()->getId() != $user->getId()) {
+                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        } catch (Exception $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+        
+        // if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        // if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
         // dd($user);
         $DTO_MODEL = new FormSettingsAccountModel();
         $DTO_MODEL->setAccount($user);
+
         if ($user->getContent()) {
             // dd($user->getContent());
             $DTO_MODEL->setDescription($user->getContent());
         } else {
             $DTO_MODEL->getDescription()->setUser($user);
         }
-        // dd( $DTO_MODEL->getDescription());
+        // dd( $DTO_MODEL, $user->getContent());
         $form = $this->createForm(FormSettingsAccountType::class, $DTO_MODEL);
         $form->get('description')->remove('titleFr');
         $form->get('description')->remove('titleEn');
@@ -70,9 +91,9 @@ class SettingsController extends AbstractController
                 $photo->setUser($user);
                 $photo->setImagePath($fichier);
                 $photo->setSortOrder(21);
-                $user->setProfilePicture($fichier);
+                $user->setPicture($fichier);
             }
-            $userRepository->save($user);
+            $this->em->getRepository(User::class)->save($user);
 
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -83,11 +104,11 @@ class SettingsController extends AbstractController
     #[Route('/photo/delete/{id}', name: 'public_photo_delete', methods: ['POST'])]
     public function deleteAccount(
         Request $request,
-        SpaceImages $image,
-        SpaceImagesRepository $spaceImagesRepository,
+        Images $image,
+        ImagesRepository $imagesRepository,
     ): Response {
         if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
-            $spaceImagesRepository->remove($image);
+            $imagesRepository->remove($image);
         }
         
         return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
@@ -96,16 +117,29 @@ class SettingsController extends AbstractController
     #[Route('/settings/address/{id}', name: 'public_address')]
     public function address(
         Request $request,
-        Users $user,
-        UsersRepository $userRepository,
+        User $user,
     ): Response {
-        if (!$this->getUser()) return $this->redirectToRoute('public_home');
-        if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page de messages.");
+            }
+            if ($this->getUser()->getId() != $user->getId()) {
+                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        } catch (Exception $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+        // if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        // if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
 
         if ($user->getAdresse()) {
             $adresse = $user->getAdresse();
         } else {
-            $adresse = new Adresses();
+            $adresse = new Addresses();
         }
 
         $form = $this->createForm(AdresseFormType::class, $adresse);
@@ -114,7 +148,7 @@ class SettingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $adresse->setCountry('Belgique');
             $user->setAdresse($adresse);
-            $userRepository->save($user);
+            $this->em->getRepository(User::class)->save($user);
 
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -125,11 +159,24 @@ class SettingsController extends AbstractController
     #[Route('/settings/notifications/{id}', name: 'public_notifications')]
     public function notifications(
         Request $request,
-        Users $user,
-        UsersRepository $userRepository,
+        User $user,
     ): Response {
-        if (!$this->getUser()) return $this->redirectToRoute('public_home');
-        if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page de messages.");
+            }
+            if ($this->getUser()->getId() != $user->getId()) {
+                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        } catch (Exception $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+        // if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        // if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
 
         $data = $this->prepareInitialData($user);
         $initialData = $data['initialData'];
@@ -144,12 +191,13 @@ class SettingsController extends AbstractController
             $notifications = $this->extractNotifications($form->getData());
         
             $this->updateConsents($user, $notifications, $userConsents);
-        
+            // dd($newPreferences);
             if (count($userPreferences) != count($newPreferences)) {
                 $user->setPreference($newPreferences);
             }
-        
-            $userRepository->save($user);
+            
+            // die('ici');
+            $this->em->getRepository(User::class)->save($user);
 
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -160,11 +208,25 @@ class SettingsController extends AbstractController
     #[Route('/settings/preferences/{id}', name: 'public_preferences')]
     public function preferences(
         Request $request,
-        Users $user,
-        UsersRepository $userRepository,
+        User $user,
     ): Response {
-        if (!$this->getUser()) return $this->redirectToRoute('public_home');
-        if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page de messages.");
+            }
+            if ($this->getUser()->getId() != $user->getId()) {
+                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        } catch (Exception $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+
+        // if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        // if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
 
         $form = $this->createForm(AppearanceFormType::class, $user);
         $form->handleRequest($request);
@@ -176,7 +238,7 @@ class SettingsController extends AbstractController
             $user->setAppearance($appearance);
             $user->setLanguage($language);
  
-            $userRepository->save($user);
+            $this->em->getRepository(User::class)->save($user);
 
             return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -186,12 +248,25 @@ class SettingsController extends AbstractController
     #[Route('/settings/security/{id}', name: 'public_security')]
     public function security(
         Request $request,
-        Users $user,
-        UsersRepository $userRepository,
+        User $user,
         UserPasswordHasherInterface $userPasswordHasher,
     ): Response {
-        if (!$this->getUser()) return $this->redirectToRoute('public_home');
-        if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page de messages.");
+            }
+            if ($this->getUser()->getId() != $user->getId()) {
+                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        } catch (Exception $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+        // if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        // if (!$this->getUser()->getId() == $user->getId()) return $this->redirectToRoute('public_home');
 
         $form = $this->createForm(SecurityFormType::class, $user);
         $form->handleRequest($request);
@@ -205,7 +280,7 @@ class SettingsController extends AbstractController
                 $hashedPassword = $userPasswordHasher->hashPassword($user, $newPassword);
                 $user->setPassword($hashedPassword);
     
-                $userRepository->save($user);
+                $this->em->getRepository(User::class)->save($user);
     
                 return $this->redirectToRoute('public_home', [], Response::HTTP_SEE_OTHER);
             } else {
@@ -238,9 +313,9 @@ class SettingsController extends AbstractController
     }
 
     private function prepareInitialData($user): array {
-        $userConsents = $user->getConsent();
+        $userConsents = $user->getConsents();
         $userPreferences = $user->getPreference();
-        
+        // $initialData = [];
         $initialData = $userPreferences ? array_fill_keys($userPreferences, true) : [];
         
         if ($userConsents->first()) {

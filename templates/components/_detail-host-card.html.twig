@@ -5,7 +5,8 @@
     <div class="detail-host-card__content">
 
         <a href="{{ path('profile_page', {'id': instance.id}) }}" class="detail-host-card__link">
-            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ instance.id ~ '/Profile/' ~ instance.image.imagePath) }}" alt="Image de profile">
+            {% include "components/_avatar.html.twig" with {'instance': instance} only %}
+            {# <img src="{{ asset('assets/uploads/Archives/Photos/' ~ instance.id ~ '/Profile/' ~ instance.image.imagePath) }}" alt="Image de profile"> #}
         </a>
 
         <article class="detail-host-card__profile">
@@ -15,7 +16,9 @@
             </h3>
 
             <div class="detail-host-card__profile--desciption">
-                {{ instance.content.getDescriptionBasedOnLanguage(instance.language)|capitalize }}
+                {% if instance.content is not null %}
+                    {{ instance.content.getDescriptionBasedOnLanguage(instance.language)|capitalize }}
+                {% endif %}
             </div>
 
         </article>
@@ -41,15 +44,13 @@
 
                 <p>{{ instance.calculateTotalAndAverageRatings['averageRating'] }}</p>
                 <p>{{ instance.calculateTotalAndAverageRatings['totalReviews'] }}</p>
-                <p>{{ instance.owner|length }}</p>
+                <p>{{ instance.owners|length }}</p>
                 {% set duration = instance.calculateYearsAndMonthsSinceRegistration %}
                 <p>{{ duration[0] }} {{ duration[1] }}</p>
                 <p>{{ instance.status }}</p>
                 <p>{{ instance.email }}</p>
                 <p>{{ instance.phoneNumber }}</p>
                 <p>{{ instance.language }}</p>
-                <p>****</p>
-                <p>****</p>
 
             </div>
 

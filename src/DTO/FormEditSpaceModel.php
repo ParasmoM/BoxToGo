@@ -2,38 +2,40 @@
 
 namespace App\DTO;
 
+use App\Entity\Images;
 use App\Entity\Spaces;
-use App\Entity\Adresses;
 use App\Entity\Contents;
-use App\Entity\SpaceEquipementLink;
-use App\Entity\SpaceImages;
+use App\Entity\Addresses;
+use App\Entity\SpaceAmenityLinks;
 
 class FormEditSpaceModel {
     private Contents $content;
     private Spaces $space;
-    private Adresses $adresse;
-    private SpaceEquipementLink $equipment;
-    private SpaceImages $galleries;
+    private Addresses $adresse;
+    private SpaceAmenityLinks $amenity;
+    private Images $galleries;
 
     public function __construct()
     {
         $this->content = new Contents();
         $this->space = new Spaces();
-        $this->adresse = new Adresses();
-        $this->equipment = new SpaceEquipementLink();
-        $this->galleries = new SpaceImages();
+        $this->adresse = new Addresses();
+        $this->amenity = new SpaceAmenityLinks();
+        $this->galleries = new Images();
     }
 
     public function hydrate(Spaces $space): void
     {
         $this->setSpace($space);
-        if ($space->getAdresse()->first()) {
-            $this->setAdresse($space->getAdresse()->first()); 
+        // dd($this->space->getAdresse(), $space->getAmenities()->first()->getAmenities());
+        if ($space->getAdresse()) {
+            $this->setAdresse($space->getAdresse()); 
         }
         $this->setContent($space->getContent());
-        if ($space->getEquipment()->first()) {
-            $this->setEquipment($space->getEquipment()->first());
+        if ($space->getAmenities()) {
+            $this->setAmenity($space->getAmenities()->first());
         }
+        // dd($this->amenity);
 
         // $this->setGalleries($space->getImage());
     }    
@@ -58,32 +60,32 @@ class FormEditSpaceModel {
         $this->space = $space;
     }
 
-    public function getAdresse(): Adresses
+    public function getAdresse(): Addresses
     {
         return $this->adresse;
     }
 
-    public function setAdresse(Adresses $adresse): void
+    public function setAdresse(Addresses $adresse): void
     {
         $this->adresse = $adresse;
     }
 
-    public function getEquipment(): SpaceEquipementLink
+    public function getAmenity(): SpaceAmenityLinks
     {
-        return $this->equipment;
+        return $this->amenity;
     }
 
-    public function setEquipment(SpaceEquipementLink $equipment): void
+    public function setAmenity(SpaceAmenityLinks $amenity): void
     {
-        $this->equipment = $equipment;
+        $this->amenity = $amenity;
     }
 
-    public function getGalleries(): SpaceImages
+    public function getGalleries(): Images
     {
         return $this->galleries;
     }
 
-    public function setGalleries(SpaceImages $galleries): void
+    public function setGalleries(Images $galleries): void
     {
         $this->galleries = $galleries;
     }

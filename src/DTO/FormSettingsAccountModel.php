@@ -2,27 +2,27 @@
 
 namespace App\DTO;
 
-use App\Entity\Users;
+use App\Entity\User;
 use App\Entity\Contents;
-use App\Entity\SpaceImages;
+use App\Entity\Images;
 
 class FormSettingsAccountModel {
-    private SpaceImages $photo;
+    private Images $photo;
     private Contents $description;
-    private Users $account;
+    private User $account;
 
     public function __construct()
     {
-        $this->photo = new SpaceImages();
+        $this->photo = new Images();
         $this->description = new Contents();
-        $this->account = new Users();
+        $this->account = new User();
     }
 
-    public function getPhoto(): SpaceImages
+    public function getPhoto(): Images
     {
         return $this->photo;
     }
-    public function setPhoto(SpaceImages $photo): void
+    public function setPhoto(Images $photo): void
     {
         $this->photo = $photo;
     }
@@ -36,11 +36,11 @@ class FormSettingsAccountModel {
         $this->description = $description;
     }
 
-    public function getAccount(): Users
+    public function getAccount(): User
     {
         return $this->account;
     }
-    public function setAccount(Users $account): void
+    public function setAccount(User $account): void
     {
         $this->account = $account;
     }

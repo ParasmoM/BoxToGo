@@ -28,6 +28,16 @@ class Images
     #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    public function __construct()
+    {
+        $this->createAt = new \DateTimeImmutable();
+    }
+
+    public function __toString()
+    {
+        return $this->imagePath;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Talks;
-use App\Entity\Users;
-use App\Entity\Spaces;
+use Exception;
+use App\Entity\User;
 use App\Entity\Reviews;
-use App\Form\TalksFormType;
-use App\Exception\UserNotAuthenticatedException;
-use App\Exception\SelfMessagingException;
+use App\Entity\Conversations;
+use App\Form\ConversationsFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Exception\SelfMessagingException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Exception\UserNotAuthenticatedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfilePageController extends AbstractController
@@ -31,10 +31,25 @@ class ProfilePageController extends AbstractController
      * @throws SelfMessagingException Si un utilisateur tente de s'envoyer un message à lui-même.
      */
     public function index(
-        Users $user,
+        User $user,
         Request $request,
         EntityManagerInterface $em,
     ): Response {
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page.");
+            }
+            if ($this->getUser()->getId() != $user->getId()) {
+                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        } catch (Exception $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+
         $form = $this->creatForm($user, $request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,7 +69,7 @@ class ProfilePageController extends AbstractController
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,
-            'reviews' => $em->getRepository(Reviews::class)->findAll(['space' => $user->getOwner()->first()]),
+            'reviews' => $em->getRepository(Reviews::class)->findAll(['space' => $user->getOwners()->first()]),
             'form' => $form->createView(),
         ]);
     }
@@ -63,30 +78,30 @@ class ProfilePageController extends AbstractController
     /**
      * Crée et manipule un formulaire pour l'entité Talks.
      *
-     * @param Users $user L'utilisateur avec lequel l'utilisateur actuel souhaite parler.
+     * @param User $user L'utilisateur avec lequel l'utilisateur actuel souhaite parler.
      * @param Request $request La requête HTTP actuelle.
      * 
      * @return Symfony\Component\Form\FormInterface Le formulaire créé.
      * 
      */
-    public function creatForm(Users $user,Request $request): \Symfony\Component\Form\FormInterface
+    public function creatForm(User $user,Request $request): \Symfony\Component\Form\FormInterface
     {
         $currentUser = $this->getUser();
         $talks = null;
 
         if (!$currentUser == null) {
-            $talks = new Talks();
-            $talks->setSender($currentUser);
-            $talks->setReceiver($user);
+            $talks = new Conversations();
+            $talks->setSentByUser($currentUser);
+            $talks->setReceivedByUser($user);
         }
 
-        $form = $this->createForm(TalksFormType::class, $talks);
+        $form = $this->createForm(ConversationsFormType::class, $talks);
         $form->handleRequest($request);
         
         return $form;
     }
 
-    private function validateUserAndMessaging(Users $user, Request $request): void
+    private function validateUserAndMessaging(User $user, Request $request): void
     {
         try {
             if (!$this->getUser()) {

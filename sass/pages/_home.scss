@@ -43,7 +43,12 @@
 
         &-container {
             display: flex;
+            flex-flow: wrap;
             gap: var(--spacing-lg);
+
+            > div {
+                flex: 0 1 36rem;
+            }
         }
     }
 }

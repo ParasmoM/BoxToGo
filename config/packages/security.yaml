@@ -31,8 +31,10 @@ security:
                 lifetime: 604800
                 path: /
                 always_remember_me: true
-            custom_authenticator: App\Security\UserAuthenticator
-
+            custom_authenticator: 
+                - App\Security\UserAuthenticator
+                - App\Security\GoogleAuthenticator
+            entry_point: App\Security\UserAuthenticator
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

@@ -3,24 +3,24 @@
 namespace App\DTO;
 
 use App\Entity\Spaces;
-use App\Entity\Adresses;
+use App\Entity\Addresses;
 use App\Entity\Contents;
-use App\Entity\SpaceImages;
-use App\Entity\SpaceEquipementLink;
+use App\Entity\Images;
+use App\Entity\SpaceAmenityLinks;
 
 class FormAddNewSpaceModel {
     private Spaces $space;
-    private Adresses $adresse;
-    private SpaceEquipementLink $equipment;
-    private SpaceImages $image;
+    private Addresses $adresse;
+    private SpaceAmenityLinks $amenity;
+    private Images $image;
     private Contents $content;
 
     public function __construct()
     {
         $this->space = new Spaces();
-        $this->adresse = new Adresses();
-        $this->equipment = new SpaceEquipementLink();
-        $this->image = new SpaceImages();
+        $this->adresse = new Addresses();
+        $this->amenity = new SpaceAmenityLinks();
+        $this->image = new Images();
         $this->content = new Contents();
     }
 
@@ -30,17 +30,17 @@ class FormAddNewSpaceModel {
         return $this->space;
     }
 
-    public function getAdresse(): Adresses
+    public function getAdresse(): Addresses
     {
         return $this->adresse;
     }
 
-    public function getEquipment(): SpaceEquipementLink
+    public function getAmenity(): SpaceAmenityLinks
     {
-        return $this->equipment;
+        return $this->amenity;
     }
 
-    public function getImage(): SpaceImages
+    public function getImage(): Images
     {
         return $this->image;
     }
@@ -56,17 +56,17 @@ class FormAddNewSpaceModel {
         $this->space = $space;
     }
 
-    public function setAdresse(Adresses $adresse): void
+    public function setAdresse(Addresses $adresse): void
     {
         $this->adresse = $adresse;
     }
 
-    public function setEquipment(SpaceEquipementLink $equipment): void
+    public function setAmenity(SpaceAmenityLinks $amenity): void
     {
-        $this->equipment = $equipment;
+        $this->amenity = $amenity;
     }
 
-    public function setImage(SpaceImages $image): void
+    public function setImage(Images $image): void
     {
         $this->image = $image;
     }

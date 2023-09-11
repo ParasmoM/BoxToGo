@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\SpaceCategories;
+use App\Entity\SpaceTypes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +19,7 @@ class SpaceCategFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SpaceCategories::class,
+            'data_class' => SpaceTypes::class,
         ]);
     }
 }

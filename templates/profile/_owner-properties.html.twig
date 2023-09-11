@@ -5,12 +5,22 @@
 
         <div class="owner-properties__listing-section">
 
-            {% for space in instance.owner %}
+            {% for space in instance.owners %}
             <div class="owner-properties__item">
 
+                <!-- Module de présentation -->
+                {% if space.ownedByUser.id < 8 %}
+                
+                <a href="{{ path('public_property_details', {'id': space.id}) }}" class="owner-properties__avatar">
+                    <img src="{{ asset('assets/uploads/Archives/Spaces/test/' ~ space.type|replace({' ': '_'}) ~ '/' ~ random(1, 10) ~ '.jpg') }}" alt="">
+                </a>
+                
+                {% else %}
+                
                 <a href="{{ path('public_property_details', {'id': space.id}) }}" class="owner-properties__avatar">
                     <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
                 </a>
+                {% endif %}
                 
                 {% if app.user %}
                 <button class="owner-properties__button" data-user-id="{{ app.user.id }}" data-space-id="{{ space.id }}"></button>
@@ -18,7 +28,7 @@
                 
                 <p class="owner-properties__address">
                     <span>{{ space }} </span>
-                    - Rue {{ space.adresse.first.street }} {{ space.adresse.first.streetNumber }}, {{ space.adresse.first.postalCode }} {{ space.adresse.first.city }}
+                    - Rue {{ space.adresse.street }} {{ space.adresse.streetNumber }}, {{ space.adresse.postalCode }} {{ space.adresse.city }}
                 </p>
             
             </div>

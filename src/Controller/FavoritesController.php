@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+use App\Entity\User;
 use App\Entity\Spaces;
-use App\Entity\Favoris;
-use App\Repository\FavorisRepository;
+use App\Entity\FavoriteSpaces;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\FavoriteSpacesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Exception\UserNotAuthenticatedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -24,29 +25,29 @@ class FavoritesController extends AbstractController
         $userId = $data['userId'];
         $spaceId = $data['spaceId'];
 
-        $user = $entityManager->getRepository(Users::class)->find($userId);
+        $user = $entityManager->getRepository(User::class)->find($userId);
         $space = $entityManager->getRepository(Spaces::class)->find($spaceId);
-
+        // dd($data);
         if (!$user || !$space) {
             return $this->json(['message' => 'Utilisateur ou espace introuvable'], Response::HTTP_BAD_REQUEST);
         }
 
-        $favori = $entityManager->getRepository(Favoris::class)->findOneBy([
+        $favori = $entityManager->getRepository(FavoriteSpaces::class)->findOneBy([
             'user' => $user,
-            'space' => $space,
+            'spaces' => $space,
         ]);
-
+        // dd($favori);
         if ($favori) {
             $entityManager->remove($favori);
             $message = 'Espace retiré des favoris';
         } else {
-            $favori = new Favoris();
+            $favori = new FavoriteSpaces();
             $favori->setUser($user);
-            $favori->setSpace($space);
+            $favori->setSpaces($space);
             $entityManager->persist($favori);
             $message = 'Espace ajouté aux favoris';
         }
-
+        // dd($favori);
         $entityManager->flush();
 
         return $this->json(['message' => $message]);
@@ -55,13 +56,22 @@ class FavoritesController extends AbstractController
     #[Route('/favorites', name: 'app_favorites')]
     public function index(
         Request $request,
-        FavorisRepository $favorisRepository,
+        FavoriteSpacesRepository $favoritesRepository,
         EntityManagerInterface $entityManager,
     ): Response {
-        if (!$this->getUser()) return $this->redirectToRoute('public_home');
+        try {
+            if (!$this->getUser()) {
+                throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page.");
+            }
+        } catch (UserNotAuthenticatedException $e) {
+            $request->getSession()->set('errorMessage', $e->getMessage());
+            return $this->redirectToRoute('app_error_403');
+        }
+        
+        // if (!$this->getUser()) return $this->redirectToRoute('public_home');
         $user = $this->getUser();
 
-        $favorites = $favorisRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
+        $favorites = $favoritesRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
         
         return $this->render('favorites/index.html.twig', compact('favorites'));
     }

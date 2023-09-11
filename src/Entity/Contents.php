@@ -38,6 +38,46 @@ class Contents
     #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    public function setTitle(string $language, ?string $title): self
+    {
+        $method = 'setTitle' . ucfirst(strtolower($language));
+        if (method_exists($this, $method)) {
+            $this->$method($title);
+        }
+
+        return $this;
+    }
+
+    public function setDescription(string $language, ?string $description): self
+    {
+        $method = 'setDescription' . ucfirst(strtolower($language));
+        if (method_exists($this, $method)) {
+            $this->$method($description);
+        }
+
+        return $this;
+    }
+
+    public function getTitleBasedOnLanguage($language) {
+        $method = 'get' . 'title' . ucfirst(strtolower($language));
+
+        if (method_exists($this, $method)) {
+            return call_user_func([$this, $method]);
+        } else {
+            return "La méthode $method n'existe pas.";
+        }
+    }
+
+    public function getDescriptionBasedOnLanguage($language) {
+        $method = 'get' . 'Description' . ucfirst(strtolower($language));
+
+        if (method_exists($this, $method)) {
+            return call_user_func([$this, $method]);
+        } else {
+            return "La méthode $method n'existe pas.";
+        }
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -67,12 +107,12 @@ class Contents
         return $this;
     }
 
-    public function getTitleNe(): ?string
+    public function getTitleNl(): ?string
     {
         return $this->title_ne;
     }
 
-    public function setTitleNe(?string $title_ne): static
+    public function setTitleNl(?string $title_ne): static
     {
         $this->title_ne = $title_ne;
 
@@ -103,12 +143,12 @@ class Contents
         return $this;
     }
 
-    public function getDescriptionNe(): ?string
+    public function getDescriptionNl(): ?string
     {
         return $this->description_ne;
     }
 
-    public function setDescriptionNe(?string $description_ne): static
+    public function setDescriptionNl(?string $description_ne): static
     {
         $this->description_ne = $description_ne;
 

@@ -1,16 +1,16 @@
 <div class="equipment-section">
-    {{ form_label(form.equipment, 'Equipements', {
+    {{ form_label(form.amenity, 'Equipements', {
         'label_attr': {'class': 'section-header'}
     }) }}
 
     <div class="equipment-inputs">
-        {{ form_row(form.equipment.status, {
+        {{ form_row(form.amenity.status, {
             'row_attr': {'class': 'status-input-set'},
             'label_attr': {'class': 'status-label'},
             'attr': {'class': 'status-options'}
         }) }}
 
-        {{ form_row(form.equipment.spaceEquipments, {
+        {{ form_row(form.amenity.amenities, {
             'row_attr': {'class': 'space-equipment-input-set'},
             'label_attr': {'class': 'equipment-label'},
             'attr': {'class': 'equipment-options'}

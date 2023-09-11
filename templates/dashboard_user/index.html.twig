@@ -1,33 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'template-alt.html.twig' %}
 
 {% block title %}Hello DashboardUserController!{% endblock %}
 
-{% block javascripts %}
-<script src="{{ asset('js/btn-lang.js') }}" defer></script>
-<script src="{{ asset('js/dropzone.js') }}" defer></script>
-{% endblock %}
-
-{% block body %}
+{% block main %}
 <div class="dashboard-user">
     <div class="dashboard-user__container">
 
-        <header class="dashboard-user__header">
-            {% include "layout/header-alt.html.twig" %}
-        </header>
-
         <h1 class="dashboard-host__title">Réservations</h1>
 
-        <main class="dashboard-user__content">
-            <div class="dashboard-user__content-container">
-
-                <div class="dashboard-user__ticket">
-                    {% for resa in userBookings %}
-                        {% include "dashboard_host/_ticket-card.html.twig" with {'instance': resa} %}
-                    {% endfor %}
-                </div>
-                
-            </div>
-        </main>
+        <div class="dashboard-user__ticket">
+            {% for resa in userBookings|reverse %}
+                {% include "dashboard_host/_ticket-card.html.twig" with {'instance': resa} %}
+            {% endfor %}
+        </div>
 
     </div>
 </div>

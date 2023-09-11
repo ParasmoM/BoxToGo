@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Users;
+use App\Repository\UserRepository;
 use App\Repository\UsersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +18,7 @@ class GoogleController extends AbstractController
     public function connectAction(ClientRegistry $clientRegistry)
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('public_home');
         }
 
         return $clientRegistry
@@ -25,7 +27,7 @@ class GoogleController extends AbstractController
     }
 
     #[Route(path: '/connect/google/check', name: 'connect_google_check')]
-    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry, UsersRepository $userRepository)
+    public function connectCheckAction(Request $request, ClientRegistry $clientRegistry, UserRepository $userRepository)
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -51,7 +53,7 @@ class GoogleController extends AbstractController
                 $userRepository->save($userExist, true);    
                 // dd('User dans la base de donnée');
             } else {
-                $new_user = new Users();
+                $new_user = new User();
 
                 $new_user->setGivenName($givenName)
                         ->setFamilyName($familyName)

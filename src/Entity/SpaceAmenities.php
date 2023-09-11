@@ -19,12 +19,12 @@ class SpaceAmenities
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: SpaceAmenityLinks::class, mappedBy: 'amenities')]
-    private Collection $amenities;
+    private Collection $amenityLinks;
 
     public function __construct()
     {
-        $this->amenities = new ArrayCollection();
-    }
+        $this->amenityLinks = new ArrayCollection();
+    }    
 
     public function __toString()
     {
@@ -51,25 +51,25 @@ class SpaceAmenities
     /**
      * @return Collection<int, SpaceAmenityLinks>
      */
-    public function getAmenities(): Collection
+    public function getAmenityLinks(): Collection
     {
-        return $this->amenities;
+        return $this->amenityLinks;
     }
 
-    public function addAmenity(SpaceAmenityLinks $amenity): static
+    public function addAmenityLink(SpaceAmenityLinks $amenityLink): static
     {
-        if (!$this->amenities->contains($amenity)) {
-            $this->amenities->add($amenity);
-            $amenity->addAmenity($this);
+        if (!$this->amenityLinks->contains($amenityLink)) {
+            $this->amenityLinks->add($amenityLink);
+            $amenityLink->addAmenity($this);
         }
 
         return $this;
     }
 
-    public function removeAmenity(SpaceAmenityLinks $amenity): static
+    public function removeAmenityLink(SpaceAmenityLinks $amenityLink): static
     {
-        if ($this->amenities->removeElement($amenity)) {
-            $amenity->removeAmenity($this);
+        if ($this->amenityLinks->removeElement($amenityLink)) {
+            $amenityLink->removeAmenity($this);
         }
 
         return $this;

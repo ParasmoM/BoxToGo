@@ -26,6 +26,11 @@ class Conversations
     #[ORM\ManyToOne(inversedBy: 'receivedConversations')]
     private ?User $receivedByUser = null;
 
+    public function __construct()
+    {
+        $this->createAt = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

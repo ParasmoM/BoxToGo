@@ -1,20 +1,21 @@
 <?php 
 namespace App\Security;
 
+use App\Entity\User;
 use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
-use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
-use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
 class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationEntryPointInterface
 {
@@ -41,20 +42,20 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
         $accessToken = $this->fetchAccessToken($client);
         $googleUser = $client->fetchUserFromToken($accessToken);
     
-        $existingUser = $this->entityManager->getRepository(Users::class)->findOneBy(['googleId' => $googleUser->getId()]);
+        $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['googleId' => $googleUser->getId()]);
         
         if (!$existingUser) {
-            $existingUser = $this->entityManager->getRepository(Users::class)->findOneBy(['email' => $googleUser->getEmail()]);
+            $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $googleUser->getEmail()]);
             
             if (!$existingUser) {
                 // Si l'utilisateur n'existe pas, créez-le dans la base de données
-                $existingUser = new Users();
+                $existingUser = new User();
                 $existingUser->setGoogleId($googleUser->getId())
                             ->setGivenName($googleUser->toArray()['given_name'])
                             ->setFamilyName($googleUser->toArray()['family_name'])
                             ->setEmail($googleUser->getEmail())
                             ->setPassword('oauth')
-                            ->setIsVerified($googleUser->toArray()['email_verified'])
+                            // ->setIsVerified($googleUser->toArray()['email_verified'])
                             ->getLanguage($googleUser->toArray()['locale']);
         
                 $this->entityManager->persist($existingUser);
@@ -73,7 +74,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         // change "app_homepage" to some route in your app
-        $targetUrl = $this->router->generate('app_home');
+        $targetUrl = $this->router->generate('public_home');
 
         return new RedirectResponse($targetUrl);
     

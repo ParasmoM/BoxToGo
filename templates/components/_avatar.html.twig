@@ -1,9 +1,9 @@
 {% if app.user %}
-<div class="avatar">
-    {% if image.image %}
-        <img src="{{ asset('assets/uploads/Archives/Photos/' ~ image.id ~ '/Profile/' ~ image.profilePicture) }}" alt="Image de profile">
-    {% else %}
-        {{ (image.familyName|first)|upper }}{{ (image.givenName|first)|upper }}
-    {% endif %}
-</div>
+    <div class="avatar">
+        {% if instance.picture is not null %}
+            <img src="{{ asset('assets/uploads/Archives/Photos/' ~ instance.id ~ '/Profile/' ~ instance.picture) }}" alt="Image de profile">
+        {% else %}
+            {{ (instance.familyName|first)|upper }}{{ (instance.givenName|first)|upper }}
+        {% endif %}
+    </div>
 {% endif %}

@@ -1,16 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'template-alt.html.twig' %}
 
 {% block title %}Hello SettingsController!{% endblock %}
 
 {% set menuItems = ['account', 'address', 'notifications', 'preferences', 'security', 'payments'] %}
 
-{% block body %}
+{% block main %}
 <div class="settings">
     <div class="settings__container">
-
-        <header class="settings__header">
-            {% include "layout/header-alt.html.twig" %}
-        </header>
 
         <h1 class="settings__title">Paramètres</h1>
 
@@ -24,13 +20,13 @@
 
         </nav>
 
-        <main class="settings__content">
+        <section class="settings__content">
             <div class="settings__content-container">
 
                 {% block content %}{% endblock content %}
 
             </div>
-        </main>
+        </section>
 
     </div>
 </div>
