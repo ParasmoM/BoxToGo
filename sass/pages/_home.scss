@@ -6,7 +6,7 @@
     &__container {
         @extend %container-primary;
         
-        margin-top: 28rem;
+        margin-top: 10rem;
     }
 
     &__navbar {
@@ -26,7 +26,7 @@
             display: inline-flex;
             gap: var(--spacing-sm);
 
-            li {
+            button {
                 @extend %btn-white-icone;
                 gap: var(--spacing-sm);
             }

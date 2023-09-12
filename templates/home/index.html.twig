@@ -5,6 +5,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/favori.js') }}" defer></script>
+    <script src="{{ asset('js/ajx-nav-home.js') }}" defer></script>
 {% endblock %}
 
 {% block main %}
@@ -18,13 +19,13 @@
         <div class="home__listing">
             <div class="home__listing-container">
 
-            {% for space in allSpaces ? allSpaces : [] %}
                 {% include "components/_card-space.html.twig" %}
-            {% endfor %}
 
             </div>
         </div>
-        
+
+        {% include "components/_pagination.html.twig" %}
+
     </div>
 </section>
 {% endblock main %}

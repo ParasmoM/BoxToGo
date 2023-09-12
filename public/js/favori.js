@@ -2,7 +2,6 @@ console.log('Début du script favorite');
 document.addEventListener('DOMContentLoaded', function() {
     // Récupérez tous les boutons avec la classe favorite
     const favButtons = document.querySelectorAll('.card-space__icon-btn');
-    console.log(favButtons, 'testing');
     // Ajoutez un gestionnaire d'événements à chaque bouton
     favButtons.forEach((favButton) => {
         favButton.addEventListener('click', (event) => {

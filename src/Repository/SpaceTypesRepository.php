@@ -21,6 +21,15 @@ class SpaceTypesRepository extends ServiceEntityRepository
         parent::__construct($registry, SpaceTypes::class);
     }
 
+    public function findSpaceTypeByName($name)
+    {
+        $queryBuilder = $this->createQueryBuilder('st')
+            ->where('st.name LIKE :name')
+            ->setParameter('name', $name . '%');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return SpaceTypes[] Returns an array of SpaceTypes objects
 //     */

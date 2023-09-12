@@ -1,0 +1,35 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.knp-pagination {
+    .pagination {
+        max-width: 1440px;
+        width: calc(100% - 15rem);
+        margin: 0 auto;
+        display: flex;
+        gap: .5rem;
+        justify-content: center;
+        padding-top: 5rem;
+        font-size: 1.4rem;
+    }
+
+    .first,
+    .previous,
+    .page,
+    .current,
+    .next,
+    .last {
+        background-color: #fefefe;
+        border-radius: 1rem; 
+        height: 3rem;
+        width: 3rem;
+        display: inline-flex;
+        align-items: center;
+        place-content: center;
+    }
+
+    .current {
+        background-color: var(--clr-primary);
+        color: white;
+    }
+}

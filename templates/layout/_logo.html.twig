@@ -3,7 +3,7 @@
         <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo" class="logo-image">
     </a>
 
-    {% if app.user.admin is defined %}
+    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
         <div class="admin-switch">
             <a href="" role="button" class="admin-switch__link">
                 Admin Interface

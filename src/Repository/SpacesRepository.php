@@ -27,6 +27,35 @@ class SpacesRepository extends ServiceEntityRepository
         $entityManager->persist($space);
         $entityManager->flush();
     }
+
+    public function findSpacesByPostalOrCity($data)
+    {
+        $queryBuilder = $this->createQueryBuilder('s')
+            ->innerJoin('s.adresse', 'a'); // s.adresse correspond au champ 'adresse' dans votre entité 'Spaces'
+    
+        if (is_numeric($data)) {
+            $queryBuilder
+                ->where('a.postalCode = :data') // a.postalCode correspond au champ 'postalCode' dans votre entité 'Addresses'
+                ->setParameter('data', $data);
+        } else {
+            $queryBuilder
+                ->where('a.city LIKE :data') // a.city correspond au champ 'city' dans votre entité 'Addresses'
+                ->setParameter('data', $data . '%');
+        }
+    
+        return $queryBuilder->getQuery()->getResult();
+    }
+    
+    public function findSpacesByUserStatus($status)
+    {
+        $queryBuilder = $this->createQueryBuilder('s')
+            ->innerJoin('s.ownedByUser', 'u') // s.ownedByUser correspond au champ 'ownedByUser' dans votre entité 'Spaces'
+            ->where('u.status = :status') // u.status correspond au champ 'status' dans votre entité 'User'
+            ->setParameter('status', $status);
+    
+        return $queryBuilder->getQuery()->getResult();
+    }
+    
 //    /**
 //     * @return Spaces[] Returns an array of Spaces objects
 //     */

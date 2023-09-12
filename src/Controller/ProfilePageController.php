@@ -39,13 +39,7 @@ class ProfilePageController extends AbstractController
             if (!$this->getUser()) {
                 throw new UserNotAuthenticatedException("L'utilisateur doit être connecté pour accéder à la page.");
             }
-            if ($this->getUser()->getId() != $user->getId()) {
-                throw new Exception("Accès refusé : Vous tentez d'accéder à une page réservée à un autre utilisateur.");
-            }
         } catch (UserNotAuthenticatedException $e) {
-            $request->getSession()->set('errorMessage', $e->getMessage());
-            return $this->redirectToRoute('app_error_403');
-        } catch (Exception $e) {
             $request->getSession()->set('errorMessage', $e->getMessage());
             return $this->redirectToRoute('app_error_403');
         }

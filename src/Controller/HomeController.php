@@ -6,11 +6,16 @@ use Faker\Factory;
 use App\Entity\Users;
 use App\Entity\Spaces;
 use App\Entity\Reviews;
-use App\Entity\Reservations;
 use App\Entity\SpaceTypes;
+use App\Entity\Reservations;
+use App\Form\searchBarFormType;
+use App\Model\SearchData;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
@@ -21,12 +26,133 @@ class HomeController extends AbstractController
         $this->em = $em;
     }
 
-    #[Route('/', name: 'public_home')]
-    public function index(): Response {
+    #[Route('/', name: 'public_home', methods: ['GET', 'POST'])]
+    public function index(
+        Request $request, 
+        PaginatorInterface $paginator,
+    ): Response {
+        $action = $request->query->get('action');
+        $typeId = $request->query->get('filter');
+        $searchQuery = $request->query->get('search');
+        
+        $repoSpaces = $this->em->getRepository(Spaces::class);
+        
+        if (!empty($typeId)) {
+            $query = $repoSpaces->findBy(['type' => $typeId], ['createAt' => 'ASC']);
+
+        } elseif (!empty($searchQuery)) {
+            $verif = $this->verifySearch($searchQuery);
+            
+            if ($action === 'search') {
+                if ($verif['isNumber']) {
+
+                    $query = $repoSpaces->findSpacesByPostalOrCity($searchQuery);
+
+                } elseif ($verif['isSingleWord']) {
+
+                    $types = $this->em->getRepository(SpaceTypes::class)->findSpaceTypeByName($searchQuery);
+                    $zipOrCity = $repoSpaces->findSpacesByPostalOrCity($searchQuery);
+                    $status = $repoSpaces->findSpacesByUserStatus($searchQuery);
+                    
+                    if (!empty($types)) {
+                        foreach ($types as $type) {
+                            $query = $repoSpaces->findBy(['type' =>  $type->getId()]) ?? false;
+                        }
+                    }
+
+                    if ($zipOrCity) {
+                        $query = $zipOrCity;
+                    }
+
+                    if ($status) {
+                        $query = $status;
+                    }
+
+                } elseif ($verif['isMultipleWords']) {
+                    $words = preg_split('/\s+/', $searchQuery);
+                    $words = array_unique($words);
+                    $query = [];
+                    
+                    foreach ($words as $word) {
+                        $types = $this->em->getRepository(SpaceTypes::class)->findSpaceTypeByName($word);
+                        $zipOrCity = $repoSpaces->findSpacesByPostalOrCity($word);
+                    
+                        if (!empty($types)) {
+                            foreach ($types as $type) {
+                                $results = $repoSpaces->findBy(['type' => $type->getId()]) ?? [];
+                                $query = array_merge($query, $results);
+                            }
+                        }
+                    
+                        if ($zipOrCity) {
+                            $query = array_merge($query, $zipOrCity);
+                        }
+                    }
+                }
+                
+            } elseif ($action === 'reset') {
+                // réinitialiser le formulaire ou faire quelque chose d'autre
+            }
+
+        } else {
+            $query = $repoSpaces->findBy([], ['createAt' => 'ASC']);
+        }
+        // dd($query);
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            12
+        );
+
+        // Vérifier si la requête est une requête AJAX
+        if ($request->isXmlHttpRequest()) {
+            // dd($request->query, $typeId, $page);
+            return new JsonResponse([
+                'content' => $this->renderView('components/_card-space.html.twig', [
+                    'allSpaces' => $pagination,
+                ]),
+                'pagination' => $this->renderView('components/_pagination.html.twig', [
+                    'allSpaces' => $pagination,
+                ]),
+            ]);
+        }
+
         return $this->render('home/index.html.twig', [
             'spaceTypes' => $this->em->getRepository(SpaceTypes::class)->findBy([], ['name' => 'ASC']),
-            'allSpaces' => $this->em->getRepository(Spaces::class)->findBy([], ['createAt' => 'ASC'])
+            'allSpaces' => $pagination,
+            // 'form' => $form
         ]);
+    }
+
+    public function verifySearch($searchBar)
+    {
+        $search = $searchBar;
+        $result = [];
+
+        // Sépare la chaîne en mots
+        $words = preg_split('/\s+/', $search);
+
+        $numericCount = 0;
+        $stringCount = 0;
+
+        foreach ($words as $word) {
+            if (is_numeric($word)) {
+                $numericCount++;
+            } else {
+                $stringCount++;
+            }
+        }
+
+        // Vérification si c'est un nombre
+        $result['isNumber'] = $numericCount > 0 && $stringCount === 0;
+
+        // Vérification si c'est un seul mot
+        $result['isSingleWord'] = count($words) === 1;
+
+        // Vérification si c'est en plusieurs mots
+        $result['isMultipleWords'] = $stringCount > 1;
+
+        return $result;
     }
 
     public function separateOwnersAndNonOwners()
