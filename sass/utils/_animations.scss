@@ -1,5 +1,4 @@
 // checkbox
-
 @-moz-keyframes jelly-42 {
     from {
         transform: scale(1, 1);
@@ -93,8 +92,7 @@
     }
 }
 
-//
-
+// button admin
 @keyframes glitch {
     0% {
         clip-path: var(--slice-1);
@@ -139,5 +137,188 @@
     100% {
         clip-path: var(--slice-1);
         transform: translate(0);
+    }
+}
+
+// card descriptions listings 
+.loadingEffectL {
+    .top {
+        position: absolute;
+        z-index: 3;
+        display: block;
+        top: 50%; left: -100px;
+        height: 5px;
+        width: 100px;
+        background-color: transparent;
+        border-bottom-right-radius: 1rem;
+        overflow: hidden;
+        transform: rotate(180deg);
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: var(--clr-primary);
+            animation: loadingEffect .3s linear forwards;
+        }
+    }
+    .mid {
+        position: absolute;
+        z-index: 3;
+        top: 195px; left: -205px;
+        height: 5px;
+        width: 215px;
+        overflow: hidden;
+        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        transform: rotate(90deg);
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: var(--clr-primary);
+            animation: loadingEffect .3s linear forwards;
+            animation-delay: 0.3s;
+        }
+    }
+    .bottom {
+        position: absolute;
+        z-index: 3;
+        display: block;
+        top: calc(150% + 3rem); left: -100px;
+        height: 5px;
+        width: 100px;
+        background-color: transparent;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: var(--clr-primary);
+            animation: loadingEffect .3s linear forwards;
+            animation-delay: 0.6s;
+        }
+    }
+}
+.loadingEffectR {
+    .top {
+        position: absolute;
+        z-index: 3;
+        display: block;
+        top: 50%; right: -100px;
+        height: 5px;
+        width: 100px;
+        background-color: transparent;
+        border-top-right-radius: 1rem;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: var(--clr-primary);
+            animation: loadingEffect .3s linear forwards;
+        }
+    }
+    .mid {
+        position: absolute;
+        z-index: 3;
+        top: 195px; right: -205px;
+        height: 5px;
+        width: 215px;
+        overflow: hidden;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        transform: rotate(90deg);
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: var(--clr-primary);
+            animation: loadingEffect .3s linear forwards;
+            animation-delay: 0.3s;
+        }
+    }
+    .bottom {
+        position: absolute;
+        z-index: 3;
+        display: block;
+        top: calc(150% + 3rem); right: -100px;
+        height: 5px;
+        width: 100px;
+        background-color: transparent;
+        border-top-left-radius: 1rem;
+        transform: rotate(180deg);
+
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: var(--clr-primary);
+            animation: loadingEffect .3s linear forwards;
+            animation-delay: 0.6s;
+        }
+    }
+}
+@keyframes loadingEffect {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.highlight-focus {
+    animation: highlightAndVibrate 1s ease forwards; /* Durée réduite pour plus de "violence" */
+}
+@keyframes highlightAndVibrate {
+    0% {
+        border: solid 5px var(--clr-primary);
+        transform: translateX(0);
+    }
+    10% {
+        transform: translateX(-20px);  /* Ajustez pour une vibration plus intense */
+    }
+    20% {
+        transform: translateX(20px);   /* Ajustez pour une vibration plus intense */
+    }
+    30% {
+        transform: translateX(-20px);  /* Ajustez pour une vibration plus intense */
+    }
+    40% {
+        transform: translateX(20px);
+    }
+    50% {
+        transform: translateX(-20px);  /* Ajustez pour une vibration plus intense */
+    }
+    60% {
+        transform: translateX(20px);
+    }
+    70% {
+        transform: translateX(-20px);  /* Ajustez pour une vibration plus intense */
+    }
+    40% {
+        transform: translateX(20px);
+    }
+    30% {
+        transform: translateX(-20px);  /* Ajustez pour une vibration plus intense */
+    }
+    40% {
+        transform: translateX(30px);
     }
 }

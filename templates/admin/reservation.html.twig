@@ -1,0 +1,61 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% set data = dataResa %}
+
+{% block header %}
+    <div><span>REFERENCE</span></div>
+    <div>RENTER</div>
+    <div>STATUS</div>
+    <div>DURATION</div>
+    <div><span>PROFILE</span></div>
+{% endblock header %}
+
+{% block main %}
+    {% for element in data %}
+    {# {{ dump(data) }} #}
+        <div class="dashboard-admin__items">
+            <div class="dashboard-admin__item-data img-space">
+                <div>
+                    {% include "components/_spaceImage.html.twig" with {'element': element.space} %}
+                </div>
+                <p>
+                    {{ element.reference }}
+                    {% set currentDate = "now"|date("U") %}
+                    {% set elementDate = element.createAt|date("U") %}
+                    {% set difference = (currentDate - elementDate) / 86400 %} <!-- Nombre de secondes dans une journée -->
+                    
+                    {% if difference < 30 %}
+                        <span class="new">New</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="dashboard-admin__item-data img-profile">
+                <div>
+                    {% include "components/_avatar.html.twig" with {'instance': element.user} %}
+                </div>
+                <p>{{ element.user }}</p>
+            </div>
+            <div class="dashboard-admin__item-data">
+                {% set className = '' %}
+
+                {% if element.status == 'free' %} 
+                    {% set className = 'fr' %}
+                {% endif %}
+                {% if element.status == 'finished' %} 
+                    {% set className = 'fi' %}
+                {% endif %}
+
+                <span class="{{ className }}">{{ element.status }}</span>
+            </div>
+            <div class="dashboard-admin__item-data">
+                {% for row in element.getDateDifference %}
+                    {{ row }}
+                {% endfor %}
+            </div>
+            <div class="dashboard-admin__item-data">
+                <a href="{{ path('app_admin_resa_detail', {id: element.id}) }}">View</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock main %}
+

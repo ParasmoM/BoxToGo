@@ -23,6 +23,12 @@
         position: absolute;
         top: 3rem; left: -5rem;
         box-shadow: $box-shadow;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
     }
 
     &__profile {

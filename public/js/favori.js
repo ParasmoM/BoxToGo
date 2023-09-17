@@ -1,7 +1,8 @@
 console.log('Début du script favorite');
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
     // Récupérez tous les boutons avec la classe favorite
-    const favButtons = document.querySelectorAll('.card-space__icon-btn');
+    let favButtons = document.querySelectorAll('.card-space__icon-btn');
+    console.log(favButtons);
     // Ajoutez un gestionnaire d'événements à chaque bouton
     favButtons.forEach((favButton) => {
         favButton.addEventListener('click', (event) => {
@@ -29,16 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             throw new Error('La requête a échoué');
                         }
                     })
-                    .then(data => {
-                        console.log('Réponse du serveur:', data);
-                                                
-                        // Mettez à jour l'icône du cœur si l'action a réussi
-                        if (data.success) {
-                            const heartIcon = favButton.querySelector('img');
-                            const isFavorited = heartIcon.src.includes('coeur_rempli');
-                            heartIcon.src = isFavorited ? "{{ asset('images/icones/favorite.svg') }}" : "{{ asset('images/icones/heartColor.svg') }}";
-                        }
-                    })
+                    // .then(data => {
+                    //     // console.log('Données JSON:', data);
+                            
+                    //     const container = document.querySelector(".favorite__content-container");
+                    //     if (container) {
+                    //         document.querySelector(".favorite__content-container").innerHTML = data.content;
+                    //     }
+                    // })
                     .catch(error => {
                         console.error('Une erreur s\'est produite:', error);
                     });
@@ -47,10 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Appel de la fonction 
                 sendRequest();
-
+                
             } catch (error) {
                 console.error('Une erreur s\'est produite:', error);
             }
+            console.log('click', favButton);
+            favButton.classList.toggle('active');
+            if (window.location.pathname === '/favorites') {
+                favButton.parentNode.style.display = 'none'; // Cache l'élément parent
+            }
+
+        
         });
     });
-});
+// });

@@ -1,0 +1,15 @@
+{% for instance in favorites %}
+<div class="card">
+    <a href="{{ path('public_property_details', {'id': instance.spaces.id}) }}">
+        {% if instance.spaces.image.first %}
+            <img src="{{ asset('assets/uploads/' ~ instance.spaces.file ~ '/' ~ instance.spaces.image.first.imagePath) }}" alt="">
+        {% endif %}
+    </a>
+
+    {% if app.user %}
+        {% set class = "card-space__icon-btn active" %}
+
+        <button class="{{ class }}" data-user-id="{{ app.user.id }}" data-space-id="{{ instance.spaces.id }}"></button>
+    {% endif %}
+</div>
+{% endfor %}

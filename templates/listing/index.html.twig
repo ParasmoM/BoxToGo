@@ -3,10 +3,12 @@
 {% block title %}Hello ListingController!{% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('js/addNewSpace.js') }}" defer></script>
+    <script src="{{ asset('js/addNewSpace.js') }}" defer></script>
+    <script src="{{ asset('js/step3.js') }}" defer></script>
 {% endblock %}
 
 {% set titles = [
+    '',
     'Faisons connaissance avec votre bien',
     'Où se cache votre bien ?',
     'Mettez votre bien en vedette !',
@@ -14,6 +16,7 @@
     'Un dernier mot sur vous'
 ] %}
 {% set paragraphs = [
+    '',
     'Plongeons directement ! Indiquez-nous le type de votre bien, sa taille, son prix et son emplacement dans le bâtiment. C’est rapide et facile !',
     'Ici, nous avons besoin de savoir où se trouve votre bien. Renseignez simplement les détails de l’adresse et vous êtes prêt pour la prochaine étape.',
     'C’est l’heure des projecteurs ! Fournissez un titre captivant, une description et cochez les équipements disponibles. Faites briller votre bien !',
@@ -33,8 +36,14 @@
             <div class="listing__content-container">
 
                 <section class="listing__descriptions">
-                    {% for index in 0..4 %}
-                        {% include "listing/_card_description.html.twig" with {'index': index, 'title': titles[index], 'paragraph': paragraphs[index]} only %}
+                    {% for index in 1..5 %}
+
+                        {% include "listing/_card_description.html.twig" with {
+                            'index': index, 
+                            'title': titles[index], 
+                            'paragraph': paragraphs[index]
+                        } only %}
+
                     {% endfor %}
                 </section>
 

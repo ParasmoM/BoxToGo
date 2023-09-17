@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/goBack.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+<section class="admin-interface">
+    
+    <div class="admin-interface__container">
+
+        <header class="admin-interface__header">
+            {% include "admin/_header.html.twig" %}
+        </header>
+        
+        <main class="admin-comment-detail">
+            <div class="admin-comment-detail__container">
+        
+                {% include "components/_btn_prev.html.twig" %}
+
+                <div class="comment-card">
+                    <div class="comment-card__avatar">
+                        {% include "components/_avatar.html.twig" with {'instance': data.user} %}
+                    </div>
+            
+                    <div class="comment-card__content">
+                        <p class="comment-card__meta">
+                            <span class="comment-card__user-date">{{ data.user|capitalize }}</span>
+                            <span class="comment-card__rating-value">
+                                {{ data.rating }}
+                                <img class="comment-card__rating-icon" src="{{ asset('images/icones/star-empty.svg') }}" alt="">
+                            </span>
+                        </p>
+            
+                        <p class="comment-card__comment">{{ data.comment }}</p>
+                        
+                        <span>{{ data.createAt|date('d-m-Y') }}</span>
+                    </div>
+            
+                    <div class="comment-card__footer">
+                        <div class="comment-card__space-image">
+                            {% include "components/_spaceImage.html.twig" with {'element': data.spaces} %}
+                        </div>
+                        <p class="comment-card__reference">REF : {{ data.spaces.reference }}</p>
+                    </div>
+                </div>
+            
+            </div>
+        </main>
+    </div>
+</section>
+{{ dump(data) }}
+{% endblock %}

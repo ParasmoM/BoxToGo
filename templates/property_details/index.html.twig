@@ -5,6 +5,7 @@
 {% block javascripts %}
 <script src="{{ asset('js/masthead.js') }}" defer></script>
 <script src="{{ asset('js/property_detail.js') }}" defer></script>
+<script src="{{ asset('js/goBack.js') }}" defer></script>
 {% endblock %}
 
 {% set galleries = [] %}
@@ -19,6 +20,8 @@
 <section class="space-detail">
     <div class="space-detail__container">
         
+        {% include "components/_btn_prev.html.twig" %}
+
         <section class="space-detail__gallery">
             {% include "property_details/_gallery.html.twig" 
             with {

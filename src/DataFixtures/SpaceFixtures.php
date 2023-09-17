@@ -29,9 +29,9 @@ class SpaceFixtures extends Fixture
     
     public function load(ObjectManager $manager): void
     {
-        $this->createSpace($manager);
-        $this->createSpace($manager);
-        $this->createSpace($manager);
+        $this->createSpace($manager, 3);
+        // $this->createSpace($manager);
+        // $this->createSpace($manager);
 
         $this->addItems($manager);
         $this->addContents($manager);
@@ -46,31 +46,40 @@ class SpaceFixtures extends Fixture
         ];
     } 
 
-    public function createSpace($manager)
+    public function createSpace($manager, $nbr)
     {
         $typeData = $manager->getRepository(SpaceTypes::class)->findAll();
         $hostData = $manager->getRepository(User::class)->findAll();
+        $i = 0;
 
-        for ($i = 0; $i < count($hostData); $i++) {
-            $space = new Spaces();
-            $space->setType($typeData[$i]);
-            $space->setPrice($this->faker->randomFloat(2, 10, 300)); 
-            $space->setPrice($this->faker->randomFloat(2, 10, 300)); 
-            $space->setSurface($this->faker->numberBetween(10, 200)); 
-            $space->setEntryWidth($this->faker->randomFloat(2, 1, 5));
-            $space->setEntryLength($this->faker->randomFloat(2, 1, 5)); 
-            $space->setFloorLevel($this->faker->randomElement(['Rez de chaussée', 'Premier étage', 'Deuxième étage'])); 
-            $space->setConditionStatus($this->faker->randomElement(['Neuf', 'Rénové', 'À rénover', 'Ancien'])); 
-            $space->setOwnedByUser($hostData[$i]);
-
-            $dateTime = $this->faker->dateTimeBetween('-10 years', 'now');
-            $dateTimeImmutable = DateTimeImmutable::createFromMutable($dateTime);
-            $space->setCreateAt($dateTimeImmutable);
-
-            $hostData[$i]->addOwner($space);
-            $manager->persist($space);
+        for($index = 0; $index < $nbr; $index++) { 
+            foreach ($hostData as $host) {
+                $space = new Spaces();
+                $space->setType($typeData[$i]);
+                $space->setPrice($this->faker->randomFloat(2, 10, 300)); 
+                $space->setPrice($this->faker->randomFloat(2, 10, 300)); 
+                $space->setSurface($this->faker->numberBetween(10, 200)); 
+                $space->setEntryWidth($this->faker->randomFloat(2, 1, 5));
+                $space->setEntryLength($this->faker->randomFloat(2, 1, 5)); 
+                $space->setFloorLevel($this->faker->randomElement(['Rez de chaussée', 'Premier étage', 'Deuxième étage'])); 
+                $space->setConditionStatus($this->faker->randomElement(['Neuf', 'Rénové', 'À rénover', 'Ancien'])); 
+                $space->setOwnedByUser($host);
+    
+                $dateTime = $this->faker->dateTimeBetween('-10 years', 'now');
+                $dateTimeImmutable = DateTimeImmutable::createFromMutable($dateTime);
+                $space->setCreateAt($dateTimeImmutable);
+    
+                $host->addOwner($space);
+                $manager->persist($space);
+                            
+                $i++;
+                if ($i == 7) {
+                    $i = 0;
+                }
+            }
+    
+            $manager->flush();
         }
-        $manager->flush();
     }
 
     public function addItems($manager)
@@ -121,134 +130,51 @@ class SpaceFixtures extends Fixture
             [
                 'city' => 'Anvers',
                 'zip' => 2000,
-                'street' => 'Rue Carnot',
-                'number' => 1
-            ],
-            [
-                'city' => 'Anvers',
-                'zip' => 2000,
-                'street' => 'Boulevard Leopold',
-                'number' => 1
-            ],
-            [
-                'city' => 'Anvers',
-                'zip' => 2000,
-                'street' => 'Rue de Keyserlei',
+                'street' => 'Rue Meir',
                 'number' => 1
             ],
             [
                 'city' => 'Bruges',
                 'zip' => 8000,
-                'street' => 'Rue de l\'Arsenal',
-                'number' => 1
-            ],
-            [
-                'city' => 'Bruges',
-                'zip' => 8000,
-                'street' => 'Rue de la Braamberg',
-                'number' => 1
-            ],
-            [
-                'city' => 'Bruges',
-                'zip' => 8000,
-                'street' => 'Rue du Vieux Bourg',
+                'street' => 'Rue Steenstraat',
                 'number' => 1
             ],
             [
                 'city' => 'Bruxelles',
                 'zip' => 1000,
-                'street' => 'Rue Royale',
-                'number' => 1
-            ],
-            [
-                'city' => 'Bruxelles',
-                'zip' => 1000,
-                'street' => 'Rue du Marché aux Herbes',
-                'number' => 1
-            ],
-            [
-                'city' => 'Bruxelles',
-                'zip' => 1000,
-                'street' => 'Rue Neuve',
+                'street' => 'Rue de la Loi',
                 'number' => 1
             ],
             [
                 'city' => 'Charleroi',
                 'zip' => 6000,
-                'street' => 'Rue de Montigny',
-                'number' => 1
-            ],
-            [
-                'city' => 'Charleroi',
-                'zip' => 6000,
-                'street' => 'Rue du Gouvernement',
-                'number' => 1
-            ],
-            [
-                'city' => 'Charleroi',
-                'zip' => 6000,
-                'street' => 'Rue de la Montagne',
+                'street' => 'Boulevard Tirou',
                 'number' => 1
             ],
             [
                 'city' => 'Gand',
                 'zip' => 9000,
-                'street' => 'Rue des Champs',
-                'number' => 1
-            ],
-            [
-                'city' => 'Gand',
-                'zip' => 9000,
-                'street' => 'Rue Graslei',
-                'number' => 1
-            ],
-            [
-                'city' => 'Gand',
-                'zip' => 9000,
-                'street' => 'Rue des Comtes',
+                'street' => 'Rue Veldstraat',
                 'number' => 1
             ],
             [
                 'city' => 'Liège',
                 'zip' => 4000,
-                'street' => 'Rue du Potiérue',
-                'number' => 1
-            ],
-            [
-                'city' => 'Liège',
-                'zip' => 4000,
-                'street' => 'Boulevard d\'Avroy',
-                'number' => 1
-            ],
-            [
-                'city' => 'Liège',
-                'zip' => 4000,
-                'street' => 'Rue Léopold',
+                'street' => 'Rue Saint-Gilles',
                 'number' => 1
             ],
             [
                 'city' => 'Namur',
                 'zip' => 5000,
-                'street' => 'Rue de l\'Ange',
-                'number' => 1
-            ],
-            [
-                'city' => 'Namur',
-                'zip' => 5000,
-                'street' => 'Rue Godefroid',
-                'number' => 1
-            ],
-            [
-                'city' => 'Namur',
-                'zip' => 5000,
-                'street' => 'Avenue de la Plante',
+                'street' => 'Rue de Fer',
                 'number' => 1
             ],
         ];
 
         $spacesData = $manager->getRepository(Spaces::class)->findAll();
+        $i = 0;
 
-        for ($i = 0; $i < count($spacesData); $i++) {
+        foreach ($spacesData as $space) {
             $adresse = new Addresses();
             $adresse->setCountry('Belgique');
             $adresse->setCity($adresseData[$i]['city']);
@@ -258,7 +184,13 @@ class SpaceFixtures extends Fixture
             
             $manager->persist($adresse);
 
-            $spacesData[$i]->setAdresse($adresse);
+            $space->setAdresse($adresse);     
+            
+            $i++;
+
+            if ($i == 7) {
+                $i = 0;
+            }
         }
     
         $manager->flush();
@@ -269,7 +201,7 @@ class SpaceFixtures extends Fixture
         $spacesData = $manager->getRepository(Spaces::class)->findAll();
 
         foreach ($spacesData as $space) {
-            for ($i=1; $i < 11; $i++) { 
+            for ($i=1; $i < 6; $i++) { 
 
                 $photo = new Images();                
                 $photo->setSpaces($space);

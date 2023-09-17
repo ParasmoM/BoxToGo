@@ -7,6 +7,8 @@ use App\Entity\Spaces;
 use App\Entity\Reviews;
 use App\Form\ResaFormType;
 use App\Entity\Reservations;
+use App\Model\SearchBarHome;
+use App\Form\SearchBarHomeFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,8 +64,14 @@ class PropertyDetailsController extends AbstractController
             return $this->redirectToRoute('app_checkout', ['id' => $resa->getId()]);
         }
 
+        $searchBar = new SearchBarHome();
+
+        $formSearch = $this->createForm(SearchBarHomeFormType::class, $searchBar);
+        $formSearch->handleRequest($request);
+        
         return $this->render('property_details/index.html.twig', [
             'form' => $form->createView(),
+            'formSearch' => $formSearch,
             'space' => $space,
             'imageCount' => count($this->em->getRepository(Images::class)->findBy(['spaces' => $space])),
             'reviews' => $this->em->getRepository(Reviews::class)->findBy(['spaces' => $space]),

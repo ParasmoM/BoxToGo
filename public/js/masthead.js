@@ -1,3 +1,4 @@
+console.log('Running header main');
 // Sélectionnez tous les éléments ayant l'ID btn-dropdown
 const dropdowns = document.querySelectorAll('#btn-dropdown');
 
@@ -30,19 +31,23 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// const masthead = document.querySelector('#masthead');
-// const link = document.querySelector('.masthead-nav__publish-link');
 
-// // Écoutez l'événement de défilement sur la fenêtre
-// window.addEventListener('scroll', function() {
-//     // Si le défilement est supérieur ou égal à 10rem (converti en pixels)
-//     if (window.scrollY >= 90) { // 16 est une supposition pour 1rem, cela dépend de la taille de base de votre navigateur.
-//         masthead.style.height = '12rem';
-//         link.style.display = 'none';
-//     } else {
-//         masthead.style.height = ''; // Réinitialisez à la valeur par défaut quand il est moins de 10rem.
-//         link.style.display = '';
-//     }
-// });
+window.addEventListener('scroll', function() {
+    const headerElement = document.getElementById('masthead');
+    const logoImage = document.querySelector('.logo-image');
+    
+    if (window.scrollY >= 30) {
+        logoImage.classList.add('shrink');
+    } else {
+        logoImage.classList.remove('shrink');
+    }
+    if (window.scrollY >= 100) {
+        headerElement.classList.add('shrink');
+    } else {
+        headerElement.classList.remove('shrink');
+    }
+});
 
 
+
+console.log('FIN header main');

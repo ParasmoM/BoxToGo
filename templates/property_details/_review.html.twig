@@ -47,7 +47,7 @@
 <div class="space-detail__reviews-comments">
     {% if reviews is defined %}
         {% for review in reviews|slice(0, 3) %}
-            {% include "components/_review-card.html.twig"  %}
+            {% include "components/_review-card.html.twig" %}
         {% endfor %}
     {% endif %}
 </div>

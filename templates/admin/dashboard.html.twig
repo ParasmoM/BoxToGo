@@ -1,0 +1,17 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+    {% block search %}{% endblock search %}
+    
+    <section class="dashboard-admin">
+        <div class="dashboard-admin__header">
+            {% block header %}{% endblock header %}
+        </div>
+
+        <div class="dashboard-admin__main">
+            {% block main %}{% endblock main %}
+        </div>
+
+        {% include "components/_pagination.html.twig" with {'pagination' : data} %}
+    </section>
+{% endblock content %}

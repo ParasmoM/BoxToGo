@@ -2,12 +2,11 @@
 @use "../utils" as *;
 
 .owner-detail {
-    margin-bottom: 10rem;
-
     &__container {
         @extend %container-primary;
         
-        margin-top: 28rem;
+        margin-top: 30rem;
+        margin-bottom: 10rem;
 
         h1 {
             @extend %title-primary;

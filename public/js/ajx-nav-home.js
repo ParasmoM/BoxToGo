@@ -26,6 +26,7 @@ window.onload = () => {
                         },
                     });
                     
+                    
                     if (!response.ok) {
                         throw new Error('La requête a échoué');
                     }

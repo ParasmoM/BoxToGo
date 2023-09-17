@@ -1,16 +1,19 @@
 <div class="space-detail__gallery-header">
     <h1 class="space-detail__gallery-title">{{ category }} à louer sur {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
+    
     <p class="space-detail__gallery-evaluation">
         <span class="space-detail__gallery-stars">
             {% for i in 1..5 %}
-                {% if i < rating %}
+                {% if i <= rating %}
                     <img src="{{ asset('images/icones/star-full.svg') }}" alt="">
                 {% else %}
                     <img src="{{ asset('images/icones/star-empty.svg') }}" alt="">
                 {% endif %}
             {% endfor %}
         </span>
+
         <span class="space-detail__gallery-reviews">{{ space.reviews|length > 1 ? space.reviews|length ~ ' évaluations' : space.reviews|length ~ ' évaluation' }}</span>
+        
         <span class="space-detail__gallery-ref">REF - {{ space.reference }}</span>
     </p>
 </div>
@@ -20,10 +23,7 @@
     <div class="space-detail__gallery-image-item">
         
         {% set file = space.file %}
-        {% if space.ownedByUser.id < 8  %}
-            {% set file = 'Archives/Spaces/test/' ~ space.type|replace({' ': '_'}) %}
-        {% endif %}
-        {% if images[0] %}
+        {% if images[0] is defined %}
             <img src="{{ asset('assets/uploads/' ~ file ~ '/' ~ images[0]) }}" alt="">
         {% endif %}
     </div>

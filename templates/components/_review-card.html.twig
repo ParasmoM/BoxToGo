@@ -1,11 +1,11 @@
 <div class="review-card">
     <div class="review-card__header">
         <div class="review-card__avatar">
-            {% include "components/_avatar.html.twig" with {'image': review.user } only %}
+            {% include "components/_avatar.html.twig" with {'instance': review.user } only %}
         </div>
         <div class="review-card__info">
             <span class="review-card__username">{{ review.user }}</span>
-            <span class="review-card__date">{{ review.reviewDate|date('d-m-Y') }}</span>
+            <span class="review-card__date">{{ review.createAt|date('d-m-Y') }}</span>
         </div>
         <div class="review-card__rating">
             <img class="review-card__star-icon" src="{{ asset('images/icones/starRate.svg') }}" alt="">

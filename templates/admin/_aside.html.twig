@@ -1,0 +1,21 @@
+{% set nav = [
+    {'name': 'Analytics',               'svg': 'analytics',     'route': 'app_admin'},
+    {'name': 'Users',                   'svg': 'admin',         'route': 'app_admin_users'},
+    {'name': 'Announcements',           'svg': 'notice',        'route': 'app_admin_notices'},
+    {'name': 'Reservations',            'svg': 'appointment',   'route': 'app_admin_resa'},
+    {'name': 'Comments and ratings',    'svg': 'comment',       'route': 'app_admin_comments'},
+
+] %}
+
+<h1 class="admin-interface__sidebar-heading">Users</h1>
+        
+<div class="admin-interface__sidebar-container">
+    <ul class="admin-interface__sidebar-list">
+        {% for link in nav %}
+            <li class="admin-interface__sidebar-item {{ route == link['route'] ? 'current' : '' }}">
+                <img src="{{ asset('images/icones/admin/' ~ link['svg'] ~ '.svg') }}" alt="">
+                <a href="{{ path( link['route'] ) }}" class="admin-interface__sidebar-link">{{ link['name'] }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

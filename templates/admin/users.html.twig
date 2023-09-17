@@ -1,0 +1,52 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% set data = dataUsers %}
+
+{% block header %}
+    <div><span>NAME</span></div>
+    <div>EMAIL</div>
+    <div><span>ROLE</span></div>
+    <div>START DATE</div>
+    <div><span>PROFILE</span></div>
+{% endblock header %}
+
+{% block main %}
+    {% for element in data %}
+        <div class="dashboard-admin__items">
+            <div class="dashboard-admin__item-data img-profile">
+                <div>
+                    {% include "components/_avatar.html.twig" with {'instance': element} %}
+                </div>
+                <p>
+                    {{ element.familyName|capitalize }} {{ element.givenName }}
+                    
+                    {% set currentDate = "now"|date("U") %}
+                    {% set elementDate = element.createAt|date("U") %}
+                    {% set difference = (currentDate - elementDate) / 86400 %} <!-- Nombre de secondes dans une journée -->
+                    
+                    {% if difference < 30 %}
+                        <span class="new">New</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="dashboard-admin__item-data">{{ element.email }}</div>
+            <div class="dashboard-admin__item-data">
+                {% if 'ROLE_ADMIN' in element.roles %}
+                <span class="ad">ADMIN</span>
+                {% elseif 'ROLE_MANAGER' in element.roles %}
+                <span class="ma">MANAGER</span>
+                {% elseif 'ROLE_OWNER' in element.roles %}
+                <span class="ow">OWNER</span>
+                {% elseif 'ROLE_USER' in element.roles %}
+                <span class="us">RENTER</span>
+                {% endif %}
+            </div>
+            <div class="dashboard-admin__item-data">{{ element.createAt|date('Y-m-d') }}</div>
+            <div class="dashboard-admin__item-data">
+                {% set path = 'ROLE_OWNER' in element.roles ? 'profile_page' : 'app_admin_renter_profile' %}
+                <a href="{{ path(path, {'id': element.id}) }}">View Profile</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock main %}
+

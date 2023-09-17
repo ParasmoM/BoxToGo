@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<section class="admin-interface">
+    <div class="admin-interface__container">
+
+        <header class="admin-interface__header">
+            {% include "admin/_header.html.twig" %}
+        </header>
+        
+        <main class="admin-interface__main">
+            <aside class="admin-interface__sidebar">
+                {% include "admin/_aside.html.twig" %}
+            </aside>
+    
+            <section class="admin-interface__content">
+                {% block content %}{% endblock content %}
+            </section>
+        </main>
+        
+    </div>
+</section>
+{% endblock %}

@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\Spaces;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SpaceFormType extends AbstractType
 {
@@ -24,10 +26,47 @@ class SpaceFormType extends AbstractType
                     'Ancien' => 'ancien'
                 ]
             ])
-            ->add('price')
-            ->add('surface')
-            ->add('entryWidth')
-            ->add('entryLength')
+            ->add('price', IntegerType::class, [
+                'constraints' => [
+                    new Type([
+                        'type' => 'integer',
+                        'message' => 'Veuillez entrer un nombre entier.',
+                    ]),
+                ],
+            ])
+            ->add('surface', IntegerType::class, [
+                'attr' => [
+                    'placeholder' => 'm²'
+                ],
+                'constraints' => [
+                    new Type([
+                        'type' => 'integer',
+                        'message' => 'Veuillez entrer un nombre entier.',
+                    ]),
+                ],
+            ])
+            ->add('entryWidth', IntegerType::class, [
+                'attr' => [
+                    'placeholder' => 'cm'
+                ],
+                'constraints' => [
+                    new Type([
+                        'type' => 'integer',
+                        'message' => 'Veuillez entrer un nombre entier.',
+                    ]),
+                ],
+            ])
+            ->add('entryLength', IntegerType::class, [
+                'attr' => [
+                    'placeholder' => 'cm'
+                ],
+                'constraints' => [
+                    new Type([
+                        'type' => 'integer',
+                        'message' => 'Veuillez entrer un nombre entier.',
+                    ]),
+                ],
+            ])
             ->add('floorLevel', ChoiceType::class, [
                 'choices' => [
                     'Rez de chaussée' => 'Rez de chaussée',

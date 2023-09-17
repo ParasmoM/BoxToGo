@@ -1,0 +1,5 @@
+{% if element.image.first %}
+    <img src="{{ asset('assets/uploads/' ~ element.file ~ '/' ~ element.image.first.imagePath) }}" alt="">
+{% else %}
+    No found image
+{% endif %}

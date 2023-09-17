@@ -8,9 +8,6 @@
         height: 100vh;
     }
     &-header {
-        // position: fixed;
-        // top: 0;
-        // left: 0;right: 0;
         background-color: var(--clr-white);
         z-index: 10;
     
@@ -48,75 +45,84 @@
 
     &__descriptions {
         flex: 1;
-    }
-    &__description-item {
-        padding: var(--spacing-lg);
-        border-radius: $border-radius;
         display: flex;
-        gap: var(--spacing-lg);
-        box-shadow: $box-shadow;
+        flex-direction: column;
+        margin-top: 1rem;
 
-        &:not(:nth-child(1)) {
-            margin-top: var(--spacing-lg);
-        }
-        &--step {
-            @extend %fw-semibold;
-            @extend %fs-lg;
-
+        .card {
+            flex: 0 0 18rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: var(--spacing-sm);
+            gap: var(--spacing-lg);
+            width: 70%;
+            border-radius: $border-radius;
+            border: none;
+            box-shadow: $box-shadow;
+            padding: var(--spacing-lg);
+            margin-inline: auto;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            position: relative; 
+            z-index: 1;          
 
-            p {
-
+            
+            &:not(:nth-child(1)) {
+                margin-top: var(--spacing-lg);
+            }
+            &--step {
+                @extend %fw-semibold;
+                @extend %fs-lg;
+    
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border: solid 1px;
-                height: 5rem;
-                aspect-ratio: 1/1;
-                border-radius: 50%;
+                flex-direction: column;
+                gap: var(--spacing-sm);
+    
+                p {
+    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: solid 1px;
+                    height: 5rem;
+                    aspect-ratio: 1/1;
+                    border-radius: 50%;
+                }
             }
-            span {
-                
+            &--content {
+                font-family: $font-family-secondary;
+    
+                h3 {
+                    @extend %title-tertiary;
+                    margin-bottom: var(--spacing-sm);
+                }
+                p {
+                    height: 7.2rem;
+                }
             }
-        }
-        &--content {
-            font-family: $font-family-secondary;
-
-            h3 {
-                @extend %title-tertiary;
-                margin-bottom: var(--spacing-sm);
-            }
-            p {
-                height: 7.2rem;
-            }
-        }
-        &--deco {
-            display: none;
         }
     }
 
     &__templates {
-        flex: 1;
+        flex: auto;
     }
     &__template {
         &-steps {
             position: relative;
             overflow: hidden;
             height: 86rem;
+            width: 100%;
             transition: all 3s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: column !important;
 
             .listing__template-step {
                 position: absolute;
                 top: 86rem;
                 width: 100%;
-                transition: all 3s ease;
-                
+                transition: all 2s ease;
+
                 > button {
                     display: flex;
                     gap: var(--spacing-xs);
@@ -126,48 +132,80 @@
     
                 &.show {
                     top: 0;
+                    
                 }
-                &.prev {
+                &.noShow {
                     top: -86rem;
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }
         &-step__group {
             display: flex;
+            width: 100%;
             gap: var(--spacing-lg);
-
-            > div { flex: 1;}
+            
+            > div { 
+                flex: 1;
+            }
         }
         &-step__group-radio {
+            width: 100%;
+
             >label {
                 @extend %margin-label;
+                
+                width: 100%;
                 display: block;
             }
             margin-bottom: var(--spacing-lg);
         }
         &-step__title {
             @extend %title-tertiary;
+
+            flex: auto;
+            width: 100%;
             margin-bottom: var(--spacing-lg);
         }
         &-step__select {
             @extend %input-select;
+            
+            width: 100%;
+            flex: auto;
             margin-bottom: var(--spacing-sm);
         }
-        &-step__checkbox {
-            display: flex;
-            > div {
-                flex: 1;
-            }
+        &-step3 > label {
+            @extend %margin-label;
         }
-        &-step__input-checkbox {
+        &-step__checkbox {
             @extend %input-chechbox;
+
+            display: flex;
+            flex-direction: column;
+            margin-top: var(--spacing-xs);
+            margin-left: var(--spacing-sm);
+            align-items: flex-start !important;
+            gap: var(--spacing-xs) !important;
+            
+            > div {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-xs);
+                white-space: nowrap;
+                
+            }
         }
         &-step__input {
             @extend %input-text;
+
+            width: 100%;
             margin-bottom: var(--spacing-sm);
         }
         &-step__radio {
             @extend %input-style-press;
+
+            width: 100%;
         }
         &-step__textarea {
             @extend %input-textarea ;
@@ -202,272 +240,7 @@
 }
 
 
-.listing-form {
-    margin-top: 18rem;
 
-    &__container {
-        @extend %container-primary;
-        display: flex;
-        overflow: hidden;
-        transition: all 3s ease;
-    }
 
-    &__description-list {
-        flex: 1;
-        font-family: $font-family-secondary;
-        transition: all 3s ease;
-        margin-top: .2rem;
-    }
-    &__description-item {
-        @extend %padding-lg;
-        @extend %margin-bottom-lg;
-        @extend %margin-inline-auto;
-        display: flex;
-        gap: var(--spacing-lg);
-        border-radius: $border-radius;
-        box-shadow: $box-shadow;
-        width: 80%;
-        height: 15.3rem;
-        position: relative;
-        z-index: 10;
-    }
-    &__status {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        transition: all 3s ease;
 
-        &.active {
-            color: var(--clr-primary);
-        }
-        &.active p {
-            border-color: var(--clr-primary);
-        }
-        &.actived-old {
-            color: var(--clr-white);
-        }
-        &.actived-old p {
-            border-color: var(--clr-primary);
-            background-color: var(--clr-primary);
-        }
-    }
-    &__step-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: solid 1px var(--clr-black);
-        border-radius: 50%;
-        height: 4rem;
-        aspect-ratio: 1/1;
-    }
-    &__status-label {
-        position: absolute;
-        bottom: 0;
-    }
-    &__details-title {
-        @extend %title-secondary;
-    }
-
-    &__description-item:nth-child(2n+1) &__deco {
-        position: relative;
-        border: none 2px $border-color;
-        height: 18.7rem;
-        width: 5rem;
-        position: absolute;
-        z-index: 10;
-        top: 7.5rem;left: -5rem;
-        display: flex;
-        flex-direction: column;
-        
-        span {
-            flex: 1;
-        }
-    
-        span:after, span:before {
-            content: "";
-            position: absolute;
-            background-color: var(--clr-primary);
-            transition: all 0.5s;
-        }
-    
-        span:first-of-type:after {
-            top: 0;
-            right: 0;
-            height: 2px;
-            width: 0;
-        }
-    
-        span:first-of-type:before {
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 0;
-        }
-
-        span:last-of-type:after {
-            bottom: 0;
-            right: 0;
-            height: 2px;
-            width: 0;
-        }
-    
-        &.animate {
-            span:first-of-type:after {
-                animation: loadTopBorder 1s forwards 0s;
-            }
-            span:first-of-type:before {
-                animation: loadRightBorder 1s forwards 1s; // delay of 0.5s to start after top border animation finishes
-            }
-            span:last-of-type:after {
-                animation: loadBottomBorder 1s forwards 2s;
-            }
-        }
-    }
-
-    &__description-item:nth-child(2n) &__deco {
-        position: relative;
-        border: none 2px $border-color;
-        height: 18.7rem;
-        width: 5rem;
-        position: absolute;
-        z-index: 10;
-        top: 7.515rem; right: -5rem;
-        display: flex;
-        flex-direction: column;
-
-        span {
-            flex: 1;
-        }
-    
-        span:after, span:before {
-            content: "";
-            position: absolute;
-            background-color: var(--clr-primary);
-            transition: all 0.5s;
-        }
-    
-        span:first-of-type:after {
-            top: 0;
-            right: 0;
-            height: 2px;
-            width: 0;
-        }
-    
-        span:first-of-type:before {
-            top: 0;
-            right: 0;
-            width: 2px;
-            height: 0;
-        }
-
-        span:last-of-type:after {
-            bottom: 0;
-            right: 0;
-            height: 2px;
-            width: 0;
-        }
-
-        &.animate {
-            span:first-of-type:after {
-                animation: loadTopBorder2 1s forwards 0s;
-            }
-            span:first-of-type:before {
-                animation: loadRightBorder 1s forwards 1s; // delay of 0.5s to start after top border animation finishes
-            }
-            span:last-of-type:after {
-                animation: loadBottomBorder2 1s forwards 2s;
-            }
-        }
-    }
-    
-    @keyframes loadTopBorder {
-        0%, 100% {
-            width: 0;
-            right: 0;
-        }
-        100% {
-            width: 100%;
-            right: 0;
-        }
-    }
-    
-    @keyframes loadRightBorder {
-        0%, 100% {
-            height: 0;
-            top: 0;
-            right: 0;
-        }
-        100% {
-            height: 100%;
-            top: 0;
-            right: 0;
-        }
-    }
-    
-    @keyframes loadBottomBorder {
-        0%, 100% {
-            width: 0;
-            left: 0;
-        }
-        100% {
-            width: 100%;
-            left: 0;
-        }
-    }
-    
-    @keyframes loadTopBorder2 {
-        0%, 100% {
-            width: 0;
-            left: 0;
-        }
-        100% {
-            width: 100%;
-            left: 0;
-        }
-    }
-    
-    @keyframes loadBottomBorder2 {
-        0%, 100% {
-            width: 0;
-            right: 0;
-        }
-        100% {
-            width: 100%;
-            right: 0;
-        }
-    }
-}
-
-.listing-form {
-    &__form-list {
-        flex: 1;
-        height: 70rem;
-        overflow: hidden;
-        transition: all 3s ease;
-        display: flex;
-        flex-direction: column;
-    }
-    &__form-container {
-        transition: all 3s ease;
-        position: relative;
-    }
-    &__step {
-        @extend %margin-bottom-lg;
-        position: absolute;
-        height: 70rem;
-        border: solid 1px;
-        width: 100%;
-        background-color: var(--clr-white);
-        top: 70rem;
-        transition: all 3s ease;
-    
-        &.show {
-            top: 0;
-        }
-        &.prev {
-            top: -70rem;
-        }
-    }
-}
 

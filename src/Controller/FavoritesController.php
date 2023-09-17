@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Spaces;
 use App\Entity\FavoriteSpaces;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\FavoriteSpacesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class FavoritesController extends AbstractController
     public function fetch(
         Request $request,
         EntityManagerInterface $entityManager,
+        FavoriteSpacesRepository $favoritesRepository,
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
         $userId = $data['userId'];
@@ -47,10 +49,26 @@ class FavoritesController extends AbstractController
             $entityManager->persist($favori);
             $message = 'Espace ajouté aux favoris';
         }
-        // dd($favori);
+
         $entityManager->flush();
 
-        return $this->json(['message' => $message]);
+        $user = $this->getUser();
+
+        $favorites = $favoritesRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
+        // dd($favorites);
+        return new JsonResponse([
+            'content' => $this->renderView('favorites/_card.html.twig', [
+                'favorites' => $favorites,
+            ])
+        ]);
+    }
+
+    #[Route('/fetch/delete/favorites', name: 'fetch_favorites_delete', methods: ['POST'])]
+    public function fetchDelete(
+        Request $request,
+        EntityManagerInterface $entityManager,
+    ): JsonResponse {
+
     }
     
     #[Route('/favorites', name: 'app_favorites')]
@@ -58,6 +76,7 @@ class FavoritesController extends AbstractController
         Request $request,
         FavoriteSpacesRepository $favoritesRepository,
         EntityManagerInterface $entityManager,
+        PaginatorInterface $paginator,
     ): Response {
         try {
             if (!$this->getUser()) {
@@ -73,6 +92,12 @@ class FavoritesController extends AbstractController
 
         $favorites = $favoritesRepository->findBy(['user' => $user->getId()], ['id' => 'ASC']);
         
+        // $pagination = $paginator->paginate(
+        //     $favorites,
+        //     $request->query->getInt('page', 1),
+        //     25
+        // );
+
         return $this->render('favorites/index.html.twig', compact('favorites'));
     }
 }

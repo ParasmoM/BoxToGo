@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ReviewsRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReviewsRepository;
 
 #[ORM\Entity(repositoryClass: ReviewsRepository::class)]
 class Reviews
@@ -28,6 +29,11 @@ class Reviews
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     private ?Spaces $spaces = null;
+
+    public function __construct()
+    {
+        $this->createAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

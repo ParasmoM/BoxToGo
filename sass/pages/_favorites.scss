@@ -14,13 +14,41 @@
         &-container {
             @extend %container-secondary; 
 
-            display: flex;
-            flex-flow: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 32rem 32rem 32rem;
+            // grid-template-areas: ;
             gap: var(--spacing-lg);
         }
 
-        .card-space {
-            flex: 0 1 32rem;
+        .card { 
+            position: relative;
+            border-radius: $border-radius;
+            overflow: hidden;
+            
+            a {
+                height: 100%;
+                width: 100%;
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .card-space__icon-btn {
+                position: absolute;
+                top: 3rem; right: 3rem;
+                height: 3rem;
+                width: 3rem;
+                z-index: 2;
+                background: url("/images/icones/favorite-empty.svg") no-repeat center;
+
+                &.active {
+                    background: url("/images/icones/favorite-filled.svg") no-repeat center;
+                }
+            }
         }
     }
 }

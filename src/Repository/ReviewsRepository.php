@@ -21,6 +21,71 @@ class ReviewsRepository extends ServiceEntityRepository
         parent::__construct($registry, Reviews::class);
     }
 
+    public function calculateAverageRating()
+    {
+        $queryBuilder = $this->createQueryBuilder('r')
+            ->select('AVG(r.rating) as averageRating')
+            ->getQuery();
+
+        $result = $queryBuilder->getSingleScalarResult();
+
+        return (float)$result; // Convertir en float, car la moyenne peut avoir des décimales
+    }
+
+    public function getAverageRatingByCategory(string $categoryName)
+    {
+        $queryBuilder = $this->createQueryBuilder('r')
+            ->join('r.spaces', 's')
+            ->leftJoin('s.type', 't')
+            ->where('t.name = :categoryName')
+            ->setParameter('categoryName', $categoryName)
+            ->select('AVG(r.rating) as averageRating')
+            ->getQuery();
+    
+        $result = $queryBuilder->getSingleScalarResult();
+    
+        return (float)$result; // Convertir en float, car la moyenne peut avoir des décimales
+    }
+    
+    public function countByPeriod(string $period = 'week')
+    {
+        $queryBuilder = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id) as reviewCount');
+
+        // $currentDate = new \DateTimeImmutable();
+
+        switch ($period) {
+            case 'week':
+                $queryBuilder->where('r.createAt >= :startOfWeek')
+                    ->setParameter('startOfWeek', new \DateTimeImmutable('monday this week'));
+                break;
+
+            case 'month':
+                $queryBuilder->where('r.createAt >= :startOfMonth')
+                    ->setParameter('startOfMonth', new \DateTimeImmutable('first day of this month'));
+                break;
+
+            case 'year':
+                $queryBuilder->where('r.createAt >= :startOfYear')
+                    ->setParameter('startOfYear', new \DateTimeImmutable('first day of January this year'));
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Invalid period');
+        }
+
+        $result = $queryBuilder->getQuery()->getSingleScalarResult();
+
+        return (int) $result;
+    }
+    
+
+
+
+
+
+
+
 //    /**
 //     * @return Reviews[] Returns an array of Reviews objects
 //     */

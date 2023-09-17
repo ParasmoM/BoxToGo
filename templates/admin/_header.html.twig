@@ -1,0 +1,20 @@
+<div>
+    <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo" class="logo-image">
+</div>
+
+<div class="admin-switch">
+    <a href="{{ path('public_home') }}" role="button" class="admin-switch__link">
+        Public Site
+    </a>
+</div>
+
+<div>
+    <div>
+        {% include "components/_avatar.html.twig" with {'instance': app.user} %}
+    </div>
+    
+    <div>
+        <p>{{ app.user.familyName|upper }} {{ app.user.givenName }}</p>
+        <p>{{ app.user.email }}</p>
+    </div>
+</div>

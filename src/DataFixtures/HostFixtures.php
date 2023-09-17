@@ -82,6 +82,103 @@ class HostFixtures extends Fixture
                 'gender' => 'Homme',
                 'birthDate' => '2/09/1964',
             ],
+            [
+                'firstName' => 'Zazie',
+                'lastName'  => 'Beetz',
+                'gender'    => 'Femme',
+                'birthDate' => '1/06/1991',
+            ],
+            [
+                'firstName' => 'Michael B.',
+                'lastName'  => 'Jordan',
+                'gender'    => 'Homme',
+                'birthDate' => '9/02/1987',
+            ],
+            [
+                'firstName' => 'Meagan',
+                'lastName'  => 'Good',
+                'gender'    => 'Femme',
+                'birthDate' => '8/08/1981',
+            ],
+            [
+                'firstName' => 'Dwayne',
+                'lastName'  => 'Johnson',
+                'gender'    => 'Homme',
+                'birthDate' => '2/05/1972',
+            ],
+            [
+                'firstName' => 'Olivia',
+                'lastName'  => 'Munn',
+                'gender'    => 'Femme',
+                'birthDate' => '3/07/1980',
+            ],
+            [
+                'firstName' => 'Chris',
+                'lastName'  => 'Hemsworth',
+                'gender'    => 'Homme',
+                'birthDate' => '11/08/1983',
+            ],
+            [
+                'firstName' => 'Tessa',
+                'lastName'  => 'Thompson',
+                'gender'    => 'Femme',
+                'birthDate' => '3/10/1983',
+            ],
+            [
+                'firstName' => 'Donald',
+                'lastName'  => 'Glover',
+                'gender'    => 'Homme',
+                'birthDate' => '25/09/1983',
+            ],
+            [
+                'firstName' => 'Teyana',
+                'lastName'  => 'Taylor',
+                'gender'    => 'Femme',
+                'birthDate' => '10/12/1990',
+            ],
+            [
+                'firstName' => 'Ryan',
+                'lastName'  => 'Gosling',
+                'gender'    => 'Homme',
+                'birthDate' => '12/11/1980',
+            ],
+            [
+                'firstName' => 'Megan',
+                'lastName'  => 'Fox',
+                'gender'    => 'Femme',
+                'birthDate' => '16/05/1986',
+            ],
+            [
+                'firstName' => 'John',
+                'lastName'  => 'Washington',
+                'gender'    => 'Homme',
+                'birthDate' => '28/07/1984',
+            ],
+            [
+                'firstName' => 'Jamie',
+                'lastName'  => 'Chung',
+                'gender'    => 'Femme',
+                'birthDate' => '10/04/1983',
+            ],
+            [
+                'firstName' => 'Tom',
+                'lastName'  => 'Hardy',
+                'gender'    => 'Homme',
+                'birthDate' => '15/09/1977',
+            ],
+            [
+                'firstName' => 'Rihanna',
+                'lastName'  => 'Fenty',
+                'gender'    => 'Femme',
+                'birthDate' => '20/02/1988',
+            ],
+            [
+                'firstName' => 'Jamie',
+                'lastName'  => 'Foxx',
+                'gender'    => 'Homme',
+                'birthDate' => '13/12/1967',
+            ],
+
         ];
     
         foreach ($hostData as $data) {
@@ -96,7 +193,7 @@ class HostFixtures extends Fixture
             $host->setGender($data['gender']);
             
             
-            $birthDate = \DateTime::createFromFormat('d/m/Y', $data['birthDate']);
+            $birthDate = DateTimeImmutable::createFromFormat('d/m/Y', $data['birthDate']);
             $host->setBirthDate($birthDate);
     
             $host->setStatus($this->faker->randomElement(['Particulier', 'Professionnel']));
@@ -157,10 +254,10 @@ class HostFixtures extends Fixture
                 'number' => 1
             ],
         ];
-
         $hostData = $manager->getRepository(User::class)->findAll();
+        $i = 0;
 
-        for ($i = 0; $i < count($hostData); $i++) {
+        foreach ($hostData as $host) {
             $adresse = new Addresses();
             $adresse->setCountry('Belgique');
             $adresse->setCity($adresseData[$i]['city']);
@@ -169,8 +266,12 @@ class HostFixtures extends Fixture
             $adresse->setPostalCode($adresseData[$i]['zip']);
             
             $manager->persist($adresse);
+            $host->setAdresse($adresse);
             
-            $hostData[$i]->setAdresse($adresse);
+            $i++;
+            if ($i == 7) {
+                $i = 0;
+            }
         }
     
         $manager->flush();

@@ -2,11 +2,14 @@
 
     <h1 class="detail-host-card__title">Faites connaissance avec {{ name }}</h1>
 
+    {% if route != 'public_property_details' %}
+    {% include "components/_btn_prev.html.twig" %}
+    {% endif %}
+    
     <div class="detail-host-card__content">
 
         <a href="{{ path('profile_page', {'id': instance.id}) }}" class="detail-host-card__link">
             {% include "components/_avatar.html.twig" with {'instance': instance} only %}
-            {# <img src="{{ asset('assets/uploads/Archives/Photos/' ~ instance.id ~ '/Profile/' ~ instance.image.imagePath) }}" alt="Image de profile"> #}
         </a>
 
         <article class="detail-host-card__profile">
@@ -35,9 +38,7 @@
                 <p>Email :</p>
                 <p>Téléphone :</p>
                 <p>Langues :</p>
-                <p>Taux de réponse :</p>
-                <p>Délai de réponse :</p>
-
+                
             </div>
 
             <div class="detail-host-card__details--values">

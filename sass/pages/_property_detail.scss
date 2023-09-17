@@ -2,22 +2,24 @@
 @use "../utils" as *;
 
 .space-detail {
-    margin-bottom: 10rem;
-
     &__container {
         @extend %container-primary;
         
-        margin-top: 28rem;
+        margin-top: 30rem;
+        margin-bottom: 10rem;
 
         h1 {
             @extend %title-primary;
         }
+
         section {
             @extend %section;
         }
     }
 
     &__gallery {
+        margin-top: 0 !important;
+        
         &-header {
             display: flex;
             justify-content: space-between; 

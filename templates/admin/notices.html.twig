@@ -1,0 +1,58 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% set data = dataSpaces %}
+
+{% block header %}
+    <div>
+        <span>REFERENCE</span>
+    </div>
+    <div>
+        TYPES
+    </div>
+    <div>
+        <span>CITY</span>
+    </div>
+    <div>
+        STATUS
+    </div>
+    <div>
+        <span>PROFILE</span>
+    </div>
+{% endblock header %}
+
+{% block main %}
+    {% for element in data %}
+        <div class="dashboard-admin__items">
+            <div class="dashboard-admin__item-data img-space">
+                <div>
+                    {% include "components/_spaceImage.html.twig" with {'element': element} %}
+                </div>
+                <p>
+                    {{ element.reference }}
+                    {% set currentDate = "now"|date("U") %}
+                    {% set elementDate = element.createAt|date("U") %}
+                    {% set difference = (currentDate - elementDate) / 86400 %} <!-- Nombre de secondes dans une journée -->
+                    
+                    {% if difference < 30 %}
+                        <span class="new">New</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="dashboard-admin__item-data">{{ element.type }}</div>
+            <div class="dashboard-admin__item-data">{{ element.adresse.city }}</div>
+            <div class="dashboard-admin__item-data">
+                {% set className = '' %}
+                {% if element.status == 'free' %} 
+                    {% set className = 'fr' %}
+                {% endif %}
+                {% if element.status == 'busy' %} 
+                    {% set className = 'ow' %}
+                {% endif %}
+                <span class="{{ className }}">{{ element.status }}</span>
+            </div>
+            <div class="dashboard-admin__item-data">
+                <a href="{{ path('public_property_details', {'id': element.id}) }}">View Profile</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock main %}

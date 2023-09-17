@@ -1,6 +1,7 @@
-{% set order = route == 'dashboard_host_annonces' ? 'Numéro de référence' : 'Numéro de réservation ' %}
-{% set image = route == 'dashboard_host_annonces' ? space : instance.space %}
-{% set text = route == 'dashboard_host_annonces' ? space : instance.space %}
+{% set order    = route == 'dashboard_host_annonces' ? 'Numéro de référence' : 'Numéro de réservation ' %}
+{% set image    = route == 'dashboard_host_annonces' ? space : instance.space %}
+{% set text     = route == 'dashboard_host_annonces' ? space : instance.space %}
+{% set element  = route == 'dashboard_host_annonces' ? space : instance.space %}
 
 <div class="ticket-card">
 
@@ -9,24 +10,12 @@
         <div class="ticket-card__section">
             
             <div class="ticket-card__section--media">
-                <!-- Module de présentation -->
-                {% if image.ownedByUser.id < 8 %}
                 
-                <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-space__image-link">
-                    <img src="{{ asset('assets/uploads/Archives/Spaces/test/' ~ image.type|replace({' ': '_'}) ~ '/' ~ random(1, 10) ~ '.jpg') }}" alt="">
-                </a>
-                
-                {% else %}
-                
-                <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-space__image-link">
-                    {% if image.image.first %}
-                    <img src="{{ asset('assets/uploads/' ~ image.file ~ '/' ~ image.image.first.imagePath) }}" alt="">
-                    {# {% else %}
-                    <img src="{{ asset('images/icones/download.svg') }}" alt=""> #}
+                <a href="{{ path('public_property_details', {'id': element.id}) }}" class="card-space__image-link">
+                    {% if element.image.first %}
+                        <img src="{{ asset('assets/uploads/' ~ element.file ~ '/' ~ element.image.first.imagePath) }}" alt="">
                     {% endif %}
                 </a>
-
-                {% endif %}
             
                 {# <a href="{{ path('public_property_details', {'id': image.id}) }}" class="card-ticket__image-link">
                     {% if image.image.first %}

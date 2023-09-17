@@ -6,16 +6,35 @@
         display: flex;
         gap: var(--spacing-lg);
     }
+
+    &__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: var(--clr-black);
+        color: var(--clr-white);
+
+        .avatar {
+            font-size: 1.5rem;
+        }
+    }
+
     &__info {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-xs);
         flex: auto;
     }
+
     &__username {
         @extend %fs-lg;
         @extend %fw-semibold;
     }
+
     &__rating {
         display: flex;
         gap: .4rem;
@@ -23,16 +42,6 @@
         img {
             height: 2rem;
             aspect-ratio: 1/1;
-        }
-    }
-    &__avatar {
-        height: 5rem;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        overflow: hidden;
-
-        .avatar {
-            font-size: 1.5rem;
         }
     }
 

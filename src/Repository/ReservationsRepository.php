@@ -21,6 +21,35 @@ class ReservationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservations::class);
     }
 
+    public function countByPeriod(string $period = 'week')
+    {
+        $queryBuilder = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id) as reviewCount');
+
+        switch ($period) {
+            case 'week':
+                $queryBuilder->where('r.createAt >= :startOfWeek')
+                    ->setParameter('startOfWeek', new \DateTimeImmutable('monday this week'));
+                break;
+
+            case 'month':
+                $queryBuilder->where('r.createAt >= :startOfMonth')
+                    ->setParameter('startOfMonth', new \DateTimeImmutable('first day of this month'));
+                break;
+
+            case 'year':
+                $queryBuilder->where('r.createAt >= :startOfYear')
+                    ->setParameter('startOfYear', new \DateTimeImmutable('first day of January this year'));
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Invalid period');
+        }
+
+        $result = $queryBuilder->getQuery()->getSingleScalarResult();
+
+        return (int) $result;
+    }
 //    /**
 //     * @return Reservations[] Returns an array of Reservations objects
 //     */

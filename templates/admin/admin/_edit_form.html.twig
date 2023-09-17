@@ -1,7 +1,0 @@
-{{ form_start(form, {'attr': {'class': 'dashboard-edit-form'}}) }}
-    <h2>{{ 'Edit'|trans }} {{ name }} {{ 'by'|trans }}</h2>
-    <a href="{{ path('admin_storages') }}"><img src="{{ asset('images/icones/cross.svg') }}" alt="Icone fermer"></a>
-    {{ form_widget(form.name, {'attr': {'class': 'form__input', 'placeholder': 'New storages'}}) }}  
-    {{ form_widget(form) }}
-    <button class="form__submit">{{ 'Save'|trans }}</button>
-{{ form_end(form) }}

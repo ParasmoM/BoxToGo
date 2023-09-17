@@ -26,6 +26,36 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         parent::__construct($registry, User::class);
     }
 
+    public function countByPeriod(string $period = 'week')
+    {
+        $queryBuilder = $this->createQueryBuilder('u')
+            ->select('COUNT(u.id) as reviewCount');
+
+        switch ($period) {
+            case 'week':
+                $queryBuilder->where('u.createAt >= :startOfWeek')
+                    ->setParameter('startOfWeek', new \DateTimeImmutable('monday this week'));
+                break;
+
+            case 'month':
+                $queryBuilder->where('u.createAt >= :startOfMonth')
+                    ->setParameter('startOfMonth', new \DateTimeImmutable('first day of this month'));
+                break;
+
+            case 'year':
+                $queryBuilder->where('u.createAt >= :startOfYear')
+                    ->setParameter('startOfYear', new \DateTimeImmutable('first day of January this year'));
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Invalid period');
+        }
+
+        $result = $queryBuilder->getQuery()->getSingleScalarResult();
+
+        return (int) $result;
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
@@ -39,7 +69,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
-
 
     public function save(User $user): void
     {

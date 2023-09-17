@@ -7,23 +7,17 @@
 
             {% for space in instance.owners %}
             <div class="owner-properties__item">
-
-                <!-- Module de présentation -->
-                {% if space.ownedByUser.id < 8 %}
                 
                 <a href="{{ path('public_property_details', {'id': space.id}) }}" class="owner-properties__avatar">
-                    <img src="{{ asset('assets/uploads/Archives/Spaces/test/' ~ space.type|replace({' ': '_'}) ~ '/' ~ random(1, 10) ~ '.jpg') }}" alt="">
+                    {% if space.image.first %}
+                        
+                        <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                    
+                    {% endif %}
                 </a>
-                
-                {% else %}
-                
-                <a href="{{ path('public_property_details', {'id': space.id}) }}" class="owner-properties__avatar">
-                    <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
-                </a>
-                {% endif %}
                 
                 {% if app.user %}
-                <button class="owner-properties__button" data-user-id="{{ app.user.id }}" data-space-id="{{ space.id }}"></button>
+                    <button class="owner-properties__button" data-user-id="{{ app.user.id }}" data-space-id="{{ space.id }}"></button>
                 {% endif %}
                 
                 <p class="owner-properties__address">

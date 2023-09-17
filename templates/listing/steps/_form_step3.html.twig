@@ -2,5 +2,13 @@
 
 {{ form_row(form.status, {'row_attr': {'class': 'listing__template-step__group-radio'}, 'attr': {'class': 'listing__template-step__radio'}}) }}
 
-{{ form_row(form.amenities, {'row_attr': {'class': 'listing__template-step__group-radio'}, 'attr': {'class': 'listing__template-step__checkbox'}}) }}
+{# {% form_theme form 'components/custom_checkbox_widget.html.twig' %} #}
+
+{{ form_row(form.amenities, {
+    'row_attr': {
+        'class': 'listing__template-step3'
+    }, 
+    'attr': {
+        'class': 'listing__template-step__checkbox'
+    }}) }}
 

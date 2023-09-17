@@ -1,4 +1,4 @@
-{% for space in allSpaces ? allSpaces : [] %}
+{% for space in pagination ? pagination : [] %}
 
     {% set camera = null %}
     {% set locker = null %}
@@ -25,22 +25,12 @@
 
             <div class="card-space__image-zone">
                 <div class="card-space__image-container">
-                    <!-- Module de présentation -->
-                    {% if space.ownedByUser.id < 8 %}
-                    
-                        <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
-                            <img src="{{ asset('assets/uploads/Archives/Spaces/test/' ~ space.type|replace({' ': '_'}) ~ '/' ~ random(1, 10) ~ '.jpg') }}" alt="">
-                        </a>
-                        
-                    {% else %}
 
-                        <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
-                            {% if space.image.first %}
-                                <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
-                            {% endif %}
-                        </a>
-
-                    {% endif %}
+                    <a href="{{ path('public_property_details', {'id': space.id}) }}" class="card-space__image-link">
+                        {% if space.image.first %}
+                            <img src="{{ asset('assets/uploads/' ~ space.file ~ '/' ~ space.image.first.imagePath) }}" alt="">
+                        {% endif %}
+                    </a>
                     
                     {% if app.user %}
                         {% set class = "card-space__icon-btn" %}
@@ -52,7 +42,6 @@
                                 {% set class = "card-space__icon-btn active" %}
 
                             {% endif %}
-                            {# {{ dump() }} #}
                             
                         {% endfor %}
 

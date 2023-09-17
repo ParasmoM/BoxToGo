@@ -60,6 +60,34 @@ class Reservations
         }
     }
 
+    public function getDateDifference(): ?array
+    {
+        if ($this->dateStart && $this->dateEnd) {
+            // Calculer la différence entre dateEnd et dateStart
+            $interval = $this->dateStart->diff($this->dateEnd);
+
+            $years = $interval->y;
+            $months = $interval->m;
+            $days = $interval->d;
+
+            $difference = [];
+
+            if ($years > 0) {
+                $difference[] = "$years année" . ($years > 1 ? 's' : '');
+            }
+            if ($months > 0) {
+                $difference[] = "$months mois";
+            }
+            if ($days > 0) {
+                $difference[] = "$days jour" . ($days > 1 ? 's' : '');
+            }
+
+            return $difference;
+        }
+
+        return null; // Retourner null si l'une des dates est nulle
+    }
+    
     public function getId(): ?int
     {
         return $this->id;

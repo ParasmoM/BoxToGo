@@ -5,6 +5,7 @@
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset('js/favori.js') }}" defer></script>
+{# <script src="{{ asset('js/favoritesDelete.js') }}" defer></script> #}
 {% endblock %}
 
 {% block main %}
@@ -16,11 +17,7 @@
         <div class="favorite__content">
             <div class="favorite__content-container">
 
-                {% for instance in favorites %}
-                    {% set space = instance.spaces %}
-
-                    {% include "components/_card-space.html.twig" %}
-                {% endfor %}
+                {% include "favorites/_card.html.twig" %}
                 
             </div>
         </div>

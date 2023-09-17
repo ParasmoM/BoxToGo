@@ -1,13 +1,9 @@
 <div class="header-main" id="masthead">
     <div class="header-main__container">
 
-        <div class="header-main__logo">
-            {% include "layout/_logo.html.twig" %}
-        </div>
+        {% include "layout/_logo.html.twig" %}
 
-        <div class="header-main__searchbar">
-            {% include "layout/_search-bar.html.twig" %}
-        </div>
+        {% include "layout/_search-bar.html.twig" %}
 
         <div class="header-main__actions">
 
@@ -82,8 +78,7 @@
                 {% endif %}
             </div>
 
-        </div>
+        </div> 
 
     </div>
 </div>
-{# {{ dump(app.user) }} #}

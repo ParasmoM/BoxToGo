@@ -1,25 +1,25 @@
-<div class="header-main__searchbar-container search-bar">
+<div class="search-bar">
+    <div class="search-bar__container">
 
-    <div class="header-main__searchbar__minimal search-bar--minimal">
-        <button type="button">Types de stockage</button>
-        <button type="button">Dates</button>
-        <button type="button">Code postal</button>
-
-        <form action="{{ path('public_home') }}" method="get">
-            <input type="text" name="search" placeholder="Votre recherche">
+        {# <form action="{{ path('public_home') }}" method="get" class="search-bar--minimal">
+            <input type="date" name="dateStart">
+            <input type="date" name="dateEnd">
+            <input type="search" name="search" placeholder="Votre recherche">
             <button type="submit" name="action" value="search">
                 <img src="{{ asset('images/icones/loupe.svg') }}" alt="Icone d'une loupe">
             </button>
-        </form>
-    </div>
-
-    <a href="{{ path('public_listing') }}" class="search-bar--publish-link" >
-        {{ 'Post my listing on BoxToGo'|trans }}
-    </a>
-
-    {# <div class="header-main__searchbar__advanced search-bar--advanced">
-
-    </div> #}
+        </form> #}
     
+        {{ form_start(formSearch, {'attr': {'class': 'search-bar--minimal' }}) }}
+            {{ form_widget(formSearch) }}
+            <button type="submit" name="action" value="search">
+                <img src="{{ asset('images/icones/loupe.svg') }}" alt="Icone d'une loupe">
+            </button>
+        {{ form_end(formSearch) }}
+
+        <a href="{{ path('public_listing') }}" class="search-bar--publish" >
+            {{ 'Post my listing on BoxToGo'|trans }}
+        </a>
+    
+    </div>    
 </div>
-{# {{ dump(app.user) }} #}

@@ -53,9 +53,39 @@ class SpacesRepository extends ServiceEntityRepository
             ->where('u.status = :status') // u.status correspond au champ 'status' dans votre entité 'User'
             ->setParameter('status', $status);
     
+            // dd($queryBuilder->getQuery()->getResult());
         return $queryBuilder->getQuery()->getResult();
     }
     
+    public function countByPeriod(string $period = 'week')
+    {
+        $queryBuilder = $this->createQueryBuilder('s')
+            ->select('COUNT(s.id) as reviewCount');
+
+        switch ($period) {
+            case 'week':
+                $queryBuilder->where('s.createAt >= :startOfWeek')
+                    ->setParameter('startOfWeek', new \DateTimeImmutable('monday this week'));
+                break;
+
+            case 'month':
+                $queryBuilder->where('s.createAt >= :startOfMonth')
+                    ->setParameter('startOfMonth', new \DateTimeImmutable('first day of this month'));
+                break;
+
+            case 'year':
+                $queryBuilder->where('s.createAt >= :startOfYear')
+                    ->setParameter('startOfYear', new \DateTimeImmutable('first day of January this year'));
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Invalid period');
+        }
+
+        $result = $queryBuilder->getQuery()->getSingleScalarResult();
+
+        return (int) $result;
+    }
 //    /**
 //     * @return Spaces[] Returns an array of Spaces objects
 //     */

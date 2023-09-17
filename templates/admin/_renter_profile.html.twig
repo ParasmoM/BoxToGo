@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/goBack.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+<section class="admin-interface">
+    
+    <div class="admin-interface__container">
+
+        <header class="admin-interface__header">
+            {% include "admin/_header.html.twig" %}
+        </header>
+        
+        <main class="renter-profile">
+            <div class="renter-profile__container">
+                
+                <a href="{{ path('app_admin_users') }}" class="prev">
+                    <img class="review-card__star-icon" src="{{ asset('images/icones/global/TablerChevronLeft.svg') }}" alt="">
+                    <span>Précédent</span>
+                </a>
+                
+                <div class="renter-profile__main-section">
+                    <div class="renter-profile__user-info">
+                        <div class="renter-profile__avatar-section">
+                            <div class="renter-profile__avatar">
+                                {% include "components/_avatar.html.twig" with {'instance': data} %}
+                            </div>
+                            <div>
+                                <h3>{{ data|capitalize }}</h3>
+                                <p>{{ data.adresse }}</p>
+                            </div>
+                        </div>
+                    
+                        <div class="renter-profile__details-section">
+                            <div class="renter-profile__labels">
+                                <p class="renter-profile__label">Email :</p>
+                                <p class="renter-profile__label">Téléphone :</p>
+                                <p class="renter-profile__label">Langue :</p>
+                                <p class="renter-profile__label">Status :</p>
+                                <p class="renter-profile__label">Ancienneté :</p>
+                                <p class="renter-profile__label">Commentaire :</p>
+                                <p class="renter-profile__label">Réservation :</p>
+                                {% if data.renters.first is defined and data.renters.first != false %}
+                                    <p class="renter-profile__label">Réservation actuel :</p>
+                                {% endif %}
+                            </div>
+                    
+                            <div class="renter-profile__values">
+                                <p class="renter-profile__value">{{ data.email }}</p>
+                                <p class="renter-profile__value">{{ data.phoneNumber }}</p>
+                                <p class="renter-profile__value">{{ data.language }}</p>
+                                <p class="renter-profile__value">{{ data.status }}</p>
+                                {% set duration = data.calculateYearsAndMonthsSinceRegistration %}
+                                <p class="renter-profile__value">{{ duration[0] }} {{ duration[1] }}</p>
+                                <p class="renter-profile__value">{{ dataReview['count'] }}</p>
+                                <p class="renter-profile__value">{{ dataResa['count'] }}</p>
+                                {% if data.renters.first is defined and data.renters.first != false %}
+                                    <p class="renter-profile__value">{{ data.renters.first.reference }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+        
+                    <div class="renter-profile__comments">
+                        {% for review in dataReview['pagination'] %}
+
+                        <div class="review-section">
+                            <div class="review-section__info">
+                                <p class="review-section__user-type">
+                                    <span class="review-section__user">{{ review.spaces.ownedByUser|capitalize }}</span>
+                                    <span class="review-section__space-type"> - {{ review.spaces.type }}</span>
+                                </p>
+                                <p class="review-section__rating">
+                                    <span>{{ review.rating }}</span>
+                                    {% for i in 1..5 %}
+                                        {% if i <= review.rating %}
+                                            <img class="review-section__star review-section__star--full" src="{{ asset('images/icones/star-full.svg') }}" alt="">
+                                        {% else %}
+                                            <img class="review-section__star review-section__star--empty" src="{{ asset('images/icones/star-empty.svg') }}" alt="">
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <p class="review-section__reference">
+                                    REF : {{ review.spaces.reference }}
+                                </p>
+                            </div>
+                        
+                            <p class="review-section__comment">
+                                {{ review.comment }}
+                            </p>
+                        
+                            <div class="review-section__pagination">
+                                {% include "components/_pagination.html.twig" with {'pagination' : dataReview['pagination']} %}
+                            </div>
+                        </div>                        
+
+                        {% endfor %}
+                    </div>
+                </div>
+        
+                <div class="renter-profile__history">
+                    {% for data in dataResa['pagination'] %}
+                        {% include "components/_card-admin-resa.html.twig" %}
+                    {% endfor %}
+
+                    <div class="renter-profile__pagination">
+                        {% include "components/_pagination.html.twig" with {'pagination' : dataResa['pagination']} %}
+                    </div>
+                </div>
+        
+            </div>
+        </main>
+        
+    </div>
+</section>
+{# {{ dump(data) }} #}
+{% endblock %}

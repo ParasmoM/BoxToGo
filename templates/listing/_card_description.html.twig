@@ -1,20 +1,20 @@
-<article class="listing__description-item">
+<div class="card"  id="myCard">
 
-    <div class="listing__description-item--step active" id="decoStatus">
-        <p>{{ index + 1 }}</p>
+    <div class="card--step active" id="decoStatus">
+        <p>{{ index }}</p>
         <span>ACTIVE</span>
     </div>
     
-    <div class="listing__description-item--content">
+    <div class="card--content">
         <h3>{{ title }}</h3>
         <p>
             {{ paragraph }}
         </p>
     </div>
 
-    <div class="listing__description-item--deco" id="decoItems">
-        <span></span>
-        <span></span>
+    <div class="card--animation">
+        <span class="top"></span>
+        <span class="mid"></span>
+        <span class="bottom"></span>
     </div>
-
-</article>
+</div>

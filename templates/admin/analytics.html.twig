@@ -1,0 +1,136 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block javascripts %}
+<script src="{{ asset('js/admin/analytics.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section class="admin-features">
+
+    {{ form_start(form, {'attr': {'class': 'admin-features-search' }}) }}
+        <div class="admin-features-search__item">
+            {{ form_label(form.reference) }}
+            <p>
+                <button type="submit"><img src="{{ asset('images/icones/global/Loop.svg') }}" alt=""></button>
+                {{ form_widget(form.reference) }}
+            </p>
+        </div>
+
+        {{ form_row(form.status) }}
+
+        {{ form_row(form.category) }}
+
+        <div class="admin-features-search__item">
+            {{ form_label(form.customer) }}
+            <p>
+                <button type="submit"><img src="{{ asset('images/icones/global/Loop.svg') }}" alt=""></button>
+                {{ form_widget(form.customer) }}
+            </p>
+        </div>
+    {{ form_end(form) }}   
+
+    <section class="admin-features__items stats-section">
+        {% for data in datas %}
+            <div class="stats-card">
+
+                <div  class="stats-card__head">
+                    <h3 class="stats-card__title">{{ data['name']|capitalize }}</h3>
+                </div>
+
+                <div class="stats-card__number">
+                    <p>
+                        {% if  data['name'] == 'ratings' %}
+                            {{ data['nbr']|number_format(2) }}
+                        {% else %}
+                            {{ data['nbr'] }}
+                        {% endif %}
+
+                        {% if data['new'] is defined and data['new'] > 0 %}
+                            <span>+ {{ data['new'] }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="stats-card__foot">
+                    <div>
+                        {% if data['instances'] is defined %}
+                            {% for element in data['instances'] %}
+                                {% if data['name'] == 'users' %}
+                                    <span>
+                                        {% include "components/_avatar.html.twig" with {'instance': element} %}
+                                    </span>
+                                {% endif %}
+                                {% if data['name'] == 'announcements' %}
+                                    <span>
+                                        {% include "components/_spaceImage.html.twig" with {'element': element} only %}
+                                    </span>
+                                {% endif %}
+                                {% if data['name'] == 'reservations' %}
+                                    <span>
+                                        {% include "components/_spaceImage.html.twig" with {'element': element.space} only %}
+                                    </span>
+                                {% endif %}
+                                {% if data['name'] == 'comments' %}
+                                    <span>
+                                        {% include "components/_spaceImage.html.twig" with {'element': element.spaces} only %}
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                    </div>
+                    {% if data['new'] is defined %}
+                    <span>
+                        + {{ data['new'] }}
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            {# {{ dump(data) }} #}
+        {% endfor %}
+    </section>
+
+    <section class="admin-features__section utils-section">
+        <div class="utils__items">
+            <div class="utils__head">
+                <h3 class="utils__title">Category</h3>
+
+                <div class="utils__info">
+                    <p class="utils__item-count">{{ categories|length }} Item{{ categories|length > 1 ? 's' : '' }}</p>
+                    <span class="utils__delete-button"><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
+                </div>
+            </div>
+
+            <div class="utils__content">
+                {% for element in categories %}
+                    <p class="utils__category-item">
+                        <span>{{ element }}</span>
+                        <span><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    
+        <div class="utils__items">
+            <div class="utils__head">
+                <h3 class="utils__title">Amenities</h3>
+
+                <div class="utils__info">
+                    <p class="utils__item-count">{{ amenities|length }} Item{{ amenities|length > 1 ? 's' : '' }}</p>
+                    <span class="utils__delete-button"><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
+                </div>
+            </div>
+
+            <div class="utils__content">
+                {% for element in amenities %}
+                    <p class="utils__category-item">
+                        <span>{{ element }}</span>
+                        <span><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+</section>
+{% endblock content %}
