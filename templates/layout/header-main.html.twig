@@ -14,15 +14,13 @@
                 </div>
 
                 <ul class="lang-list">
-                    <li class="lang-item">
-                        <a href="">Français</a>
-                    </li>
-                    <li class="lang-item">
-                        <a href="">Anglais</a>
-                    </li>
-                    <li class="lang-item">
-                        <a href="">Néerlandais</a>
-                    </li>
+                    {% for locale in locales %}
+                        {% if locale != app.request.locale %}
+                            <li class="lang-item">
+                                <a href="{{ path('app_change_language', {'locale': locale}) }}">{{ locale }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
 
             </div>
@@ -50,28 +48,28 @@
                 <ul class="menu-dropdown">
 
                     <li class="menu-dropdown--personal">
-                        <a href="{{ path('app_talks') }}">Messages</a>
-                        <a href="">Notifications</a>
+                        <a href="{{ path('app_talks') }}">{{ 'Messages'|trans }}</a>
+                        <a href="">{{ 'Notifications'|trans }}</a>
                         {% if 'ROLE_OWNER' in app.user.roles %}
-                            <a href="{{ path('dashboard_host_annonces') }}">Tableau de board</a>
+                            <a href="{{ path('dashboard_host_annonces') }}">{{ 'Dashboard'|trans }}</a>
                         {% else %}
-                            <a href="{{ path('app_dashboard_user') }}">Réservations</a>
+                            <a href="{{ path('app_dashboard_user') }}">{{ 'Reservations'|trans }}</a>
                         {% endif %}
                     </li>
 
                     <li class="menu-dropdown--settings">
-                        <a href="{{ path('app_favorites', {'id': app.user.id}) }}">Favoris</a>
-                        <a href="{{ path('public_account', {'id': app.user.id}) }}">Paramètres</a>
-                        <a href="">Publier mon annonce</a>
+                        <a href="{{ path('app_favorites', {'id': app.user.id}) }}">{{ 'Favorites'|trans }}</a>
+                        <a href="{{ path('public_account', {'id': app.user.id}) }}">{{ 'Settings'|trans }}</a>
+                        <a href="">{{ 'Publish my listing'|trans }}</a>
 
                         <form>
-                            <button class="active">Thème claire</button>
-                            <button>Thème sombre</button>
+                            <button class="active">{{ 'Light theme'|trans }}</button>
+                            <button>{{ 'Dark theme'|trans }}</button>
                         </form>
                     </li>
 
                     <li class="menu-dropdown--logout">
-                        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                        <a href="{{ path('app_logout') }}">{{ 'Log out'|trans }}</a>
                     </li>
 
                 </ul>

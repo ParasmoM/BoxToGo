@@ -42,7 +42,7 @@ button.addEventListener('click', function() {
                     focusedElement.classList.remove('highlight-focus');
                 }, 1000);
 
-                break; // Sortez de la boucle dès qu'un élément vide est trouvé
+                break;
             }
         }
 

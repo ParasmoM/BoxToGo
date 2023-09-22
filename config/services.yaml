@@ -4,9 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.locales: [en, fr, nl]
+    locale: en
     image_directory: '%kernel.project_dir%/public/assets/uploads/'
     stripe_api_secret_key: '%env(STRIPE_SECRET_KEY)%'
     stripe_api_public_key: '%env(STRIPE_PUBLIC_KEY)%'
+
 
 services:
     App\EventListener\ExceptionListener:

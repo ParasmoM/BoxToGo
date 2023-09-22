@@ -63,7 +63,7 @@
                     <section class="card-space__info-group">
                         <div class="card-space__info-content">
 
-                            <p><a href="{{ path('public_property_details', {'id': space.id}) }}">{{ space.type.name }}</a></p>
+                            <p><a href="{{ path('public_property_details', {'id': space.id}) }}">{{ space.type }}</a></p>
                             <p>{{ space.adresse.city }}</p>
                             <p>{{ space.ownedByUser.status }}</p>
                             <p>{{ space.surface }} m<sup>2</sup></p>

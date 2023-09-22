@@ -4,8 +4,7 @@
         {% for type in spaceTypes %}
         <button class="home__navbar-category-item" id="btn-filter" data-type-id="{{ type.id }}">
             <img src="{{ asset('images/icones/' ~ type|lower|replace({' ': '_'}) ~ '.svg') }}" alt="Icone {{ type }}">
-            {{ type }}
-            {# {{ dump(type|lower|replace({' ': '_'})) }} #}
+            {{ type.getName(app.request.locale) }}
         </button>
         {% endfor %}
     </div>

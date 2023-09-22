@@ -1,5 +1,10 @@
 {% extends "template-alt.html.twig" %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/ajx-messageries.js') }}" defer></script>
+{% endblock %}
+
 {% block heading %}Messages{% endblock heading %}
 
 {% block main %}
@@ -8,27 +13,31 @@
         <aside class="message-board__aside">
             <input type="text" class="message-board__search-bar">
 
-            {% if interlocutors is empty %}
+            {% if interlocutors is defined %}
+                {% if interlocutors is empty %}                    
                 <div class="message-board__conversation-list">
                     <p class="message-board__conversation-empty">
                         <span>
-                            Aucune conversation en cours. N'hésitez pas à en commencer une !
+                            {{ 'No ongoing conversations. Feel free to start one!'|trans }}
                         </span>
                     </p>
                 </div>
-            {% else %}
-                {% include "talks/_aside.html.twig" %}
+                {% else %}
+                    {% include "talks/_aside.html.twig" %}
+                {% endif %}
             {% endif %}  
             
         </aside>
 
         <div class="message-board__chat-window">
-            {% if interlocutors is empty %}
+            {% if interlocutors is defined %}
+                {% if interlocutors is empty %}
                 <div class="message-board__chat-window--empty">
-                    <span>Vous n'avez pas encore entamé de conversation.</span>
+                    <span>{{ 'You have not yet started a conversation.'|trans }}</span>
                 </div>
-            {% else %}
+                {% else %}
                 {% block content %}{% endblock content %}
+                {% endif %}
             {% endif %}   
         </div>     
     </div>

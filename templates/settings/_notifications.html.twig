@@ -7,11 +7,11 @@
         'attr': {'class': 'settings__form'},
     }) }}
     
-        <h2>Informations d’adresse</h2>
+        <h2>{{ 'Address information'|trans }}</h2>
         
         <div class="settings__notification-preference">
 
-            <p>Veuillez choisir votre préférence pour recevoir des notifications.</p>
+            <p>{{ 'Please select your preference for receiving notifications.'|trans }}</p>
 
             <div class="settings__notification-type">
                 {{ form_widget(form.email) }}
@@ -29,7 +29,7 @@
 
         <div class="settings__notification-actions">
 
-            <p>Indiquez pour quelles actions vous souhaitez recevoir des notifications.</p>
+            <p>{{ 'Specify for which actions you would like to receive notifications.'|trans }}</p>
 
             <div class="settings__action">
                 {{ form_widget(form.Commentaires) }}
@@ -55,7 +55,7 @@
     
         <div class="settings__submit">
             <div class="settings__submit-container">
-                <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+                <button class="settings__submit-btn">{{ 'Save'|trans }}</button>
             </div>
         </div>
 

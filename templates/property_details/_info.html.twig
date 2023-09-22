@@ -1,4 +1,4 @@
-<h1 class="space-detail__info-title">Installations du bien </h1>
+<h1 class="space-detail__info-title">{{ 'Property Amenities'|trans }}</h1>
 <div class="space-detail__info-equipments">
     {% if space.amenities.first.amenities is defined %}
     {% for amenity in space.amenities.first.amenities %}
@@ -9,7 +9,7 @@
     {% endif %}
 </div>
 
-<h1 class="space-detail__info-title">Description du bien</h1>
+<h1 class="space-detail__info-title">{{ 'Description of the property'|trans }}</h1>
 <p class="space-detail__info-description">
     {{ space.content.getDescriptionBasedOnLanguage(space.ownedByUser.language) }} 
 </p>

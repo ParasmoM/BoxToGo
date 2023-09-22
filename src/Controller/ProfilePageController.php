@@ -5,8 +5,10 @@ namespace App\Controller;
 use Exception;
 use App\Entity\User;
 use App\Entity\Reviews;
+use App\Model\SearchBarHome;
 use App\Entity\Conversations;
 use App\Form\ConversationsFormType;
+use App\Form\SearchBarHomeFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Exception\SelfMessagingException;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,6 +46,11 @@ class ProfilePageController extends AbstractController
             return $this->redirectToRoute('app_error_403');
         }
 
+        $searchBar = new SearchBarHome();
+
+        $formSearch = $this->createForm(SearchBarHomeFormType::class, $searchBar);
+        $formSearch->handleRequest($request);
+        
         $form = $this->creatForm($user, $request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,6 +72,7 @@ class ProfilePageController extends AbstractController
             'user' => $user,
             'reviews' => $em->getRepository(Reviews::class)->findAll(['space' => $user->getOwners()->first()]),
             'form' => $form->createView(),
+            'formSearch' => $formSearch,
         ]);
     }
 

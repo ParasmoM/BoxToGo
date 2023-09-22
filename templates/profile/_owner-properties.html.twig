@@ -1,5 +1,5 @@
 <div class="owner-properties">
-    <h1 class="owner-properties__title">Annonces publiées par {{ instance.familyName }}</h1>
+    <h1 class="owner-properties__title">{{ 'Listings published by'|trans }} {{ instance.familyName }}</h1>
         
     <div class="owner-properties__content">
 
@@ -22,7 +22,7 @@
                 
                 <p class="owner-properties__address">
                     <span>{{ space }} </span>
-                    - Rue {{ space.adresse.street }} {{ space.adresse.streetNumber }}, {{ space.adresse.postalCode }} {{ space.adresse.city }}
+                    {{ '- Strret'|trans }} {{ space.adresse.street }} {{ space.adresse.streetNumber }}, {{ space.adresse.postalCode }} {{ space.adresse.city }}
                 </p>
             
             </div>
@@ -33,12 +33,12 @@
         {{ form_start(form, {'attr': {'class': 'owner-properties__contact-section' }}) }}
 
             {{ form_row(form.content, {
-                'label': 'Vous avez des questions ? Contactez ' ~ instance.familyName,
+                'label': 'Vous avez des questions ? Contactez '|trans ~ instance.familyName,
                 'label_attr': {'class': 'owner-properties__subtitle'},
                 'attr': {'class': 'owner-properties__textarea'}
             }) }}
 
-            <button>{{ button_label|default('Envoyer un message') }}</button>
+            <button>{{ 'Send a Message'|trans }}</button>
         {{ form_end(form) }}
 
     </div>

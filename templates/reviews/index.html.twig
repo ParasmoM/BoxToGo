@@ -6,7 +6,7 @@
 {% if form is defined %}
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn">{{ 'Save'|trans }}</button>
 {{ form_end(form) }}
 {{ dump() }}
 {% endif %}

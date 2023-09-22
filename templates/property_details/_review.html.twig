@@ -1,4 +1,4 @@
-<h1 class="space-detail__info-title">Commentaires des clients</h1>
+<h1 class="space-detail__info-title">{{ 'Customer Feedback'|trans }}</h1>
 
 <div class="space-detail__reviews-stats">
     <div class="reviews-stats__rating-section">
@@ -14,13 +14,13 @@
                 {% endfor %}
             </div>
 
-            <span class="reviews-stats__rating-text">{{ space.calculateAverageRating }} sur 5</span>
+            <span class="reviews-stats__rating-text">{{ space.calculateAverageRating }} {{ 'out of 5'|trans }}</span>
         </div>
         <div class="reviews-stats__evaluation-count">
-            {{ space.reviews|length }} évaluations
+            {{ space.reviews|length }} {{ 'evaluations'|trans }}
         </div>
         <button class="reviews-stats__read-button">
-            Lire tous les commentaires 
+            {{ 'Read all comments'|trans }}
         </button>
     </div>
 
@@ -28,7 +28,7 @@
 
         {% for index in 5..1 %}
         <div class="reviews-stats__progress-row">
-            <span class="progress-row__star-label">{{ index }} étoiles</span> 
+            <span class="progress-row__star-label">{{ index }} {{ 'stars'|trans }}</span> 
 
             <div class="progress-row__progress-container">
                 <div class="progress-container__progress-bar" style="width: {{ space.getRatingCountAndPercentage(index

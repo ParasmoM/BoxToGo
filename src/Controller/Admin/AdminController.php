@@ -36,9 +36,15 @@ class AdminController extends AbstractController
             'name' => 'ratings',
             'nbr' => $this->em->getRepository(Reviews::class)->calculateAverageRating()
         ];
-
+        // dd($this->getUser());
         $repoType = $this->em->getRepository(SpaceTypes::class);
         $category = $repoType->findBy([]);
+        $categoriesArray = [];
+        
+        foreach ($category as $categ) {
+            
+            $categoriesArray[$categ->getName($this->getUser()->getLanguage())] = $categ->getId(); 
+        }
         
         $repoAmenity = $this->em->getRepository(SpaceAmenities::class);
         $amenity = $repoAmenity->findBy([]);
@@ -46,7 +52,7 @@ class AdminController extends AbstractController
         $searchBar = new SearchDataAdmin();
 
         $form = $this->createForm(searchBarAdminFormType::class, $searchBar, [
-            'categories' => $category,
+            'categories' => $categoriesArray,
         ]);
         $form->handleRequest($request);
 

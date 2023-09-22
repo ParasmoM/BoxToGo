@@ -2,13 +2,13 @@
 
 {% block title %}Hello SettingsController!{% endblock %}
 
-{% set menuItems = ['account', 'address', 'notifications', 'preferences', 'security', 'payments'] %}
+{% set menuItems = ['account'|trans, 'address'|trans, 'notifications'|trans, 'preferences'|trans, 'security'|trans, 'payments'|trans] %}
 
 {% block main %}
 <div class="settings">
     <div class="settings__container">
 
-        <h1 class="settings__title">Paramètres</h1>
+        <h1 class="settings__title">{{ 'Settings'|trans }}</h1>
 
         <nav class="settings__navbar">
 

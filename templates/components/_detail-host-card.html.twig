@@ -1,6 +1,6 @@
 <div class="detail-host-card">
 
-    <h1 class="detail-host-card__title">Faites connaissance avec {{ name }}</h1>
+    <h1 class="detail-host-card__title">{{ ''|trans }}Faites connaissance avec {{ name }}</h1>
 
     {% if route != 'public_property_details' %}
     {% include "components/_btn_prev.html.twig" %}
@@ -30,14 +30,14 @@
 
             <div class="detail-host-card__details--labels">
 
-                <p>Notes globale :</p>
-                <p>Nombres d’évaluations :</p>
-                <p>Nombres de bien :</p>
-                <p>Années d’expérience :</p>
-                <p>Statut :</p>
-                <p>Email :</p>
-                <p>Téléphone :</p>
-                <p>Langues :</p>
+                <p>{{ 'Overall rating :'|trans }}</p>
+                <p>{{ 'Number of reviews :'|trans }}</p>
+                <p>{{ 'Property numbers :'|trans }}</p>
+                <p>{{ 'Years of experience :'|trans }}</p>
+                <p>{{ 'Status :'|trans }}</p>
+                <p>{{ 'E-mail :'|trans }}</p>
+                <p>{{ 'phone number :'|trans }}</p>
+                <p>{{ 'Languages :'|trans }}</p>
                 
             </div>
 

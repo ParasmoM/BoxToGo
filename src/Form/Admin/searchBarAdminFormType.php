@@ -2,7 +2,7 @@
 
 namespace App\Form\Admin;
 
-use App\Entity\SpaceTypes;
+
 use App\Model\SearchDataAdmin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,10 +21,11 @@ class searchBarAdminFormType extends AbstractType
     {
         $categories = $options['categories'];
     
-        $categoriesArray = [];
-        foreach ($categories as $category) {
-            $categoriesArray[$category->getName()] = $category->getId(); 
-        }
+        // $categoriesArray = [];
+        // foreach ($categories as $category) {
+            
+        //     $categoriesArray[$category->getNameEn()] = $category->getId(); 
+        // }
 
         $builder 
             ->setMethod('GET') 
@@ -45,7 +46,7 @@ class searchBarAdminFormType extends AbstractType
                 'required' => false,
             ])
             ->add('category', ChoiceType::class, [
-                'choices' => $categoriesArray,
+                'choices' => $categories,
                 'row_attr' => [
                     'class' => 'admin-features-search__item'
                 ],

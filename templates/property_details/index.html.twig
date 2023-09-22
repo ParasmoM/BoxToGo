@@ -12,7 +12,7 @@
 {% for image in space.image %}
     {% set galleries = galleries|merge([image.imagePath]) %}
 {% endfor %}
-{% set category = space.type|capitalize ? false %}
+{% set category = space.type.name(app.request.locale) ?? space.type.name(app.request.locale)|capitalize %}
 {% set adresse = space.adresse ? space.adresse.city|capitalize : false %}
 {% set rating = space.calculateAverageRating %} 
 
@@ -21,7 +21,7 @@
     <div class="space-detail__container">
         
         {% include "components/_btn_prev.html.twig" %}
-
+        
         <section class="space-detail__gallery">
             {% include "property_details/_gallery.html.twig" 
             with {
@@ -44,7 +44,7 @@
         </section>
 
         <section class="space-detail__host">
-            {% include "components/_detail-host-card.html.twig" with {'instance': space.ownedByUser, 'name': 'votre hôte'} %}
+            {% include "components/_detail-host-card.html.twig" with {'instance': space.ownedByUser, 'name': 'your host'|trans} %}
         </section>
 
     </div>

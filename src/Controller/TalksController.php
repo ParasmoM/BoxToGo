@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Exception\UserNotAuthenticatedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TalksController extends AbstractController
@@ -94,6 +95,35 @@ class TalksController extends AbstractController
             'conversations' => $conversations,
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/talks/{id}/fetch', name: 'app_fetch_talks', methods: ['POST'])]
+    public function fetch(User $currentInterlocutor, Request $request) 
+    {
+        $conversations = $this->getConversationsWithInterlocutor($currentInterlocutor);
+        
+        $lastConversation = end($conversations['conversations']);
+        $lastMessageTime = $lastConversation->getCreateAt();
+
+        // Date actuelle
+        $currentTime = new \DateTimeImmutable('now');
+
+        // Calculer la différence en secondes entre la dernière conversation et la date actuelle
+        $diffInSeconds = $currentTime->getTimestamp() - $lastMessageTime->getTimestamp();
+
+        // Comparer la différence en secondes
+        if ($diffInSeconds < 10) {
+            return $this->json(['message' => 'new message']);
+            // $form = $this->createTalksForm($request, $currentInterlocutor);
+
+            // return new JsonResponse([
+            //     'content' => $this->renderView('talks/_zone-text.html.twig', [
+            //         'conversations' => $conversations,
+            //         'form' => $form->createView(),
+            //     ])
+            // ]);
+        }
+        return $this->json(['message' => 'Loading']);
     }
 
     /**

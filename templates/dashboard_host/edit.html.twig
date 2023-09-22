@@ -6,7 +6,7 @@
 <script src="{{ asset('js/btn-master.js') }}" defer></script>
 <script src="{{ asset('js/language-section.js') }}" defer></script>
 {% endblock %}
-{% block heading %}Editer votre {{ space.type.name }}{% endblock heading %}
+{% block heading %}{{ 'Edit your'|trans }} {{ space.type.name(app.request.locale) }}{% endblock heading %}
 
 {% block content %}
 
@@ -29,7 +29,7 @@
 
         <div class="btn-master">
             <div class="btn-master__container">
-                <button>{{ button_label|default('Enregistrer') }}</button>
+                <button>{{ 'Save'|trans }}</button>
             </div>
         </div>
 

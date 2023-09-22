@@ -1,15 +1,3 @@
-{% set menuItemsBase = {
-    'Réservations' : 'ROLE_OWNER' in app.user.roles ? 'dashboard_host_reservations' : 'app_dashboard_user',
-    'Messages' : 'app_talks',
-    'Notifications' : 'app_talks',
-    'Favoris' : 'app_favorites',
-    'Publier une annonce' : 'public_listing',
-} %}
-
-{% set ownerItems = 'ROLE_OWNER' in app.user.roles ? {'Annonces': 'dashboard_host_annonces'} : {} %}
-
-{% set menuItems = ownerItems|merge(menuItemsBase) %}
-
 <div class="header-alt">
     <div class="header-alt__container">
 
@@ -18,27 +6,32 @@
         </div>
 
         <nav class="header-alt__nav">
-            {% for name, pathKey in menuItems %}
-                <a href="{{ path(pathKey) }}" class="{% if route == pathKey %}active{% endif %}">{{ name }}</a>
-            {% endfor %}
+            {% if 'ROLE_OWNER' in app.user.roles %}
+            <a href="{{ path('dashboard_host_annonces') }}">{{ 'Listings'|trans }}</a>
+            {% endif %}
+            <a href="{{ path('ROLE_OWNER' in app.user.roles ? 'dashboard_host_reservations' : 'app_dashboard_user') }}">{{ 'Reservations'|trans }}</a>
+            <a href="{{ path('app_talks') }}">{{ 'Messages'|trans }}</a>
+            <a href="#">{{ 'Notifications'|trans }}</a>
+            <a href="{{ path('app_favorites') }}">{{ 'Favorites'|trans }}</a>
+            <a href="{{ path('public_listing') }}">{{ 'Publish a Listing'|trans }}</a>
         </nav>
 
         <div class="header-alt__options">
-            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="{% if route == 'public_account' %}active{% endif %}">Paramètres</a>
+            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="{% if route == 'public_account' %}active{% endif %}">{{ 'Paramètres'|trans }}</a>
+
             <div class="header-alt__option-lang" id="btn-lang">
                 <img src="{{ asset('images/icones/langue.svg') }}" alt="Language selector">
-                <ul>
-                    <li>
-                        <a href="">Français</a>
-                    </li>
-                    <li>
-                        <a href="">Anglais</a>
-                    </li>
-                    <li>
-                        <a href="">Néerlandais</a>
-                    </li>
+                <ul class="lang-list">
+                    {% for locale in locales %}
+                        {% if locale != app.request.locale %}
+                            <li class="lang-item">
+                                <a href="{{ path('app_change_language', {'locale': locale}) }}">{{ locale }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
+
         </div>
 
     </div>

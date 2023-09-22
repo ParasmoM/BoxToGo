@@ -1,6 +1,6 @@
 <div class="space-detail__gallery-header">
-    <h1 class="space-detail__gallery-title">{{ category }} à louer sur {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
-    
+    <h1 class="space-detail__gallery-title">{{ category }} {{ 'for rent on'|trans }} {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
+    {{ dump(category) }}
     <p class="space-detail__gallery-evaluation">
         <span class="space-detail__gallery-stars">
             {% for i in 1..5 %}
@@ -12,7 +12,7 @@
             {% endfor %}
         </span>
 
-        <span class="space-detail__gallery-reviews">{{ space.reviews|length > 1 ? space.reviews|length ~ ' évaluations' : space.reviews|length ~ ' évaluation' }}</span>
+        <span class="space-detail__gallery-reviews">{{ space.reviews|length > 1 ? space.reviews|length ~ ' evaluations'|trans : space.reviews|length ~ ' evaluation'|trans }}</span>
         
         <span class="space-detail__gallery-ref">REF - {{ space.reference }}</span>
     </p>
@@ -47,7 +47,7 @@
     {% endif %}
     <button class="space-detail__gallery-images-btn">
         {% if imageCount > 4 %}
-            +{{ imageCount }} photos
+            +{{ imageCount }} {{ 'Pictures'|trans }}
         {% endif %}
     </button>
 </div>
@@ -56,7 +56,7 @@
     <div class="space-detail__gallery__map-content">
 
         <div class="space-detail__gallery__actions">
-            <a href="{{ path('app_reviews', {'id': space.id}) }}">Laisser un commentaires</a>
+            <a href="{{ path('app_reviews', {'id': space.id}) }}">{{ 'Leave a comment'|trans }}</a>
 
             <div>
                 <button><img src="{{ asset('images/icones/envelope.svg') }}" alt=""></button>
@@ -66,7 +66,7 @@
         </div>
         
         <div class="space-detail__gallery__map">
-            <p>{{ space.type|capitalize }} <span>- {{ space.ownedByUser.status|capitalize }} -</span> {{ space.adresse|capitalize }}</p>
+            <p>{{ space.type.name(app.request.locale)|capitalize }} <span>- {{ space.ownedByUser.status|capitalize }} -</span> {{ space.adresse|capitalize }}</p>
             <div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2531.626127283953!2d5.552801016138968!3d50.615484399237076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0f9ecae988717%3A0xd109734e9db8a544!2sRue%20du%20Perron%203%2C%204000%20Li%C3%A8ge!5e0!3m2!1sfr!2sbe!4v1693183790320!5m2!1sfr!2sbe" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -75,8 +75,8 @@
     </div>
 
     <div class="space-detail__billing">
-        <p>Faites votre réservation</p>
-        <p><span>{{ space.price }} €</span> Par mois</p>
+        <p>{{ 'Make your reservation'|trans }}</p>
+        <p><span>{{ space.price }} €</span> {{ 'Per month'|trans }}</p>
 
         {{ form_start(form, {'attr': {'class': 'space-detail__billing-form'}}) }}
 
@@ -86,9 +86,9 @@
             </div>
 
             {% if form.vars.data.status == "busy" %}
-                <p>occuper</p>
+                <p>{{ 'to occupy'|trans }}</p>
             {% else %}
-                <button>{{ button_label|default('Commander') }}</button>
+                <button>{{ 'Order'|trans }}</button>
             {% endif %}
 
         {{ form_end(form) }}

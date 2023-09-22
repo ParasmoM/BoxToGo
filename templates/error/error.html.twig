@@ -17,9 +17,9 @@
                     {% if message %}
                         <p>{{ message }}</p>
                     {% else %}
-                        <p>Vous n'avez pas la permission d'accéder à cette page.</p>
+                        <p>{{ 'You do not have permission to access this page.'|trans }}</p>
                     {% endif %}
-                    <a href="{{ path('public_home') }}">Retour à la page d'accueil</a>
+                    <a href="{{ path('public_home') }}">{{'Retour à la page d\'accueil'|trans}}</a>
 
                 </div>
             </div>

@@ -51,35 +51,6 @@ class SidebarMessageSubscriber implements EventSubscriberInterface
             KernelEvents::REQUEST => 'onKernelRequest',
         ];
     }
-
-    // /**
-    //  * Trie et groupe les entités Talks par émetteur et date de création.
-    //  *
-    //  * @param array $talks Tableau d'entités Talks à trier.
-    //  * @return array Tableau associatif de talks regroupés et triés.
-    //  */
-    // public function sortAndGroupTalks(array $talks): array
-    // {
-    //     // Grouper par émetteur
-    //     $groupedBySender = $this->groupTalksBySender($talks);
-
-    //     // Trier chaque groupe par createdAt
-    //     foreach ($groupedBySender as $senderId => $senderTalks) {
-    //         usort($senderTalks, function ($a, $b) {
-    //             return $a->getCreateAt() <=> $b->getCreateAt();
-    //         });
-    //         $groupedBySender[$senderId] = $senderTalks;
-    //     }
-
-    //     // Trier les groupes eux-mêmes par le createdAt du dernier message dans chaque groupe
-    //     uasort($groupedBySender, function ($a, $b) {
-    //         $lastTalkA = end($a);
-    //         $lastTalkB = end($b);
-    //         return $lastTalkB->getCreateAt() <=> $lastTalkA->getCreateAt();
-    //     });
-
-    //     return $groupedBySender;
-    // }
     
     /**
      * groupTalksByConversation

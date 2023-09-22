@@ -1,0 +1,22 @@
+
+{% if content.sentByUser == app.user %}
+    <div class="receiver">
+        <div>
+            {% include "components/_avatar.html.twig" with {'instance': content.sentByUser } only %}
+        </div>
+        <p>
+            {{ content.content }}
+            {# {{ dump(content) }} #}
+        </p>
+    </div>
+{% else %}
+    <div class="sender sender-conv" data-sender-id="{{ content.sentByUser.id }}">
+        <div>
+            {% include "components/_avatar.html.twig" with {'instance': content.sentByUser } only %}
+        </div>
+        <p>
+            {{ content.content }}
+            {# {{ dump(content) }} #}
+        </p>
+    </div>
+{% endif %}

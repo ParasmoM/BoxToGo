@@ -9,7 +9,7 @@
     
         <div class="settings__address-info">
 
-            <h2>Informations d’adresse</h2>
+            <h2>{{ 'Address information'|trans }}</h2>
 
             {{ form_row(form.country, {'row_attr': {'label': 'Pays', 'class': 'settings__country-field'}}) }}
 
@@ -27,7 +27,7 @@
     
         <div class="settings__submit">
             <div class="settings__submit-container">
-                <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+                <button class="settings__submit-btn">{{ 'Save'|trans }}</button>
             </div>
         </div>
 

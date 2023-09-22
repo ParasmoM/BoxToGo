@@ -13,26 +13,8 @@
     <div class="message-board__conversation">
         <div class="message-board__conversation-container">
             {% for content in conversations['conversations'] %}
-            {# {{ dump(content) }} #}
-                {% if content.sentByUser == app.user %}
-                    <div class="receiver">
-                        <div>
-                            {% include "components/_avatar.html.twig" with {'instance': content.sentByUser } only %}
-                        </div>
-                        <p>
-                            {{ content.content }}
-                        </p>
-                    </div>
-                {% else %}
-                    <div class="sender">
-                        <div>
-                            {% include "components/_avatar.html.twig" with {'instance': content.sentByUser } only %}
-                        </div>
-                        <p>
-                            {{ content.content }}
-                        </p>
-                    </div>
-                {% endif %}
+
+            {% include "talks/_zone-text.html.twig" %}
             {% endfor %}
         </div>
     </div>
@@ -40,7 +22,7 @@
     {{ form_start(form, {'attr': {'class': 'message-board__message-action' }}) }}
 
         {{ form_widget(form.content, {
-            'placeholder': 'Écris ton message ...'
+            'placeholder': 'Écris ton message ...'|trans
         }) }}
 
         <button>

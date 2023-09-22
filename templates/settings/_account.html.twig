@@ -12,7 +12,7 @@
 
             <div class="settings__public-profile">
 
-                <h2>Profil public</h2>
+                <h2>{{ 'Public profile'|trans }}</h2>
 
                 <div class="settings__avatar-uploader">
                     <div class="settings__avatar-uploader__image-zone">
@@ -25,7 +25,7 @@
                             {{ form_row(form.photo.imagePath) }}
 
                             <div>
-                                <label for="form_settings_account_photo_imagePath">Update</label>
+                                <label for="form_settings_account_photo_imagePath">{{ 'Update'|trans }}</label>
                                 <p>JPEG, PNG, WEBP et AVIF</p>
                             </div>
                             
@@ -53,9 +53,9 @@
                         {{ form_widget(form.description.descriptionNl, {'attr': {'class': 'settings__description settings__description--nl' ~ (app.user.language == 'NL' ? ' active' : '')}}) }}                    
                         
                         <div class="buttons">
-                            <button type="button" class="langBtn langBtn--en {{ app.user.language == 'EN' ? 'active' : null }}">Anglais</button>
-                            <button type="button" class="langBtn langBtn--fr {{ app.user.language == 'FR' ? 'active' : null }}">Français</button>
-                            <button type="button" class="langBtn langBtn--nl {{ app.user.language == 'NL' ? 'active' : null }}">Néerlandais</button> 
+                            <button type="button" class="langBtn langBtn--en {{ app.user.language == 'EN' ? 'active' : null }}">{{ 'Anglais'|trans }}</button>
+                            <button type="button" class="langBtn langBtn--fr {{ app.user.language == 'FR' ? 'active' : null }}">{{ 'Français'|trans }}</button>
+                            <button type="button" class="langBtn langBtn--nl {{ app.user.language == 'NL' ? 'active' : null }}">{{ 'Néerlandais'|trans }}</button> 
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
             
             <div class="settings__additional-info">
 
-                <h2>Informations personnelles</h2>
+                <h2>{{ 'Personal informations'|trans }}</h2>
 
                 <div class="settings__info-fields">
 
@@ -85,7 +85,7 @@
             <div class="settings__submit">
                 <div class="settings__submit-container">
 
-                    <button class="settings__submit-btn">{{ button_label|default('Enregistrer') }}</button>
+                    <button class="settings__submit-btn">{{ 'Save'|trans }}</button>
                     
                 </div>
             </div>

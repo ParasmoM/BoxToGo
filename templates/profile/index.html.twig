@@ -21,7 +21,7 @@
         </section>
 
         <section class="owner-reviews-section">
-            <h1 class="owner-reviews__title">Commentaires pour {{ user.familyName }}</h1>
+            <h1 class="owner-reviews__title">{{ 'Comments for'|trans }} {{ user.familyName }}</h1>
 
             <div class="owner-reviews__content">
                 {% for review in reviews|slice(0, 3) %}

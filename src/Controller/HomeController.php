@@ -153,7 +153,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            'spaceTypes' => $this->em->getRepository(SpaceTypes::class)->findBy([], ['name' => 'ASC']),
+            'spaceTypes' => $this->em->getRepository(SpaceTypes::class)->findBy([], ['id' => 'ASC']),
             'pagination' => $pagination,
             'formSearch' => $form
         ]);

@@ -15,7 +15,7 @@
         
         <div class="resa-card__date-container">
             <div class="resa-card__date-item">
-                <p class="resa-card__date-label">Debut</p>
+                <p class="resa-card__date-label">{{ 'Start'|trans }}</p>
                 
                 <div class="resa-card__date-values">
                     <span class="resa-card__day">{{ data.dateStart|date('d') }}</span>
@@ -27,7 +27,7 @@
             </div>
             
             <div class="resa-card__date-item">
-                <p class="resa-card__date-label">Fin</p>
+                <p class="resa-card__date-label">{{ 'End'|trans }}</p>
 
                 <div class="resa-card__date-values">
                     <span class="resa-card__day">{{ data.dateEnd|date('d') }}</span>
@@ -42,16 +42,16 @@
     
     <main class="resa-card__info">
         <div class="resa-card__info-text">
-            <h3 class="resa-card__info-label">Client</h3>
+            <h3 class="resa-card__info-label">{{ 'Customer'|trans }}</h3>
             <p class="resa-card__info-content">{{ data.user.familyName|capitalize }} {{ data.user.givenName|capitalize }}</p>
-            <h3 class="resa-card__info-label">Adresse</h3>
+            <h3 class="resa-card__info-label">{{ 'address'|trans }}</h3>
             <p class="resa-card__info-content">{{ data.user.adresse }}</p>
         </div>
 
         <div class="resa-card__info-text">
-            <h3 class="resa-card__info-label">Space</h3>
+            <h3 class="resa-card__info-label">{{ 'Space'|trans }}</h3>
             <p class="resa-card__info-content">{{ data.space.type|capitalize }}</p>
-            <h3 class="resa-card__info-label">Adresse</h3>
+            <h3 class="resa-card__info-label">{{ 'address'|trans }}</h3>
             <p class="resa-card__info-content">{{ data.space.adresse }}</p>
         </div>
         
@@ -62,6 +62,6 @@
     
     <footer class="resa-card__footer">
         <p class="resa-card__status">{{ data.status|capitalize }}</p>
-        <p class="resa-card__price">PRICE : <span>{{ data.price }} €</span></p>
+        <p class="resa-card__price">{{ 'PRICE'|trans }} : <span>{{ data.price }} €</span></p>
     </footer>
 </div>
