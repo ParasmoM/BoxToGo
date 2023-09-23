@@ -20,17 +20,11 @@ class Contents
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title_en = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $title_ne = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_fr = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_en = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description_ne = null;
 
     #[ORM\OneToOne(mappedBy: 'content', cascade: ['persist', 'remove'])]
     private ?Spaces $spaces = null;
@@ -103,18 +97,6 @@ class Contents
     public function setTitleEn(?string $title_en): static
     {
         $this->title_en = $title_en;
-
-        return $this;
-    }
-
-    public function getTitleNl(): ?string
-    {
-        return $this->title_ne;
-    }
-
-    public function setTitleNl(?string $title_ne): static
-    {
-        $this->title_ne = $title_ne;
 
         return $this;
     }

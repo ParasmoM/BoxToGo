@@ -159,9 +159,15 @@
 
     .logo {
         flex: 1;
+        
+        > a {
+            display: block;
+            height: 10.5rem;
+            aspect-ratio: 1/1;
+        }
         &-image {
-            flex: 1;
-            height: 14.5rem;
+            height: 10.5rem;
+            aspect-ratio: 1/1;
             transition: height .7s ease;
     
             &.shrink {
@@ -175,40 +181,40 @@
         border: #00E6F6;
         position: relative;
         overflow: hidden;
-
+        
         &--minimal {
             display: flex;
+            align-items: center;
             height: 5rem;
             border: solid 1px $border-color;
             border-radius: calc(3 * $border-radius);
-            padding-inline: var(--spacing-lg);
+            padding: .8rem 3rem;
             width: fit-content;
             margin: auto;
+        }
 
-            > button {
-                border-right: solid 1px $border-color;
-                padding-right: var(--spacing-lg);
-                margin-right: var(--spacing-lg);
-                white-space: nowrap;
+        &--group-search {
+            display: flex;
+
+            input {
+                border: none;
+                outline: none;
             }
+        }
 
-            > form {
-                display: inline-flex;
-                align-items: center;
+        &--input {
+            border-right: solid 1px $border-color;  
+            padding-right: 1.5rem;
+            margin-right: 1.5rem;
 
-                img {
-                    height: 2rem;
-                }
-                input {
-                    border: none;
-                    outline: none;
-                }
+            input {
+                border: none;
             }
         }
 
         &--publish {
             position: absolute;
-            top: 7.8rem;left: 42.5rem;
+            top: 7.8rem;left: calc(50% - 10rem);
         }
     }
 }

@@ -1,17 +1,19 @@
 <div class="price-category-section">
-    {{ form_label(form.space, 'Prix & catégorie', {
+    {{ form_label(form.space, 'Price & Category'|trans, {
         'label_attr': {'class': 'section-header'}
     }) }}
 
     <div class="price-category-inputs">
         {{ form_row(form.space.type, {
             'row_attr': {'class': 'category-input-set'},
+            'label': 'Type',
             'label_attr': {'class': 'category-label'},
             'attr': {'class': 'category-select'}
         }) }}
         
         {{ form_row(form.space.price, {
             'row_attr': {'class': 'price-input-set'},
+            'label': 'Price'|trans,
             'label_attr': {'class': 'price-label'},
             'attr': {'class': 'price-input'}
         }) }}

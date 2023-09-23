@@ -14,19 +14,20 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('given_name', null, [
+            ->add('given_name', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Prénom'
                 ]
             ])
             
-            ->add('family_name', null, [
+            ->add('family_name', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Nom'
                 ]
@@ -34,7 +35,7 @@ class RegistrationFormType extends AbstractType
             ->add('birth_date', DateType::class, [
                 'widget' => 'single_text',
             ])            
-            ->add('email', null, [
+            ->add('email', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Email'
                 ]

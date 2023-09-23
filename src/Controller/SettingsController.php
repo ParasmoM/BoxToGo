@@ -6,21 +6,19 @@ use Exception;
 use App\Entity\User;
 use App\Entity\Users;
 use App\Entity\Images;
-use App\Entity\Adresses;
 use App\Entity\Addresses;
-use App\Entity\SpaceImages;
 use App\Entity\UserConsent;
 use App\Form\AdresseFormType;
 use App\Form\SecurityFormType;
 use App\Form\AppearanceFormType;
 use App\Services\PictureServices;
 use App\Form\NotificationFormType;
+use App\Repository\UserRepository;
 use App\Repository\UsersRepository;
 use App\Repository\ImagesRepository;
 use App\DTO\FormSettingsAccountModel;
 use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\SpaceImagesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\Combined\FormSettingsAccountType;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,7 +72,6 @@ class SettingsController extends AbstractController
         $form = $this->createForm(FormSettingsAccountType::class, $DTO_MODEL);
         $form->get('description')->remove('titleFr');
         $form->get('description')->remove('titleEn');
-        $form->get('description')->remove('titleNl');
         $form->handleRequest($request);
 
         // dd($form);
@@ -294,8 +291,8 @@ class SettingsController extends AbstractController
     #[Route('/settings/delete/{id}', name: 'public_settings_delete')]
     public function delete(
         Request $request,
-        Users $user,
-        UsersRepository $userRepository,
+        User $user,
+        UserRepository $userRepository,
     ): Response {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user);

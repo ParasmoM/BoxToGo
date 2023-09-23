@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ContentFormType extends AbstractType
 {
@@ -30,14 +31,6 @@ class ContentFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('titleNl', TextType::class, [
-                'constraints' => [
-                    new Type([
-                        'type' => 'string',
-                        'message' => 'La valeur doit être une chaîne de caractères.',
-                    ]),
-                ],
-            ])
             ->add('descriptionFr', TextareaType::class, [
                 'constraints' => [
                     new Type([
@@ -48,15 +41,6 @@ class ContentFormType extends AbstractType
                 'required' => false,  
             ])
             ->add('descriptionEn', TextareaType::class, [
-                'constraints' => [
-                    new Type([
-                        'type' => 'string',
-                        'message' => 'La valeur doit être une chaîne de caractères.',
-                    ]),
-                ],
-                'required' => false,  
-            ])
-            ->add('descriptionNl', TextareaType::class, [
                 'constraints' => [
                     new Type([
                         'type' => 'string',

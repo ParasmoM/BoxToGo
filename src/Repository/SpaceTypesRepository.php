@@ -24,9 +24,12 @@ class SpaceTypesRepository extends ServiceEntityRepository
     public function findSpaceTypeByName($name)
     {
         $queryBuilder = $this->createQueryBuilder('st')
-            ->where('st.name LIKE :name')
-            ->setParameter('name', $name . '%');
-
+            ->where('st.name_en LIKE :name_en OR st.name_fr LIKE :name_fr')
+            ->setParameters([
+                'name_en' => $name . '%',
+                'name_fr' => $name . '%',
+            ]);
+    
         return $queryBuilder->getQuery()->getResult();
     }
 

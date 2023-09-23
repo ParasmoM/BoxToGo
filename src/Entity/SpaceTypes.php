@@ -21,9 +21,6 @@ class SpaceTypes
     #[ORM\Column(length: 255)]
     private ?string $name_en = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name_nl = null;
-
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Spaces::class)]
     private Collection $space;
 
@@ -71,18 +68,6 @@ class SpaceTypes
     public function setNameEn(string $name_en): static
     {
         $this->name_en = $name_en;
-
-        return $this;
-    }
-
-    public function getNameNl(): ?string
-    {
-        return $this->name_nl;
-    }
-
-    public function setNameNl(string $name_nl): static
-    {
-        $this->name_nl = $name_nl;
 
         return $this;
     }

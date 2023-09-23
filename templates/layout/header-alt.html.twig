@@ -11,13 +11,14 @@
             {% endif %}
             <a href="{{ path('ROLE_OWNER' in app.user.roles ? 'dashboard_host_reservations' : 'app_dashboard_user') }}">{{ 'Reservations'|trans }}</a>
             <a href="{{ path('app_talks') }}">{{ 'Messages'|trans }}</a>
-            <a href="#">{{ 'Notifications'|trans }}</a>
+            {# Futur update  #}
+            {# <a href="#">{{ 'Notifications'|trans }}</a> #}
             <a href="{{ path('app_favorites') }}">{{ 'Favorites'|trans }}</a>
             <a href="{{ path('public_listing') }}">{{ 'Publish a Listing'|trans }}</a>
         </nav>
 
         <div class="header-alt__options">
-            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="{% if route == 'public_account' %}active{% endif %}">{{ 'Paramètres'|trans }}</a>
+            <a href="{{ path('public_account', {'id': app.user.id}) }}" class="{% if route == 'public_account' %}active{% endif %}">{{ 'Settings'|trans }}</a>
 
             <div class="header-alt__option-lang" id="btn-lang">
                 <img src="{{ asset('images/icones/langue.svg') }}" alt="Language selector">

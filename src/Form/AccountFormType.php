@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AccountFormType extends AbstractType
 {
@@ -16,7 +17,7 @@ class AccountFormType extends AbstractType
         $builder
             ->add('familyName')
             ->add('givenName')
-            ->add('email', null, [
+            ->add('email', TextType::class, [
                 'disabled' => true,
             ])
             ->add('phoneNumber')

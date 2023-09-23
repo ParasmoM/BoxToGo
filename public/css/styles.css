@@ -1200,9 +1200,14 @@ body {
 .header-main .logo {
   flex: 1;
 }
+.header-main .logo > a {
+  display: block;
+  height: 10.5rem;
+  aspect-ratio: 1/1;
+}
 .header-main .logo-image {
-  flex: 1;
-  height: 14.5rem;
+  height: 10.5rem;
+  aspect-ratio: 1/1;
   transition: height 0.7s ease;
 }
 .header-main .logo-image.shrink {
@@ -1216,34 +1221,33 @@ body {
 }
 .header-main .search-bar--minimal {
   display: flex;
+  align-items: center;
   height: 5rem;
   border: solid 1px var(--clr-gray-700);
   border-radius: 3rem;
-  padding-inline: var(--spacing-lg);
+  padding: 0.8rem 3rem;
   width: fit-content;
   margin: auto;
 }
-.header-main .search-bar--minimal > button {
-  border-right: solid 1px var(--clr-gray-700);
-  padding-right: var(--spacing-lg);
-  margin-right: var(--spacing-lg);
-  white-space: nowrap;
+.header-main .search-bar--group-search {
+  display: flex;
 }
-.header-main .search-bar--minimal > form {
-  display: inline-flex;
-  align-items: center;
-}
-.header-main .search-bar--minimal > form img {
-  height: 2rem;
-}
-.header-main .search-bar--minimal > form input {
+.header-main .search-bar--group-search input {
   border: none;
   outline: none;
+}
+.header-main .search-bar--input {
+  border-right: solid 1px var(--clr-gray-700);
+  padding-right: 1.5rem;
+  margin-right: 1.5rem;
+}
+.header-main .search-bar--input input {
+  border: none;
 }
 .header-main .search-bar--publish {
   position: absolute;
   top: 7.8rem;
-  left: 42.5rem;
+  left: calc(50% - 10rem);
 }
 
 .admin-switch {

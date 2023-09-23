@@ -1,36 +1,41 @@
 <div class="address-section">
 
-    {{ form_label(form.adresse, 'Adresse', {
+    {{ form_label(form.adresse, 'Address'|trans, {
         'label_attr': {'class': 'section-header'}
     }) }}
 
     <div class="address-inputs">
         {{ form_row(form.adresse.country, {
             'row_attr': {'class': 'address-input-set'},
+            'label': 'Country'|trans,
             'label_attr': {'class': 'address-label'},
             'attr': {'class': 'country-select'}
         }) }}
         
         {{ form_row(form.adresse.city, {
             'row_attr': {'class': 'address-input-set'},
+            'label': 'City'|trans,
             'label_attr': {'class': 'address-label'},
             'attr': {'class': 'city-input'}
         }) }}
         
         {{ form_row(form.adresse.street, {
             'row_attr': {'class': 'address-input-set'},
+            'label': 'Street'|trans,
             'label_attr': {'class': 'address-label'},
             'attr': {'class': 'street-input'}
         }) }}
         
         {{ form_row(form.adresse.streetNumber, {
             'row_attr': {'class': 'address-input-set'},
+            'label': 'Street number'|trans,
             'label_attr': {'class': 'address-label'},
             'attr': {'class': 'number-input'}
         }) }}
         
         {{ form_row(form.adresse.postalCode, {
             'row_attr': {'class': 'address-input-set'},
+            'label': 'Postal code'|trans,
             'label_attr': {'class': 'address-label'},
             'attr': {'class': 'postal-code-input'}
         }) }}

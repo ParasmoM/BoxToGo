@@ -18,27 +18,73 @@ class ConfigFixtures extends Fixture
     public function createAmenities(ObjectManager $manager)
     {
         $amenitiesData = [
-            'Surveillance Cameras', 
-            'Lockers', 
-            'Heating', 
-            'Access Key', 
-            'Air Conditioning', 
-            'Humidity Controller',
-            'Dollies', 
-            'Smoke Detector', 
-            'Lighting', 
-            'Large Entrance', 
-            'Shelves', 
-            '24/7 Access',
-            'Alarm',
-            'Storage Box',
-            'Storage Unit'
+            [
+                'Surveillance Cameras', 
+                'Caméras de surveillance',
+            ],
+            [
+                'Lockers', 
+                'Casiers',
+            ],
+            [
+                'Heating', 
+                'Chauffage',
+            ],
+            [
+                'Access Key', 
+                "Clé d’accès",
+            ],
+            [
+                'Air Conditioning', 
+                'Climatisation',
+            ],
+            [
+                'Humidity Controller',
+                'Contrôleur d’humidité',
+            ],
+            [
+                'Dollies', 
+                'Diables',
+            ],
+            [
+                'Smoke Detector', 
+                'Détecteur de fumée',
+            ],
+            [
+                'Lighting', 
+                'Éclairage',
+            ],
+            [
+                'Large Entrance', 
+                'Entrée de grande taille',
+            ],
+            [
+                'Shelves', 
+                'Étagères',
+            ],
+            [
+                '24/7 Access',
+                'Accès 24/7',
+            ],
+            [
+                'Alarm',
+                'Alarme',
+            ],
+            [
+                'Storage Box',
+                'Boîte de rangement',
+            ],
+            [
+                'Storage Unit',
+                'Caisson de rangement',
+            ],
         ];
             
 
         foreach($amenitiesData as $data) {
             $amenity = new SpaceAmenities();
-            $amenity->setName($data);
+            $amenity->setNameEn($data[0]);
+            $amenity->setNameFr($data[1]);
             $manager->persist($amenity);
             $manager->flush();
         }
@@ -47,18 +93,40 @@ class ConfigFixtures extends Fixture
     public function createSpaceTypes(ObjectManager $manager)
     {
         $typesdata = [
-            'cellar', 
-            'Commercial space', 
-            'Garden shed', 
-            'Others', 
-            'Storage unit', 
-            'Warehouse', 
-            'Garage'
+            [
+                'cellar', 
+                'Cave',
+            ],
+            [
+                'Commercial space', 
+                'Espace commercial',
+            ],
+            [
+                'Garden shed', 
+                'Abri de jardin',
+            ],
+            [
+                'Others', 
+                'Autres',
+            ],
+            [
+                'Storage unit', 
+                'Unité de stockage',
+            ],
+            [
+                'Warehouse', 
+                'Entrepôt',
+            ],
+            [
+                'Garage',
+                'Garage',
+            ],
         ];
 
         foreach($typesdata as $data) {
             $type = new SpaceTypes();
-            $type->setName($data);
+            $type->setNameEn($data[0]);
+            $type->setNameFr($data[1]);
             $manager->persist($type);
             $manager->flush();
         }

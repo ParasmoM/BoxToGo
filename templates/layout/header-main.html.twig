@@ -25,12 +25,13 @@
 
             </div>
 
-            <div class="header-main__action--alert">
+            {# Futur update  #}
+            {# <div class="header-main__action--alert">
                 <a href="#">
                     <img src="{{ asset('images/icones/alert.svg') }}" alt="Notification icon">
                 </a>
-            </div>
-
+            </div> #}
+            
             <div class="header-main__action--user" id="btn-dropdown">
                 <div class="user-selector">
                     {% if app.user %}
@@ -49,7 +50,8 @@
 
                     <li class="menu-dropdown--personal">
                         <a href="{{ path('app_talks') }}">{{ 'Messages'|trans }}</a>
-                        <a href="">{{ 'Notifications'|trans }}</a>
+                        {# Futur update  #}
+                        {# <a href="">{{ 'Notifications'|trans }}</a> #}
                         {% if 'ROLE_OWNER' in app.user.roles %}
                             <a href="{{ path('dashboard_host_annonces') }}">{{ 'Dashboard'|trans }}</a>
                         {% else %}
@@ -61,11 +63,11 @@
                         <a href="{{ path('app_favorites', {'id': app.user.id}) }}">{{ 'Favorites'|trans }}</a>
                         <a href="{{ path('public_account', {'id': app.user.id}) }}">{{ 'Settings'|trans }}</a>
                         <a href="">{{ 'Publish my listing'|trans }}</a>
-
-                        <form>
+                        {# Futur update  #}
+                        {# <form>
                             <button class="active">{{ 'Light theme'|trans }}</button>
                             <button>{{ 'Dark theme'|trans }}</button>
-                        </form>
+                        </form> #}
                     </li>
 
                     <li class="menu-dropdown--logout">

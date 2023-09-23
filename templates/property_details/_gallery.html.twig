@@ -1,6 +1,6 @@
 <div class="space-detail__gallery-header">
     <h1 class="space-detail__gallery-title">{{ category }} {{ 'for rent on'|trans }} {{ adresse }} - {{ space.surface }} m<sup>2</sup></h1>
-    {{ dump(category) }}
+    
     <p class="space-detail__gallery-evaluation">
         <span class="space-detail__gallery-stars">
             {% for i in 1..5 %}
@@ -12,7 +12,7 @@
             {% endfor %}
         </span>
 
-        <span class="space-detail__gallery-reviews">{{ space.reviews|length > 1 ? space.reviews|length ~ ' evaluations'|trans : space.reviews|length ~ ' evaluation'|trans }}</span>
+        <span class="space-detail__gallery-reviews">{{ space.reviews|length > 1 ? space.reviews|length ~ ' reviews'|trans : space.reviews|length ~ ' review'|trans }}</span>
         
         <span class="space-detail__gallery-ref">REF - {{ space.reference }}</span>
     </p>
@@ -51,7 +51,7 @@
         {% endif %}
     </button>
 </div>
-{# {{ dump(form.vars.data.status) }} #}
+
 <div class="space-detail__gallery-footer">
     <div class="space-detail__gallery__map-content">
 

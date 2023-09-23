@@ -67,7 +67,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $verif = $this->verifySearch($searchBar->getSearch());
             $searchQuery = $searchBar->getSearch();
-            dd(1);
+            
             if ($verif['isNumber']) {
 
                 $query = $repoSpaces->findSpacesByPostalOrCity($searchQuery);

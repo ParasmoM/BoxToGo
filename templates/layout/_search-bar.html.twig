@@ -1,20 +1,28 @@
 <div class="search-bar">
     <div class="search-bar__container">
-
-        {# <form action="{{ path('public_home') }}" method="get" class="search-bar--minimal">
-            <input type="date" name="dateStart">
-            <input type="date" name="dateEnd">
-            <input type="search" name="search" placeholder="Votre recherche">
-            <button type="submit" name="action" value="search">
-                <img src="{{ asset('images/icones/loupe.svg') }}" alt="Icone d'une loupe">
-            </button>
-        </form> #}
-    
+        
         {{ form_start(formSearch, {'attr': {'class': 'search-bar--minimal' }}) }}
-            {{ form_widget(formSearch) }}
-            <button type="submit" name="action" value="search">
-                <img src="{{ asset('images/icones/loupe.svg') }}" alt="Icone d'une loupe">
-            </button>
+            {{ form_row(formSearch.dateStart, {
+                'row_attr': {'class': 'search-bar--input'},
+                'label': ' ', 
+                }) 
+            }}
+            {{ form_row(formSearch.dateEnd, {
+                'row_attr': {'class': 'search-bar--input'},
+                'label': ' ', 
+                }) 
+            }}
+
+            <div class="search-bar--group-search">
+                {{ form_row(formSearch.search, {
+                    'row_attr': {'class': 'search-bar--input-s'},
+                    'label': ' ', 
+                    }) 
+                }}
+                <button type="submit" name="action" value="search">
+                    <img src="{{ asset('images/icones/loupe.svg') }}" alt="Icone d'une loupe">
+                </button>
+            </div>
         {{ form_end(formSearch) }}
 
         <a href="{{ path('public_listing') }}" class="search-bar--publish" >

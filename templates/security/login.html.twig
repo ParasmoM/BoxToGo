@@ -16,7 +16,7 @@
         
             {% if app.user %}
                 <div class="mb-3">
-                    {{ 'You are logged in asici'|trans }} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
+                    {{ 'You are logged in as'|trans }} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
                 </div>
             {% endif %}
         
@@ -55,5 +55,4 @@
         </form>
     </div>
 </main>
-{{ dump() }}
 {% endblock %}

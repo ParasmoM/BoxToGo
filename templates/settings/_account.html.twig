@@ -49,13 +49,11 @@
 
                     <div class="settings__description-langs">
                         {{ form_widget(form.description.descriptionEn, {'attr': {'class': 'settings__description settings__description--en' ~ (app.user.language == 'EN' ? ' active' : '')}}) }}
-                        {{ form_widget(form.description.descriptionFr, {'attr': {'class': 'settings__description settings__description--fr' ~ (app.user.language == 'FR' ? ' active' : '')}}) }}
-                        {{ form_widget(form.description.descriptionNl, {'attr': {'class': 'settings__description settings__description--nl' ~ (app.user.language == 'NL' ? ' active' : '')}}) }}                    
+                        {{ form_widget(form.description.descriptionFr, {'attr': {'class': 'settings__description settings__description--fr' ~ (app.user.language == 'FR' ? ' active' : '')}}) }}                  
                         
                         <div class="buttons">
-                            <button type="button" class="langBtn langBtn--en {{ app.user.language == 'EN' ? 'active' : null }}">{{ 'Anglais'|trans }}</button>
-                            <button type="button" class="langBtn langBtn--fr {{ app.user.language == 'FR' ? 'active' : null }}">{{ 'Français'|trans }}</button>
-                            <button type="button" class="langBtn langBtn--nl {{ app.user.language == 'NL' ? 'active' : null }}">{{ 'Néerlandais'|trans }}</button> 
+                            <button type="button" class="langBtn langBtn--en {{ app.user.language == 'EN' ? 'active' : null }}">{{ 'English'|trans }}</button>
+                            <button type="button" class="langBtn langBtn--fr {{ app.user.language == 'FR' ? 'active' : null }}">{{ 'French'|trans }}</button>
                         </div>
                     </div>
                 </div>

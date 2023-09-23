@@ -1,48 +1,39 @@
 <div class="language-section">
     <div class="language-buttons">
-        <button class="language-btn language-btn-fr active">English version</button>
-        <button class="language-btn language-btn-en">Version Française</button>
-        <button class="language-btn language-btn-nl">Nederlandse versie</button>
+        <button class="language-btn language-btn-en">{{ 'English version'|trans }}</button>
+        <button class="language-btn language-btn-fr active">{{ 'French version'|trans }}</button>
     </div>
 
     <div class="title-description-section">
-        {{ form_label(form.content, 'Titre & description', {
+        {{ form_label(form.content, 'Title & Description'|trans, {
             'label_attr': {'class': 'section-header'}
         }) }}
 
         <div class="title-description-inputs">
             {{ form_row(form.content.titleEn, {
                 'row_attr': {'class': 'title-input-set'},
+                'label': 'Title'|trans,
                 'label_attr': {'class': 'title-label'},
                 'attr': {'class': 'title-input'}
             }) }}
             
             {{ form_row(form.content.titleFr, {
                 'row_attr': {'class': 'title-input-set active'},
-                'label_attr': {'class': 'title-label'},
-                'attr': {'class': 'title-input'}
-            }) }}
-            
-            {{ form_row(form.content.titleNl, {
-                'row_attr': {'class': 'title-input-set'},
+                'label': 'Title'|trans,
                 'label_attr': {'class': 'title-label'},
                 'attr': {'class': 'title-input'}
             }) }}
 
             {{ form_row(form.content.descriptionEn, {
                 'row_attr': {'class': 'description-textarea-set'},
+                'label': 'Description'|trans,
                 'label_attr': {'class': 'description-label'},
                 'attr': {'class': 'description-textarea'}
             }) }}
             
             {{ form_row(form.content.descriptionFr, {
                 'row_attr': {'class': 'description-textarea-set active'},
-                'label_attr': {'class': 'description-label'},
-                'attr': {'class': 'description-textarea'}
-            }) }}
-            
-            {{ form_row(form.content.descriptionNl, {
-                'row_attr': {'class': 'description-textarea-set'},
+                'label': 'Description'|trans,
                 'label_attr': {'class': 'description-label'},
                 'attr': {'class': 'description-textarea'}
             }) }}
