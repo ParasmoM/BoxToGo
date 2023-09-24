@@ -307,7 +307,6 @@ class HostFixtures extends Fixture
 
             $content->setDescriptionFr('Français' . $this->faker->sentences(10, true));
             $content->setDescriptionEn('Anglais' . $this->faker->sentences(10, true));
-            $content->setDescriptionNl('Néerlandais' . $this->faker->sentences(10, true));
 
             $host->setContent($content);
 

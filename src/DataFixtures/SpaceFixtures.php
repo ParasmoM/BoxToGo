@@ -112,10 +112,8 @@ class SpaceFixtures extends Fixture
             $content = new Contents();
             $content->setTitleFr('Français' . $this->faker->sentences(1, true));
             $content->setTitleEn('Anglais' . $this->faker->sentences(1, true));
-            $content->setTitleNl('Néerlandais' . $this->faker->sentences(1, true));
             $content->setDescriptionFr('Français' . $this->faker->sentences(10, true));
             $content->setDescriptionEn('Anglais' . $this->faker->sentences(10, true));
-            $content->setDescriptionNl('Néerlandais' . $this->faker->sentences(10, true));
 
             $manager->persist($content);
 
