@@ -493,6 +493,18 @@
         <source>Get to know</source>
         <target>Faites connaissance avec</target>
       </trans-unit>
+      <trans-unit id="BgLezDR" resname="Unfortunately, this account has been banned. Please contact a moderator for more information.">
+        <source>Unfortunately, this account has been banned. Please contact a moderator for more information.</source>
+        <target>Malheureusement, ce compte a été banni. Veuillez contacter un modérateur pour obtenir plus d'informations.</target>
+      </trans-unit>
+      <trans-unit id="sWHX5qd" resname="Be vigilant, you have only one attempt remaining.">
+        <source>Be vigilant, you have only one attempt remaining.</source>
+        <target>Soyez vigilant, vous n'avez plus qu'une tentative restante.</target>
+      </trans-unit>
+      <trans-unit id="c8sbQQp" resname="Be vigilant, you have only %count% remaining attempts.">
+        <source>Be vigilant, you have only %count% remaining attempts.</source>
+        <target>Soyez vigilant, vous n'avez plus que %count% tentatives restantes.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

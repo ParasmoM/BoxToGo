@@ -11,7 +11,7 @@
 
         <form method="post" class="loginpage__form">
             {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">{{ error }}</div>
             {% endif %}
         
             {% if app.user %}
@@ -19,7 +19,7 @@
                     {{ 'You are logged in as'|trans }} {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
                 </div>
             {% endif %}
-        
+            
             <h3 class="loginpage__heading">{{ 'Log in'|trans }}</h3>
             <p class="loginpage__prompt">{{ "Don't have a BOX ToGo username ?"|trans }}</p>
             <a href="{{ path('app_register') }}" class="loginpage__link">{{ 'Sign up here'|trans }}</a>

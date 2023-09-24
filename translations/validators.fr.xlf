@@ -589,6 +589,10 @@
         <source>There is already an account with this email</source>
         <target>__There is already an account with this email</target>
       </trans-unit>
+      <trans-unit id="iwRIkjh" resname="Your password must contain at least one digit and one uppercase letter.">
+        <source>Your password must contain at least one digit and one uppercase letter.</source>
+        <target>__Your password must contain at least one digit and one uppercase letter.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

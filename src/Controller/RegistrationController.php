@@ -23,6 +23,9 @@ class RegistrationController extends AbstractController
         UserAuthenticator $authenticator, 
         EntityManagerInterface $entityManager
     ): Response {
+        // Si l'utilisateur est déjà connecté, on le redirige vers la page d'accueil
+        if ($this->getUser()) return $this->redirectToRoute('public_home');
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

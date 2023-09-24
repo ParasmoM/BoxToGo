@@ -180,18 +180,33 @@ class HostFixtures extends Fixture
             ],
 
         ];
-    
+        $firstIteration = true;
+
         foreach ($hostData as $data) {
             $host = new User();
-            $host->setEmail($this->faker->email); 
-            $host->setPassword($this->passwordEncoder->hashPassword($host, 'azertyui'));
-            $host->setRoles(['ROLE_USER', 'ROLE_OWNER']);
-    
+
+            if ($firstIteration) {
+                $host->setEmail('admin@admin.be'); 
+            } else {
+                $host->setEmail($this->faker->email); 
+            }
+
+            if ($firstIteration) {
+                $host->setPassword($this->passwordEncoder->hashPassword($host, '@1Admin'));
+            } else {
+                $host->setPassword($this->passwordEncoder->hashPassword($host, '1Azertyui'));
+            }
+
+            if ($firstIteration) {
+                $host->setRoles(['ROLE_USER', 'ROLE_OWNER', 'ROLE_ADMIN']);
+                $firstIteration = false;
+            } else {
+                $host->setRoles(['ROLE_USER', 'ROLE_OWNER']);
+            }
             
             $host->setGivenName($data['firstName']);
             $host->setFamilyName($data['lastName']);
             $host->setGender($data['gender']);
-            
             
             $birthDate = DateTimeImmutable::createFromFormat('d/m/Y', $data['birthDate']);
             $host->setBirthDate($birthDate);

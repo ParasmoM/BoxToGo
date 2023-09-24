@@ -1094,8 +1094,16 @@ body {
   overflow: hidden;
 }
 .header-main__actions .header-main__action--lang .lang-list li {
-  padding-block: 0.4rem;
-  padding-inline: 1.5rem;
+  height: 2.9rem;
+  width: 4.2rem;
+  overflow: hidden;
+}
+.header-main__actions .header-main__action--lang .lang-list li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 .header-main__actions .header-main__action--lang .lang-list li:hover {
   background-color: var(--clr-gray-300);

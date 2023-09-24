@@ -31,8 +31,17 @@
                 overflow: hidden;
 
                 li {
-                    padding-block: .4rem;
-                    padding-inline: 1.5rem;
+                    height: 2.9rem;
+                    width: 4.2rem;
+                    overflow: hidden;
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        width: 100%;
+                    }
                 }
                 li:hover {
                     background-color: var(--clr-gray-300);

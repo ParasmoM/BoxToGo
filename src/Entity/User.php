@@ -109,12 +109,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private ?array $preference = [];
 
+    #[ORM\Column]
+    private ?int $failedAuthCount = null;
+
+    #[ORM\Column]
+    private ?bool $isBanned = null;
+
     public function __construct()
     {
         $this->createAt = new \DateTimeImmutable();
         $this->status = 'Particulier';
         $this->language = 'EN';
         $this->appearance = 'light';
+        $this->failedAuthCount = 0;
+        $this->isBanned = false;
         $this->reservations = new ArrayCollection();
         $this->renters = new ArrayCollection();
         $this->owners = new ArrayCollection();
@@ -515,6 +523,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPreference(?array $preference): static
     {
         $this->preference = $preference;
+
+        return $this;
+    }
+
+    public function getFailedAuthCount(): ?int
+    {
+        return $this->failedAuthCount;
+    }
+
+    public function setFailedAuthCount(int $failedAuthCount): self
+    {
+        $this->failedAuthCount = $failedAuthCount;
+
+        return $this;
+    }
+
+    public function isBanned(): ?bool
+    {
+        return $this->isBanned;
+    }
+
+    public function setBanned(bool $isBanned): static
+    {
+        $this->isBanned = $isBanned;
 
         return $this;
     }
