@@ -13,3 +13,5 @@ Vous pourrez ensuite utiliser les informations de connexion suivantes :
 
 - Adresse e-mail : admin@admin.com
 - Mot de passe : @1Admin
+
+Pour accéder à l'interface admin, vous trouverez un bouton en bas du logo.
