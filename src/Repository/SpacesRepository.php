@@ -60,7 +60,7 @@ class SpacesRepository extends ServiceEntityRepository
     public function countByPeriod(string $period = 'week')
     {
         $queryBuilder = $this->createQueryBuilder('s')
-            ->select('COUNT(s.id) as reviewCount');
+            ->select('COUNT(s.id) as count');
 
         switch ($period) {
             case 'week':

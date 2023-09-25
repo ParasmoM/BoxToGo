@@ -159,17 +159,28 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * Vérifie la valeur de la barre de recherche et retourne un tableau associatif 
+     * avec des indicateurs comme "isNumber", "isSingleWord" et "isMultipleWords".
+     *
+     * @param string $searchBar La valeur de la barre de recherche à vérifier.
+     * @return array Un tableau associatif contenant des indicateurs.
+     */
     public function verifySearch($searchBar)
     {
         $search = $searchBar;
+    
         $result = [];
-
-        // Sépare la chaîne en mots
+    
+        // Utilise preg_split pour séparer la chaîne de recherche en mots individuels,
+        // en utilisant des espaces comme délimiteurs
         $words = preg_split('/\s+/', $search);
-
+    
+        // Initialise les compteurs pour les valeurs numériques et les chaînes de caractères
         $numericCount = 0;
         $stringCount = 0;
-
+    
+        // Parcourt chaque mot pour compter les valeurs numériques et les chaînes de caractères
         foreach ($words as $word) {
             if (is_numeric($word)) {
                 $numericCount++;
@@ -177,16 +188,17 @@ class HomeController extends AbstractController
                 $stringCount++;
             }
         }
-
-        // Vérification si c'est un nombre
+    
+        // Vérifie si tous les mots sont numériques
         $result['isNumber'] = $numericCount > 0 && $stringCount === 0;
-
-        // Vérification si c'est un seul mot
+    
+        // Vérifie si la recherche contient un seul mot
         $result['isSingleWord'] = count($words) === 1;
-
-        // Vérification si c'est en plusieurs mots
+    
+        // Vérifie si la recherche contient plusieurs mots qui ne sont pas numériques
         $result['isMultipleWords'] = $stringCount > 1;
-
+    
+        // Retourne le résultat sous forme de tableau associatif
         return $result;
-    }
+    }  
 }

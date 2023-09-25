@@ -1,0 +1,15 @@
+{{ form_start(form, {'attr': {'class': 'utils__form' }}) }}
+                    
+    {{ form_row(form.email, {
+        'row_attr': {'class': 'utils__form--input'},
+        'label': 'E-mail'|trans, 
+        }) 
+    }}
+
+    {{ form_row(form.submit, {
+        'row_attr': {'class': 'utils__form--submit'},
+        'label': 'Add'|trans, 
+        }) 
+    }}
+
+{{ form_end(form) }}

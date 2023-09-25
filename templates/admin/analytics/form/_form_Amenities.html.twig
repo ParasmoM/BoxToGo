@@ -1,0 +1,21 @@
+{{ form_start(form, {'attr': {'class': 'utils__form' }}) }}
+                    
+    {{ form_row(form.name_fr, {
+        'row_attr': {'class': 'utils__form--input'},
+        'label': 'French'|trans, 
+        }) 
+    }}
+
+    {{ form_row(form.name_en, {
+        'row_attr': {'class': 'utils__form--input'},
+        'label': 'English'|trans, 
+        }) 
+    }}
+
+    {{ form_row(form.submit, {
+        'row_attr': {'class': 'utils__form--submit'},
+        'label': 'Add'|trans, 
+        }) 
+    }}
+
+{{ form_end(form) }}

@@ -1,8 +1,6 @@
 @use "../base/variables" as *;
 @use "../utils" as *;
 
-
-
 .header-main {
     @at-root &__actions {
         flex: 1;

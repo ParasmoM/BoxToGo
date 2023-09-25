@@ -92,7 +92,7 @@ class Spaces
     {
         $this->createAt = new DateTimeImmutable();
         $this->status = 'free';
-        $this->reference = date('Y') . '-' . uniqid();
+        $this->reference = 'S-' .date('Y') . '-' . uniqid();
         $this->isPublished = true;
         $this->reservations = new ArrayCollection();
         $this->image = new ArrayCollection();

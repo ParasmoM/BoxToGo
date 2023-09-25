@@ -1,9 +1,13 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block content %}
-    {% block search %}{% endblock search %}
+    {# {% block search %}{% endblock search %} #}
     
     <section class="dashboard-admin">
+        <div class="dashboard-admin__search">
+            {% block search %}{% endblock search %}
+        </div>
+
         <div class="dashboard-admin__header">
             {% block header %}{% endblock header %}
         </div>

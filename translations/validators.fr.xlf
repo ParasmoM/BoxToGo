@@ -593,6 +593,10 @@
         <source>Your password must contain at least one digit and one uppercase letter.</source>
         <target>__Your password must contain at least one digit and one uppercase letter.</target>
       </trans-unit>
+      <trans-unit id="y9t1xUL" resname="This field can not be empty.">
+        <source>This field can not be empty.</source>
+        <target>Ce champ ne peut pas être vide.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,0 +1,163 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.dashboard-admin {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    font-family: $font-family-secondary;
+    margin-top: 3.8rem;
+
+    &__header {
+        @extend %fw-semibold;
+
+        display: flex;
+        padding: 0 1rem;
+        font-size: 1.8rem;
+        border: solid 1px var(--clr-gray-400);
+        border-radius: $border-radius;
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+
+        > div {
+            flex: 1;
+
+            &:first-of-type {
+                flex: 2;
+            }
+            &:nth-of-type(2) {
+                flex: 1.5;
+            }
+            &:nth-of-type(3) {
+                flex: 1.5;
+            }
+            &:last-of-type {
+                flex: 0 0 11rem;
+                text-align: center;
+            }
+        }
+    }
+
+    &__main {
+        @extend %fw-semibold;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0 var(--spacing-sm);
+    }
+
+    &__items {
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-xs);
+        border-radius: $border-radius;
+
+        &:nth-child(odd) {
+            background-color: var(--clr-gray-300);
+        }
+            
+        > div {
+            flex: 1;
+
+            &:first-of-type {
+                flex: 2;
+            }
+            &:nth-of-type(2) {
+                flex: 1.5;
+            }
+            &:nth-of-type(3) {
+                flex: 1.5;
+            }
+            &:nth-of-type(4) {
+                display: flex;
+                gap: .4rem;
+            }
+            &:last-of-type {
+                flex: 0 0 12.1rem;   
+                text-align: center;             
+                a {
+                    background-color: var(--clr-gray-200);
+                    box-shadow: $box-shadow;
+                    color: var(--clr-primary);
+                    border-radius: $border-radius;
+                    padding: .4rem var(--spacing-sm);
+                    margin-inline: auto;
+                }
+            }
+
+            .ad {
+                padding: .4rem 1rem;
+                border-radius: $border-radius;
+                background-color: rgba(#B8EAE3, .3);
+            }
+            .ma {
+                padding: .4rem 1rem;
+                border-radius: $border-radius;
+                background-color: rgba(#AEDFF7, .3);
+            }
+            .ow {
+                padding: .4rem 1rem;
+                border-radius: $border-radius;
+                background-color: rgba(#FFDAA5, .3);
+            }
+            .us {
+                padding: .4rem 1rem;
+                border-radius: $border-radius;
+                background-color: rgba(#D3D3D3, .3);
+            }
+            .fi {
+                padding: .4rem 1rem;
+                border-radius: $border-radius;
+                background-color: rgba(#F07167, .3);
+            }
+            .fr {
+                padding: .4rem 1rem;
+                border-radius: $border-radius;
+                background-color: rgba(#91E2A1, .3);
+            }
+            .new {
+                border-radius: $border-radius;
+                padding: .2rem var(--spacing-xs);
+                color: var(--clr-white);
+                background-color: var(--clr-primary);
+                margin-left: var(--spacing-sm);
+            }
+        }
+    }
+
+    .img-profile > div {
+        aspect-ratio: 1/1;
+
+        > span {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 5rem;
+            aspect-ratio: 1/1;
+            background-color: var(--clr-black);
+            color: var(--clr-white);
+
+        }
+    }
+    .img-space > div {
+        aspect-ratio: 16/9;
+    }
+    .img-profile,
+    .img-space  {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+
+        > div {
+            height: 5rem;
+            overflow: hidden;
+            border-radius: $border-radius;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

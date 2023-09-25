@@ -50,7 +50,7 @@ class ReviewsRepository extends ServiceEntityRepository
     public function countByPeriod(string $period = 'week')
     {
         $queryBuilder = $this->createQueryBuilder('r')
-            ->select('COUNT(r.id) as reviewCount');
+            ->select('COUNT(r.id) as count');
 
         // $currentDate = new \DateTimeImmutable();
 

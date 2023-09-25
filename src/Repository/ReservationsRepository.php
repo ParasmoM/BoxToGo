@@ -24,7 +24,7 @@ class ReservationsRepository extends ServiceEntityRepository
     public function countByPeriod(string $period = 'week')
     {
         $queryBuilder = $this->createQueryBuilder('r')
-            ->select('COUNT(r.id) as reviewCount');
+            ->select('COUNT(r.id) as count');
 
         switch ($period) {
             case 'week':

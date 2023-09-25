@@ -12,6 +12,9 @@
 
 {% block main %}
     {% for element in data %}
+        {% if element is iterable %}
+            {% set element = element[0] %}
+        {% endif %}
         <div class="dashboard-admin__items">
             <div class="dashboard-admin__item-data img-profile">
                 <div>
@@ -47,6 +50,7 @@
                 <a href="{{ path(path, {'id': element.id}) }}">View Profile</a>
             </div>
         </div>
+        
     {% endfor %}
 {% endblock main %}
 

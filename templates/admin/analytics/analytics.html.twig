@@ -5,31 +5,37 @@
 {% endblock %}
 
 {% block content %}
-<section class="admin-features">
+<section class="admin-analytics">
 
-    {{ form_start(form, {'attr': {'class': 'admin-features-search' }}) }}
-        <div class="admin-features-search__item">
-            {{ form_label(form.reference) }}
+    {{ form_start(formSearchBar, {'attr': {'class': 'admin-analytics-search' }}) }}
+        <div class="admin-analytics-search__item">
+            {{ form_label(formSearchBar.reference) }}
             <p>
                 <button type="submit"><img src="{{ asset('images/icones/global/Loop.svg') }}" alt=""></button>
-                {{ form_widget(form.reference) }}
+                {{ form_widget(formSearchBar.reference) }}
             </p>
         </div>
 
-        {{ form_row(form.status) }}
+        {{ form_row(formSearchBar.status, {
+            'row_attr': {'class': 'admin-analytics-search__item'},
+            'attr': {'class': 'admin-analytics-search__input-status'}
+        }) }}
 
-        {{ form_row(form.category) }}
+        {{ form_row(formSearchBar.category, {
+            'row_attr': {'class': 'admin-analytics-search__item'},
+            'attr': {'class': 'admin-analytics-search__input-category'}
+        }) }}
 
-        <div class="admin-features-search__item">
-            {{ form_label(form.customer) }}
+        <div class="admin-analytics-search__item">
+            {{ form_label(formSearchBar.customer) }}
             <p>
                 <button type="submit"><img src="{{ asset('images/icones/global/Loop.svg') }}" alt=""></button>
-                {{ form_widget(form.customer) }}
+                {{ form_widget(formSearchBar.customer) }}
             </p>
         </div>
-    {{ form_end(form) }}   
+    {{ form_end(formSearchBar) }}   
 
-    <section class="admin-features__items stats-section">
+    <section class="admin-analytics__items stats-section">
         {% for data in datas %}
             <div class="stats-card">
 
@@ -90,46 +96,38 @@
         {% endfor %}
     </section>
 
-    <section class="admin-features__section utils-section">
-        <div class="utils__items">
-            <div class="utils__head">
-                <h3 class="utils__title">{{ 'Category'|trans }}</h3>
+    <section class="admin-analytics__section utils-section">
 
-                <div class="utils__info">
-                    <p class="utils__item-count">{{ categories|length }} Item{{ categories|length > 1 ? 's' : '' }}</p>
-                    <span class="utils__delete-button"><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
+        {% set tabs = [
+                {'title': 'Admins'|trans, 'array': entityData['users'], 'form': formNewAdmin, 'name': 'Admins'},
+                {'title': 'Category'|trans, 'array': entityData['categories'], 'form': formSpaceType, 'name': 'Category'}, 
+                {'title': 'Amenities'|trans, 'array': entityData['amenities'], 'form': formAmenities, 'name': 'Amenities'}
+            ] 
+        %}
+
+        {% for tab in tabs %}
+            <div class="utils__items">
+                <div class="utils__head">
+                    <h3 class="utils__title">{{ tab['title'] }}</h3>
+
+                    {% include "admin/analytics/form/_form_" ~ tab['name'] ~ ".html.twig" with {'form': tab['form']} only %}
+
+                    <div class="utils__info">
+                        <p class="utils__item-count">{{ tab['array']|length }} {{ 'Item'|trans }}{{ tab['array']|length > 1 ? 's' : '' }}</p>
+                        <span class="utils__delete-button"><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="button"></span>
+                    </div>
+                </div>
+                
+                <div class="utils__content">
+                    {% for element in tab['array'] %}
+
+                        {% include "admin/analytics/form/_delete_form.html.twig" with {'instance': element, 'type': tab['name']} only %}
+
+                    {% endfor %}
                 </div>
             </div>
+        {% endfor %}
 
-            <div class="utils__content">
-                {% for element in categories %}
-                    <p class="utils__category-item">
-                        <span>{{ element }}</span>
-                        <span><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
-                    </p>
-                {% endfor %}
-            </div>
-        </div>
-    
-        <div class="utils__items">
-            <div class="utils__head">
-                <h3 class="utils__title">Amenities</h3>
-
-                <div class="utils__info">
-                    <p class="utils__item-count">{{ amenities|length }} Item{{ amenities|length > 1 ? 's' : '' }}</p>
-                    <span class="utils__delete-button"><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
-                </div>
-            </div>
-
-            <div class="utils__content">
-                {% for element in amenities %}
-                    <p class="utils__category-item">
-                        <span>{{ element }}</span>
-                        <span><img src="{{ asset('images/icones/admin/cross.svg') }}" alt="Delete"></span>
-                    </p>
-                {% endfor %}
-            </div>
-        </div>
     </section>
     
 </section>

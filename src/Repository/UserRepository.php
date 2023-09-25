@@ -29,7 +29,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function countByPeriod(string $period = 'week')
     {
         $queryBuilder = $this->createQueryBuilder('u')
-            ->select('COUNT(u.id) as reviewCount');
+            ->select('COUNT(u.id) as count');
 
         switch ($period) {
             case 'week':

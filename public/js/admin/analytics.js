@@ -18,10 +18,9 @@ utilsItems.forEach((item) => {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Obtenez les éléments select par leur ID
-    const selectStatus = document.getElementById("search_bar_admin_form_status");
-    const selectCategory = document.getElementById("search_bar_admin_form_category");
-
+    const selectStatus = document.querySelector(".admin-analytics-search__input-status");
+    const selectCategory = document.querySelector(".admin-analytics-search__input-category");
+    
     // Fonction pour soumettre le formulaire
     const submitForm = (event) => {
         // Récupérer la valeur du select
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Vérifier si la valeur n'est pas vide
         if (value !== "") {
-            const form = document.getElementsByName("search_bar_admin_form")[0];
+            const form = document.querySelector(".admin-analytics-search");
             form.submit();
         }
     };
