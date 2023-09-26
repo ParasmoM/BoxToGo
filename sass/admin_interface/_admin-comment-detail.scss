@@ -1,0 +1,99 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.admin-comment-detail {
+    &__container {
+        @extend %container-secondary; 
+
+        padding-top: 10rem;
+    }
+
+    .comment-card {
+        position: relative;
+        border-radius: $border-radius;
+        background-color: var(--clr-white);
+        padding: var(--spacing-lg);
+        display: flex;
+        gap: var(--spacing-lg);
+        box-shadow: $box-shadow;
+
+        &__avatar {
+            flex: 0 0 8rem;
+            aspect-ratio: 1/1;
+            height: fit-content;
+            overflow: hidden;
+            border-radius: $border-radius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--clr-white);
+            background-color: var(--clr-black);
+            border-radius: 50%;
+            font-size: 2.4;
+            @extend %fw-semibold;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__meta {
+            display: flex;
+
+            span:first-of-type {
+                flex: auto;
+                @extend %fw-semibold;
+                margin-bottom: 3rem;
+            }
+            span:last-of-type {
+                display: flex;
+                gap: var(--spacing-sm);
+                font-weight: 600;
+            }
+            img {
+                height: 2rem;
+            }
+        }
+        &__content {
+            display: flex;
+            flex-direction: column;
+            
+            > span {
+                margin-left: auto;
+            }
+        }
+
+        &__comment {
+            text-align: justify;
+            flex: auto;
+        }
+
+        &__footer {
+            > div {
+                height: 14rem;
+                aspect-ratio: 16/9;
+                overflow: hidden;
+                border-radius: $border-radius;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--clr-white);
+                background-color: var(--clr-black);
+                border: solid;
+                margin-bottom: var(--spacing-sm);
+            }
+
+            > p {
+                position: absolute;
+                top: -1.335rem;
+                border: solid 1px $border-color;
+                border-radius: $border-radius;
+                background-color: var(--clr-gray-200);
+                padding-inline: var(--spacing-sm);
+                white-space: nowrap;
+            }
+        }
+    }
+}

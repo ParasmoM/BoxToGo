@@ -1,13 +1,19 @@
 {% extends 'admin/dashboard.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/admin/btn-admin-delete.js') }}" defer></script>
+    <script src="{{ asset('js/admin/show-alert.js') }}" defer></script>
+{% endblock %}
+
 {% set data = dataUsers %}
 
 {% block header %}
-    <div><span>NAME</span></div>
-    <div>EMAIL</div>
-    <div><span>ROLE</span></div>
-    <div>START DATE</div>
-    <div><span>PROFILE</span></div>
+    <div><span>{{ 'NAME'|trans }}</span></div>
+    <div>{{ 'EMAIL'|trans }}</div>
+    <div><span>{{ 'ROLE'|trans }}</span></div>
+    <div>{{ 'ACTION'|trans }}</div>
+    <div><span>{{ 'PROFILE'|trans }}</span></div>
 {% endblock header %}
 
 {% block main %}
@@ -15,6 +21,7 @@
         {% if element is iterable %}
             {% set element = element[0] %}
         {% endif %}
+
         <div class="dashboard-admin__items">
             <div class="dashboard-admin__item-data img-profile">
                 <div>
@@ -44,10 +51,20 @@
                 <span class="us">RENTER</span>
                 {% endif %}
             </div>
-            <div class="dashboard-admin__item-data">{{ element.createAt|date('Y-m-d') }}</div>
+            <div class="dashboard-admin__item-data action">
+                <button id="action-btn">
+                    <img src="{{ asset('images/icones/admin/ellipsis.svg') }}" alt="{{ 'ellipsis icon'|trans }}">
+                </button>
+
+                {% set message = 'Are you sure you want to delete this item?'|trans %}
+                <form method="post" action="{{ path('admin_users_delete', {'id': element.id}) }}" onsubmit="return confirm('{{ message }}');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ element.id) }}">
+                    <button class="btn-delete">{{ 'Delete'|trans }}</button>
+                </form>
+            </div>
             <div class="dashboard-admin__item-data">
-                {% set path = 'ROLE_OWNER' in element.roles ? 'profile_page' : 'app_admin_renter_profile' %}
-                <a href="{{ path(path, {'id': element.id}) }}">View Profile</a>
+                {% set path = 'ROLE_OWNER' in element.roles ? 'profile_page' : 'admin_users_profile' %}
+                <a href="{{ path(path, {'id': element.id}) }}">{{ 'View Profile'|trans }}</a>
             </div>
         </div>
         

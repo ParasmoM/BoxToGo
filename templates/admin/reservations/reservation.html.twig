@@ -1,35 +1,22 @@
 {% extends 'admin/dashboard.html.twig' %}
 
-{% set data = dataSpaces %}
-
-{% block search %}
-
-{% endblock search %}
+{% set data = dataResa %}
 
 {% block header %}
-    <div>
-        <span>REFERENCE</span>
-    </div>
-    <div>
-        TYPES
-    </div>
-    <div>
-        <span>CITY</span>
-    </div>
-    <div>
-        STATUS
-    </div>
-    <div>
-        <span>PROFILE</span>
-    </div>
+    <div><span>{{ 'REFERENCE'|trans }}</span></div>
+    <div>{{ 'RENTER'|trans }}</div>
+    <div>{{ 'STATUS'|trans }}</div>
+    <div>{{ 'DURATION'|trans }}</div>
+    <div><span>{{ 'PROFILE'|trans }}</span></div>
 {% endblock header %}
 
 {% block main %}
     {% for element in data %}
+    
         <div class="dashboard-admin__items">
             <div class="dashboard-admin__item-data img-space">
                 <div>
-                    {% include "components/_spaceImage.html.twig" with {'element': element} %}
+                    {% include "components/_spaceImage.html.twig" with {'element': element.space} %}
                 </div>
                 <p>
                     {{ element.reference }}
@@ -42,21 +29,33 @@
                     {% endif %}
                 </p>
             </div>
-            <div class="dashboard-admin__item-data">{{ element.type }}</div>
-            <div class="dashboard-admin__item-data">{{ element.adresse.city }}</div>
+            <div class="dashboard-admin__item-data img-profile">
+                <div>
+                    {% include "components/_avatar.html.twig" with {'instance': element.user} %}
+                </div>
+                <p>{{ element.user }}</p>
+            </div>
             <div class="dashboard-admin__item-data">
                 {% set className = '' %}
+
                 {% if element.status == 'free' %} 
                     {% set className = 'fr' %}
                 {% endif %}
-                {% if element.status == 'busy' %} 
-                    {% set className = 'ow' %}
+                {% if element.status == 'finished' %} 
+                    {% set className = 'fi' %}
                 {% endif %}
+
                 <span class="{{ className }}">{{ element.status }}</span>
             </div>
             <div class="dashboard-admin__item-data">
-                <a href="{{ path('public_property_details', {'id': element.id}) }}">View Profile</a>
+                {% for row in element.getDateDifference %}
+                    {{ row }}
+                {% endfor %}
+            </div>
+            <div class="dashboard-admin__item-data">
+                <a href="{{ path('admin_resa_detail', {id: element.id}) }}">{{ 'View'|trans }}</a>
             </div>
         </div>
     {% endfor %}
 {% endblock main %}
+

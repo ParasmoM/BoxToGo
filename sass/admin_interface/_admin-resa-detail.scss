@@ -1,0 +1,130 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.admin-resa-detail {
+    &__container {
+        @extend %container-secondary; 
+
+        padding-top: 10rem;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    @at-root .resa-card {
+        border: solid 1px $border-color;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        background-color: var(--clr-white);
+
+        &__header {
+            display: flex;
+            border-bottom: solid 1px var(--clr-gray-400);
+            padding-block: var(--spacing-lg);
+            margin-inline: var(--spacing-lg);
+            position: relative;
+        }
+
+        &__profile {
+            display: flex;
+            gap: var(--spacing-lg);
+            flex: auto;
+        }
+        &__image {
+            height: 9rem;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: $border-radius;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        &__name {
+            @extend %fw-semibold;
+        }
+        &__ref {
+            position: absolute;
+            top: -1.35rem;
+            right: 0;
+            background-color: var(--clr-white);
+            border: solid 1px var(--clr-gray-400);
+            border-radius: $border-radius;
+            padding: 0 1rem;
+        }
+
+        &__date-container {
+            display: flex;
+            font-family: $font-family-secondary;
+        }
+        &__date-item:first-of-type {
+            border-right: solid 1px var(--clr-gray-400);
+            padding-right: var(--spacing-lg);
+            margin-right: var(--spacing-lg);
+        }
+        &__date-label {
+            @extend %fw-semibold;
+
+            text-align: right;
+            font-size: 2.4rem;
+            color: var(--clr-gray-700);
+        }
+        &__date-values {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        &__day {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--clr-gray-700);
+            line-height: 1;
+        }
+        &__month {
+            @extend %fw-semibold;
+        }
+        &__month-year {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__info {
+            display: flex;
+            padding-inline: var(--spacing-lg);
+            &-text {
+                flex: auto;
+            }
+            &-label {
+                margin-top: var(--spacing-lg);
+            }
+            &-content {
+                @extend %fw-semibold;
+            }
+            &-image {
+                height: 12rem;
+                aspect-ratio: 16/9;
+                overflow: hidden;
+                border-radius: $border-radius;
+                margin-block: var(--spacing-lg);
+            }
+        }
+        
+        &__footer {
+            display: flex;
+            background-color: var(--clr-gray-200);
+            padding: var(--spacing-lg);
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+
+            .resa-card__status {
+                @extend %fw-semibold;
+                flex: auto;
+                color: var(--clr-primary);
+                font-size: 1.8rem;
+            }
+            .resa-card__price span {
+                @extend %fw-semibold;
+            }
+        }
+    }
+}

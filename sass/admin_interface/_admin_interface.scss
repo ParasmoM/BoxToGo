@@ -13,7 +13,7 @@
         min-height: 100vh;
     }
 
-    &__header {
+    @at-root .header-ad {
         display: flex;
         gap: var(--spacing-lg);
         padding-block: var(--spacing-lg);
@@ -24,36 +24,66 @@
             top: 3rem;left: 11rem;
         }
 
-        > div img {
+        &__logo {
             height: 6rem;
         }
 
-        > div:last-of-type {
+        &__info {
             margin-left: auto;
             display: flex;
+            align-items: center;
             gap: var(--spacing-lg);
-
-            > div:first-of-type {
-                height: 5rem;
-                aspect-ratio: 1/1;
-                border-radius: 50%;
-                overflow: hidden;
-
-                img {
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
-                }
+        }
+        &__lang {
+            position: relative;
+            
+            &-icone {
+                cursor: pointer;
             }
-            > div:last-of-type {
-                p:first-of-type {
-                    @extend %fw-semibold;
-                }
-                p:last-of-type {
-                    @extend %fw-medium;
+            &-list {
+                @extend %fw-semibold;
 
-                    color: var(--clr-gray-900);
-                }
+                display: none;
+                position: absolute;
+                top: 4rem; left: -1.9rem;
+                border: solid 1px $border-color;
+                border-radius: $border-radius;
+                text-transform: uppercase;
+                height: 4rem;
+                aspect-ratio: 16/9;
+                background-color: var(--clr-gray-100);
+            }
+            .show {
+                display: block;
+            }
+            &-item {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        &__avatar {
+            height: 5rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        &__user-details {
+            p:first-of-type {
+                @extend %fw-semibold;
+            }
+            p:last-of-type {
+                @extend %fw-medium;
+
+                color: var(--clr-gray-900);
             }
         }
     }
@@ -65,386 +95,65 @@
         padding-top: 3rem;
     }
 
-    &__sidebar {
+    @at-root .sidebar-ad {
         margin-top: 6.8rem;
 
-        &-heading {
+        &__heading {
             @extend %fw-semibold;
 
             font-size: 2.6rem;
             margin-bottom: var(--spacing-lg);
         }
 
-        &-container {
+        &__container {
             padding: var(--spacing-lg);
-            box-shadow: $box-shadow;
+            border: solid 1px var(--clr-gray-400);
             border-radius: $border-radius;
-            background-color: var(--clr-white);
+            background-color: var(--clr-gray-100);
         }
 
-        &-list {
+        &__list {
             display: flex;
             flex-direction: column;
             gap: var(--spacing-xs);
         }
 
-        &-item {
+        &__item > a,
+        &__logout > a {
             display: flex;
             gap: var(--spacing-sm);
             padding: var(--spacing-xs);
             align-items: center;
-            border-radius: $border-radius;
             white-space: nowrap;
         }
         .current {
             @extend %fw-semibold;
-            background-color: var(--clr-gray-300);
+            background-color: var(--clr-gray-200);
+            border-radius: $border-radius;
+            transition: all 0.5s ease-in-out;
         }
     }
 
     &__content {
         flex: auto;
-        // border: solid 1px;
-    }
-}
-
-.renter-profile {
-    height: 100%;
-    
-    &__container {
-        @extend %container-secondary; 
-
-        display: flex;
-        flex-direction: column;
-        padding: 10rem 0;
-        height: 100%;
-    }
-
-    &__main-section {
-        display: flex;
-        gap: var(--spacing-lg);
-
-        > div {
-            flex: 1;
-            border: solid 1px var(--clr-gray-400);
-            border-radius: $border-radius;
-            padding: var(--spacing-lg);
-        }
-    }
-
-    &__user-info {
-        > div:first-of-type {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        > div:last-of-type {
-            display: flex;
-        }
-    }
-    &__avatar-section {
-        display: flex;
-        gap: var(--spacing-lg);
-
-        .renter-profile__avatar {
-            height: 8rem;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 50%;
-            overflow: hidden;
-            background-color: var(--clr-black);
-            color: var(--clr-white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        h3 {
-            @extend %fw-semibold;
-        }
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-    }
-
-    &__labels {
-        flex: 1;
-    }
-    &__values {
-        flex: 1;
-    }
-
-    &__comments {
         position: relative;
-    }
-    .review-section {
-        display: flex;
-        flex-direction: column;
 
-        &__info {
-
-            display: flex;
-
-            img {
-                height: 1.4rem;
-            }
-
-            .review-section__user-type {
-                flex: auto;
-            }
-            .review-section__user {
-                @extend %fw-semibold;
-            }
-            .review-section__rating {
-                display: flex;
-                align-items: center;
-                
-                span {
-                    margin-right: 1rem;
-                }
-            }
-            .review-section__reference {
-                position: absolute;
-                top: -1.335rem;
-                border-radius: $border-radius;
-                padding: 0 1rem; right: var(--spacing-lg);
-                background-color: var(--clr-white);
-                box-shadow: $box-shadow;
-            }
-        }
-
-        &__comment {
-            height: 22.5rem;
-            padding-top: var(--spacing-lg);
-        }
-
-        .pagination {
-            padding: 0;
-        }
-    }
-
-    &__history {
-        flex: auto;
-        margin-top: var(--spacing-lg);
-    }
-    .pagination {
-        padding-top: 3rem;
-    }
-}
-
-.admin-resa-detail {
-    &__container {
-        @extend %container-secondary; 
-
-        padding-top: 10rem;
-        margin-bottom: var(--spacing-lg);
-    }
-
-    @at-root .resa-card {
-        border: solid 1px $border-color;
-        border-radius: $border-radius;
-        box-shadow: $box-shadow;
-        background-color: var(--clr-white);
-
-        &__header {
-            display: flex;
-            border-bottom: solid 1px var(--clr-gray-400);
-            padding-block: var(--spacing-lg);
-            margin-inline: var(--spacing-lg);
-            position: relative;
-        }
-
-        &__profile {
-            display: flex;
-            gap: var(--spacing-lg);
-            flex: auto;
-        }
-        &__image {
-            height: 9rem;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: $border-radius;
-
-            img {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
-        }
-        &__name {
-            @extend %fw-semibold;
-        }
-        &__ref {
+        .flash-alert {
+            border: solid 1px $border-color;
             position: absolute;
-            top: -1.35rem;
             right: 0;
-            background-color: var(--clr-white);
-            border: solid 1px var(--clr-gray-400);
+            height: 10rem;
+            aspect-ratio: 2.5 * 16/9;
+            background-color: var(--clr-gray-100);
             border-radius: $border-radius;
-            padding: 0 1rem;
+            padding: var(--spacing-sm);
+            transform: translateX(-20rem);
+            opacity: 0;
+            transition: opacity .3s ease-in-out, transform 1s ease-in-out .7s;
         }
-
-        &__date-container {
-            display: flex;
-            font-family: $font-family-secondary;
-        }
-        &__date-item:first-of-type {
-            border-right: solid 1px var(--clr-gray-400);
-            padding-right: var(--spacing-lg);
-            margin-right: var(--spacing-lg);
-        }
-        &__date-label {
-            @extend %fw-semibold;
-
-            text-align: right;
-            font-size: 2.4rem;
-            color: var(--clr-gray-700);
-        }
-        &__date-values {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-        }
-        &__day {
-            font-size: 5rem;
-            font-weight: 900;
-            color: var(--clr-gray-700);
-            line-height: 1;
-        }
-        &__month {
-            @extend %fw-semibold;
-        }
-        &__month-year {
-            display: flex;
-            flex-direction: column;
-        }
-
-        &__info {
-            display: flex;
-            padding-inline: var(--spacing-lg);
-            &-text {
-                flex: auto;
-            }
-            &-label {
-                margin-top: var(--spacing-lg);
-            }
-            &-content {
-                @extend %fw-semibold;
-            }
-            &-image {
-                height: 12rem;
-                aspect-ratio: 16/9;
-                overflow: hidden;
-                border-radius: $border-radius;
-                margin-block: var(--spacing-lg);
-            }
-        }
-        
-        &__footer {
-            display: flex;
-            background-color: var(--clr-gray-200);
-            padding: var(--spacing-lg);
-            border-bottom-left-radius: $border-radius;
-            border-bottom-right-radius: $border-radius;
-
-            .resa-card__status {
-                @extend %fw-semibold;
-                flex: auto;
-                color: var(--clr-primary);
-                font-size: 1.8rem;
-            }
-            .resa-card__price span {
-                @extend %fw-semibold;
-            }
-        }
-    }
-}
-
-.admin-comment-detail {
-    &__container {
-        @extend %container-secondary; 
-
-        padding-top: 10rem;
-    }
-
-    .comment-card {
-        border-radius: $border-radius;
-        background-color: var(--clr-white);
-        padding: var(--spacing-lg);
-        display: flex;
-        gap: var(--spacing-lg);
-        box-shadow: $box-shadow;
-
-        &__avatar {
-            flex: 0 0 8rem;
-            aspect-ratio: 1/1;
-            height: fit-content;
-            overflow: hidden;
-            border-radius: $border-radius;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--clr-white);
-            background-color: var(--clr-black);
-            border-radius: 50%;
-            font-size: 2.4;
-            @extend %fw-semibold;
-
-            img {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
-        }
-
-        &__meta {
-            display: flex;
-
-            span:first-of-type {
-                flex: auto;
-            }
-            span:last-of-type {
-                display: flex;
-                gap: var(--spacing-sm);
-                font-weight: 600;
-            }
-            img {
-                height: 2rem;
-            }
-        }
-        &__content {
-            display: flex;
-            flex-direction: column;
-            
-            > span {
-                margin-left: auto;
-            }
-        }
-
-        &__comment {
-            text-align: justify;
-            flex: auto;
-        }
-
-        &__footer {
-            > div {
-                height: 14rem;
-                aspect-ratio: 16/9;
-                overflow: hidden;
-                border-radius: $border-radius;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--clr-white);
-                background-color: var(--clr-black);
-                border: solid;
-                margin-bottom: var(--spacing-sm);
-            }
-
-            > p {
-                white-space: nowrap;
-            }
+        .flash-alert-content {
+            height: 100%;
+            @extend %fw-semibold; 
         }
     }
 }

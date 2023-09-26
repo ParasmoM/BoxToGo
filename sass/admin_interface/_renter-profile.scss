@@ -1,0 +1,127 @@
+@use "../base/variables" as *;
+@use "../utils" as *;
+
+.renter-profile {
+    height: 100%;
+    
+    &__container {
+        @extend %container-secondary; 
+
+        display: flex;
+        flex-direction: column;
+        padding: 10rem 0;
+        height: 100%;
+    }
+
+    &__main-section {
+        display: flex;
+        gap: var(--spacing-lg);
+
+        > div {
+            flex: 1;
+            border: solid 1px var(--clr-gray-400);
+            border-radius: $border-radius;
+            padding: var(--spacing-lg);
+        }
+    }
+
+    &__user-info {
+        > div:first-of-type {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        > div:last-of-type {
+            display: flex;
+        }
+    }
+    &__avatar-section {
+        display: flex;
+        gap: var(--spacing-lg);
+
+        .renter-profile__avatar {
+            height: 8rem;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--clr-black);
+            color: var(--clr-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h3 {
+            @extend %fw-semibold;
+        }
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__labels {
+        flex: 1;
+    }
+    &__values {
+        flex: 1;
+    }
+
+    &__comments {
+        position: relative;
+    }
+    .review-section {
+        display: flex;
+        flex-direction: column;
+
+        &__info {
+
+            display: flex;
+
+            img {
+                height: 1.4rem;
+            }
+
+            .review-section__user-type {
+                flex: auto;
+            }
+            .review-section__user {
+                @extend %fw-semibold;
+            }
+            .review-section__rating {
+                display: flex;
+                align-items: center;
+                
+                span {
+                    margin-right: 1rem;
+                }
+            }
+            .review-section__reference {
+                position: absolute;
+                top: -1.335rem;
+                border-radius: $border-radius;
+                padding: 0 1rem; right: var(--spacing-lg);
+                background-color: var(--clr-white);
+                box-shadow: $box-shadow;
+            }
+        }
+
+        &__comment {
+            height: 22.5rem;
+            padding-top: var(--spacing-lg);
+        }
+
+        .pagination {
+            padding: 0;
+        }
+    }
+
+    &__history {
+        flex: auto;
+        margin-top: var(--spacing-lg);
+    }
+    .pagination {
+        padding-top: 3rem;
+    }
+}

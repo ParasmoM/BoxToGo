@@ -405,13 +405,13 @@ button {
 }
 
 .message-board__conversation .sender > p,
-.message-board__conversation .receiver > p, .master-form .language-section .language-buttons .language-btn, .space-detail__billing button, .admin-analytics-search__item label, .admin-interface__header > div:last-of-type > div:last-of-type p:last-of-type, .detail-host-card__profile--title, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
+.message-board__conversation .receiver > p, .master-form .language-section .language-buttons .language-btn, .space-detail__billing button, .admin-analytics-search__item label, .header-ad__user-details p:last-of-type, .detail-host-card__profile--title, .card-space__info-group:first-of-type p:first-child, .master-form .status-options, .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--personal form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--settings form,
 .header-main__actions .header-main__action--user .menu-dropdown .menu-dropdown--logout form, .master-form .equipment-options, .home__navbar-category--list button, .home__navbar-filters, .settings__avatar-uploader__button--upload label, .settings__form-delete button, .listing-header__back-link, .error__content--container a, .ticket-card__section:last-of-type > div, .master-form .btn-master button, .settings__submit button, .listing__template__footer p, .owner-detail .owner-properties__contact-section button {
   font-weight: 500;
 }
 
-.error__content--container h1, .error__content--container p, .message-board__aside .sender-name, .message-board__user-info > p, .ticket-card__section:last-of-type > p, .ticket-card__section--info p:nth-of-type(2), .ticket-card__section--status, .settings__navbar .button.active, .owner-detail .owner-properties__address span, .owner-detail .owner-properties__subtitle, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__billing p:last-of-type span, .space-detail__billing-input label, .home__navbar, .listing__descriptions .card--step, .header-alt, .header-main, .admin-analytics .stats-card__title, .admin-analytics .stats-card__number, .admin-analytics .stats-card__foot > div span, .admin-analytics .stats-card__foot > span, .admin-analytics .utils__head .utils__title, .admin-analytics .utils__content .utils__category-item, .dashboard-admin__header, .dashboard-admin__main, .admin-interface__header > div:last-of-type > div:last-of-type p:first-of-type, .admin-interface__sidebar-heading, .admin-interface__sidebar .current, .renter-profile__avatar-section h3, .renter-profile .review-section__info .review-section__user, .resa-card__name, .resa-card__date-label, .resa-card__month, .resa-card__info-content, .resa-card__footer .resa-card__status, .resa-card__footer .resa-card__price span, .admin-comment-detail .comment-card__avatar, .prev, .review-card__username, .card-space__info-group:first-of-type p:last-child, .ticket-card__section--info p:first-of-type, .master-form .section-header, .settings__form h2, .listing__descriptions .card--content h3, .listing__template-step__title, .register__form .register__heading, .loginpage__heading, .favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__container h1, .space-detail__container h1, .detail-host-card__title {
+.error__content--container h1, .error__content--container p, .message-board__aside .sender-name, .message-board__user-info > p, .ticket-card__section:last-of-type > p, .ticket-card__section--info p:nth-of-type(2), .ticket-card__section--status, .settings__navbar .button.active, .owner-detail .owner-properties__address span, .owner-detail .owner-properties__subtitle, .space-detail__gallery-images-btn, .space-detail__gallery__actions a, .space-detail__gallery__map p, .space-detail__billing p:last-of-type span, .space-detail__billing-input label, .home__navbar, .listing__descriptions .card--step, .header-alt, .header-main, .admin-comment-detail .comment-card__avatar, .admin-comment-detail .comment-card__meta span:first-of-type, .resa-card__name, .resa-card__date-label, .resa-card__month, .resa-card__info-content, .resa-card__footer .resa-card__status, .resa-card__footer .resa-card__price span, .renter-profile__avatar-section h3, .renter-profile .review-section__info .review-section__user, .admin-analytics .stats-card__title, .admin-analytics .stats-card__number, .admin-analytics .stats-card__foot > div span, .admin-analytics .stats-card__foot > span, .admin-analytics .utils__head .utils__title, .admin-analytics .utils__content .utils__category-item, .dashboard-admin__header, .dashboard-admin__main, .header-ad__lang-list, .header-ad__user-details p:first-of-type, .sidebar-ad__heading, .sidebar-ad .current, .admin-interface__content .flash-alert-content, .prev, .review-card__username, .card-space__info-group:first-of-type p:last-child, .ticket-card__section--info p:first-of-type, .master-form .section-header, .settings__form h2, .listing__descriptions .card--content h3, .listing__template-step__title, .register__form .register__heading, .loginpage__heading, .favorite__title, .dashboard-host__title, .user-dashboard .titre, .settings__title, .owner-detail__container h1, .space-detail__container h1, .detail-host-card__title {
   font-weight: 600;
 }
 
@@ -569,7 +569,7 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .renter-profile__container, .admin-resa-detail__container, .admin-comment-detail__container, .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .header-alt__container, .header-main__container, .admin-interface__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .admin-comment-detail__container, .admin-resa-detail__container, .renter-profile__container, .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .header-alt__container, .header-main__container, .admin-interface__container {
   margin-inline: auto;
 }
 
@@ -601,7 +601,7 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .renter-profile__container, .admin-resa-detail__container, .admin-comment-detail__container, .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .header-alt__container, .header-main__container, .admin-interface__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .admin-comment-detail__container, .admin-resa-detail__container, .renter-profile__container, .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .header-alt__container, .header-main__container, .admin-interface__container {
   width: calc(100% - 6rem);
 }
 .error__container, .message-board, .owner-detail__container, .space-detail__container, .home__container, .listing-header__container, .listing__content-container, .listing__template__footer-container, .header-alt__container, .header-main__container, .admin-interface__container {
@@ -611,7 +611,7 @@ button {
 .master-form .price-category-section,
 .master-form .address-section,
 .master-form .equipment-section,
-.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .renter-profile__container, .admin-resa-detail__container, .admin-comment-detail__container {
+.master-form .galleries-section, .master-form .btn-master__container, .user-dashboard > .container, .settings__container, .settings__title, .settings__submit-container, .register__container, .loginpage__container, .admin-comment-detail__container, .admin-resa-detail__container, .renter-profile__container {
   max-width: 1024px;
 }
 
@@ -1076,347 +1076,125 @@ body {
   padding-bottom: 10rem;
   min-height: 100vh;
 }
-.admin-interface__header {
+.header-ad {
   display: flex;
   gap: var(--spacing-lg);
   padding-block: var(--spacing-lg);
   position: relative;
 }
-.admin-interface__header .admin-switch {
+.header-ad .admin-switch {
   position: absolute;
   top: 3rem;
   left: 11rem;
 }
-.admin-interface__header > div img {
+.header-ad__logo {
   height: 6rem;
 }
-.admin-interface__header > div:last-of-type {
+.header-ad__info {
   margin-left: auto;
   display: flex;
+  align-items: center;
   gap: var(--spacing-lg);
 }
-.admin-interface__header > div:last-of-type > div:first-of-type {
+.header-ad__lang {
+  position: relative;
+}
+.header-ad__lang-icone {
+  cursor: pointer;
+}
+.header-ad__lang-list {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  left: -1.9rem;
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  text-transform: uppercase;
+  height: 4rem;
+  aspect-ratio: 16/9;
+  background-color: var(--clr-gray-100);
+}
+.header-ad__lang .show {
+  display: block;
+}
+.header-ad__lang-item {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-ad__avatar {
   height: 5rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
 }
-.admin-interface__header > div:last-of-type > div:first-of-type img {
+.header-ad__avatar img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.admin-interface__header > div:last-of-type > div:last-of-type p:last-of-type {
+.header-ad__user-details p:last-of-type {
   color: var(--clr-gray-900);
 }
+
 .admin-interface__main {
   flex: auto;
   display: flex;
   gap: var(--spacing-xl);
   padding-top: 3rem;
 }
-.admin-interface__sidebar {
+.sidebar-ad {
   margin-top: 6.8rem;
 }
-.admin-interface__sidebar-heading {
+.sidebar-ad__heading {
   font-size: 2.6rem;
   margin-bottom: var(--spacing-lg);
 }
-.admin-interface__sidebar-container {
+.sidebar-ad__container {
   padding: var(--spacing-lg);
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border: solid 1px var(--clr-gray-400);
   border-radius: 1rem;
-  background-color: var(--clr-white);
+  background-color: var(--clr-gray-100);
 }
-.admin-interface__sidebar-list {
+.sidebar-ad__list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
 }
-.admin-interface__sidebar-item {
+.sidebar-ad__item > a, .sidebar-ad__logout > a {
   display: flex;
   gap: var(--spacing-sm);
   padding: var(--spacing-xs);
   align-items: center;
-  border-radius: 1rem;
   white-space: nowrap;
 }
-.admin-interface__sidebar .current {
-  background-color: var(--clr-gray-300);
+.sidebar-ad .current {
+  background-color: var(--clr-gray-200);
+  border-radius: 1rem;
+  transition: all 0.5s ease-in-out;
 }
+
 .admin-interface__content {
   flex: auto;
-}
-
-.renter-profile {
-  height: 100%;
-}
-.renter-profile__container {
-  display: flex;
-  flex-direction: column;
-  padding: 10rem 0;
-  height: 100%;
-}
-.renter-profile__main-section {
-  display: flex;
-  gap: var(--spacing-lg);
-}
-.renter-profile__main-section > div {
-  flex: 1;
-  border: solid 1px var(--clr-gray-400);
-  border-radius: 1rem;
-  padding: var(--spacing-lg);
-}
-.renter-profile__user-info > div:first-of-type {
-  margin-bottom: var(--spacing-lg);
-}
-.renter-profile__user-info > div:last-of-type {
-  display: flex;
-}
-.renter-profile__avatar-section {
-  display: flex;
-  gap: var(--spacing-lg);
-}
-.renter-profile__avatar-section .renter-profile__avatar {
-  height: 8rem;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: var(--clr-black);
-  color: var(--clr-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.renter-profile__avatar-section img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.renter-profile__labels {
-  flex: 1;
-}
-.renter-profile__values {
-  flex: 1;
-}
-.renter-profile__comments {
   position: relative;
 }
-.renter-profile .review-section {
-  display: flex;
-  flex-direction: column;
-}
-.renter-profile .review-section__info {
-  display: flex;
-}
-.renter-profile .review-section__info img {
-  height: 1.4rem;
-}
-.renter-profile .review-section__info .review-section__user-type {
-  flex: auto;
-}
-.renter-profile .review-section__info .review-section__rating {
-  display: flex;
-  align-items: center;
-}
-.renter-profile .review-section__info .review-section__rating span {
-  margin-right: 1rem;
-}
-.renter-profile .review-section__info .review-section__reference {
-  position: absolute;
-  top: -1.335rem;
-  border-radius: 1rem;
-  padding: 0 1rem;
-  right: var(--spacing-lg);
-  background-color: var(--clr-white);
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-}
-.renter-profile .review-section__comment {
-  height: 22.5rem;
-  padding-top: var(--spacing-lg);
-}
-.renter-profile .review-section .pagination {
-  padding: 0;
-}
-.renter-profile__history {
-  flex: auto;
-  margin-top: var(--spacing-lg);
-}
-.renter-profile .pagination {
-  padding-top: 3rem;
-}
-
-.admin-resa-detail__container {
-  padding-top: 10rem;
-  margin-bottom: var(--spacing-lg);
-}
-.resa-card {
+.admin-interface__content .flash-alert {
   border: solid 1px var(--clr-gray-700);
-  border-radius: 1rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-  background-color: var(--clr-white);
-}
-.resa-card__header {
-  display: flex;
-  border-bottom: solid 1px var(--clr-gray-400);
-  padding-block: var(--spacing-lg);
-  margin-inline: var(--spacing-lg);
-  position: relative;
-}
-.resa-card__profile {
-  display: flex;
-  gap: var(--spacing-lg);
-  flex: auto;
-}
-.resa-card__image {
-  height: 9rem;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  border-radius: 1rem;
-}
-.resa-card__image img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.resa-card__ref {
   position: absolute;
-  top: -1.35rem;
   right: 0;
-  background-color: var(--clr-white);
-  border: solid 1px var(--clr-gray-400);
+  height: 10rem;
+  aspect-ratio: 4.4444444444;
+  background-color: var(--clr-gray-100);
   border-radius: 1rem;
-  padding: 0 1rem;
+  padding: var(--spacing-sm);
+  transform: translateX(-20rem);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 1s ease-in-out 0.7s;
 }
-.resa-card__date-container {
-  display: flex;
-  font-family: "Open Sans", sans-serif;
-}
-.resa-card__date-item:first-of-type {
-  border-right: solid 1px var(--clr-gray-400);
-  padding-right: var(--spacing-lg);
-  margin-right: var(--spacing-lg);
-}
-.resa-card__date-label {
-  text-align: right;
-  font-size: 2.4rem;
-  color: var(--clr-gray-700);
-}
-.resa-card__date-values {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-}
-.resa-card__day {
-  font-size: 5rem;
-  font-weight: 900;
-  color: var(--clr-gray-700);
-  line-height: 1;
-}
-.resa-card__month-year {
-  display: flex;
-  flex-direction: column;
-}
-.resa-card__info {
-  display: flex;
-  padding-inline: var(--spacing-lg);
-}
-.resa-card__info-text {
-  flex: auto;
-}
-.resa-card__info-label {
-  margin-top: var(--spacing-lg);
-}
-.resa-card__info-image {
-  height: 12rem;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  border-radius: 1rem;
-  margin-block: var(--spacing-lg);
-}
-.resa-card__footer {
-  display: flex;
-  background-color: var(--clr-gray-200);
-  padding: var(--spacing-lg);
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-}
-.resa-card__footer .resa-card__status {
-  flex: auto;
-  color: var(--clr-primary);
-  font-size: 1.8rem;
-}
-.admin-comment-detail__container {
-  padding-top: 10rem;
-}
-.admin-comment-detail .comment-card {
-  border-radius: 1rem;
-  background-color: var(--clr-white);
-  padding: var(--spacing-lg);
-  display: flex;
-  gap: var(--spacing-lg);
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-}
-.admin-comment-detail .comment-card__avatar {
-  flex: 0 0 8rem;
-  aspect-ratio: 1/1;
-  height: fit-content;
-  overflow: hidden;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--clr-white);
-  background-color: var(--clr-black);
-  border-radius: 50%;
-  font-size: 2.4;
-}
-.admin-comment-detail .comment-card__avatar img {
+.admin-interface__content .flash-alert-content {
   height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.admin-comment-detail .comment-card__meta {
-  display: flex;
-}
-.admin-comment-detail .comment-card__meta span:first-of-type {
-  flex: auto;
-}
-.admin-comment-detail .comment-card__meta span:last-of-type {
-  display: flex;
-  gap: var(--spacing-sm);
-  font-weight: 600;
-}
-.admin-comment-detail .comment-card__meta img {
-  height: 2rem;
-}
-.admin-comment-detail .comment-card__content {
-  display: flex;
-  flex-direction: column;
-}
-.admin-comment-detail .comment-card__content > span {
-  margin-left: auto;
-}
-.admin-comment-detail .comment-card__comment {
-  text-align: justify;
-  flex: auto;
-}
-.admin-comment-detail .comment-card__footer > div {
-  height: 14rem;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--clr-white);
-  background-color: var(--clr-black);
-  border: solid;
-  margin-bottom: var(--spacing-sm);
-}
-.admin-comment-detail .comment-card__footer > p {
-  white-space: nowrap;
 }
 
 .modal {
@@ -1510,6 +1288,9 @@ body {
   padding: 0.4rem var(--spacing-sm);
   margin-inline: auto;
 }
+.dashboard-admin__items > div:last-of-type a:hover {
+  background-color: var(--clr-gray-100);
+}
 .dashboard-admin__items > div .ad {
   padding: 0.4rem 1rem;
   border-radius: 1rem;
@@ -1546,6 +1327,44 @@ body {
   color: var(--clr-white);
   background-color: var(--clr-primary);
   margin-left: var(--spacing-sm);
+}
+.dashboard-admin__items .action {
+  position: relative;
+}
+.dashboard-admin__items .action #action-btn {
+  border: solid 1px var(--clr-gray-700);
+  display: flex;
+  justify-content: center;
+  height: 3.2rem;
+  aspect-ratio: 16/9;
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+}
+.dashboard-admin__items .action #action-btn:hover {
+  background-color: var(--clr-gray-100);
+}
+.dashboard-admin__items .action form {
+  position: absolute;
+  top: 4.2rem;
+  left: -1.17rem;
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  background-color: var(--clr-gray-100);
+  overflow: hidden;
+  z-index: 2;
+  height: 4rem;
+  width: 8rem;
+  display: none;
+}
+.dashboard-admin__items .action .show {
+  display: block;
+}
+.dashboard-admin__items .action .btn-delete {
+  height: 100%;
+  width: 100%;
+}
+.dashboard-admin__items .action .btn-delete:hover {
+  color: var(--clr-primary);
 }
 .dashboard-admin .img-profile > div {
   aspect-ratio: 1/1;
@@ -1797,6 +1616,285 @@ body {
   height: 1.8rem;
   border-radius: 50%;
   border: solid 1px;
+}
+
+.renter-profile {
+  height: 100%;
+}
+.renter-profile__container {
+  display: flex;
+  flex-direction: column;
+  padding: 10rem 0;
+  height: 100%;
+}
+.renter-profile__main-section {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+.renter-profile__main-section > div {
+  flex: 1;
+  border: solid 1px var(--clr-gray-400);
+  border-radius: 1rem;
+  padding: var(--spacing-lg);
+}
+.renter-profile__user-info > div:first-of-type {
+  margin-bottom: var(--spacing-lg);
+}
+.renter-profile__user-info > div:last-of-type {
+  display: flex;
+}
+.renter-profile__avatar-section {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+.renter-profile__avatar-section .renter-profile__avatar {
+  height: 8rem;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.renter-profile__avatar-section img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.renter-profile__labels {
+  flex: 1;
+}
+.renter-profile__values {
+  flex: 1;
+}
+.renter-profile__comments {
+  position: relative;
+}
+.renter-profile .review-section {
+  display: flex;
+  flex-direction: column;
+}
+.renter-profile .review-section__info {
+  display: flex;
+}
+.renter-profile .review-section__info img {
+  height: 1.4rem;
+}
+.renter-profile .review-section__info .review-section__user-type {
+  flex: auto;
+}
+.renter-profile .review-section__info .review-section__rating {
+  display: flex;
+  align-items: center;
+}
+.renter-profile .review-section__info .review-section__rating span {
+  margin-right: 1rem;
+}
+.renter-profile .review-section__info .review-section__reference {
+  position: absolute;
+  top: -1.335rem;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  right: var(--spacing-lg);
+  background-color: var(--clr-white);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.renter-profile .review-section__comment {
+  height: 22.5rem;
+  padding-top: var(--spacing-lg);
+}
+.renter-profile .review-section .pagination {
+  padding: 0;
+}
+.renter-profile__history {
+  flex: auto;
+  margin-top: var(--spacing-lg);
+}
+.renter-profile .pagination {
+  padding-top: 3rem;
+}
+
+.admin-resa-detail__container {
+  padding-top: 10rem;
+  margin-bottom: var(--spacing-lg);
+}
+.resa-card {
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  background-color: var(--clr-white);
+}
+.resa-card__header {
+  display: flex;
+  border-bottom: solid 1px var(--clr-gray-400);
+  padding-block: var(--spacing-lg);
+  margin-inline: var(--spacing-lg);
+  position: relative;
+}
+.resa-card__profile {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex: auto;
+}
+.resa-card__image {
+  height: 9rem;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.resa-card__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.resa-card__ref {
+  position: absolute;
+  top: -1.35rem;
+  right: 0;
+  background-color: var(--clr-white);
+  border: solid 1px var(--clr-gray-400);
+  border-radius: 1rem;
+  padding: 0 1rem;
+}
+.resa-card__date-container {
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+}
+.resa-card__date-item:first-of-type {
+  border-right: solid 1px var(--clr-gray-400);
+  padding-right: var(--spacing-lg);
+  margin-right: var(--spacing-lg);
+}
+.resa-card__date-label {
+  text-align: right;
+  font-size: 2.4rem;
+  color: var(--clr-gray-700);
+}
+.resa-card__date-values {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+.resa-card__day {
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--clr-gray-700);
+  line-height: 1;
+}
+.resa-card__month-year {
+  display: flex;
+  flex-direction: column;
+}
+.resa-card__info {
+  display: flex;
+  padding-inline: var(--spacing-lg);
+}
+.resa-card__info-text {
+  flex: auto;
+}
+.resa-card__info-label {
+  margin-top: var(--spacing-lg);
+}
+.resa-card__info-image {
+  height: 12rem;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 1rem;
+  margin-block: var(--spacing-lg);
+}
+.resa-card__footer {
+  display: flex;
+  background-color: var(--clr-gray-200);
+  padding: var(--spacing-lg);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.resa-card__footer .resa-card__status {
+  flex: auto;
+  color: var(--clr-primary);
+  font-size: 1.8rem;
+}
+.admin-comment-detail__container {
+  padding-top: 10rem;
+}
+.admin-comment-detail .comment-card {
+  position: relative;
+  border-radius: 1rem;
+  background-color: var(--clr-white);
+  padding: var(--spacing-lg);
+  display: flex;
+  gap: var(--spacing-lg);
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+.admin-comment-detail .comment-card__avatar {
+  flex: 0 0 8rem;
+  aspect-ratio: 1/1;
+  height: fit-content;
+  overflow: hidden;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+  border-radius: 50%;
+  font-size: 2.4;
+}
+.admin-comment-detail .comment-card__avatar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.admin-comment-detail .comment-card__meta {
+  display: flex;
+}
+.admin-comment-detail .comment-card__meta span:first-of-type {
+  flex: auto;
+  margin-bottom: 3rem;
+}
+.admin-comment-detail .comment-card__meta span:last-of-type {
+  display: flex;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+}
+.admin-comment-detail .comment-card__meta img {
+  height: 2rem;
+}
+.admin-comment-detail .comment-card__content {
+  display: flex;
+  flex-direction: column;
+}
+.admin-comment-detail .comment-card__content > span {
+  margin-left: auto;
+}
+.admin-comment-detail .comment-card__comment {
+  text-align: justify;
+  flex: auto;
+}
+.admin-comment-detail .comment-card__footer > div {
+  height: 14rem;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+  border: solid;
+  margin-bottom: var(--spacing-sm);
+}
+.admin-comment-detail .comment-card__footer > p {
+  position: absolute;
+  top: -1.335rem;
+  border: solid 1px var(--clr-gray-700);
+  border-radius: 1rem;
+  background-color: var(--clr-gray-200);
+  padding-inline: var(--spacing-sm);
+  white-space: nowrap;
 }
 
 .header-main__actions {

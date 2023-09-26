@@ -3,7 +3,8 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('js/goBack.js') }}" defer></script>
+    <script src="{{ asset('js/btn-lang.js') }}" defer></script>
+    <script src="{{ asset('js/goBack.js') }}" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -11,7 +12,7 @@
     
     <div class="admin-interface__container">
 
-        <header class="admin-interface__header">
+        <header class="admin-interface__header header-ad">
             {% include "admin/_header.html.twig" %}
         </header>
         
@@ -27,7 +28,7 @@
             
                     <div class="comment-card__content">
                         <p class="comment-card__meta">
-                            <span class="comment-card__user-date">{{ data.user|capitalize }}</span>
+                            <span class="comment-card__user">{{ data.user|capitalize }}</span>
                             <span class="comment-card__rating-value">
                                 {{ data.rating }}
                                 <img class="comment-card__rating-icon" src="{{ asset('images/icones/star-empty.svg') }}" alt="">

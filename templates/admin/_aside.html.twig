@@ -1,21 +1,41 @@
 {% set nav = [
-    {'name': 'Analytics',               'svg': 'analytics',     'route': 'app_admin'},
-    {'name': 'Users',                   'svg': 'admin',         'route': 'app_admin_users'},
-    {'name': 'Announcements',           'svg': 'notice',        'route': 'app_admin_notices'},
-    {'name': 'Reservations',            'svg': 'appointment',   'route': 'app_admin_resa'},
-    {'name': 'Comments and ratings',    'svg': 'comment',       'route': 'app_admin_comments'},
+        {'name': 'Analytics'|trans,               'svg': 'analytics',     'route': 'admin_analytics',   'alt': 'analytics icon'|trans},
+        {'name': 'Users'|trans,                   'svg': 'admin',         'route': 'admin_users',       'alt': 'administrator icon'|trans},
+        {'name': 'Announcements'|trans,           'svg': 'notice',        'route': 'admin_notices',     'alt': 'notice icon'|trans},
+        {'name': 'Reservations'|trans,            'svg': 'appointment',   'route': 'admin_resa',        'alt': 'appointment icon'|trans},
+        {'name': 'Comments and ratings'|trans,    'svg': 'comment',       'route': 'admin_comments',    'alt': 'comment icon'|trans},
+    ] 
+%}
 
-] %}
+{% set routeToTitle = {
+    'admin_analytics': 'Analytics'|trans,
+    'admin_users': 'Users'|trans,
+    'admin_notices': 'Announcements'|trans,
+    'admin_resa': 'Reservations'|trans,
+    'admin_comments': 'Comments and ratings'|trans
+} %}
 
-<h1 class="admin-interface__sidebar-heading">Users</h1>
+{% set title = routeToTitle[route] ?? '' %}
+
+
+<h1 class="sidebar-ad__heading">{{ title }}</h1>
         
-<div class="admin-interface__sidebar-container">
-    <ul class="admin-interface__sidebar-list">
+<div class="sidebar-ad__container">
+    <ul class="sidebar-ad__list">
         {% for link in nav %}
-            <li class="admin-interface__sidebar-item {{ route == link['route'] ? 'current' : '' }}">
-                <img src="{{ asset('images/icones/admin/' ~ link['svg'] ~ '.svg') }}" alt="">
-                <a href="{{ path( link['route'] ) }}" class="admin-interface__sidebar-link">{{ link['name'] }}</a>
+            <li class="sidebar-ad__item {{ route == link['route'] ? 'current' : '' }}">
+                <a href="{{ path( link['route'] ) }}">
+                    <img src="{{ asset('images/icones/admin/' ~ link['svg'] ~ '.svg') }}" alt="{{ link['alt'] }}">
+                    <span>{{ link['name'] }}</span>
+                </a>
             </li>
         {% endfor %}
     </ul>
+
+    <div class="sidebar-ad__logout">
+        <a href="{{ path('app_logout') }}">
+            <img src="{{ asset('images/icones/admin/LogOut.svg') }}" alt="{{ 'disconnection icon'|trans }}">
+            <span>{{ 'Log out'|trans }}</span>
+        </a>
+    </div>
 </div>

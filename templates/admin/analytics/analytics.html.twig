@@ -1,7 +1,9 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block javascripts %}
+{{ parent() }}
 <script src="{{ asset('js/admin/analytics.js') }}" defer></script>
+<script src="{{ asset('js/admin/show-alert.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -34,7 +36,7 @@
             </p>
         </div>
     {{ form_end(formSearchBar) }}   
-
+    
     <section class="admin-analytics__items stats-section">
         {% for data in datas %}
             <div class="stats-card">
@@ -99,9 +101,9 @@
     <section class="admin-analytics__section utils-section">
 
         {% set tabs = [
-                {'title': 'Admins'|trans, 'array': entityData['users'], 'form': formNewAdmin, 'name': 'Admins'},
-                {'title': 'Category'|trans, 'array': entityData['categories'], 'form': formSpaceType, 'name': 'Category'}, 
-                {'title': 'Amenities'|trans, 'array': entityData['amenities'], 'form': formAmenities, 'name': 'Amenities'}
+                {'title': 'Admins'|trans,       'array': entityData['users'],       'form': formNewAdmin,   'name': 'Admins'},
+                {'title': 'Category'|trans,     'array': entityData['categories'],  'form': formSpaceType,  'name': 'Category'}, 
+                {'title': 'Amenities'|trans,    'array': entityData['amenities'],   'form': formAmenities,  'name': 'Amenities'}
             ] 
         %}
 

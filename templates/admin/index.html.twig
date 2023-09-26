@@ -2,20 +2,37 @@
 
 {% block title %}Hello AdminController!{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/btn-lang.js') }}" defer></script>
+{% endblock %}
+
 {% block body %}
 <section class="admin-interface">
     <div class="admin-interface__container">
 
-        <header class="admin-interface__header">
+        <header class="admin-interface__header header-ad">
             {% include "admin/_header.html.twig" %}
         </header>
         
         <main class="admin-interface__main">
-            <aside class="admin-interface__sidebar">
+            <aside class="admin-interface__sidebar sidebar-ad">
                 {% include "admin/_aside.html.twig" %}
             </aside>
     
             <section class="admin-interface__content">
+
+                {% set message = null %}
+
+                {% if flashMessage is defined and flashMessage != null %}
+                    {% set message = flashMessage['success'] ?? flashMessage['error'] %}
+                {% endif %}
+
+                <div class="flash-alert {{ message != null ? 'show-alert' }}">
+                    <p class="flash-alert-content">
+                        {{ message }}
+                    </p>
+                </div>
+                
                 {% block content %}{% endblock content %}
             </section>
         </main>

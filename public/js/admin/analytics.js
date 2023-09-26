@@ -1,11 +1,11 @@
-console.log('Running page analytics admin');
+
 // Sélectionne toutes les div avec la classe "utils__items"
 const utilsItems = document.querySelectorAll('.utils__items');
 
 // Ajoute un écouteur d'événement à chaque div
 utilsItems.forEach((item) => {
     item.addEventListener('click', function() {
-        console.log(utilsItems);
+        
         // Réinitialise la propriété maxHeight pour toutes les div
         utilsItems.forEach((resetItem) => {
             resetItem.style.maxHeight = '10rem';

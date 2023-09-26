@@ -1,5 +1,5 @@
-<div>
-    <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo" class="logo-image">
+<div class="header-ad__logo-wrapper">
+    <img src="{{ asset('images/logo_boxtogo.svg') }}" alt="BoxToGo logo" class="header-ad__logo">
 </div>
 
 <div class="admin-switch">
@@ -8,13 +8,31 @@
     </a>
 </div>
 
-<div>
-    <div>
+<div class="header-ad__info">
+    <div class="header-ad__lang" id="btn-dropdown">
+
+        <div class="header-ad__lang-icone" id="btn-lang">
+            <img src="{{ asset('images/icones/langue.svg') }}" alt="Language selector">
+        </div>
+
+        <ul class="header-ad__lang-list">
+            {% for locale in locales %}
+                {% if locale != app.request.locale %}
+                    <li class="header-ad__lang-item">
+                        <a href="{{ path('app_change_language', {'locale': locale}) }}">{{ locale }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    </div>
+    
+    <div class="header-ad__avatar">
         {% include "components/_avatar.html.twig" with {'instance': app.user} %}
     </div>
     
-    <div>
-        <p>{{ app.user.familyName|upper }} {{ app.user.givenName }}</p>
-        <p>{{ app.user.email }}</p>
+    <div class="header-ad__user-details">
+        <p class="header-ad__user-name">{{ app.user.familyName|upper }} {{ app.user.givenName }}</p>
+        <p class="header-ad__user-email">{{ app.user.email }}</p>
     </div>
 </div>

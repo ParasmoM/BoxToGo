@@ -3,7 +3,8 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('js/goBack.js') }}" defer></script>
+    <script src="{{ asset('js/btn-lang.js') }}" defer></script>
+    <script src="{{ asset('js/goBack.js') }}" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -11,16 +12,16 @@
     
     <div class="admin-interface__container">
 
-        <header class="admin-interface__header">
+        <header class="admin-interface__header header-ad">
             {% include "admin/_header.html.twig" %}
         </header>
         
         <main class="renter-profile">
             <div class="renter-profile__container">
                 
-                <a href="{{ path('app_admin_users') }}" class="prev">
+                <a href="{{ path('admin_users') }}" class="prev">
                     <img class="review-card__star-icon" src="{{ asset('images/icones/global/TablerChevronLeft.svg') }}" alt="">
-                    <span>Précédent</span>
+                    <span>{{ 'Previous'|trans }}</span>
                 </a>
                 
                 <div class="renter-profile__main-section">
@@ -37,15 +38,15 @@
                     
                         <div class="renter-profile__details-section">
                             <div class="renter-profile__labels">
-                                <p class="renter-profile__label">Email :</p>
-                                <p class="renter-profile__label">Téléphone :</p>
-                                <p class="renter-profile__label">Langue :</p>
-                                <p class="renter-profile__label">Status :</p>
-                                <p class="renter-profile__label">Ancienneté :</p>
-                                <p class="renter-profile__label">Commentaire :</p>
-                                <p class="renter-profile__label">Réservation :</p>
+                                <p class="renter-profile__label">{{ 'Email :'|trans }}</p>
+                                <p class="renter-profile__label">{{ 'Phone number :'|trans }}</p>
+                                <p class="renter-profile__label">{{ 'Language :'|trans }}</p>
+                                <p class="renter-profile__label">{{ 'Status :'|trans }}</p>
+                                <p class="renter-profile__label">{{ 'Seniority :'|trans }}</p>
+                                <p class="renter-profile__label">{{ 'Comment :'|trans }}</p>
+                                <p class="renter-profile__label">{{ 'Reservation :'|trans }}</p>
                                 {% if data.renters.first is defined and data.renters.first != false %}
-                                    <p class="renter-profile__label">Réservation actuel :</p>
+                                    <p class="renter-profile__label">{{ 'Current reservation :'|trans }}</p>
                                 {% endif %}
                             </div>
                     

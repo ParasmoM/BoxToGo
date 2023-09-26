@@ -3,7 +3,8 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('js/goBack.js') }}" defer></script>
+    <script src="{{ asset('js/btn-lang.js') }}" defer></script>
+    <script src="{{ asset('js/goBack.js') }}" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -11,18 +12,16 @@
     
     <div class="admin-interface__container">
 
-        <header class="admin-interface__header">
+        <header class="admin-interface__header header-ad">
             {% include "admin/_header.html.twig" %}
         </header>
         
         <main class="admin-resa-detail">
             <div class="admin-resa-detail__container">
                 
-        
                 {% include "components/_btn_prev.html.twig" %}
 
                 {% include "components/_card-admin-resa.html.twig" %}
-
             
             </div>
         </main>
